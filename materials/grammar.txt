@@ -1,0 +1,50 @@
+# Draconic Language Grammar Rules
+
+## Sentence Structure
+Draconic typically follows a Subject-Verb-Object (SVO) structure, similar to English.
+
+## Verbs
+- Verbs do not conjugate for person (I, you, he/she/it)
+- Tense is indicated by suffixes:
+  - Present: -ir (neutral)
+  - Past: -is
+  - Future: -ith
+  - Imperative: -ora
+
+## Nouns
+- Plurals are formed with the suffix -ar
+- Possessive is indicated with the prefix vi-
+
+## Pronouns
+- I/me: wux
+- You: svihelen (formal) / svil (informal)
+- He/him: rerth
+- She/her: vutha
+- It: svent
+- We/us: wuxar
+- They/them: verthar
+
+## Adjectives
+- Adjectives follow the noun they modify
+- Comparatives use the prefix mhar-
+- Superlatives use the prefix thric-
+
+## Numbers
+- One: unui
+- Two: duil
+- Three: thurliost
+- Four: crendar
+- Five: daoshan
+- Six: sennith
+- Seven: turthik
+- Eight: rekish
+- Nine: nuvol
+- Ten: dexar
+
+## Common Phrases
+- Hello: Thurkear
+- Goodbye: Astahir
+- Thank you: Virlym
+- Please: Tenpiswo
+- Yes: Shar
+- No: Nishka
