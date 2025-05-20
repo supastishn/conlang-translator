@@ -95,7 +95,29 @@ document.addEventListener('DOMContentLoaded', function() {
     const currentSettings = Settings.get();
     document.getElementById('api-key').value = currentSettings.apiKey;
     document.getElementById('base-url').value = currentSettings.baseUrl;
-    document.getElementById('model').value = currentSettings.model;
+    
+    // Handle the model selection, including custom model option
+    const modelSelect = document.getElementById('model');
+    const customModelContainer = document.getElementById('custom-model-container');
+    const customModelInput = document.getElementById('custom-model');
+    
+    // Show/hide custom model input based on selection
+    function toggleCustomModelInput() {
+        customModelContainer.style.display = modelSelect.value === 'custom' ? 'block' : 'none';
+    }
+    
+    // Set the right model value and handle custom model
+    if (currentSettings.model && !['gpt-4o', 'gpt-4', 'gpt-3.5-turbo'].includes(currentSettings.model)) {
+        modelSelect.value = 'custom';
+        customModelInput.value = currentSettings.model;
+        toggleCustomModelInput();
+    } else {
+        modelSelect.value = currentSettings.model;
+    }
+    
+    // Add event listener for model select changes
+    modelSelect.addEventListener('change', toggleCustomModelInput);
+    
     document.getElementById('temperature').value = currentSettings.temperature;
     document.getElementById('temperature-value').textContent = currentSettings.temperature;
     document.getElementById('system-prompt').value = currentSettings.systemPrompt;
@@ -109,10 +131,25 @@ document.addEventListener('DOMContentLoaded', function() {
     settingsForm.addEventListener('submit', function(e) {
         e.preventDefault();
         
+        // Get the model value (handle custom model case)
+        let modelValue = document.getElementById('model').value;
+        if (modelValue === 'custom') {
+            const customModelValue = document.getElementById('custom-model').value.trim();
+            if (customModelValue) {
+                modelValue = customModelValue;
+            } else {
+                // If custom is selected but no value provided, show error
+                const connectionStatus = document.getElementById('connection-status');
+                connectionStatus.textContent = 'Please enter a custom model name';
+                connectionStatus.className = 'error';
+                return;
+            }
+        }
+        
         const newSettings = {
             apiKey: document.getElementById('api-key').value.trim(),
             baseUrl: document.getElementById('base-url').value.trim() || DEFAULT_SETTINGS.baseUrl,
-            model: document.getElementById('model').value,
+            model: modelValue,
             temperature: parseFloat(document.getElementById('temperature').value),
             systemPrompt: document.getElementById('system-prompt').value.trim()
         };
@@ -145,6 +182,19 @@ document.addEventListener('DOMContentLoaded', function() {
         }
         
         try {
+            // Get the model value (handle custom model case)
+            let modelValue = document.getElementById('model').value;
+            if (modelValue === 'custom') {
+                const customModelValue = document.getElementById('custom-model').value.trim();
+                if (customModelValue) {
+                    modelValue = customModelValue;
+                } else {
+                    connectionStatus.textContent = 'Please enter a custom model name';
+                    connectionStatus.className = 'error';
+                    return;
+                }
+            }
+            
             const endpoint = `${baseUrl}/v1/chat/completions`;
             const response = await fetch(endpoint, {
                 method: 'POST',
@@ -153,7 +203,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     'Authorization': `Bearer ${apiKey}`
                 },
                 body: JSON.stringify({
-                    model: document.getElementById('model').value,
+                    model: modelValue,
                     messages: [
                         { role: 'system', content: 'You are a test assistant.' },
                         { role: 'user', content: 'Respond with OK if you can read this.' }
