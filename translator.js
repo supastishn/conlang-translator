@@ -47,7 +47,11 @@ async function translateText(sourceText, direction = 'e2d', updateCallback = nul
     }
     
     // settings.baseUrl should now directly point to the base of API operations (e.g., https://api.openai.com/v1)
-    const endpoint = settings.baseUrl; 
+    let endpoint = settings.baseUrl; 
+    // Normalize base URL to remove trailing slash if present, before appending path
+    if (endpoint.endsWith('/')) {
+        endpoint = endpoint.slice(0, -1);
+    }
     
     // Load dictionary and grammar information to provide context
     const dictionaryPrompt = await loadDraconicDictionary();

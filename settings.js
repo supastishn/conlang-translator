@@ -177,7 +177,11 @@ document.addEventListener('DOMContentLoaded', function() {
             }
             
             // baseUrl should now directly point to the base of API operations (e.g., https://api.openai.com/v1)
-            const endpoint = baseUrl; 
+            let endpoint = baseUrl; 
+            // Normalize base URL to remove trailing slash if present, before appending path
+            if (endpoint.endsWith('/')) {
+                endpoint = endpoint.slice(0, -1);
+            }
             const response = await fetch(`${endpoint}/chat/completions`, {
                 method: 'POST',
                 headers: {
