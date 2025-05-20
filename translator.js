@@ -25,6 +25,36 @@ function checkApiStatus() {
     }
 }
 
+// Function to display processed image previews
+function displayImagePreviews(images) {
+    const previewsContainer = document.getElementById('image-previews');
+    const debugSection = document.getElementById('debug-section');
+    
+    // Clear previous previews
+    previewsContainer.innerHTML = '';
+    
+    // Show the debug section
+    debugSection.style.display = 'block';
+    
+    // Add each image to the previews
+    images.forEach(imageData => {
+        const container = document.createElement('div');
+        container.className = 'image-container';
+        
+        const img = document.createElement('img');
+        img.src = imageData.dataUrl;
+        img.alt = `Dictionary page ${imageData.pageNumber}`;
+        
+        const pageLabel = document.createElement('div');
+        pageLabel.className = 'page-number';
+        pageLabel.textContent = `Page ${imageData.pageNumber}`;
+        
+        container.appendChild(img);
+        container.appendChild(pageLabel);
+        previewsContainer.appendChild(container);
+    });
+}
+
 // Initialize on load
 document.addEventListener('DOMContentLoaded', function() {
     checkApiStatus();
@@ -33,6 +63,20 @@ document.addEventListener('DOMContentLoaded', function() {
     if (!englishTextArea.value) {
         englishTextArea.value = "Hello brave dragon, how are you today?";
     }
+    
+    // Toggle image previews visibility
+    const toggleButton = document.getElementById('toggle-previews');
+    toggleButton.addEventListener('click', function() {
+        const previewsContainer = document.getElementById('image-previews');
+        
+        if (previewsContainer.style.display === 'none') {
+            previewsContainer.style.display = 'grid';
+            this.textContent = 'Hide Image Previews';
+        } else {
+            previewsContainer.style.display = 'none';
+            this.textContent = 'Show Image Previews';
+        }
+    });
 });
 
 // Read dictionary and grammar file content
@@ -91,7 +135,12 @@ async function getPageAsImage(pdf, pageNumber) {
     // Convert canvas to base64 image - use full data URL format for OpenAI
     const dataUrl = canvas.toDataURL('image/jpeg', 0.8);
     console.log(`Rendered page ${pageNumber} as image`);
-    return dataUrl;
+    
+    // Store the page number with the image for display
+    return {
+        dataUrl: dataUrl,
+        pageNumber: pageNumber
+    };
 }
 
 // Function to translate text
@@ -134,14 +183,17 @@ async function translateToDraconic(englishText) {
             });
             
             // Add all dictionary images
-            resources.dictionaryImages.forEach((imgBase64, index) => {
+            resources.dictionaryImages.forEach((imageData, index) => {
                 combinedContent.push({
                     type: "image_url",
                     image_url: {
-                        url: imgBase64
+                        url: imageData.dataUrl
                     }
                 });
             });
+            
+            // Display image previews in debug section
+            displayImagePreviews(resources.dictionaryImages);
             
             // Add this combined content as a single message
             messages.push({
