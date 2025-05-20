@@ -131,23 +131,75 @@ function getBaseUrl() {
     return baseUrl;
 }
 
+// Scan directory for CSV files
+async function scanDirectoryForCSVs(directoryPath) {
+    try {
+        const baseUrl = getBaseUrl();
+        const fullDirectoryPath = `${baseUrl}/${directoryPath}`;
+        
+        // First try to fetch a directory listing if available
+        try {
+            const indexResponse = await fetch(`${fullDirectoryPath}/index.json`);
+            if (indexResponse.ok) {
+                const fileList = await indexResponse.json();
+                return fileList.filter(filename => filename.toLowerCase().endsWith('.csv'));
+            }
+        } catch (indexError) {
+            console.log('No index.json found, will scan for files individually');
+        }
+        
+        // If no index is available, try to fetch files based on common patterns
+        const possibleFiles = [];
+        
+        // Try to determine which files exist by making HEAD requests
+        const commonPrefixes = ['', 'dictionary-', 'dict-', 'lang-', 'draconic-'];
+        const commonCategories = [
+            'all', 'main', 'dictionary', 'common', 'nouns', 'verbs', 'adjectives', 
+            'adverbs', 'pronouns', 'determiners', 'conjunctions', 'prepositions', 
+            'phrases', 'common_words', 'vocabulary', 'expressions', 'grammar'
+        ];
+        
+        for (const prefix of commonPrefixes) {
+            for (const category of commonCategories) {
+                possibleFiles.push(`${prefix}${category}.csv`);
+            }
+        }
+        
+        // Check for any CSV files that match our patterns
+        const filePromises = possibleFiles.map(async filename => {
+            try {
+                const response = await fetch(`${fullDirectoryPath}/${filename}`, { method: 'HEAD' });
+                return response.ok ? filename : null;
+            } catch (e) {
+                return null;
+            }
+        });
+        
+        const results = await Promise.all(filePromises);
+        const existingFiles = results.filter(filename => filename !== null);
+        
+        if (existingFiles.length > 0) {
+            return existingFiles;
+        }
+        
+        // If no files found with common patterns, try wildcard approach
+        // This can be expanded based on server capabilities
+        console.warn('No CSV files found with common naming patterns');
+        return [];
+    } catch (error) {
+        console.error('Error scanning directory:', error);
+        return [];
+    }
+}
+
 // Load dictionary from all CSVs in the directory
 async function loadDraconicDictionary() {
     try {
         const baseUrl = getBaseUrl();
         
-        // List of CSV files to load from materials/csvs directory
-        const csvFiles = [
-            'nouns.csv',
-            'verbs.csv',
-            'adjectives.csv',
-            'adverbs.csv',
-            'pronouns.csv',
-            'conjunctions.csv',
-            'prepositions.csv',
-            'phrases.csv',
-            'common_words.csv'
-        ];
+        // Dynamically scan for CSV files
+        const csvFiles = await scanDirectoryForCSVs('materials/csvs');
+        console.log(`Found ${csvFiles.length} CSV files:`, csvFiles);
         
         // Load all CSV files and combine them
         let allDictionaryData = '';
@@ -167,17 +219,37 @@ async function loadDraconicDictionary() {
             }
         }
         
-        // If no files were loaded, try the fallback to the original location
+        // If no files were loaded, try to scan at the root level
         if (!allDictionaryData.trim()) {
-            console.warn('No CSV files found in materials/csvs, trying fallback...');
-            const baseUrl = getBaseUrl();
-            const fallbackResponse = await fetch(`${baseUrl}/materials/dictionary.csv`);
-            if (fallbackResponse.ok) {
-                const fallbackText = await fallbackResponse.text();
-                allDictionaryData = fallbackText;
-                console.log('Loaded dictionary from fallback location');
-            } else {
-                throw new Error('No dictionary files could be loaded');
+            console.warn('No CSV files found in materials/csvs, looking for CSVs in materials directory...');
+            
+            // Try to find any CSV files in the materials directory
+            const rootCsvFiles = await scanDirectoryForCSVs('materials');
+            console.log(`Found ${rootCsvFiles.length} CSV files in materials directory:`, rootCsvFiles);
+            
+            for (const file of rootCsvFiles) {
+                try {
+                    const response = await fetch(`${baseUrl}/materials/${file}`);
+                    if (response.ok) {
+                        const csvText = await response.text();
+                        allDictionaryData += `\n### ${file} ###\n${csvText}\n`;
+                    }
+                } catch (fileError) {
+                    console.warn(`Error loading ${file} from materials directory:`, fileError);
+                }
+            }
+            
+            // As a last resort, try the original dictionary.csv file
+            if (!allDictionaryData.trim()) {
+                console.warn('No CSV files found in materials directory either, trying dictionary.csv fallback...');
+                const fallbackResponse = await fetch(`${baseUrl}/materials/dictionary.csv`);
+                if (fallbackResponse.ok) {
+                    const fallbackText = await fallbackResponse.text();
+                    allDictionaryData = fallbackText;
+                    console.log('Loaded dictionary from fallback location');
+                } else {
+                    throw new Error('No dictionary files could be loaded');
+                }
             }
         }
         
