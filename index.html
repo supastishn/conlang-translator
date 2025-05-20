@@ -10,26 +10,19 @@
     <div class="container">
         <header>
             <h1>English to Draconic Translator</h1>
+            <nav class="main-nav">
+                <ul>
+                    <li class="active"><a href="index.html">Translator</a></li>
+                    <li><a href="settings.html">API Settings</a></li>
+                </ul>
+            </nav>
         </header>
 
-        <div class="settings-panel">
-            <h2>API Settings</h2>
-            <div class="form-group">
-                <label for="api-url">API Base URL:</label>
-                <input type="text" id="api-url" value="https://api.openai.com/v1" placeholder="Enter API URL">
-            </div>
-            <div class="form-group">
-                <label for="api-key">API Key:</label>
-                <input type="password" id="api-key" placeholder="Enter your API key">
-            </div>
-            <div class="form-group">
-                <label for="model">Model:</label>
-                <input type="text" id="model" value="gpt-4" placeholder="Enter model name">
-            </div>
-            <button id="save-settings">Save Settings</button>
-        </div>
-
         <div class="translator">
+            <div class="api-status" id="api-status">
+                <!-- API status will be shown here -->
+            </div>
+
             <div class="input-section">
                 <h2>English Text</h2>
                 <textarea id="english-text" placeholder="Enter English text to translate..."></textarea>
@@ -46,6 +39,6 @@
             <p>Uses Draconic language materials for accurate translations</p>
         </footer>
     </div>
-    <script src="script.js"></script>
+    <script src="translator.js"></script>
 </body>
 </html>
