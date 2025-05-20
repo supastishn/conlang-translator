@@ -3,7 +3,7 @@
 // Default settings
 const DEFAULT_SETTINGS = {
     apiKey: '',
-    baseUrl: 'https://api.openai.com',
+    baseUrl: 'https://api.openai.com/v1', // Now includes /v1
     model: 'gpt-4o',
     temperature: 0.7,
     systemPrompt: 'You are a translator for the constructed Draconic language. Translate between English and Draconic following the dictionary and grammar rules. Provide only the translated text without explanations.',
@@ -176,7 +176,8 @@ document.addEventListener('DOMContentLoaded', function() {
                 }
             }
             
-            const endpoint = `${baseUrl}/v1`;
+            // baseUrl should now directly point to the base of API operations (e.g., https://api.openai.com/v1)
+            const endpoint = baseUrl; 
             const response = await fetch(`${endpoint}/chat/completions`, {
                 method: 'POST',
                 headers: {

@@ -46,7 +46,8 @@ async function translateText(sourceText, direction = 'e2d', updateCallback = nul
         throw new Error('API key not configured. Please set your OpenAI API key in Settings.');
     }
     
-    const endpoint = `${settings.baseUrl}/v1`;
+    // settings.baseUrl should now directly point to the base of API operations (e.g., https://api.openai.com/v1)
+    const endpoint = settings.baseUrl; 
     
     // Load dictionary and grammar information to provide context
     const dictionaryPrompt = await loadDraconicDictionary();
