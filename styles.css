@@ -771,6 +771,23 @@ footer {
     color: #666;
     border-top: 1px solid var(--border-color);
     padding-top: 20px;
+    padding-bottom: 20px; /* Added padding for spacing */
+}
+
+.footer-links {
+    margin-top: 10px;
+}
+
+.footer-links a {
+    color: var(--primary-color);
+    text-decoration: none;
+    margin: 0 10px;
+    transition: color var(--transition-speed) ease;
+}
+
+.footer-links a:hover {
+    color: var(--primary-dark);
+    text-decoration: underline;
 }
 
 /* Responsive design */
