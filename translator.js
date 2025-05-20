@@ -130,9 +130,8 @@ async function loadDraconicDictionary() {
         const response = await fetch('materials/dictionary.csv');
         const csvText = await response.text();
         
-        // Return a simplified version of the dictionary for the prompt
-        // Limit to 1000 characters to avoid token limit issues
-        return csvText.substring(0, 1000) + '...\n[Dictionary abbreviated for token limits]';
+        // Return the full dictionary
+        return csvText;
     } catch (error) {
         console.error('Error loading dictionary:', error);
         return '[Dictionary could not be loaded]';
@@ -145,9 +144,8 @@ async function loadDraconicGrammar() {
         const response = await fetch('materials/grammar.txt');
         const grammarText = await response.text();
         
-        // Return a simplified version of the grammar for the prompt
-        // Limit to 2000 characters to avoid token limit issues
-        return grammarText.substring(0, 2000) + '...\n[Grammar rules abbreviated for token limits]';
+        // Return the full grammar rules
+        return grammarText;
     } catch (error) {
         console.error('Error loading grammar:', error);
         return '[Grammar rules could not be loaded]';
