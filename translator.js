@@ -170,7 +170,8 @@ async function loadDraconicDictionary() {
         // If no files were loaded, try the fallback to the original location
         if (!allDictionaryData.trim()) {
             console.warn('No CSV files found in materials/csvs, trying fallback...');
-            const fallbackResponse = await fetch('materials/dictionary.csv');
+            const baseUrl = getBaseUrl();
+            const fallbackResponse = await fetch(`${baseUrl}/materials/dictionary.csv`);
             if (fallbackResponse.ok) {
                 const fallbackText = await fallbackResponse.text();
                 allDictionaryData = fallbackText;
