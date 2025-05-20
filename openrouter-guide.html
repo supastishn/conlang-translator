@@ -71,8 +71,14 @@
                 <h3>Important Notes:</h3>
                 <ul class="guide-notes">
                     <li><strong>Free Models & Rate Limits:</strong> Free models on OpenRouter are typically rate-limited. For many free tier models, this is often around <strong>50 Requests Per Day (RPD)</strong>. If you encounter errors or slow responses, you might have exceeded these limits.</li>
-                    <li><strong>Model Performance:</strong> The quality of translations can vary significantly between models. Experiment to find one that works well for Draconic. Smaller or free models might not be as capable as larger, paid models like GPT-4.</li>
-                    <li><strong>Costs:</strong> While some models are free, OpenRouter also provides access to many paid models. Be aware of the pricing if you choose to use them. You typically need to add credits to your OpenRouter account for paid models.</li>
+                    <li><strong>Model Performance:</strong> The quality of translations can vary significantly between models. Experiment to find one that works well for Draconic. 
+                        <ul>
+                            <li>Smaller or free models might not be as capable as larger, paid models.</li>
+                            <li>Highly capable paid models include options like <code>anthropic/claude-3.5-sonnet</code> or <code>google/gemini-pro-1.5</code>.</li>
+                            <li>However, some free or very low-cost models like <code>deepseek/deepseek-r1:free</code> can offer performance that compares favorably to these premium models for specific tasks, so it's worth testing.</li>
+                        </ul>
+                    </li>
+                    <li><strong>Costs:</strong> While some models are free (like the Deepseek ones mentioned), OpenRouter also provides access to many paid models. Be aware of the pricing if you choose to use models like Claude or Gemini Pro. You typically need to add credits to your OpenRouter account for paid models.</li>
                     <li><strong>Referral Header:</strong> For some models, especially free ones, OpenRouter might require or prefer you to set an HTTP Referer header. This translator automatically sets <code>X-Title</code> to "Draconic Translator" in requests, which OpenRouter encourages. You can also set your site URL in OpenRouter's key settings if you deploy this application.</li>
                 </ul>
 
