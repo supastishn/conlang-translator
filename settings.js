@@ -6,7 +6,7 @@ const DEFAULT_SETTINGS = {
     baseUrl: 'https://api.openai.com',
     model: 'gpt-4o',
     temperature: 0.7,
-    systemPrompt: 'You are a translator for the constructed Draconic language. Translate English text to Draconic following the dictionary and grammar rules. Provide only the translated text without explanations.',
+    systemPrompt: 'You are a translator for the constructed Draconic language. Translate between English and Draconic following the dictionary and grammar rules. Provide only the translated text without explanations.',
     streamingEnabled: true
 };
 

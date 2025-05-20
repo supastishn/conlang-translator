@@ -25,17 +25,28 @@
                 <p>⚠️ OpenAI API key not set. Please configure in <a href="settings.html">Settings</a> first.</p>
             </div>
 
+            <div class="translation-direction-toggle">
+                <label class="direction-label">Translation Direction:</label>
+                <div class="toggle-container">
+                    <label class="switch">
+                        <input type="checkbox" id="direction-toggle">
+                        <span class="slider round"></span>
+                    </label>
+                    <span class="toggle-label" id="direction-label">English → Draconic</span>
+                </div>
+            </div>
+
             <div class="translation-container">
                 <div class="translation-box">
-                    <h2>English</h2>
-                    <textarea id="english-input" placeholder="Enter English text here..."></textarea>
+                    <h2 id="source-language">English</h2>
+                    <textarea id="source-input" placeholder="Enter text here..."></textarea>
                 </div>
                 <div class="translation-controls">
                     <button id="translate-btn">Translate →</button>
                 </div>
                 <div class="translation-box">
-                    <h2>Draconic</h2>
-                    <textarea id="draconic-output" placeholder="Draconic translation will appear here..." readonly></textarea>
+                    <h2 id="target-language">Draconic</h2>
+                    <textarea id="target-output" placeholder="Translation will appear here..." readonly></textarea>
                 </div>
             </div>
 

@@ -7,13 +7,14 @@ const TranslationHistory = {
         return history ? JSON.parse(history) : [];
     },
     
-    add: function(english, draconic) {
+    add: function(source, target, direction) {
         const history = this.get();
         history.unshift({
             id: Date.now(),
             timestamp: new Date().toISOString(),
-            english: english,
-            draconic: draconic
+            source: source,
+            target: target,
+            direction: direction // 'e2d' for English to Draconic, 'd2e' for Draconic to English
         });
         
         // Keep only the last 10 translations
@@ -31,7 +32,7 @@ const TranslationHistory = {
 };
 
 // OpenAI API integration
-async function translateToDraconic(englishText, updateCallback = null) {
+async function translateText(sourceText, direction = 'e2d', updateCallback = null) {
     const settings = Settings.get();
     
     if (!settings.apiKey) {
@@ -47,6 +48,14 @@ async function translateToDraconic(englishText, updateCallback = null) {
     // Check if streaming is enabled
     const useStreaming = settings.streamingEnabled !== false && updateCallback !== null;
     
+    // Build the user prompt based on direction
+    let userPrompt;
+    if (direction === 'e2d') {
+        userPrompt = `Translate the following English text to Draconic:\n\n"${sourceText}"`;
+    } else {
+        userPrompt = `Translate the following Draconic text to English:\n\n"${sourceText}"`;
+    }
+    
     // Common request parameters
     const requestBody = {
         model: settings.model,
@@ -55,7 +64,7 @@ async function translateToDraconic(englishText, updateCallback = null) {
                 role: 'system', 
                 content: `${settings.systemPrompt}\n\nDRACONIC DICTIONARY:\n${dictionaryPrompt}\n\nDRACONIC GRAMMAR:\n${grammarPrompt}`
             },
-            { role: 'user', content: `Translate the following English text to Draconic:\n\n"${englishText}"` }
+            { role: 'user', content: userPrompt }
         ],
         temperature: settings.temperature
     };
@@ -317,8 +326,16 @@ function updateHistoryDisplay() {
             const historyItem = history.find(item => item.id === id);
             
             if (historyItem) {
-                document.getElementById('english-input').value = historyItem.english;
-                document.getElementById('draconic-output').value = historyItem.draconic;
+                // Set the direction toggle to match the history item
+                const directionToggle = document.getElementById('direction-toggle');
+                directionToggle.checked = historyItem.direction === 'd2e';
+                
+                // Trigger the change event to update labels
+                directionToggle.dispatchEvent(new Event('change'));
+                
+                // Set the input/output values
+                document.getElementById('source-input').value = historyItem.source;
+                document.getElementById('target-output').value = historyItem.target;
             }
         });
     });
@@ -330,16 +347,52 @@ document.addEventListener('DOMContentLoaded', function() {
     const translateBtn = document.getElementById('translate-btn');
     if (!translateBtn) return;
     
+    // Set up the direction toggle
+    const directionToggle = document.getElementById('direction-toggle');
+    const directionLabel = document.getElementById('direction-label');
+    const sourceLanguage = document.getElementById('source-language');
+    const targetLanguage = document.getElementById('target-language');
+    const sourceInput = document.getElementById('source-input');
+    const targetOutput = document.getElementById('target-output');
+    
+    // Function to update UI based on translation direction
+    function updateTranslationDirection() {
+        const isReversed = directionToggle.checked;
+        
+        if (isReversed) {
+            // Draconic to English
+            directionLabel.textContent = 'Draconic → English';
+            sourceLanguage.textContent = 'Draconic';
+            targetLanguage.textContent = 'English';
+            sourceInput.placeholder = 'Enter Draconic text here...';
+            targetOutput.placeholder = 'English translation will appear here...';
+        } else {
+            // English to Draconic
+            directionLabel.textContent = 'English → Draconic';
+            sourceLanguage.textContent = 'English';
+            targetLanguage.textContent = 'Draconic';
+            sourceInput.placeholder = 'Enter English text here...';
+            targetOutput.placeholder = 'Draconic translation will appear here...';
+        }
+    }
+    
+    // Initialize direction
+    updateTranslationDirection();
+    
+    // Handle direction toggle changes
+    directionToggle.addEventListener('change', updateTranslationDirection);
+    
     // Update history display on page load
     updateHistoryDisplay();
     
     // Set up the translate button click handler
     translateBtn.addEventListener('click', async function() {
-        const englishInput = document.getElementById('english-input').value.trim();
-        const draconicOutput = document.getElementById('draconic-output');
+        const sourceInput = document.getElementById('source-input').value.trim();
+        const targetOutput = document.getElementById('target-output');
+        const direction = document.getElementById('direction-toggle').checked ? 'd2e' : 'e2d';
         
-        if (!englishInput) {
-            alert('Please enter some English text to translate');
+        if (!sourceInput) {
+            alert('Please enter some text to translate');
             return;
         }
         
@@ -352,7 +405,7 @@ document.addEventListener('DOMContentLoaded', function() {
         // Show loading state
         translateBtn.disabled = true;
         translateBtn.textContent = 'Translating...';
-        draconicOutput.value = 'Translating...';
+        targetOutput.value = 'Translating...';
         
         // Get settings to check if streaming is enabled
         const settings = Settings.get();
@@ -360,22 +413,22 @@ document.addEventListener('DOMContentLoaded', function() {
         try {
             if (settings.streamingEnabled !== false) {
                 // Use streaming translation with callback to update UI
-                draconicOutput.classList.add('streaming');
-                const translation = await translateToDraconic(englishInput, function(partialTranslation) {
-                    draconicOutput.value = partialTranslation;
+                targetOutput.classList.add('streaming');
+                const translation = await translateText(sourceInput, direction, function(partialTranslation) {
+                    targetOutput.value = partialTranslation;
                 });
                 
                 // Make sure we have the final translation
-                draconicOutput.value = translation;
-                draconicOutput.classList.remove('streaming');
+                targetOutput.value = translation;
+                targetOutput.classList.remove('streaming');
             } else {
                 // Use regular translation
-                const translation = await translateToDraconic(englishInput);
-                draconicOutput.value = translation;
+                const translation = await translateText(sourceInput, direction);
+                targetOutput.value = translation;
             }
             
-            // Add to history
-            TranslationHistory.add(englishInput, draconicOutput.value);
+            // Add to history with direction info
+            TranslationHistory.add(sourceInput, targetOutput.value, direction);
             updateHistoryDisplay();
             
         } catch (error) {
