@@ -188,8 +188,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     messages: [
                         { role: 'system', content: 'You are a test assistant.' },
                         { role: 'user', content: 'Respond with OK if you can read this.' }
-                    ],
-                    max_tokens: 10
+                    ]
                 })
             });
             
