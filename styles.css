@@ -323,7 +323,7 @@ button:disabled {
     opacity: 1;
 }
 
-/* Translation direction toggle */
+/* Translation direction buttons */
 .translation-direction-toggle {
     background-color: var(--surface-1);
     border: none;
@@ -368,22 +368,32 @@ button:disabled {
     border-radius: var(--rounded-xl);
 }
 
-.direction-language {
+.direction-button {
     font-weight: 500;
     transition: all 0.3s ease;
     padding: 0.5rem 1rem;
     border-radius: var(--rounded-md);
+    cursor: pointer;
+    border: none;
+    font-family: inherit;
+    font-size: inherit;
+    background: none;
 }
 
-.direction-language.active {
+.direction-button.active {
     color: var(--text-light);
     font-weight: 700;
     background-color: var(--primary-color);
     box-shadow: 0 2px 8px rgba(124, 58, 237, 0.3);
 }
 
-.direction-language.inactive {
+.direction-button.inactive {
     color: #6b7280;
+}
+
+.direction-button.inactive:hover {
+    background-color: var(--surface-1);
+    color: var(--primary-dark);
 }
 
 .direction-icon {

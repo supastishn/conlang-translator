@@ -327,12 +327,9 @@ function updateHistoryDisplay() {
             const historyItem = history.find(item => item.id === id);
             
             if (historyItem) {
-                // Set the direction toggle to match the history item
-                const directionToggle = document.getElementById('direction-toggle');
-                directionToggle.checked = historyItem.direction === 'd2e';
-                
-                // Trigger the change event to update labels
-                directionToggle.dispatchEvent(new Event('change'));
+                // Set the direction to match the history item
+                const toDraconic = historyItem.direction === 'e2d';
+                updateTranslationDirection(toDraconic);
                 
                 // Set the input/output values
                 document.getElementById('source-input').value = historyItem.source;
@@ -348,21 +345,22 @@ document.addEventListener('DOMContentLoaded', function() {
     const translateBtn = document.getElementById('translate-btn');
     if (!translateBtn) return;
     
-    // Set up the direction toggle
-    const directionToggle = document.getElementById('direction-toggle');
-    const directionLabel = document.getElementById('direction-label');
+    // Set up the direction buttons
+    const englishToDraconicBtn = document.getElementById('english-to-draconic');
+    const draconicToEnglishBtn = document.getElementById('draconic-to-english');
     const sourceLanguage = document.getElementById('source-language');
     const targetLanguage = document.getElementById('target-language');
     const sourceInput = document.getElementById('source-input');
     const targetOutput = document.getElementById('target-output');
     
+    // Variable to track current translation direction
+    let isEnglishToDraconic = true;
+    
     // Function to update UI based on translation direction
-    function updateTranslationDirection() {
-        const isReversed = directionToggle.checked;
-        const englishEl = document.querySelector('.direction-language.english');
-        const draconicEl = document.querySelector('.direction-language.draconic');
+    function updateTranslationDirection(toDraconic) {
+        isEnglishToDraconic = toDraconic;
         
-        if (isReversed) {
+        if (!toDraconic) {
             // Draconic to English
             sourceLanguage.textContent = 'Draconic';
             targetLanguage.textContent = 'English';
@@ -370,10 +368,10 @@ document.addEventListener('DOMContentLoaded', function() {
             targetOutput.placeholder = 'English translation will appear here...';
             
             // Update active/inactive classes
-            draconicEl.classList.add('active');
-            draconicEl.classList.remove('inactive');
-            englishEl.classList.add('inactive');
-            englishEl.classList.remove('active');
+            englishToDraconicBtn.classList.remove('active');
+            englishToDraconicBtn.classList.add('inactive');
+            draconicToEnglishBtn.classList.add('active');
+            draconicToEnglishBtn.classList.remove('inactive');
         } else {
             // English to Draconic
             sourceLanguage.textContent = 'English';
@@ -382,18 +380,19 @@ document.addEventListener('DOMContentLoaded', function() {
             targetOutput.placeholder = 'Draconic translation will appear here...';
             
             // Update active/inactive classes
-            englishEl.classList.add('active');
-            englishEl.classList.remove('inactive');
-            draconicEl.classList.add('inactive');
-            draconicEl.classList.remove('active');
+            englishToDraconicBtn.classList.add('active');
+            englishToDraconicBtn.classList.remove('inactive');
+            draconicToEnglishBtn.classList.remove('active');
+            draconicToEnglishBtn.classList.add('inactive');
         }
     }
     
     // Initialize direction
-    updateTranslationDirection();
+    updateTranslationDirection(true);
     
-    // Handle direction toggle changes
-    directionToggle.addEventListener('change', updateTranslationDirection);
+    // Handle direction button clicks
+    englishToDraconicBtn.addEventListener('click', () => updateTranslationDirection(true));
+    draconicToEnglishBtn.addEventListener('click', () => updateTranslationDirection(false));
     
     // Update history display on page load
     updateHistoryDisplay();
@@ -402,7 +401,7 @@ document.addEventListener('DOMContentLoaded', function() {
     translateBtn.addEventListener('click', async function() {
         const sourceInput = document.getElementById('source-input').value.trim();
         const targetOutput = document.getElementById('target-output');
-        const direction = document.getElementById('direction-toggle').checked ? 'd2e' : 'e2d';
+        const direction = isEnglishToDraconic ? 'e2d' : 'd2e';
         
         if (!sourceInput) {
             alert('Please enter some text to translate');
