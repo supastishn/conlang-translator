@@ -124,17 +124,57 @@ async function translateToDraconic(englishText, updateCallback = null) {
     }
 }
 
-// Load dictionary from CSV
+// Load dictionary from all CSVs in the directory
 async function loadDraconicDictionary() {
     try {
-        const response = await fetch('materials/dictionary.csv');
-        const csvText = await response.text();
+        // List of CSV files to load from materials/csvs directory
+        const csvFiles = [
+            'nouns.csv',
+            'verbs.csv',
+            'adjectives.csv',
+            'adverbs.csv',
+            'pronouns.csv',
+            'conjunctions.csv',
+            'prepositions.csv',
+            'phrases.csv',
+            'common_words.csv'
+        ];
         
-        // Return the full dictionary
-        return csvText;
+        // Load all CSV files and combine them
+        let allDictionaryData = '';
+        
+        for (const file of csvFiles) {
+            try {
+                const response = await fetch(`materials/csvs/${file}`);
+                if (response.ok) {
+                    const csvText = await response.text();
+                    // Add a header for each file to identify the source
+                    allDictionaryData += `\n### ${file} ###\n${csvText}\n`;
+                } else {
+                    console.warn(`Could not load ${file}: ${response.status}`);
+                }
+            } catch (fileError) {
+                console.warn(`Error loading ${file}:`, fileError);
+            }
+        }
+        
+        // If no files were loaded, try the fallback to the original location
+        if (!allDictionaryData.trim()) {
+            console.warn('No CSV files found in materials/csvs, trying fallback...');
+            const fallbackResponse = await fetch('materials/dictionary.csv');
+            if (fallbackResponse.ok) {
+                const fallbackText = await fallbackResponse.text();
+                allDictionaryData = fallbackText;
+                console.log('Loaded dictionary from fallback location');
+            } else {
+                throw new Error('No dictionary files could be loaded');
+            }
+        }
+        
+        return allDictionaryData;
     } catch (error) {
-        console.error('Error loading dictionary:', error);
-        return '[Dictionary could not be loaded]';
+        console.error('Error loading dictionary files:', error);
+        return '[Dictionary files could not be loaded]';
     }
 }
 
