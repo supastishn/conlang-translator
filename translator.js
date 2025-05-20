@@ -26,6 +26,13 @@ const TranslationHistory = {
         return history;
     },
     
+    delete: function(id) {
+        const history = this.get();
+        const filteredHistory = history.filter(item => item.id !== id);
+        localStorage.setItem('draconicTranslationHistory', JSON.stringify(filteredHistory));
+        return filteredHistory;
+    },
+    
     clear: function() {
         localStorage.removeItem('draconicTranslationHistory');
     }
@@ -291,12 +298,31 @@ function updateHistoryDisplay() {
     
     const history = TranslationHistory.get();
     
-    if (history.length === 0) {
-        historyContainer.innerHTML = '<p class="empty-history">No translation history yet</p>';
-        return;
+    // Clear existing content
+    historyContainer.innerHTML = '';
+    
+    // Add Clear All History button if we have history items
+    if (history.length > 0) {
+        const historyHeader = document.createElement('div');
+        historyHeader.className = 'history-controls';
+        historyHeader.innerHTML = `
+            <button id="clear-all-history" class="clear-history-btn">Clear All History</button>
+        `;
+        historyContainer.appendChild(historyHeader);
+        
+        // Add event listener to Clear All button
+        document.getElementById('clear-all-history').addEventListener('click', function() {
+            if (confirm('Are you sure you want to delete all translation history?')) {
+                TranslationHistory.clear();
+                updateHistoryDisplay();
+            }
+        });
     }
     
-    historyContainer.innerHTML = '';
+    if (history.length === 0) {
+        historyContainer.innerHTML += '<p class="empty-history">No translation history yet</p>';
+        return;
+    }
     
     history.forEach(item => {
         const historyItem = document.createElement('div');
@@ -309,7 +335,10 @@ function updateHistoryDisplay() {
             <div class="history-header">
                 <span class="history-date">${formattedDate}</span>
                 <span class="history-direction">${item.direction === 'e2d' ? 'English → Draconic' : 'Draconic → English'}</span>
-                <button class="history-use-btn" data-id="${item.id}">Use Again</button>
+                <div class="history-actions">
+                    <button class="history-use-btn" data-id="${item.id}">Use Again</button>
+                    <button class="history-delete-btn" data-id="${item.id}">Delete</button>
+                </div>
             </div>
             <div class="history-content">
                 <p><strong>${item.direction === 'e2d' ? 'English' : 'Draconic'}:</strong> ${item.source}</p>
@@ -334,6 +363,18 @@ function updateHistoryDisplay() {
                 // Set the input/output values
                 document.getElementById('source-input').value = historyItem.source;
                 document.getElementById('target-output').value = historyItem.target;
+            }
+        });
+    });
+    
+    // Add event listeners to "Delete" buttons
+    document.querySelectorAll('.history-delete-btn').forEach(button => {
+        button.addEventListener('click', function() {
+            const id = parseInt(this.getAttribute('data-id'));
+            
+            if (confirm('Delete this history item?')) {
+                TranslationHistory.delete(id);
+                updateHistoryDisplay();
             }
         });
     });
