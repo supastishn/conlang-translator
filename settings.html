@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Draconic Translator - Settings</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Draconic Translator Settings</h1>
+            <nav>
+                <ul>
+                    <li><a href="index.html">Translator</a></li>
+                    <li><a href="settings.html" class="active">Settings</a></li>
+                </ul>
+            </nav>
+        </header>
+
+        <main>
+            <div class="settings-container">
+                <h2>OpenAI API Configuration</h2>
+                <form id="api-settings-form">
+                    <div class="form-group">
+                        <label for="api-key">API Key:</label>
+                        <input type="password" id="api-key" placeholder="sk-...">
+                        <small>Your OpenAI API key is stored locally in your browser only.</small>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="base-url">Base URL: (Optional)</label>
+                        <input type="text" id="base-url" placeholder="https://api.openai.com">
+                        <small>Leave default unless using a custom endpoint.</small>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="model">Model:</label>
+                        <select id="model">
+                            <option value="gpt-4o">GPT-4o</option>
+                            <option value="gpt-4">GPT-4</option>
+                            <option value="gpt-3.5-turbo">GPT-3.5 Turbo</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-actions">
+                        <button type="submit" id="save-settings">Save Settings</button>
+                        <button type="button" id="test-connection">Test Connection</button>
+                    </div>
+                </form>
+                
+                <div id="connection-status" class="hidden"></div>
+                
+                <div class="advanced-settings">
+                    <h3>Advanced Settings</h3>
+                    <div class="form-group">
+                        <label for="temperature">Temperature:</label>
+                        <input type="range" id="temperature" min="0" max="2" step="0.1" value="0.7">
+                        <span id="temperature-value">0.7</span>
+                        <small>Higher values make output more random, lower values more deterministic.</small>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="system-prompt">System Prompt:</label>
+                        <textarea id="system-prompt" rows="6">You are a translator for the constructed Draconic language. Translate English text to Draconic following the dictionary and grammar rules. Provide only the translated text without explanations.</textarea>
+                    </div>
+                    
+                    <div class="form-actions">
+                        <button type="button" id="reset-defaults">Reset to Defaults</button>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <footer>
+            <p>Draconic Translator - Using OpenAI API for constructed language translation</p>
+        </footer>
+    </div>
+
+    <script src="settings.js"></script>
+</body>
+</html>

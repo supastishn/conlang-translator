@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Draconic Translator</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>English to Draconic Translator</h1>
+            <nav>
+                <ul>
+                    <li><a href="index.html" class="active">Translator</a></li>
+                    <li><a href="settings.html">Settings</a></li>
+                </ul>
+            </nav>
+        </header>
+
+        <main>
+            <div id="api-warning" class="warning hidden">
+                <p>⚠️ OpenAI API key not set. Please configure in <a href="settings.html">Settings</a> first.</p>
+            </div>
+
+            <div class="translation-container">
+                <div class="translation-box">
+                    <h2>English</h2>
+                    <textarea id="english-input" placeholder="Enter English text here..."></textarea>
+                </div>
+                <div class="translation-controls">
+                    <button id="translate-btn">Translate →</button>
+                </div>
+                <div class="translation-box">
+                    <h2>Draconic</h2>
+                    <textarea id="draconic-output" placeholder="Draconic translation will appear here..." readonly></textarea>
+                </div>
+            </div>
+
+            <div class="translation-history">
+                <h3>Translation History</h3>
+                <div id="history-container">
+                    <!-- Translation history will be added here dynamically -->
+                </div>
+            </div>
+        </main>
+
+        <footer>
+            <p>Draconic Translator - Using OpenAI API for constructed language translation</p>
+        </footer>
+    </div>
+
+    <script src="settings.js"></script>
+    <script src="translator.js"></script>
+</body>
+</html>
