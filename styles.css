@@ -329,6 +329,24 @@ button:disabled {
     transition: border-color var(--transition-speed) ease, box-shadow var(--transition-speed) ease;
 }
 
+/* Custom styling for the custom model input */
+#custom-model-container {
+    padding: 0.75rem;
+    border-radius: 8px;
+    margin-top: 0.5rem;
+    background-color: #f8f9fa;
+    border-left: 4px solid var(--primary-color);
+}
+
+#custom-model-container.active {
+    background-color: #f0f4ff;
+    box-shadow: 0 4px 6px -1px rgba(99, 102, 241, 0.2);
+}
+
+#custom-model {
+    border-color: var(--primary-light);
+}
+
 .form-group input:focus,
 .form-group select:focus,
 .form-group textarea:focus {

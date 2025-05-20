@@ -103,20 +103,34 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // Show/hide custom model input based on selection
     function toggleCustomModelInput() {
-        customModelContainer.style.display = modelSelect.value === 'custom' ? 'block' : 'none';
+        if (modelSelect.value === 'custom') {
+            customModelContainer.style.display = 'block';
+            customModelContainer.classList.add('active');
+            customModelInput.focus();
+        } else {
+            customModelContainer.style.display = 'none';
+            customModelContainer.classList.remove('active');
+        }
     }
     
     // Set the right model value and handle custom model
     if (currentSettings.model && !['gpt-4o', 'gpt-4', 'gpt-3.5-turbo'].includes(currentSettings.model)) {
         modelSelect.value = 'custom';
         customModelInput.value = currentSettings.model;
-        toggleCustomModelInput();
     } else {
         modelSelect.value = currentSettings.model;
     }
     
+    // Always show custom model field if custom is selected
+    toggleCustomModelInput();
+    
     // Add event listener for model select changes
     modelSelect.addEventListener('change', toggleCustomModelInput);
+    
+    // Add placeholder text that changes based on previous custom models
+    if (customModelInput.value) {
+        customModelInput.placeholder = `Enter model name (e.g., ${customModelInput.value})`;
+    }
     
     document.getElementById('temperature').value = currentSettings.temperature;
     document.getElementById('temperature-value').textContent = currentSettings.temperature;
@@ -140,8 +154,9 @@ document.addEventListener('DOMContentLoaded', function() {
             } else {
                 // If custom is selected but no value provided, show error
                 const connectionStatus = document.getElementById('connection-status');
-                connectionStatus.textContent = 'Please enter a custom model name';
+                connectionStatus.textContent = 'Please enter a custom model name! This is required when using the custom model option.';
                 connectionStatus.className = 'error';
+                document.getElementById('custom-model').focus();
                 return;
             }
         }
@@ -189,8 +204,9 @@ document.addEventListener('DOMContentLoaded', function() {
                 if (customModelValue) {
                     modelValue = customModelValue;
                 } else {
-                    connectionStatus.textContent = 'Please enter a custom model name';
+                    connectionStatus.textContent = 'Please enter a custom model name! This is required when using a custom model.';
                     connectionStatus.className = 'error';
+                    document.getElementById('custom-model').focus();
                     return;
                 }
             }
