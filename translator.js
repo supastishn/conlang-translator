@@ -64,11 +64,14 @@ async function translateText(sourceText, direction = 'e2d', updateCallback = nul
     let userPrompt;
     if (direction === 'e2d') {
         userPrompt = `Translate the following English text to Draconic:\n\n"${sourceText}"`;
+        if (settings.draconicOutputType === 'simplified') {
+            userPrompt += " (output simplified romanization)";
+        }
     } else {
         userPrompt = `Translate the following Draconic text to English:\n\n"${sourceText}"`;
     }
 
-    // NEW: Modify system prompt based on draconicOutputType for E2D
+    // Modify system prompt based on draconicOutputType for E2D
     let systemPromptContent = settings.systemPrompt;
     if (direction === 'e2d' && settings.draconicOutputType === 'simplified') {
         systemPromptContent += " (output simplified romanization)";
