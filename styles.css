@@ -808,3 +808,25 @@ footer {
         width: 100%;
     }
 }
+
+/* Styles for openrouter-guide.html lists */
+.guide-steps, .guide-notes {
+    margin-left: 20px; /* Indent lists */
+    margin-bottom: 1.5rem;
+}
+
+.guide-steps li, .guide-notes li {
+    margin-bottom: 0.75rem; /* Space out list items */
+}
+
+.guide-steps ul, .guide-notes ul {
+    margin-top: 0.5rem; /* Space before nested lists */
+    margin-left: 20px; /* Indent nested lists */
+}
+
+.guide-steps code, .guide-notes code {
+    background-color: var(--surface-2);
+    padding: 0.2em 0.4em;
+    border-radius: var(--rounded-sm);
+    font-size: 0.9em;
+}
