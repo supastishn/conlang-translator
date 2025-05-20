@@ -20,6 +20,7 @@
                     <li><a href="index.html">Translator</a></li>
                     <li><a href="settings.html">Settings</a></li>
                     <li><a href="openrouter-guide.html" class="active">OpenRouter Guide</a></li>
+                    <li><a href="google-aistudio-gemini-guide.html">Google AI Studio Guide</a></li>
                 </ul>
             </nav>
         </header>
@@ -72,7 +73,7 @@
 
                 <h3>Important Notes:</h3>
                 <ul class="guide-notes">
-                    <li><strong>Free Models:</strong> Free models on OpenRouter are typically rate-limited (e.g., a certain number of requests per day or minute). If you encounter errors or slow responses, you might have exceeded these limits.</li>
+                    <li><strong>Free Models & Rate Limits:</strong> Free models on OpenRouter are typically rate-limited. For many free tier models, this is often around <strong>50 Requests Per Day (RPD)</strong>. If you encounter errors or slow responses, you might have exceeded these limits.</li>
                     <li><strong>Model Performance:</strong> The quality of translations can vary significantly between models. Experiment to find one that works well for Draconic. Smaller or free models might not be as capable as larger, paid models like GPT-4.</li>
                     <li><strong>Costs:</strong> While some models are free, OpenRouter also provides access to many paid models. Be aware of the pricing if you choose to use them. You typically need to add credits to your OpenRouter account for paid models.</li>
                     <li><strong>Referral Header:</strong> For some models, especially free ones, OpenRouter might require or prefer you to set an HTTP Referer header. This translator automatically sets <code>X-Title</code> to "Draconic Translator" in requests, which OpenRouter encourages. You can also set your site URL in OpenRouter's key settings if you deploy this application.</li>

@@ -19,6 +19,8 @@
                 <ul>
                     <li><a href="index.html">Translator</a></li>
                     <li><a href="settings.html" class="active">Settings</a></li>
+                    <li><a href="openrouter-guide.html">OpenRouter Guide</a></li>
+                    <li><a href="google-aistudio-gemini-guide.html">Google AI Studio Guide</a></li>
                 </ul>
             </nav>
         </header>
@@ -29,14 +31,21 @@
                 <form id="api-settings-form">
                     <div class="form-group">
                         <label for="api-key">API Key:</label>
-                        <input type="password" id="api-key" placeholder="sk-...">
-                        <small>Your API key is stored locally in your browser only. <a href="openrouter-guide.html" target="_blank">How to use OpenRouter for free models.</a></small>
+                        <input type="password" id="api-key" placeholder="Enter your API key...">
+                        <small>Your API key is stored locally. See guides for: 
+                            <a href="openrouter-guide.html" target="_blank">OpenRouter (free)</a> | 
+                            <a href="google-aistudio-gemini-guide.html" target="_blank">Google AI Studio Gemini (free)</a>.
+                        </small>
                     </div>
                     
                     <div class="form-group">
-                        <label for="base-url">Base URL: (Optional)</label>
+                        <label for="base-url">Base URL:</label>
                         <input type="text" id="base-url" placeholder="https://api.openai.com/v1">
-                        <small>Default: <code>https://api.openai.com/v1</code>. For OpenRouter, use <code>https://openrouter.ai/api/v1</code>. See the <a href="openrouter-guide.html" target="_blank">guide</a>.</small>
+                        <small>
+                            Default (OpenAI, paid): <code>https://api.openai.com/v1</code>.<br>
+                            For OpenRouter (free, ~50 RPD): <code>https://openrouter.ai/api/v1</code>. See the <a href="openrouter-guide.html" target="_blank">OpenRouter guide</a>.<br>
+                            For Google AI Studio Gemini (free, ~500 RPD): <code>https://generativelanguage.googleapis.com/v1beta/openai/</code>. See the <a href="google-aistudio-gemini-guide.html" target="_blank">Google AI Studio guide</a>.
+                        </small>
                     </div>
                     
                     <div class="form-group">
