@@ -308,11 +308,12 @@ function updateHistoryDisplay() {
         historyItem.innerHTML = `
             <div class="history-header">
                 <span class="history-date">${formattedDate}</span>
+                <span class="history-direction">${item.direction === 'e2d' ? 'English → Draconic' : 'Draconic → English'}</span>
                 <button class="history-use-btn" data-id="${item.id}">Use Again</button>
             </div>
             <div class="history-content">
-                <p><strong>English:</strong> ${item.english}</p>
-                <p><strong>Draconic:</strong> ${item.draconic}</p>
+                <p><strong>${item.direction === 'e2d' ? 'English' : 'Draconic'}:</strong> ${item.source}</p>
+                <p><strong>${item.direction === 'e2d' ? 'Draconic' : 'English'}:</strong> ${item.target}</p>
             </div>
         `;
         
