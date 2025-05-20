@@ -122,9 +122,15 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         }
         
+        let baseUrlValue = document.getElementById('base-url').value.trim() || DEFAULT_SETTINGS.baseUrl;
+        // Remove trailing slash if present
+        if (baseUrlValue.endsWith('/')) {
+            baseUrlValue = baseUrlValue.slice(0, -1);
+        }
+
         const newSettings = {
             apiKey: document.getElementById('api-key').value.trim(),
-            baseUrl: document.getElementById('base-url').value.trim() || DEFAULT_SETTINGS.baseUrl,
+            baseUrl: baseUrlValue,
             model: modelValue,
             temperature: parseFloat(document.getElementById('temperature').value),
             systemPrompt: document.getElementById('system-prompt').value.trim(),
