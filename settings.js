@@ -1,46 +1,3 @@
-// Configuration storage
-let apiConfig = {
-    apiUrl: localStorage.getItem('apiUrl') || 'https://api.openai.com/v1',
-    apiKey: localStorage.getItem('apiKey') || '',
-    model: localStorage.getItem('model') || 'gpt-4-vision-preview'
-};
-
-// Debug saved config
-console.log("Current model setting:", apiConfig.model);
-
-// DOM elements
-const apiUrlInput = document.getElementById('api-url');
-const apiKeyInput = document.getElementById('api-key');
-const modelInput = document.getElementById('model');
-const saveSettingsBtn = document.getElementById('save-settings');
-const settingsStatus = document.getElementById('settings-status');
-
-// Initialize the form with stored values
-apiUrlInput.value = apiConfig.apiUrl;
-apiKeyInput.value = apiConfig.apiKey;
-
-// Set the model input value
-modelInput.value = apiConfig.model;
-
-// Save settings
-saveSettingsBtn.addEventListener('click', () => {
-    apiConfig.apiUrl = apiUrlInput.value.trim();
-    apiConfig.apiKey = apiKeyInput.value.trim();
-    apiConfig.model = modelInput.value.trim();
-    
-    localStorage.setItem('apiUrl', apiConfig.apiUrl);
-    localStorage.setItem('apiKey', apiConfig.apiKey);
-    localStorage.setItem('model', apiConfig.model);
-    
-    // Show success message
-    settingsStatus.textContent = 'Settings saved successfully!';
-    settingsStatus.className = 'settings-status success';
-    
-    // Clear status message after 3 seconds
-    setTimeout(() => {
-        settingsStatus.className = 'settings-status';
-    }, 3000);
-});
 // settings.js - Handles saving and loading OpenAI API settings
 
 // Default settings
@@ -81,6 +38,8 @@ const Settings = {
 
 // Initialize the settings page if on settings.html
 document.addEventListener('DOMContentLoaded', function() {
+    // Debug current settings
+    console.log("Current settings:", Settings.get());
     // Show API warning on translator page if API key not set
     const apiWarning = document.getElementById('api-warning');
     if (apiWarning) {
@@ -170,6 +129,9 @@ document.addEventListener('DOMContentLoaded', function() {
         };
         
         Settings.save(newSettings);
+        
+        // Debug saved settings
+        console.log("Settings saved:", newSettings);
         
         // Show success message
         const connectionStatus = document.getElementById('connection-status');
