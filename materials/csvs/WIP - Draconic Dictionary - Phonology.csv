@@ -1,0 +1,21 @@
+Consonants,Bilabial,Dental,Post-Alveolar,Velar,Uvular,Pharyngeal,Glottal,,Consonantal Allophony,
+Plosive,,/t̪/ t,,/k/,/q/,/ʡ/ q̇,/ʔ/ ‘,,Phoneme,Allophones
+Affricate,,,/t͡s̠/ c,/k͡x/,/q͡χ/,,,,/t̪/,[t̪̚] word-finally or before obstruent
+“Pyric” Plosive,,,,,/qˤʰ/ qħ,/ʡˤʰ/ q̇ħ,,,/k/,"[c] before i, ī; [ɡ̥] intervocalically; [k̚] word-finally or before obstruent"
+Fricative,/ɸ/ f,"/θ/ th, /ð/ d","/s̠/ s, /z̠/ z","/x/, /ɣ/ g",/χ/,,/h/,,/q/,[ɢ̥] intervocalically; [q̚] word-finally or before obstruent
+“Pyric” Fricative,,,,,/χˤʰ/ χħ,/ħ/,,,/ʡ/,[ʡ̆] intervocalically; [ʡ̚] word-finally or before obstruent
+Lateral,,"/l̪/ l, /r ~ ɾ/ r",/ɬ/ ll,,,,,,/ʔ/,[ʔ̞] intervocalically; [ʔ̚] word-finally or before obstruent
+Nasal,/m/,,/n/,/ŋ/,,,,,/t͡s̠/,"[t͡ʃ] before i, ī"
+,,,,,,,,,/k͡x/,"[c͡ç] before i, ī"
+,,,Vowels,Non-Back,Back,“Pyric”,,,/ɸ/,"[f] adjacent to th; [β] intervocallically or adjacent to z, g; [v] adjacent to d"
+,,,High,"/i/, /iː/ ī","/u/, /uː/ ū","/ṳˤ/ ú, /ṳˤː/ û",,,/s̠/,"[ʃ] before i, ī"
+,,,Mid,"/e/, /eː/ ē, /ə/ y","/o/, /oː/ ō","/o̤ˤ/ ó, /o̤ˤː/ ô",,,/z̠/,"[ʒ] before i, ī"
+,,,Low,"/a/, æ","/ɑ/ a, /ɑː/ ā","/ɑ̤ˤ/ á, /ɑ̤ˤː/ â",,,/x/,"[ç] before i, ī"
+Vocalic Allophony,,,,,,,,,/ɣ/,"[ʝ] before i, ī"
+- all vowels have retracted tongue root before or after laryngeal consonants,,,,Stress,,,,,/l/,[l̥] word-initially and before voiceless obstruents
+- short vowels are slightly more lax and central than long vowels,,,,"- stress of a word is initially determined by it's root, ignoring all prefixes/suffixes",,,,,/r/,[r̥] word-initially and before voiceless obstruents
+"- æ, a realized as [æ], [ä] in front of front consonants",,,,- stress is on the final syllable of the root if it is a closed syllable AND contains a long vowel,,,,,/ɬ/,[ɮ] intervocalically
+"- u, ū, o, and ō become [ʉ̜], [ʉ̜ː], [ɵ̜], and [ɵ̜ː] i before post-alveolar consonants ",,,,"- otherwise, stress is on the penult of the root if it is a closed syllable OR contains a long vowel",,,,,/m/,[m̥] word-initially and before voiceless obstruents
+"- u, ū, o, and ō are often slightly unrounded",,,,"- otherwise, stress is on the antepenult of the root",,,,,/n/,"[n̥] word-initially, word-finally, and before voiceless obstruents; [n̪] before dentals; /ŋ/ before velars and uvulars"
+- y often elided adjacent to a sonorant when unstressed,,,,"- if rules determine that the stress falls outside the root, stress can land on prefixes. If there are none, stress appears on the first syllable",,,,,/ŋ/,[ŋ̊] before voiceless velars; [ɴ̥] before uvulars
+"- Pyric vowels are often realized with breathy voice, especially after voiceless fricatives, uvulars, laryngeals, and word-finally",,,,,,,,,,
