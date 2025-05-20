@@ -5,6 +5,9 @@ let apiConfig = {
     model: localStorage.getItem('model') || 'gpt-4-vision-preview'
 };
 
+// Debug saved config
+console.log("Current model setting:", apiConfig.model);
+
 // DOM elements
 const apiUrlInput = document.getElementById('api-url');
 const apiKeyInput = document.getElementById('api-key');

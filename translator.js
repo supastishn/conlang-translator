@@ -26,7 +26,14 @@ function checkApiStatus() {
 }
 
 // Initialize on load
-checkApiStatus();
+document.addEventListener('DOMContentLoaded', function() {
+    checkApiStatus();
+    
+    // Set a default text for testing
+    if (!englishTextArea.value) {
+        englishTextArea.value = "Hello brave dragon, how are you today?";
+    }
+});
 
 // Read dictionary and grammar file content
 async function getDraconicResources() {
@@ -81,8 +88,10 @@ async function getPageAsImage(pdf, pageNumber) {
         viewport: viewport
     }).promise;
     
-    // Convert canvas to base64 image
-    return canvas.toDataURL('image/jpeg', 0.8);
+    // Convert canvas to base64 image - use full data URL format for OpenAI
+    const dataUrl = canvas.toDataURL('image/jpeg', 0.8);
+    console.log(`Rendered page ${pageNumber} as image`);
+    return dataUrl;
 }
 
 // Function to translate text
@@ -111,27 +120,33 @@ async function translateToDraconic(englishText) {
             to accurately translate the text.`
         });
         
-        // Add dictionary pages as images if model supports it
+        // Add dictionary pages as images if model supports vision
         const supportsVision = apiConfig.model.includes('vision') || apiConfig.model.includes('gpt-4');
         
         if (supportsVision) {
-            // Add images in separate messages for models that support images
+            // For vision models, we'll combine text and images in one message
+            let combinedContent = [];
+            
+            // Add initial text
+            combinedContent.push({
+                type: "text",
+                text: "Here are the dictionary pages to reference for translation:"
+            });
+            
+            // Add all dictionary images
             resources.dictionaryImages.forEach((imgBase64, index) => {
-                messages.push({
-                    role: "user",
-                    content: [
-                        {
-                            type: "text",
-                            text: `Dictionary page ${index + 1}:`
-                        },
-                        {
-                            type: "image_url",
-                            image_url: {
-                                url: imgBase64
-                            }
-                        }
-                    ]
+                combinedContent.push({
+                    type: "image_url",
+                    image_url: {
+                        url: imgBase64
+                    }
                 });
+            });
+            
+            // Add this combined content as a single message
+            messages.push({
+                role: "user",
+                content: combinedContent
             });
         } else {
             // For models that don't support images, we'll just mention this limitation
