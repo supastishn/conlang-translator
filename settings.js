@@ -19,19 +19,8 @@ const settingsStatus = document.getElementById('settings-status');
 apiUrlInput.value = apiConfig.apiUrl;
 apiKeyInput.value = apiConfig.apiKey;
 
-// Set the selected model in the dropdown
-const modelOptions = Array.from(modelInput.options);
-const matchingOption = modelOptions.find(option => option.value === apiConfig.model);
-if (matchingOption) {
-    matchingOption.selected = true;
-} else {
-    // If the stored model isn't in our predefined list, add it
-    const customOption = document.createElement('option');
-    customOption.value = apiConfig.model;
-    customOption.textContent = `${apiConfig.model} (custom)`;
-    modelInput.appendChild(customOption);
-    customOption.selected = true;
-}
+// Set the model input value
+modelInput.value = apiConfig.model;
 
 // Save settings
 saveSettingsBtn.addEventListener('click', () => {
