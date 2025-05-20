@@ -7,7 +7,8 @@ const DEFAULT_SETTINGS = {
     model: 'gpt-4o',
     temperature: 0.0,
     systemPrompt: 'You are a translator for the constructed Draconic language. Translate between English and Draconic following the dictionary and grammar rules. Provide only the translated text without explanations.',
-    streamingEnabled: true
+    streamingEnabled: true,
+    draconicOutputType: 'normal' // 'normal' or 'simplified'
 };
 
 // Settings management
@@ -56,6 +57,11 @@ document.addEventListener('DOMContentLoaded', function() {
     document.getElementById('api-key').value = currentSettings.apiKey;
     document.getElementById('base-url').value = currentSettings.baseUrl;
     document.getElementById('streaming-enabled').checked = currentSettings.streamingEnabled !== false; // Default to true if not set
+    
+    const draconicOutputTypeSelectSettings = document.getElementById('draconic-output-type-select-settings');
+    if (draconicOutputTypeSelectSettings) {
+        draconicOutputTypeSelectSettings.value = currentSettings.draconicOutputType || 'normal';
+    }
     
     // Handle the model selection, including custom model option
     const modelSelect = document.getElementById('model');
@@ -134,7 +140,8 @@ document.addEventListener('DOMContentLoaded', function() {
             model: modelValue,
             temperature: parseFloat(document.getElementById('temperature').value),
             systemPrompt: document.getElementById('system-prompt').value.trim(),
-            streamingEnabled: document.getElementById('streaming-enabled').checked
+            streamingEnabled: document.getElementById('streaming-enabled').checked,
+            draconicOutputType: draconicOutputTypeSelectSettings ? draconicOutputTypeSelectSettings.value : currentSettings.draconicOutputType
         };
         
         Settings.save(newSettings);

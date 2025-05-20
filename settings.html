@@ -101,6 +101,15 @@
                         <label for="system-prompt">System Prompt:</label>
                         <textarea id="system-prompt" rows="6">You are a translator for the constructed Draconic language. Translate English text to Draconic following the dictionary and grammar rules. Provide only the translated text without explanations.</textarea>
                     </div>
+
+                    <div class="form-group">
+                        <label for="draconic-output-type-select-settings">Default Draconic Output Type (for English → Draconic):</label>
+                        <select id="draconic-output-type-select-settings">
+                            <option value="normal">Normal Draconic Output</option>
+                            <option value="simplified">Simplified Romanization</option>
+                        </select>
+                        <small>Controls the default output format when translating from English to Draconic. "Simplified Romanization" will append "(output simplified romanization)" to the system prompt for potentially simpler phonetic output.</small>
+                    </div>
                     
                     <div class="form-actions">
                         <button type="button" id="reset-defaults">Reset to Defaults</button>

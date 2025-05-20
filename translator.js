@@ -67,6 +67,12 @@ async function translateText(sourceText, direction = 'e2d', updateCallback = nul
     } else {
         userPrompt = `Translate the following Draconic text to English:\n\n"${sourceText}"`;
     }
+
+    // NEW: Modify system prompt based on draconicOutputType for E2D
+    let systemPromptContent = settings.systemPrompt;
+    if (direction === 'e2d' && settings.draconicOutputType === 'simplified') {
+        systemPromptContent += " (output simplified romanization)";
+    }
     
     // Common request parameters
     const requestBody = {
@@ -74,7 +80,8 @@ async function translateText(sourceText, direction = 'e2d', updateCallback = nul
         messages: [
             { 
                 role: 'system', 
-                content: `${settings.systemPrompt}\n\nDRACONIC DICTIONARY:\n${dictionaryPrompt}\n\nDRACONIC GRAMMAR:\n${grammarPrompt}`
+                // Use the potentially modified systemPromptContent
+                content: `${systemPromptContent}\n\nDRACONIC DICTIONARY:\n${dictionaryPrompt}\n\nDRACONIC GRAMMAR:\n${grammarPrompt}`
             },
             { role: 'user', content: userPrompt }
         ],
@@ -398,6 +405,10 @@ document.addEventListener('DOMContentLoaded', function() {
     const targetLanguage = document.getElementById('target-language');
     const sourceInput = document.getElementById('source-input');
     const targetOutput = document.getElementById('target-output');
+
+    // NEW: Draconic output type elements
+    const draconicOutputTypeContainer = document.getElementById('draconic-output-type-container');
+    const draconicOutputTypeSelect = document.getElementById('draconic-output-type-select-index');
     
     // Variable to track current translation direction
     let isEnglishToDraconic = true;
@@ -405,6 +416,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // Function to update UI based on translation direction
     function updateTranslationDirection(toDraconic) {
         isEnglishToDraconic = toDraconic;
+        const currentSettings = Settings.get(); // Get current settings
         
         if (!toDraconic) {
             // Draconic to English
@@ -418,6 +430,11 @@ document.addEventListener('DOMContentLoaded', function() {
             englishToDraconicBtn.classList.add('inactive');
             draconicToEnglishBtn.classList.add('active');
             draconicToEnglishBtn.classList.remove('inactive');
+
+            // NEW: Hide Draconic output type selector
+            if (draconicOutputTypeContainer) {
+                draconicOutputTypeContainer.classList.add('hidden');
+            }
         } else {
             // English to Draconic
             sourceLanguage.textContent = 'English';
@@ -430,15 +447,32 @@ document.addEventListener('DOMContentLoaded', function() {
             englishToDraconicBtn.classList.remove('inactive');
             draconicToEnglishBtn.classList.remove('active');
             draconicToEnglishBtn.classList.add('inactive');
+
+            // NEW: Show Draconic output type selector and set its value
+            if (draconicOutputTypeContainer && draconicOutputTypeSelect) {
+                draconicOutputTypeContainer.classList.remove('hidden');
+                draconicOutputTypeSelect.value = currentSettings.draconicOutputType || 'normal';
+            }
         }
     }
     
-    // Initialize direction
-    updateTranslationDirection(true);
+    // Initialize direction (this will also set up the draconic output type selector)
+    updateTranslationDirection(true); 
     
     // Handle direction button clicks
     englishToDraconicBtn.addEventListener('click', () => updateTranslationDirection(true));
     draconicToEnglishBtn.addEventListener('click', () => updateTranslationDirection(false));
+
+    // NEW: Event listener for Draconic output type select on index.html
+    if (draconicOutputTypeSelect) {
+        draconicOutputTypeSelect.addEventListener('change', function() {
+            const newOutputType = this.value;
+            const currentSettings = Settings.get();
+            currentSettings.draconicOutputType = newOutputType;
+            Settings.save(currentSettings);
+            console.log("Draconic output type changed to:", newOutputType);
+        });
+    }
     
     // Update history display on page load
     updateHistoryDisplay();
