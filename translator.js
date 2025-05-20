@@ -451,7 +451,7 @@ document.addEventListener('DOMContentLoaded', function() {
         } finally {
             // Reset button state
             translateBtn.disabled = false;
-            translateBtn.textContent = 'Translate →';
+            translateBtn.textContent = 'Translate';
         }
     });
 });
