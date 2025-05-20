@@ -359,21 +359,33 @@ document.addEventListener('DOMContentLoaded', function() {
     // Function to update UI based on translation direction
     function updateTranslationDirection() {
         const isReversed = directionToggle.checked;
+        const englishEl = document.querySelector('.direction-language.english');
+        const draconicEl = document.querySelector('.direction-language.draconic');
         
         if (isReversed) {
             // Draconic to English
-            directionLabel.textContent = 'Draconic → English';
             sourceLanguage.textContent = 'Draconic';
             targetLanguage.textContent = 'English';
             sourceInput.placeholder = 'Enter Draconic text here...';
             targetOutput.placeholder = 'English translation will appear here...';
+            
+            // Update active/inactive classes
+            draconicEl.classList.add('active');
+            draconicEl.classList.remove('inactive');
+            englishEl.classList.add('inactive');
+            englishEl.classList.remove('active');
         } else {
             // English to Draconic
-            directionLabel.textContent = 'English → Draconic';
             sourceLanguage.textContent = 'English';
             targetLanguage.textContent = 'Draconic';
             sourceInput.placeholder = 'Enter English text here...';
             targetOutput.placeholder = 'Draconic translation will appear here...';
+            
+            // Update active/inactive classes
+            englishEl.classList.add('active');
+            englishEl.classList.remove('inactive');
+            draconicEl.classList.add('inactive');
+            draconicEl.classList.remove('active');
         }
     }
     

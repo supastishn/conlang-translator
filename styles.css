@@ -7,16 +7,17 @@
     --primary-light: #818cf8;
     --secondary-color: #f97316;
     --dark-bg: #1e293b;
-    --light-bg: #f9fafb;
+    --light-bg: #f8fafc;
     --text-dark: #1e293b;
     --text-light: #ffffff;
-    --border-color: #e2e8f0;
+    --border-color: #e5e7eb;
     --success-color: #10b981;
     --error-color: #ef4444;
     --info-color: #3b82f6;
     --warning-color: #f59e0b;
-    --card-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+    --card-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.08), 0 8px 10px -6px rgba(0, 0, 0, 0.01);
     --transition-speed: 0.3s;
+    --font-sans: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
 }
 
 * {
@@ -26,12 +27,13 @@
 }
 
 body {
-    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+    font-family: var(--font-sans);
     line-height: 1.6;
     color: var(--text-dark);
     background-color: var(--light-bg);
-    background-image: linear-gradient(135deg, #f9fafb 0%, #eef2ff 100%);
+    background-image: linear-gradient(135deg, #f8fafc 0%, #eff6ff 100%);
     min-height: 100vh;
+    font-size: 16px;
 }
 
 .container {
@@ -77,8 +79,8 @@ nav a {
     text-decoration: none;
     color: var(--primary-color);
     font-weight: 600;
-    font-size: 1rem;
-    padding: 0.8rem 1.5rem;
+    font-size: 0.95rem;
+    padding: 0.7rem 1.2rem;
     border-radius: 9999px;
     transition: all var(--transition-speed) ease;
 }
@@ -154,16 +156,16 @@ main {
 
 .translation-box {
     border: none;
-    border-radius: 12px;
-    padding: 1.5rem;
+    border-radius: 16px;
+    padding: 1.75rem;
     background-color: white;
     box-shadow: var(--card-shadow);
     transition: transform var(--transition-speed) ease, box-shadow var(--transition-speed) ease;
 }
 
 .translation-box:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+    transform: translateY(-4px);
+    box-shadow: 0 25px 30px -12px rgba(0, 0, 0, 0.1), 0 10px 15px -3px rgba(0, 0, 0, 0.05);
 }
 
 .translation-box h2 {
@@ -220,8 +222,33 @@ button:disabled {
 }
 
 #translate-btn {
-    font-size: 1.1rem;
-    padding: 12px 25px;
+    font-size: 1.05rem;
+    padding: 14px 28px;
+    border-radius: 12px;
+    position: relative;
+    overflow: hidden;
+    background: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-dark) 100%);
+    transition: all 0.4s ease;
+}
+
+#translate-btn:hover {
+    background: linear-gradient(135deg, var(--primary-dark) 0%, var(--primary-color) 100%);
+}
+
+#translate-btn::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0));
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+#translate-btn:hover::after {
+    opacity: 1;
 }
 
 /* Translation direction toggle */
@@ -229,18 +256,51 @@ button:disabled {
     background-color: white;
     border: none;
     border-radius: 12px;
-    padding: 1rem;
+    padding: 1.2rem;
     margin-bottom: 1.5rem;
-    box-shadow: var(--card-shadow);
+    box-shadow: 0 6px 24px -8px rgba(0, 0, 0, 0.1);
     display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
+    text-align: center;
 }
 
 .direction-label {
     font-weight: 600;
-    margin-right: 1rem;
+    margin-bottom: 1rem;
     color: var(--primary-dark);
+    font-size: 1.05rem;
+}
+
+.direction-toggle-inner {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+}
+
+.direction-language {
+    font-weight: 500;
+    transition: all 0.3s ease;
+}
+
+.direction-language.active {
+    color: var(--primary-dark);
+    font-weight: 700;
+}
+
+.direction-language.inactive {
+    color: #9ca3af;
+}
+
+.direction-icon {
+    font-size: 1.2rem;
+    color: var(--primary-color);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    transform: translateY(2px);
 }
 
 /* Translation history */
