@@ -6,7 +6,8 @@ const DEFAULT_SETTINGS = {
     baseUrl: 'https://api.openai.com',
     model: 'gpt-4o',
     temperature: 0.7,
-    systemPrompt: 'You are a translator for the constructed Draconic language. Translate English text to Draconic following the dictionary and grammar rules. Provide only the translated text without explanations.'
+    systemPrompt: 'You are a translator for the constructed Draconic language. Translate English text to Draconic following the dictionary and grammar rules. Provide only the translated text without explanations.',
+    streamingEnabled: true
 };
 
 // Settings management
@@ -54,6 +55,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const currentSettings = Settings.get();
     document.getElementById('api-key').value = currentSettings.apiKey;
     document.getElementById('base-url').value = currentSettings.baseUrl;
+    document.getElementById('streaming-enabled').checked = currentSettings.streamingEnabled !== false; // Default to true if not set
     
     // Handle the model selection, including custom model option
     const modelSelect = document.getElementById('model');
@@ -125,7 +127,8 @@ document.addEventListener('DOMContentLoaded', function() {
             baseUrl: document.getElementById('base-url').value.trim() || DEFAULT_SETTINGS.baseUrl,
             model: modelValue,
             temperature: parseFloat(document.getElementById('temperature').value),
-            systemPrompt: document.getElementById('system-prompt').value.trim()
+            systemPrompt: document.getElementById('system-prompt').value.trim(),
+            streamingEnabled: document.getElementById('streaming-enabled').checked
         };
         
         Settings.save(newSettings);

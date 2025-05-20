@@ -31,7 +31,7 @@ const TranslationHistory = {
 };
 
 // OpenAI API integration
-async function translateToDraconic(englishText) {
+async function translateToDraconic(englishText, updateCallback = null) {
     const settings = Settings.get();
     
     if (!settings.apiKey) {
@@ -44,23 +44,35 @@ async function translateToDraconic(englishText) {
     const dictionaryPrompt = await loadDraconicDictionary();
     const grammarPrompt = await loadDraconicGrammar();
     
+    // Check if streaming is enabled
+    const useStreaming = settings.streamingEnabled !== false && updateCallback !== null;
+    
+    // Common request parameters
+    const requestBody = {
+        model: settings.model,
+        messages: [
+            { 
+                role: 'system', 
+                content: `${settings.systemPrompt}\n\nDRACONIC DICTIONARY:\n${dictionaryPrompt}\n\nDRACONIC GRAMMAR:\n${grammarPrompt}`
+            },
+            { role: 'user', content: `Translate the following English text to Draconic:\n\n"${englishText}"` }
+        ],
+        temperature: settings.temperature
+    };
+    
+    // Add streaming if enabled
+    if (useStreaming) {
+        requestBody.stream = true;
+    }
+    
+    // Make the request
     const response = await fetch(`${endpoint}/chat/completions`, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
             'Authorization': `Bearer ${settings.apiKey}`
         },
-        body: JSON.stringify({
-            model: settings.model,
-            messages: [
-                { 
-                    role: 'system', 
-                    content: `${settings.systemPrompt}\n\nDRACONIC DICTIONARY:\n${dictionaryPrompt}\n\nDRACONIC GRAMMAR:\n${grammarPrompt}`
-                },
-                { role: 'user', content: `Translate the following English text to Draconic:\n\n"${englishText}"` }
-            ],
-            temperature: settings.temperature
-        })
+        body: JSON.stringify(requestBody)
     });
     
     if (!response.ok) {
@@ -68,8 +80,48 @@ async function translateToDraconic(englishText) {
         throw new Error(error.error?.message || 'Translation request failed');
     }
     
-    const data = await response.json();
-    return data.choices[0].message.content.trim();
+    // Handle streaming response
+    if (useStreaming) {
+        let fullText = '';
+        const reader = response.body.getReader();
+        const decoder = new TextDecoder('utf-8');
+        
+        try {
+            while (true) {
+                const { done, value } = await reader.read();
+                if (done) break;
+                
+                // Decode the chunk
+                const chunk = decoder.decode(value);
+                
+                // Process the SSE format
+                const lines = chunk.split('\n');
+                for (const line of lines) {
+                    if (line.startsWith('data: ') && line !== 'data: [DONE]') {
+                        try {
+                            const data = JSON.parse(line.substring(6));
+                            if (data.choices && data.choices[0].delta && data.choices[0].delta.content) {
+                                const content = data.choices[0].delta.content;
+                                fullText += content;
+                                updateCallback(fullText);
+                            }
+                        } catch (e) {
+                            console.error('Error parsing SSE data:', e, line);
+                        }
+                    }
+                }
+            }
+            
+            return fullText;
+        } catch (error) {
+            console.error('Error reading stream:', error);
+            throw new Error('Streaming error: ' + error.message);
+        }
+    } else {
+        // Handle regular (non-streaming) response
+        const data = await response.json();
+        return data.choices[0].message.content.trim();
+    }
 }
 
 // Load dictionary from CSV
@@ -181,16 +233,33 @@ document.addEventListener('DOMContentLoaded', function() {
         translateBtn.textContent = 'Translating...';
         draconicOutput.value = 'Translating...';
         
+        // Get settings to check if streaming is enabled
+        const settings = Settings.get();
+        
         try {
-            const translation = await translateToDraconic(englishInput);
-            draconicOutput.value = translation;
+            if (settings.streamingEnabled !== false) {
+                // Use streaming translation with callback to update UI
+                draconicOutput.classList.add('streaming');
+                const translation = await translateToDraconic(englishInput, function(partialTranslation) {
+                    draconicOutput.value = partialTranslation;
+                });
+                
+                // Make sure we have the final translation
+                draconicOutput.value = translation;
+                draconicOutput.classList.remove('streaming');
+            } else {
+                // Use regular translation
+                const translation = await translateToDraconic(englishInput);
+                draconicOutput.value = translation;
+            }
             
             // Add to history
-            TranslationHistory.add(englishInput, translation);
+            TranslationHistory.add(englishInput, draconicOutput.value);
             updateHistoryDisplay();
             
         } catch (error) {
             draconicOutput.value = 'Error: ' + error.message;
+            draconicOutput.classList.remove('streaming');
             console.error('Translation error:', error);
         } finally {
             // Reset button state

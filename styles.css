@@ -329,6 +329,92 @@ button:disabled {
     transition: border-color var(--transition-speed) ease, box-shadow var(--transition-speed) ease;
 }
 
+/* Toggle switch styling */
+.toggle-container {
+    display: flex;
+    align-items: center;
+    margin-top: 0.5rem;
+}
+
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 60px;
+    height: 34px;
+    margin-right: 10px;
+}
+
+.switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    transition: .4s;
+}
+
+.slider:before {
+    position: absolute;
+    content: "";
+    height: 26px;
+    width: 26px;
+    left: 4px;
+    bottom: 4px;
+    background-color: white;
+    transition: .4s;
+}
+
+input:checked + .slider {
+    background-color: var(--primary-color);
+}
+
+input:focus + .slider {
+    box-shadow: 0 0 1px var(--primary-color);
+}
+
+input:checked + .slider:before {
+    transform: translateX(26px);
+}
+
+.slider.round {
+    border-radius: 34px;
+}
+
+.slider.round:before {
+    border-radius: 50%;
+}
+
+.toggle-label {
+    font-weight: 500;
+}
+
+.translation-box textarea.streaming {
+    background-image: linear-gradient(to right, #f0f4ff, white);
+    background-size: 200% 100%;
+    background-position: right bottom;
+    animation: streaming-gradient 2s ease infinite;
+}
+
+@keyframes streaming-gradient {
+    0% {
+        background-position: right bottom;
+    }
+    50% {
+        background-position: left bottom;
+    }
+    100% {
+        background-position: right bottom;
+    }
+}
+
 /* Custom styling for the custom model input */
 #custom-model-container {
     padding: 0.75rem;
