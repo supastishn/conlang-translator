@@ -173,8 +173,8 @@ document.addEventListener('DOMContentLoaded', function() {
                 }
             }
             
-            const endpoint = `${baseUrl}/v1/chat/completions`;
-            const response = await fetch(endpoint, {
+            const endpoint = `${baseUrl}/v1`;
+            const response = await fetch(`${endpoint}/chat/completions`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

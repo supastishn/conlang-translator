@@ -38,13 +38,13 @@ async function translateToDraconic(englishText) {
         throw new Error('API key not configured. Please set your OpenAI API key in Settings.');
     }
     
-    const endpoint = `${settings.baseUrl}/v1/chat/completions`;
+    const endpoint = `${settings.baseUrl}/v1`;
     
     // Load dictionary and grammar information to provide context
     const dictionaryPrompt = await loadDraconicDictionary();
     const grammarPrompt = await loadDraconicGrammar();
     
-    const response = await fetch(endpoint, {
+    const response = await fetch(`${endpoint}/chat/completions`, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
