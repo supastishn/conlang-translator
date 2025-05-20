@@ -25,36 +25,6 @@ function checkApiStatus() {
     }
 }
 
-// Function to display processed image previews
-function displayImagePreviews(images) {
-    const previewsContainer = document.getElementById('image-previews');
-    const debugSection = document.getElementById('debug-section');
-    
-    // Clear previous previews
-    previewsContainer.innerHTML = '';
-    
-    // Show the debug section
-    debugSection.style.display = 'block';
-    
-    // Add each image to the previews
-    images.forEach(imageData => {
-        const container = document.createElement('div');
-        container.className = 'image-container';
-        
-        const img = document.createElement('img');
-        img.src = imageData.dataUrl;
-        img.alt = `Dictionary page ${imageData.pageNumber}`;
-        
-        const pageLabel = document.createElement('div');
-        pageLabel.className = 'page-number';
-        pageLabel.textContent = `Page ${imageData.pageNumber}`;
-        
-        container.appendChild(img);
-        container.appendChild(pageLabel);
-        previewsContainer.appendChild(container);
-    });
-}
-
 // Initialize on load
 document.addEventListener('DOMContentLoaded', function() {
     checkApiStatus();
@@ -64,19 +34,7 @@ document.addEventListener('DOMContentLoaded', function() {
         englishTextArea.value = "Hello brave dragon, how are you today?";
     }
     
-    // Toggle image previews visibility
-    const toggleButton = document.getElementById('toggle-previews');
-    toggleButton.addEventListener('click', function() {
-        const previewsContainer = document.getElementById('image-previews');
-        
-        if (previewsContainer.style.display === 'none') {
-            previewsContainer.style.display = 'grid';
-            this.textContent = 'Hide Image Previews';
-        } else {
-            previewsContainer.style.display = 'none';
-            this.textContent = 'Show Image Previews';
-        }
-    });
+    // Image preview logic and toggle button listener removed
 });
 
 // Read dictionary and grammar file content
@@ -86,62 +44,24 @@ async function getDraconicResources() {
         const grammarResponse = await fetch('materials/grammar.txt');
         const grammarText = await grammarResponse.text();
         
-        // Get the PDF file
-        const dictionaryResponse = await fetch('materials/dictionary.pdf');
-        const pdfData = await dictionaryResponse.arrayBuffer();
-        
-        // Load the PDF using PDF.js
-        const pdf = await pdfjsLib.getDocument({data: pdfData}).promise;
-        const totalPages = pdf.numPages;
-        
-        // Extract images from each page
-        const imagePromises = [];
-        for (let i = 1; i <= totalPages; i++) {
-            imagePromises.push(getPageAsImage(pdf, i));
-        }
-        
-        const pageImages = await Promise.all(imagePromises);
+        // Load dictionary CSV
+        const dictionaryCsvResponse = await fetch('materials/dictionary.csv');
+        const dictionaryCsvText = await dictionaryCsvResponse.text();
         
         return {
-            dictionaryImages: pageImages,  // Array of base64 images
+            dictionaryCsv: dictionaryCsvText,
             grammar: grammarText
         };
     } catch (error) {
         console.error('Error loading Draconic resources:', error);
         return {
-            dictionaryImages: [],
-            grammar: "Error loading grammar"
+            dictionaryCsv: "Error loading dictionary CSV.",
+            grammar: "Error loading grammar."
         };
     }
 }
 
-// Function to render a PDF page as an image
-async function getPageAsImage(pdf, pageNumber) {
-    const page = await pdf.getPage(pageNumber);
-    const viewport = page.getViewport({scale: 1.5}); // Scale for readability
-    
-    // Create a canvas to render the page
-    const canvas = document.createElement('canvas');
-    const context = canvas.getContext('2d');
-    canvas.height = viewport.height;
-    canvas.width = viewport.width;
-    
-    // Render the page onto the canvas
-    await page.render({
-        canvasContext: context,
-        viewport: viewport
-    }).promise;
-    
-    // Convert canvas to base64 image - use full data URL format for OpenAI
-    const dataUrl = canvas.toDataURL('image/jpeg', 0.8);
-    console.log(`Rendered page ${pageNumber} as image`);
-    
-    // Store the page number with the image for display
-    return {
-        dataUrl: dataUrl,
-        pageNumber: pageNumber
-    };
-}
+// PDF-related function getPageAsImage removed as it's no longer needed.
 
 // Function to translate text
 async function translateToDraconic(englishText) {
@@ -164,49 +84,17 @@ async function translateToDraconic(englishText) {
             GRAMMAR RULES:
             ${resources.grammar}
             
-            DICTIONARY:
-            I will provide the dictionary as images of PDF pages. Please use these 
-            to accurately translate the text.`
+            DICTIONARY (CSV format):
+            Below is the content of the dictionary in CSV format. Use this for word lookups, definitions, and grammatical forms.
+            --- BEGIN DICTIONARY CSV ---
+            ${resources.dictionaryCsv}
+            --- END DICTIONARY CSV ---
+            `
         });
         
-        // Add dictionary pages as images if model supports vision
-        const supportsVision = apiConfig.model.includes('vision') || apiConfig.model.includes('gpt-4');
-        
-        if (supportsVision) {
-            // For vision models, we'll combine text and images in one message
-            let combinedContent = [];
-            
-            // Add initial text
-            combinedContent.push({
-                type: "text",
-                text: "Here are the dictionary pages to reference for translation:"
-            });
-            
-            // Add all dictionary images
-            resources.dictionaryImages.forEach((imageData, index) => {
-                combinedContent.push({
-                    type: "image_url",
-                    image_url: {
-                        url: imageData.dataUrl
-                    }
-                });
-            });
-            
-            // Display image previews in debug section
-            displayImagePreviews(resources.dictionaryImages);
-            
-            // Add this combined content as a single message
-            messages.push({
-                role: "user",
-                content: combinedContent
-            });
-        } else {
-            // For models that don't support images, we'll just mention this limitation
-            messages.push({
-                role: "user",
-                content: "The dictionary images cannot be processed by this model. Please do your best translation based on the grammar rules."
-            });
-        }
+        // The dictionary (CSV text) is now part of the system message.
+        // Vision model checks and separate user messages for dictionary images are no longer needed.
+        // Image preview logic (displayImagePreviews call) is removed.
         
         // Add the actual translation request
         messages.push({

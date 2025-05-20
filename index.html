@@ -37,22 +37,14 @@
                 <div id="draconic-output" class="output-box"></div>
             </div>
             
-            <div class="debug-section" id="debug-section" style="display: none;">
-                <h2>Dictionary Preview</h2>
-                <p class="hint">These are the processed dictionary pages sent to the model</p>
-                <div id="image-previews" class="image-previews"></div>
-                <button id="toggle-previews" class="secondary-btn">Hide Image Previews</button>
-            </div>
+            <!-- Debug section for image previews removed as dictionary is now CSV -->
         </div>
 
         <footer>
             <p>Uses Draconic language materials for accurate translations</p>
         </footer>
     </div>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.4.120/pdf.min.js"></script>
-    <script>
-        pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.4.120/pdf.worker.min.js';
-    </script>
+    <!-- pdf.js scripts removed as they are no longer needed -->
     <script src="translator.js"></script>
 </body>
 </html>
