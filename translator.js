@@ -31,37 +31,58 @@ checkApiStatus();
 // Read dictionary and grammar file content
 async function getDraconicResources() {
     try {
-        // We'll use fetch to get the file contents
-        const [dictionaryResponse, grammarResponse] = await Promise.all([
-            fetch('materials/dictionary.pdf'),
-            fetch('materials/grammar.txt')
-        ]);
-        
-        // We can't directly read PDF content with fetch, so we'll just get the binary data
-        const dictionaryBlob = await dictionaryResponse.blob();
+        // Load grammar text
+        const grammarResponse = await fetch('materials/grammar.txt');
         const grammarText = await grammarResponse.text();
         
-        // For the PDF, we'll use a FileReader to convert to base64
-        return new Promise((resolve) => {
-            const reader = new FileReader();
-            reader.onloadend = function() {
-                // Get base64 string (remove the data URL prefix)
-                const base64PDF = reader.result.split(',')[1];
-                
-                resolve({
-                    dictionary: base64PDF,  // Base64 encoded PDF
-                    grammar: grammarText
-                });
-            };
-            reader.readAsDataURL(dictionaryBlob);
-        });
+        // Get the PDF file
+        const dictionaryResponse = await fetch('materials/dictionary.pdf');
+        const pdfData = await dictionaryResponse.arrayBuffer();
+        
+        // Load the PDF using PDF.js
+        const pdf = await pdfjsLib.getDocument({data: pdfData}).promise;
+        const totalPages = pdf.numPages;
+        
+        // Extract images from each page
+        const imagePromises = [];
+        for (let i = 1; i <= totalPages; i++) {
+            imagePromises.push(getPageAsImage(pdf, i));
+        }
+        
+        const pageImages = await Promise.all(imagePromises);
+        
+        return {
+            dictionaryImages: pageImages,  // Array of base64 images
+            grammar: grammarText
+        };
     } catch (error) {
         console.error('Error loading Draconic resources:', error);
         return {
-            dictionary: "Error loading dictionary",
+            dictionaryImages: [],
             grammar: "Error loading grammar"
         };
     }
+}
+
+// Function to render a PDF page as an image
+async function getPageAsImage(pdf, pageNumber) {
+    const page = await pdf.getPage(pageNumber);
+    const viewport = page.getViewport({scale: 1.5}); // Scale for readability
+    
+    // Create a canvas to render the page
+    const canvas = document.createElement('canvas');
+    const context = canvas.getContext('2d');
+    canvas.height = viewport.height;
+    canvas.width = viewport.width;
+    
+    // Render the page onto the canvas
+    await page.render({
+        canvasContext: context,
+        viewport: viewport
+    }).promise;
+    
+    // Convert canvas to base64 image
+    return canvas.toDataURL('image/jpeg', 0.8);
 }
 
 // Function to translate text
@@ -73,16 +94,58 @@ async function translateToDraconic(englishText) {
         // Get the Draconic resources
         const resources = await getDraconicResources();
         
-        // Create system message with instructions and language resources
-        const systemMessage = `You are a translator specializing in the Draconic language. 
-        Translate the English text into accurate Draconic using the following language materials.
+        // Build messages array with text and images
+        const messages = [];
         
-        GRAMMAR RULES:
-        ${resources.grammar}
+        // System message
+        messages.push({
+            role: "system",
+            content: `You are a translator specializing in the Draconic language. 
+            Translate the English text into accurate Draconic using the following materials.
+            
+            GRAMMAR RULES:
+            ${resources.grammar}
+            
+            DICTIONARY:
+            I will provide the dictionary as images of PDF pages. Please use these 
+            to accurately translate the text.`
+        });
         
-        DICTIONARY:
-        The dictionary is provided in PDF form, but here are key words and phrases to use for this translation.
-        Please use proper Draconic grammar and syntax as documented above.`;
+        // Add dictionary pages as images if model supports it
+        const supportsVision = apiConfig.model.includes('vision') || apiConfig.model.includes('gpt-4');
+        
+        if (supportsVision) {
+            // Add images in separate messages for models that support images
+            resources.dictionaryImages.forEach((imgBase64, index) => {
+                messages.push({
+                    role: "user",
+                    content: [
+                        {
+                            type: "text",
+                            text: `Dictionary page ${index + 1}:`
+                        },
+                        {
+                            type: "image_url",
+                            image_url: {
+                                url: imgBase64
+                            }
+                        }
+                    ]
+                });
+            });
+        } else {
+            // For models that don't support images, we'll just mention this limitation
+            messages.push({
+                role: "user",
+                content: "The dictionary images cannot be processed by this model. Please do your best translation based on the grammar rules."
+            });
+        }
+        
+        // Add the actual translation request
+        messages.push({
+            role: "user",
+            content: `Translate the following English text to Draconic: "${englishText}"`
+        });
         
         // Create the API request
         const response = await fetch(`${apiConfig.apiUrl}/chat/completions`, {
@@ -93,17 +156,9 @@ async function translateToDraconic(englishText) {
             },
             body: JSON.stringify({
                 model: apiConfig.model,
-                messages: [
-                    {
-                        role: "system",
-                        content: systemMessage
-                    },
-                    {
-                        role: "user",
-                        content: `Translate the following English text to Draconic: "${englishText}"`
-                    }
-                ],
-                temperature: 0.7
+                messages: messages,
+                temperature: 0.7,
+                max_tokens: 2000
             })
         });
         
