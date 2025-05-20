@@ -124,9 +124,18 @@ async function translateToDraconic(englishText, updateCallback = null) {
     }
 }
 
+// Get the absolute base URL for the application
+function getBaseUrl() {
+    // Get the base URL from the current page's URL
+    const baseUrl = window.location.href.split('/').slice(0, -1).join('/');
+    return baseUrl;
+}
+
 // Load dictionary from all CSVs in the directory
 async function loadDraconicDictionary() {
     try {
+        const baseUrl = getBaseUrl();
+        
         // List of CSV files to load from materials/csvs directory
         const csvFiles = [
             'nouns.csv',
@@ -145,7 +154,7 @@ async function loadDraconicDictionary() {
         
         for (const file of csvFiles) {
             try {
-                const response = await fetch(`materials/csvs/${file}`);
+                const response = await fetch(`${baseUrl}/materials/csvs/${file}`);
                 if (response.ok) {
                     const csvText = await response.text();
                     // Add a header for each file to identify the source
@@ -181,7 +190,8 @@ async function loadDraconicDictionary() {
 // Load grammar rules
 async function loadDraconicGrammar() {
     try {
-        const response = await fetch('materials/grammar.txt');
+        const baseUrl = getBaseUrl();
+        const response = await fetch(`${baseUrl}/materials/grammar.txt`);
         const grammarText = await response.text();
         
         // Return the full grammar rules
