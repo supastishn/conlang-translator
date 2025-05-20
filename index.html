@@ -5,6 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Draconic Translator</title>
     <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/eruda"></script>
     <script>eruda.init();</script>
 </head>
@@ -22,7 +25,7 @@
 
         <main>
             <div id="api-warning" class="warning hidden">
-                <p>⚠️ OpenAI API key not set. Please configure in <a href="settings.html">Settings</a> first.</p>
+                <p>OpenAI API key not set. Please configure in <a href="settings.html">Settings</a> first.</p>
             </div>
 
             <div class="translation-direction-toggle">
@@ -46,7 +49,7 @@
                     <textarea id="source-input" placeholder="Enter text here..."></textarea>
                 </div>
                 <div class="translation-controls">
-                    <button id="translate-btn">Translate →</button>
+                    <button id="translate-btn">Translate</button>
                 </div>
                 <div class="translation-box">
                     <h2 id="target-language">Draconic</h2>
