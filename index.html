@@ -67,6 +67,15 @@
                 <small>Select the desired output format for Draconic. "Simplified Romanization" aims for a more phonetic output when Draconic is the target language.</small>
             </div>
 
+            <div id="dwl-to-english-type-container" class="form-group hidden"> <!-- Initially hidden, shown if source is DWL and target is English -->
+                <label for="dwl-to-english-type-select-index">DWL to English Translation Type:</label>
+                <select id="dwl-to-english-type-select-index">
+                    <option value="natural">Natural English (Fluent, Corrected)</option>
+                    <option value="raw">Raw English (Literal, Potentially Unnatural)</option>
+                </select>
+                <small>Controls how Diacritical Waluigi Language is translated to English. "Natural" aims for fluency, "Raw" for literalness.</small>
+            </div>
+
             <div class="translation-container">
                 <div class="translation-box">
                     <h2 id="source-language-label">English</h2>

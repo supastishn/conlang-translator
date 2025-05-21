@@ -109,14 +109,24 @@ async function translateText(sourceText, sourceLang, targetLang, updateCallback 
 
     // Build the user prompt
     let userPrompt;
+    const dwlToEnglishInstruction = settings.dwlToEnglishType === 'raw'
+        ? "Translate into raw English, preserving original phrasing and diacritic implications even if unnatural."
+        : "Translate into natural, grammatically correct English, interpreting diacritics for fluent output.";
+
     if (sourceLang === LANG_DETECT) {
-        userPrompt = `First, identify if the input text is English, Draconic, or Diacritical Waluigi Language. Then, translate the identified text into ${LANG_LABELS[targetLang]}. Input text:\n\n"${sourceText}"`;
+        userPrompt = `First, identify if the input text is English, Draconic, or Diacritical Waluigi Language. Then, translate the identified text into ${LANG_LABELS[targetLang]}.`;
+        if (targetLang === LANG_ENGLISH) {
+            userPrompt += ` If the identified source is Diacritical Waluigi Language, ${dwlToEnglishInstruction}`;
+        }
+        userPrompt += ` Input text:\n\n"${sourceText}"`;
     } else {
         userPrompt = `Translate the following ${LANG_LABELS[sourceLang]} text to ${LANG_LABELS[targetLang]}:\n\n"${sourceText}"`;
     }
 
     if (targetLang === LANG_DRACONIC && settings.draconicOutputType === 'simplified') {
         userPrompt += " (When generating Draconic, output simplified romanization)";
+    } else if (sourceLang === LANG_DWL && targetLang === LANG_ENGLISH) {
+        userPrompt += ` (${dwlToEnglishInstruction})`;
     }
     
     const requestBody = {
@@ -453,6 +463,8 @@ document.addEventListener('DOMContentLoaded', function() {
     
     const draconicOutputTypeContainer = document.getElementById('draconic-output-type-container');
     const draconicOutputTypeSelectIndex = document.getElementById('draconic-output-type-select-index');
+    const dwlToEnglishTypeContainer = document.getElementById('dwl-to-english-type-container');
+    const dwlToEnglishTypeSelectIndex = document.getElementById('dwl-to-english-type-select-index');
 
     // Function to update UI elements based on current language selections
     function updateUIForLanguageSelection() {
@@ -486,6 +498,16 @@ document.addEventListener('DOMContentLoaded', function() {
                 dwlInputWarningEl.classList.remove('hidden');
             } else {
                 dwlInputWarningEl.classList.add('hidden');
+            }
+        }
+
+        // Show/hide DWL to English type selector
+        if (dwlToEnglishTypeContainer && dwlToEnglishTypeSelectIndex) {
+            if (sourceLang === LANG_DWL && targetLang === LANG_ENGLISH) {
+                dwlToEnglishTypeContainer.classList.remove('hidden');
+                dwlToEnglishTypeSelectIndex.value = currentSettings.dwlToEnglishType || 'natural';
+            } else {
+                dwlToEnglishTypeContainer.classList.add('hidden');
             }
         }
     }
@@ -592,7 +614,18 @@ document.addEventListener('DOMContentLoaded', function() {
             const currentSettings = Settings.get();
             currentSettings.draconicOutputType = newOutputType;
             Settings.save(currentSettings);
-            console.log("Draconic output type (on translator page) changed to:", newOutputType);
+            // No need to call updateUIForLanguageSelection here as it doesn't affect other UI elements directly
+        });
+    }
+
+    // Event listener for DWL to English type select on index.html
+    if (dwlToEnglishTypeSelectIndex) {
+        dwlToEnglishTypeSelectIndex.addEventListener('change', function() {
+            const newDwlToEnglishType = this.value;
+            const currentSettings = Settings.get();
+            currentSettings.dwlToEnglishType = newDwlToEnglishType;
+            Settings.save(currentSettings);
+            // No need to call updateUIForLanguageSelection here as it doesn't affect other UI elements directly
         });
     }
     

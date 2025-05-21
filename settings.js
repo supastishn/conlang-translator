@@ -8,7 +8,8 @@ const DEFAULT_SETTINGS = {
     temperature: 0.0,
     systemPrompt: 'You are an expert multilingual translator. Translate the text as requested, using the provided linguistic resources. Provide only the translated text without explanations.',
     streamingEnabled: true,
-    draconicOutputType: 'normal' // 'normal' or 'simplified'
+    draconicOutputType: 'normal', // 'normal' or 'simplified'
+    dwlToEnglishType: 'natural' // 'natural' or 'raw' for DWL -> English
 };
 
 // Settings management
@@ -60,7 +61,12 @@ document.addEventListener('DOMContentLoaded', function() {
     
     const draconicOutputTypeSelectSettings = document.getElementById('draconic-output-type-select-settings');
     if (draconicOutputTypeSelectSettings) {
-        draconicOutputTypeSelectSettings.value = currentSettings.draconicOutputType || 'normal';
+        draconicOutputTypeSelectSettings.value = currentSettings.draconicOutputType || DEFAULT_SETTINGS.draconicOutputType;
+    }
+
+    const dwlToEnglishTypeSelectSettings = document.getElementById('dwl-to-english-type-select-settings');
+    if (dwlToEnglishTypeSelectSettings) {
+        dwlToEnglishTypeSelectSettings.value = currentSettings.dwlToEnglishType || DEFAULT_SETTINGS.dwlToEnglishType;
     }
     
     // Handle the model selection, including custom model option
@@ -141,7 +147,8 @@ document.addEventListener('DOMContentLoaded', function() {
             temperature: parseFloat(document.getElementById('temperature').value),
             systemPrompt: document.getElementById('system-prompt').value.trim(),
             streamingEnabled: document.getElementById('streaming-enabled').checked,
-            draconicOutputType: draconicOutputTypeSelectSettings ? draconicOutputTypeSelectSettings.value : currentSettings.draconicOutputType
+            draconicOutputType: draconicOutputTypeSelectSettings ? draconicOutputTypeSelectSettings.value : currentSettings.draconicOutputType,
+            dwlToEnglishType: dwlToEnglishTypeSelectSettings ? dwlToEnglishTypeSelectSettings.value : currentSettings.dwlToEnglishType
         };
         
         Settings.save(newSettings);
