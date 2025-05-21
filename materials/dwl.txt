@@ -2092,3 +2092,196 @@ In written DWL, where contextual clues from speech or shared immediate experienc
      *   **Verb:** `wǣwæ̀wæ` (for night to fall, for a night to pass).
      *   **Adjective:** `wǣwæ̀wæ` (nightly, nocturnal).
      *   **Notes:** A significant period (`wǣwæ`) associated with darkness (`wæ̀wæ̃wæ` implied). Heavy reliance on context.
+
+
+
+
+## VI. Example Phrases
+
+
+This section provides a range of example phrases to illustrate the practical application of DWL grammar and vocabulary. Translations aim to be literal first, then more natural.
+
+
+**Basic Greetings & Responses:**
+
+
+1. **DWL:** `Wæ̂!`
+* Raw: Good!
+* Natural: Hello! / Hi! / Good!
+2. **DWL:** `Wæ̈ wæ̂!`
+* Raw: You good!
+* Natural: Good day to you! / Hope you're well!
+3. **DWL:** `Wæ̃ wæ̂.`
+* Raw: I good.
+* Natural: I am well. / I'm good.
+4. **DWL:** `Wǽwæ̧ wæ̃̈?` (`wǽwæ̧` - question noun)
+* Raw: What-question question-particle?
+* Natural: What's up? / What's the news? (Literally "What question is there?")
+5. **DWL:** `Wæ̀ wæ̂.`
+* Raw: Not good.
+* Natural: Bad. / Not good. (Can be a response or a statement)
+
+
+**Simple Statements & Questions:**
+
+
+6. **DWL:** `Wæ̣ wæ wæ̂.`
+* Raw: This thing good.
+* Natural: This thing is good.
+7. **DWL:** `Wæ̉ wæ wæ̀ wæ̂.`
+* Raw: That thing not good.
+* Natural: That thing is bad.
+8. **DWL:** `Wæ̂wæ wæ̃ wæ̂.`
+* Raw: Food I like.
+* Natural: I like the food.
+9. **DWL:** `Wǽwæ̣ wæ̈ wæ̂ wæ̃̈?`
+* Raw: Water you want question-particle?
+* Natural: Do you want water?
+10. **DWL:** `Wæ̃ wǽǽ.`
+* Raw: I did/acted-past.
+* Natural: I did it. / I acted.
+11. **DWL:** `Wæ̇ wæ̧ǣ.`
+* Raw: He/She/They will-speak.
+* Natural: They will speak.
+12. **DWL:** `Wǣ wæ̃́ wæ̣ wæ̀.`
+* Raw: Big animal here is.
+* Natural: The big animal is here.
+13. **DWL:** `Wæ̆ wæ̀̄ wæ̉ wæ̀.`
+* Raw: Small plant there is.
+* Natural: The small plant is there.
+14. **DWL:** `Wæ̃ wæ̌.`
+* Raw: I know/see.
+* Natural: I know. / I see.
+15. **DWL:** `Wæ̈ wæ̀ wæ̌ wæ̃̈?`
+* Raw: You not-know question-particle?
+* Natural: Don't you know? / Are you ignorant (of this)?
+
+
+**Using Adjectives & Adverbs:**
+
+
+16. **DWL:** `Wǣ wæ̂ wæ wæ̃ wǽ.`
+* Raw: Very good thing I make.
+* Natural: I make a very good thing.
+17. **DWL:** `Wæ wæ̃ wæ̆ wǽ.`
+* Raw: Thing I little do.
+* Natural: I do the thing a little bit. / I do it slightly.
+18. **DWL:** `Wǽwæ̂ wæ wæ̇ wǽ.` (`wǽwæ̂` as adverb "hotly/fiercely")
+* Raw: Fiery thing it does. / Hotly thing it acts.
+* Natural: It does the thing fiercely. / It acts hotly upon the thing.
+19. **DWL:** `Wæ̃ wæ̂ wæ̧.`
+* Raw: I well speak.
+* Natural: I speak well.
+20. **DWL:** `Wæ̣wæ̉ wæ wæ̃ wǽ.` (`wæ̣wæ̉` as adverb "locally")
+* Raw: Locally thing I do.
+* Natural: I do the thing locally. / I do it in this area.
+
+
+**Possession & Pronouns:**
+
+
+21. **DWL:** `Wæ̃ wǽwæ wæ̂.`
+* Raw: My tool good.
+* Natural: My tool is good.
+22. **DWL:** `Wæ̈ wæ̧wæ̌ wæ̃ wǽǽ.`
+* Raw: Your book I took-past.
+* Natural: I took your book.
+23. **DWL:** `Wæ̇ wæ̃wæ wæ̀ wæ̂.`
+* Raw: Their body not-good.
+* Natural: Their body is unwell/bad.
+24. **DWL:** `Wæ̣ wæ̃ wæ̀.`
+* Raw: This mine is.
+* Natural: This is mine.
+25. **DWL:** `Wæ̃ wæ̃ wæ̌ǽ.`
+* Raw: Myself I saw-past.
+* Natural: I saw myself.
+
+
+**Conjunctions & Clauses:**
+
+
+26. **DWL:** `Wæ̃ wǽǽ wæ̂æ wæ̈ wǽǽ.`
+* Raw: I did-past and you did-past.
+* Natural: I did it and you did it.
+27. **DWL:** `Wæ̃ wæ̂, wæ̀æ wæ̈ wæ̀ wæ̂.`
+* Raw: I good, but you not good.
+* Natural: I am good, but you are bad.
+28. **DWL:** `Wæ̃ wǽwæ̂wæǽ wǽæ wæ̃ wæ̂.` (`wǽwæ̂wæ` - bake)
+* Raw: I baked-past, because/so I happy.
+* Natural: I baked, so I am happy.
+29. **DWL:** `Wæ̈ wǽ wæ̌æ wæ̃ wǽǣ.`
+* Raw: You act if/when I will-act.
+* Natural: If you act, I will act. / When you act, I will act.
+30. **DWL:** `Wæ wæ̃ wæ̂ wæ̆æ wæ wæ̃ wæ̀ wæ̂.`
+* Raw: Thing I want or thing I not want.
+* Natural: I want the thing or I don't want the thing.
+
+
+**More Complex Structures & Vocabulary:**
+
+
+31. **DWL:** `Wǣwæ̌ wæ̃wæ̇ wǣ wæ̧wæ̌ wæ̇ wæ̧wæ̌ǽ.`
+* Raw: Wise person many books he/she read-past.
+* Natural: The wise person read many books.
+32. **DWL:** `Wǽwæ̂wæ̣ wæ wǽwæ̂ wǽǽ wæ̃̈?` (`wǽwæ̂wæ̣` - volcano)
+* Raw: Volcano thing fire made-past question-particle?
+* Natural: Did the volcano erupt (make fire)?
+33. **DWL:** `Wæ̀wǣwæ wæ̃́ wǣ wæ̀.` (`wæ̀wǣwæ` - forest)
+* Raw: Forest animals many are-in-state.
+* Natural: Many animals are in the forest.
+34. **DWL:** `Wǽwǣwǽ wæ̃ wæ̣wæ̉ wǽǣ.` (`wǽwǣwǽ` - vehicle)
+* Raw: Vehicle I to-place will-go.
+* Natural: I will go to the place by vehicle.
+35. **DWL:** `Wæ̀wǣwæ̌ wǣ wæ̃wæ̇ wæ̀ wæ̌.` (`wæ̀wǣwæ̌` - law)
+* Raw: Law all people not know. (i.e. not all people know the law)
+* Natural: Not all people know the law.
+36. **DWL:** `Wǽwæ̀wæ wæ̃ wæ̈ wǽ-wǽǽ.` (`wǽwæ̀wæ` - money; `wǽ-wǽ` - cause-to-do/give)
+* Raw: Money I you caused-to-have-past.
+* Natural: I gave you money.
+37. **DWL:** `Wæ̃wæ̂wæ̃ wæ̃ wǣ wæ̀.` (`wæ̃wæ̂wæ̃` - heart [emotional])
+* Raw: Heart my big is-in-state [of emotion].
+* Natural: My heart is full (of emotion). / I feel deeply.
+38. **DWL:** `Wǽwæ̀ wæ̂ wæ, wæ̀æ wæ̀wǽ wæ̀ wæ̂ wæ.`
+* Raw: Life good thing, but death not-good thing.
+* Natural: Life is a good thing, but death is a bad thing.
+39. **DWL:** `Wæ̣wæ̉ (wæ̃ wæ̀ wæ̂wǽǽ) wæ̃ wǽ wæ̂!` (`wæ̂wǽ` - invite/welcome)
+* Raw: Place (I not-welcomed-past) I go good!
+* Natural: Let's go to a place where I wasn't welcomed!
+40. **DWL:** `Wǣwǽ wǽǽ, wǽæ wæ̃wæ̇ wǣ wǽwæ̀wæ̀ǽ.` (`wǣwǽ` - time; `wǽwæ̀wæ̀` - peace)
+* Raw: Time passed-past, so people much peace-had-past.
+* Natural: As time passed, the people had much peace.
+
+
+**Figurative or Idiomatic Expressions (Hypothetical):**
+
+
+41. **DWL:** `Wæ̃wæ̌wæ wæ̃ wǣ wǽ.` (Literally: Eyes my big act.)
+* Natural: I am very surprised. / My eyes are wide.
+42. **DWL:** `Wǽwæ̂ wæ̃wæ̂wæ̃ wæ̃ wǽ.` (Literally: Fire heart my makes.)
+* Natural: I am very passionate. / My heart is on fire.
+43. **DWL:** `Wæ̀wæ wæ̧ wæ̃.` (Literally: Stone words mine.)
+* Natural: My words are firm/unchanging.
+44. **DWL:** `Wǽwæ̃ wæ wæ̃ wǽ.` (Literally: Wind thing I do.)
+* Natural: I do something quickly/effortlessly.
+45. **DWL:** `Wǣwæ̣ wæ̆ wǽ.` (Literally: Mountain small make.)
+* Natural: To make a mountain out of a molehill (to make a small problem big).
+
+
+**Commands & Suggestions:**
+
+
+46. **DWL:** `Wæ wǽ!`
+* Raw: Thing do!
+* Natural: Do it!
+47. **DWL:** `Wæ̀ wǽ!`
+* Raw: Not do!
+* Natural: Don't do it!
+48. **DWL:** `Wæ̃ wæ̈ wǽ wæ̂!`
+* Raw: I you go good!
+* Natural: Let's (us) go!
+49. **DWL:** `Wæ̧ wæ̂!`
+* Raw: Speak good!
+* Natural: Speak well! / Let's speak!
+50. **DWL:** `Wæ̂wæ wæ̈ wæ̃ wǽ-wǽ wæ̂!` (`wǽ-wǽ` - cause-to-do/give)
+* Raw: Food you me cause-to-have good!
+* Natural: Please give me food! / Let you give me food!
