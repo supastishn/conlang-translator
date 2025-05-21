@@ -81,7 +81,17 @@
             <div class="translation-container">
                 <div class="translation-box">
                     <h2 id="source-language-label">English</h2>
-                    <textarea id="source-input" placeholder="Enter English text here..."></textarea>
+                    <div class="source-input-controls">
+                        <textarea id="source-input" placeholder="Enter text here, or describe what to do with the image..."></textarea>
+                        <div class="image-upload-container">
+                            <label for="image-upload-input" class="button-like-label">Upload Image</label>
+                            <input type="file" id="image-upload-input" accept="image/png, image/jpeg, image/gif, image/webp">
+                            <div id="image-preview-container" class="hidden">
+                                <img id="image-preview" src="#" alt="Image preview"/>
+                                <button id="clear-image-btn" title="Clear selected image">&times;</button>
+                            </div>
+                        </div>
+                    </div>
                 </div>
                 <div class="translation-controls">
                     <button id="translate-btn">Translate</button>

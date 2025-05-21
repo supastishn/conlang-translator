@@ -92,7 +92,7 @@ async function loadObwaKimoResources() {
 
 
 // OpenAI API integration
-async function translateText(sourceText, sourceLang, targetLang, updateCallback = null) {
+async function translateText(sourceText, sourceLang, targetLang, imageDataUrl = null, updateCallback = null) {
     const settings = Settings.get();
     
     if (!settings.apiKey) {
@@ -131,36 +131,80 @@ async function translateText(sourceText, sourceLang, targetLang, updateCallback 
     
     let finalSystemPrompt = systemPromptCore + resourcesForPrompt;
 
-    // Build the user prompt
-    let userPrompt;
+    // Build the user prompt and message content
+    let userPromptText = sourceText || "Describe the image."; // Default prompt if sourceText is empty with an image
+    let userMessageContent;
+
     const dwlToEnglishInstruction = settings.dwlToEnglishType === 'raw'
         ? "Translate into raw English, preserving original phrasing and diacritic implications even if unnatural."
         : "Translate into natural, grammatically correct English, interpreting diacritics for fluent output.";
 
-    if (sourceLang === LANG_DETECT) {
-        userPrompt = `First, identify if the input text is English, Draconic, Diacritical Waluigi Language, or Obwa Kimo. Then, translate the identified text into ${LANG_LABELS[targetLang]}.`;
-        if (targetLang === LANG_ENGLISH) { // This specific instruction is for DWL -> English
-            userPrompt += ` If the identified source is Diacritical Waluigi Language, ${dwlToEnglishInstruction}`;
+    if (imageDataUrl) {
+        let imageRelatedPrompt = "";
+        if (sourceLang === LANG_DETECT) {
+            imageRelatedPrompt = `Analyze the provided image. Identify the language of any text present (options: English, Draconic, Diacritical Waluigi Language, Obwa Kimo). Then, translate that text into ${LANG_LABELS[targetLang]}.`;
+        } else {
+            imageRelatedPrompt = `Analyze the provided image. Translate any ${LANG_LABELS[sourceLang]} text found in the image to ${LANG_LABELS[targetLang]}.`;
         }
-        // Add similar specific instructions for Obwa Kimo if needed in the future, e.g., Obwa Kimo -> English raw/natural.
-        userPrompt += ` Input text:\n\n"${sourceText}"`;
-    } else {
-        userPrompt = `Translate the following ${LANG_LABELS[sourceLang]} text to ${LANG_LABELS[targetLang]}:\n\n"${sourceText}"`;
+        if (targetLang === LANG_ENGLISH && (sourceLang === LANG_DWL || sourceLang === LANG_DETECT)) {
+             imageRelatedPrompt += ` If the source is Diacritical Waluigi Language, ${dwlToEnglishInstruction}`;
+        }
+        // Combine with user's text input if available
+        userPromptText = `${imageRelatedPrompt} ${sourceText ? `Additional instructions or text to consider: "${sourceText}"` : ''}`.trim();
+        
+        userMessageContent = [
+            { type: "text", text: userPromptText }
+        ];
+        // Add image, ensuring it's a supported format (OpenAI supports PNG, JPEG, non-animated GIF, WEBP)
+        // Basic check for common prefixes, more robust validation could be added.
+        if (imageDataUrl.startsWith("data:image/png;") || imageDataUrl.startsWith("data:image/jpeg;") || imageDataUrl.startsWith("data:image/gif;") || imageDataUrl.startsWith("data:image/webp;")) {
+            userMessageContent.push({ type: "image_url", image_url: { url: imageDataUrl, detail: "auto" } });
+        } else {
+            console.warn("Image data URL might not be in a supported format for the API.");
+            // Fallback to just text if image format is suspect, or let API handle error.
+            // For now, let's send it and see.
+            userMessageContent.push({ type: "image_url", image_url: { url: imageDataUrl, detail: "auto" } });
+        }
+
+    } else { // Text-only translation
+        if (sourceLang === LANG_DETECT) {
+            userPromptText = `First, identify if the input text is English, Draconic, Diacritical Waluigi Language, or Obwa Kimo. Then, translate the identified text into ${LANG_LABELS[targetLang]}.`;
+            if (targetLang === LANG_ENGLISH) { // This specific instruction is for DWL -> English
+                userPromptText += ` If the identified source is Diacritical Waluigi Language, ${dwlToEnglishInstruction}`;
+            }
+            userPromptText += ` Input text:\n\n"${sourceText}"`;
+        } else {
+            userPromptText = `Translate the following ${LANG_LABELS[sourceLang]} text to ${LANG_LABELS[targetLang]}:\n\n"${sourceText}"`;
+        }
+        userMessageContent = userPromptText;
     }
 
-    if (targetLang === LANG_DRACONIC && settings.draconicOutputType === 'simplified') {
-        userPrompt += " (When generating Draconic, output simplified romanization)";
-    } else if (sourceLang === LANG_DWL && targetLang === LANG_ENGLISH) {
-        userPrompt += ` (${dwlToEnglishInstruction})`;
+    if (!imageDataUrl) { // Append these instructions only if not primarily an image prompt where they might be redundant or conflicting
+        if (targetLang === LANG_DRACONIC && settings.draconicOutputType === 'simplified') {
+            userPromptText += " (When generating Draconic, output simplified romanization)";
+            if (Array.isArray(userMessageContent)) { // if content is already an array (e.g. from image + text)
+                userMessageContent[0].text = userPromptText; // modify the text part
+            } else {
+                userMessageContent = userPromptText;
+            }
+        } else if (sourceLang === LANG_DWL && targetLang === LANG_ENGLISH && settings.dwlToEnglishType) {
+             const specificDwlInstruction = ` (${dwlToEnglishInstruction})`;
+             if (Array.isArray(userMessageContent)) {
+                userMessageContent[0].text += specificDwlInstruction;
+             } else {
+                userMessageContent += specificDwlInstruction;
+             }
+        }
     }
     
     const requestBody = {
         model: settings.model,
         messages: [
             { role: 'system', content: finalSystemPrompt },
-            { role: 'user', content: userPrompt }
+            { role: 'user', content: userMessageContent }
         ],
-        temperature: settings.temperature
+        temperature: settings.temperature,
+        // max_tokens can be important for image models, but let's use default for now
     };
     
     // Add streaming if enabled
@@ -485,6 +529,13 @@ document.addEventListener('DOMContentLoaded', function() {
     const sourceInputEl = document.getElementById('source-input');
     const targetOutputEl = document.getElementById('target-output');
     const dwlInputWarningEl = document.getElementById('dwl-input-warning');
+
+    // Image upload elements
+    const imageUploadInput = document.getElementById('image-upload-input');
+    const imagePreviewContainer = document.getElementById('image-preview-container');
+    const imagePreview = document.getElementById('image-preview');
+    const clearImageBtn = document.getElementById('clear-image-btn');
+    let currentImageDataUrl = null;
     
     const draconicOutputTypeContainer = document.getElementById('draconic-output-type-container');
     const draconicOutputTypeSelectIndex = document.getElementById('draconic-output-type-select-index');
@@ -501,9 +552,9 @@ document.addEventListener('DOMContentLoaded', function() {
         targetLanguageLabelEl.textContent = LANG_LABELS[targetLang];
         
         if (sourceLang === LANG_DETECT) {
-            sourceInputEl.placeholder = `Enter text in English, Draconic, DWL, or Obwa Kimo...`;
+            sourceInputEl.placeholder = `Enter text (or describe image task) in English, Draconic, DWL, or Obwa Kimo...`;
         } else {
-            sourceInputEl.placeholder = `Enter ${LANG_LABELS[sourceLang]} text here...`;
+            sourceInputEl.placeholder = `Enter ${LANG_LABELS[sourceLang]} text (or describe image task)...`;
         }
         targetOutputEl.placeholder = `${LANG_LABELS[targetLang]} translation will appear here...`;
 
@@ -656,6 +707,50 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // Update history display on page load
     updateHistoryDisplay();
+
+    // Image Upload Logic
+    if (imageUploadInput) {
+        imageUploadInput.addEventListener('change', function(event) {
+            const file = event.target.files[0];
+            if (file) {
+                // Basic validation for image type (client-side)
+                const validTypes = ['image/png', 'image/jpeg', 'image/gif', 'image/webp'];
+                if (!validTypes.includes(file.type)) {
+                    alert('Invalid file type. Please select a PNG, JPEG, GIF, or WEBP image.');
+                    imageUploadInput.value = ''; // Reset file input
+                    return;
+                }
+
+                // Basic validation for image size (client-side, e.g., 20MB limit like OpenAI)
+                const maxSizeMB = 20;
+                if (file.size > maxSizeMB * 1024 * 1024) {
+                    alert(`File is too large. Maximum size is ${maxSizeMB}MB.`);
+                    imageUploadInput.value = ''; // Reset file input
+                    return;
+                }
+
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    currentImageDataUrl = e.target.result;
+                    imagePreview.src = currentImageDataUrl;
+                    imagePreviewContainer.classList.remove('hidden');
+                    sourceInputEl.placeholder = "Describe what to do with the image, or add text related to it...";
+                }
+                reader.readAsDataURL(file);
+            }
+        });
+    }
+
+    if (clearImageBtn) {
+        clearImageBtn.addEventListener('click', function() {
+            currentImageDataUrl = null;
+            imagePreview.src = '#';
+            imagePreviewContainer.classList.add('hidden');
+            imageUploadInput.value = ''; // Reset the file input
+            // Restore original placeholder based on language selection
+            updateUIForLanguageSelection(); 
+        });
+    }
     
     // Set up the translate button click handler
     translateBtn.addEventListener('click', async function() {
@@ -663,8 +758,8 @@ document.addEventListener('DOMContentLoaded', function() {
         const sourceLang = sourceLangSelect.value;
         const targetLang = targetLangSelect.value;
         
-        if (!sourceText) {
-            alert('Please enter some text to translate');
+        if (!sourceText && !currentImageDataUrl) {
+            alert('Please enter some text or upload an image to translate/analyze.');
             return;
         }
         
@@ -696,10 +791,12 @@ document.addEventListener('DOMContentLoaded', function() {
         }
 
         try {
+            const textToLog = sourceText || (currentImageDataUrl ? "[Image Input]" : "[No Text Input]");
+
             if (settings.streamingEnabled !== false) {
                 // Use streaming translation with callback to update UI
                 targetOutputEl.classList.add('streaming');
-                const translation = await translateText(sourceText, sourceLang, targetLang, function(partialTranslation) {
+                const translation = await translateText(sourceText, sourceLang, targetLang, currentImageDataUrl, function(partialTranslation) {
                     targetOutputEl.value = partialTranslation;
                 });
                 
@@ -708,12 +805,12 @@ document.addEventListener('DOMContentLoaded', function() {
                 targetOutputEl.classList.remove('streaming');
             } else {
                 // Use regular translation
-                const translation = await translateText(sourceText, sourceLang, targetLang);
+                const translation = await translateText(sourceText, sourceLang, targetLang, currentImageDataUrl);
                 targetOutputEl.value = translation;
             }
             
             // Add to history
-            TranslationHistory.add(sourceText, targetOutputEl.value, sourceLang, targetLang);
+            TranslationHistory.add(textToLog, targetOutputEl.value, sourceLang, targetLang);
             updateHistoryDisplay();
             
         } catch (error) {
