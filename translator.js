@@ -492,20 +492,8 @@ document.addEventListener('DOMContentLoaded', function() {
         Array.from(sourceLangSelect.options).forEach(opt => opt.disabled = false);
         Array.from(targetLangSelect.options).forEach(opt => opt.disabled = false);
 
-        // Disable current target language in source dropdown (unless it's 'detect')
-        // Target language cannot be 'detect', so currentTargetVal !== LANG_DETECT is always true here.
-        const sourceOptionToDisable = sourceLangSelect.querySelector(`option[value="${currentTargetVal}"]`);
-        if (sourceOptionToDisable && sourceOptionToDisable.value !== LANG_DETECT) {
-            sourceOptionToDisable.disabled = true;
-        }
-
-        // Disable current source language in target dropdown
-        if (currentSourceVal !== LANG_DETECT) {
-            const targetOptionToDisable = targetLangSelect.querySelector(`option[value="${currentSourceVal}"]`);
-            if (targetOptionToDisable) {
-                targetOptionToDisable.disabled = true;
-            }
-        }
+        // No disabling logic needed here anymore for conflicting options,
+        // as selecting a conflicting option should trigger a swap via the change handlers.
     }
 
     function handleSourceLangChange() {
