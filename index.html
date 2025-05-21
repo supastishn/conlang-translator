@@ -34,36 +34,45 @@
                 <p>OpenAI API key not set. Please configure in <a href="settings.html">Settings</a> first.</p>
             </div>
 
-            <div class="translation-direction-toggle">
-                <div class="direction-label">Translation Direction</div>
-                <div class="direction-toggle-inner">
-                    <button id="english-to-draconic" class="direction-button active">English to Draconic</button>
-                    <span class="direction-icon">⇄</span>
-                    <button id="draconic-to-english" class="direction-button inactive">Draconic to English</button>
+            <div class="language-selection-container" style="display: flex; justify-content: space-between; margin-bottom: 1.5rem; gap: 1rem;">
+                <div class="form-group" style="flex: 1; margin-bottom: 0;">
+                    <label for="source-lang-select">Source Language:</label>
+                    <select id="source-lang-select">
+                        <option value="english">English</option>
+                        <option value="draconic">Draconic</option>
+                        <option value="dwl">Diacritical Waluigi Language</option>
+                    </select>
+                </div>
+                <div class="form-group" style="flex: 1; margin-bottom: 0;">
+                    <label for="target-lang-select">Target Language:</label>
+                    <select id="target-lang-select">
+                        <option value="draconic">Draconic</option>
+                        <option value="english">English</option>
+                        <option value="dwl">Diacritical Waluigi Language</option>
+                    </select>
                 </div>
             </div>
-
-            <!-- NEW: Draconic Output Type Selector (for English to Draconic) -->
-            <div id="draconic-output-type-container" class="form-group hidden"> <!-- Initially hidden -->
-                <label for="draconic-output-type-select-index">Draconic Output Type:</label>
+            
+            <div id="draconic-output-type-container" class="form-group hidden"> <!-- Initially hidden, shown if target is Draconic -->
+                <label for="draconic-output-type-select-index">Draconic Output Type (if target is Draconic):</label>
                 <select id="draconic-output-type-select-index">
                     <option value="normal">Normal Draconic Output</option>
                     <option value="simplified">Simplified Romanization</option>
                 </select>
-                <small>Select the desired output format for Draconic. "Simplified Romanization" aims for a more phonetic output.</small>
+                <small>Select the desired output format for Draconic. "Simplified Romanization" aims for a more phonetic output when Draconic is the target language.</small>
             </div>
 
             <div class="translation-container">
                 <div class="translation-box">
-                    <h2 id="source-language">English</h2>
-                    <textarea id="source-input" placeholder="Enter text here..."></textarea>
+                    <h2 id="source-language-label">English</h2>
+                    <textarea id="source-input" placeholder="Enter English text here..."></textarea>
                 </div>
                 <div class="translation-controls">
                     <button id="translate-btn">Translate</button>
                 </div>
                 <div class="translation-box">
-                    <h2 id="target-language">Draconic</h2>
-                    <textarea id="target-output" placeholder="Translation will appear here..." readonly></textarea>
+                    <h2 id="target-language-label">Draconic</h2>
+                    <textarea id="target-output" placeholder="Draconic translation will appear here..." readonly></textarea>
                 </div>
             </div>
 

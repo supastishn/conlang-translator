@@ -323,87 +323,8 @@ button:disabled {
     opacity: 1;
 }
 
-/* Translation direction buttons */
-.translation-direction-toggle {
-    background-color: var(--surface-1);
-    border: none;
-    border-radius: var(--rounded-lg);
-    padding: 1.2rem;
-    margin-bottom: 2rem;
-    box-shadow: var(--card-shadow);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    position: relative;
-    overflow: hidden;
-}
-
-.translation-direction-toggle::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 5px;
-    height: 100%;
-    background: linear-gradient(to bottom, var(--primary-color), var(--primary-light));
-    border-radius: var(--rounded-lg) 0 0 var(--rounded-lg);
-}
-
-.direction-label {
-    font-weight: 600;
-    margin-bottom: 1rem;
-    color: var(--primary-dark);
-    font-size: 1.05rem;
-}
-
-.direction-toggle-inner {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 16px;
-    background-color: var(--surface-2);
-    padding: 0.75rem 1.25rem;
-    border-radius: var(--rounded-xl);
-}
-
-.direction-button {
-    font-weight: 500;
-    transition: all 0.3s ease;
-    padding: 0.5rem 1rem;
-    border-radius: var(--rounded-md);
-    cursor: pointer;
-    border: none;
-    font-family: inherit;
-    font-size: inherit;
-    background: none;
-}
-
-.direction-button.active {
-    color: var(--text-light);
-    font-weight: 700;
-    background-color: var(--primary-color);
-    box-shadow: 0 2px 8px rgba(124, 58, 237, 0.3);
-}
-
-.direction-button.inactive {
-    color: #6b7280;
-}
-
-.direction-button.inactive:hover {
-    background-color: var(--surface-1);
-    color: var(--primary-dark);
-}
-
-.direction-icon {
-    font-size: 1.2rem;
-    color: var(--primary-color);
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    transform: translateY(2px);
-}
+/* Styles for language selection dropdowns will use existing .form-group and select styles */
+/* Removing old translation direction button styles */
 
 /* Translation history */
 .translation-history {

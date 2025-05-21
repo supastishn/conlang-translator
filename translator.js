@@ -1,5 +1,16 @@
 // translator.js - Handles translation functionality
 
+// Language constants
+const LANG_ENGLISH = 'english';
+const LANG_DRACONIC = 'draconic';
+const LANG_DWL = 'dwl'; // Diacritical Waluigi Language
+
+const LANG_LABELS = {
+    [LANG_ENGLISH]: 'English',
+    [LANG_DRACONIC]: 'Draconic',
+    [LANG_DWL]: 'Diacritical Waluigi Language'
+};
+
 // Translation history storage
 const TranslationHistory = {
     get: function() {
@@ -7,14 +18,15 @@ const TranslationHistory = {
         return history ? JSON.parse(history) : [];
     },
     
-    add: function(source, target, direction) {
+    add: function(sourceText, translatedText, sourceLang, targetLang) {
         const history = this.get();
         history.unshift({
             id: Date.now(),
             timestamp: new Date().toISOString(),
-            source: source,
-            target: target,
-            direction: direction // 'e2d' for English to Draconic, 'd2e' for Draconic to English
+            sourceText: sourceText,
+            translatedText: translatedText,
+            sourceLang: sourceLang,
+            targetLang: targetLang
         });
         
         // Keep only the last 10 translations
@@ -38,54 +50,72 @@ const TranslationHistory = {
     }
 };
 
+// Load Diacritical Waluigi Language resources
+async function loadDWLResources() {
+    try {
+        const baseUrl = getBaseUrl();
+        const response = await fetch(`${baseUrl}/materials/dwl.txt`);
+        if (!response.ok) {
+            console.warn(`Could not load dwl.txt: ${response.status} ${response.statusText}`);
+            // If the user hasn't added the file yet, this is expected.
+            // Return a specific message or empty string.
+            return '[DWL resources file (dwl.txt) not found or could not be loaded]';
+        }
+        const dwlText = await response.text();
+        return dwlText;
+    } catch (error) {
+        console.error('Error loading DWL resources:', error);
+        return '[DWL resources could not be loaded due to an error]';
+    }
+}
+
+
 // OpenAI API integration
-async function translateText(sourceText, direction = 'e2d', updateCallback = null) {
+async function translateText(sourceText, sourceLang, targetLang, updateCallback = null) {
     const settings = Settings.get();
     
     if (!settings.apiKey) {
-        throw new Error('API key not configured. Please set your OpenAI API key in Settings.');
+        throw new Error('API key not configured. Please set your API key in Settings.');
     }
     
-    // settings.baseUrl should now directly point to the base of API operations (e.g., https://api.openai.com/v1)
     let endpoint = settings.baseUrl; 
-    // Normalize base URL to remove trailing slash if present, before appending path
     if (endpoint.endsWith('/')) {
         endpoint = endpoint.slice(0, -1);
     }
     
-    // Load dictionary and grammar information to provide context
-    const dictionaryPrompt = await loadDraconicDictionary();
-    const grammarPrompt = await loadDraconicGrammar();
-    
-    // Check if streaming is enabled
     const useStreaming = settings.streamingEnabled !== false && updateCallback !== null;
-    
-    // Build the user prompt based on direction
-    let userPrompt;
-    if (direction === 'e2d') {
-        userPrompt = `Translate the following English text to Draconic:\n\n"${sourceText}"`;
-        if (settings.draconicOutputType === 'simplified') {
-            userPrompt += " (output simplified romanization)";
-        }
-    } else {
-        userPrompt = `Translate the following Draconic text to English:\n\n"${sourceText}"`;
-    }
 
-    // Modify system prompt based on draconicOutputType for E2D
-    let systemPromptContent = settings.systemPrompt;
-    if (direction === 'e2d' && settings.draconicOutputType === 'simplified') {
-        systemPromptContent += " (output simplified romanization)";
+    // Prepare system prompt content
+    let systemPromptCore = settings.systemPrompt;
+    let resourcesForPrompt = "";
+
+    const needsDraconic = (sourceLang === LANG_DRACONIC || targetLang === LANG_DRACONIC);
+    const needsDWL = (sourceLang === LANG_DWL || targetLang === LANG_DWL);
+
+    if (needsDraconic) {
+        const dictionaryPrompt = await loadDraconicDictionary();
+        const grammarPrompt = await loadDraconicGrammar();
+        resourcesForPrompt += `\n\nDRACONIC RESOURCES:\nDictionary:\n${dictionaryPrompt}\nGrammar:\n${grammarPrompt}`;
+    }
+    if (needsDWL) {
+        const dwlPromptText = await loadDWLResources();
+        resourcesForPrompt += `\n\nDIACRITICAL WALUIGI LANGUAGE RESOURCES:\n${dwlPromptText}`;
     }
     
-    // Common request parameters
+    let finalSystemPrompt = systemPromptCore + resourcesForPrompt;
+
+    // Build the user prompt
+    let userPrompt = `Translate the following ${LANG_LABELS[sourceLang]} text to ${LANG_LABELS[targetLang]}:\n\n"${sourceText}"`;
+
+    if (targetLang === LANG_DRACONIC && settings.draconicOutputType === 'simplified') {
+        // Append to user prompt or system prompt. Let's try user prompt for specificity.
+        userPrompt += " (When generating Draconic, output simplified romanization)";
+    }
+    
     const requestBody = {
         model: settings.model,
         messages: [
-            { 
-                role: 'system', 
-                // Use the potentially modified systemPromptContent
-                content: `${systemPromptContent}\n\nDRACONIC DICTIONARY:\n${dictionaryPrompt}\n\nDRACONIC GRAMMAR:\n${grammarPrompt}`
-            },
+            { role: 'system', content: finalSystemPrompt },
             { role: 'user', content: userPrompt }
         ],
         temperature: settings.temperature
@@ -345,19 +375,20 @@ function updateHistoryDisplay() {
         
         const date = new Date(item.timestamp);
         const formattedDate = date.toLocaleString();
+        const directionLabel = `${LANG_LABELS[item.sourceLang]} → ${LANG_LABELS[item.targetLang]}`;
         
         historyItem.innerHTML = `
             <div class="history-header">
                 <span class="history-date">${formattedDate}</span>
-                <span class="history-direction">${item.direction === 'e2d' ? 'English → Draconic' : 'Draconic → English'}</span>
+                <span class="history-direction">${directionLabel}</span>
                 <div class="history-actions">
                     <button class="history-use-btn" data-id="${item.id}">Use Again</button>
                     <button class="history-delete-btn" data-id="${item.id}">Delete</button>
                 </div>
             </div>
             <div class="history-content">
-                <p><strong>${item.direction === 'e2d' ? 'English' : 'Draconic'}:</strong> ${item.source}</p>
-                <p><strong>${item.direction === 'e2d' ? 'Draconic' : 'English'}:</strong> ${item.target}</p>
+                <p><strong>${LANG_LABELS[item.sourceLang]}:</strong> ${item.sourceText}</p>
+                <p><strong>${LANG_LABELS[item.targetLang]}:</strong> ${item.translatedText}</p>
             </div>
         `;
         
@@ -371,13 +402,17 @@ function updateHistoryDisplay() {
             const historyItem = history.find(item => item.id === id);
             
             if (historyItem) {
-                // Set the direction to match the history item
-                const toDraconic = historyItem.direction === 'e2d';
-                updateTranslationDirection(toDraconic);
+                // Set the language dropdowns
+                document.getElementById('source-lang-select').value = historyItem.sourceLang;
+                document.getElementById('target-lang-select').value = historyItem.targetLang;
                 
+                // Trigger change events to update UI
+                document.getElementById('source-lang-select').dispatchEvent(new Event('change'));
+                document.getElementById('target-lang-select').dispatchEvent(new Event('change'));
+
                 // Set the input/output values
-                document.getElementById('source-input').value = historyItem.source;
-                document.getElementById('target-output').value = historyItem.target;
+                document.getElementById('source-input').value = historyItem.sourceText;
+                document.getElementById('target-output').value = historyItem.translatedText;
             }
         });
     });
@@ -400,80 +435,58 @@ document.addEventListener('DOMContentLoaded', function() {
     // Only run on the translator page
     const translateBtn = document.getElementById('translate-btn');
     if (!translateBtn) return;
-    
-    // Set up the direction buttons
-    const englishToDraconicBtn = document.getElementById('english-to-draconic');
-    const draconicToEnglishBtn = document.getElementById('draconic-to-english');
-    const sourceLanguage = document.getElementById('source-language');
-    const targetLanguage = document.getElementById('target-language');
-    const sourceInput = document.getElementById('source-input');
-    const targetOutput = document.getElementById('target-output');
 
-    // NEW: Draconic output type elements
+    const sourceLangSelect = document.getElementById('source-lang-select');
+    const targetLangSelect = document.getElementById('target-lang-select');
+    const sourceLanguageLabelEl = document.getElementById('source-language-label');
+    const targetLanguageLabelEl = document.getElementById('target-language-label');
+    const sourceInputEl = document.getElementById('source-input');
+    const targetOutputEl = document.getElementById('target-output');
+    
     const draconicOutputTypeContainer = document.getElementById('draconic-output-type-container');
-    const draconicOutputTypeSelect = document.getElementById('draconic-output-type-select-index');
-    
-    // Variable to track current translation direction
-    let isEnglishToDraconic = true;
-    
-    // Function to update UI based on translation direction
-    function updateTranslationDirection(toDraconic) {
-        isEnglishToDraconic = toDraconic;
-        const currentSettings = Settings.get(); // Get current settings
-        
-        if (!toDraconic) {
-            // Draconic to English
-            sourceLanguage.textContent = 'Draconic';
-            targetLanguage.textContent = 'English';
-            sourceInput.placeholder = 'Enter Draconic text here...';
-            targetOutput.placeholder = 'English translation will appear here...';
-            
-            // Update active/inactive classes
-            englishToDraconicBtn.classList.remove('active');
-            englishToDraconicBtn.classList.add('inactive');
-            draconicToEnglishBtn.classList.add('active');
-            draconicToEnglishBtn.classList.remove('inactive');
+    const draconicOutputTypeSelectIndex = document.getElementById('draconic-output-type-select-index');
 
-            // NEW: Hide Draconic output type selector
-            if (draconicOutputTypeContainer) {
-                draconicOutputTypeContainer.classList.add('hidden');
+    function updateUIForLanguageSelection() {
+        const sourceLang = sourceLangSelect.value;
+        const targetLang = targetLangSelect.value;
+        const currentSettings = Settings.get();
+
+        sourceLanguageLabelEl.textContent = LANG_LABELS[sourceLang];
+        targetLanguageLabelEl.textContent = LANG_LABELS[targetLang];
+
+        sourceInputEl.placeholder = `Enter ${LANG_LABELS[sourceLang]} text here...`;
+        targetOutputEl.placeholder = `${LANG_LABELS[targetLang]} translation will appear here...`;
+
+        // Show/hide Draconic output type selector
+        if (targetLang === LANG_DRACONIC) {
+            draconicOutputTypeContainer.classList.remove('hidden');
+            // Set its value from settings if not already set by user interaction on this page
+            if (draconicOutputTypeSelectIndex) {
+                 // Ensure this element exists before trying to set its value
+                draconicOutputTypeSelectIndex.value = currentSettings.draconicOutputType || 'normal';
             }
         } else {
-            // English to Draconic
-            sourceLanguage.textContent = 'English';
-            targetLanguage.textContent = 'Draconic';
-            sourceInput.placeholder = 'Enter English text here...';
-            targetOutput.placeholder = 'Draconic translation will appear here...';
-            
-            // Update active/inactive classes
-            englishToDraconicBtn.classList.add('active');
-            englishToDraconicBtn.classList.remove('inactive');
-            draconicToEnglishBtn.classList.remove('active');
-            draconicToEnglishBtn.classList.add('inactive');
-
-            // NEW: Show Draconic output type selector and set its value
-            if (draconicOutputTypeContainer && draconicOutputTypeSelect) {
-                draconicOutputTypeContainer.classList.remove('hidden');
-                draconicOutputTypeSelect.value = currentSettings.draconicOutputType || 'normal';
-            }
+            draconicOutputTypeContainer.classList.add('hidden');
         }
     }
-    
-    // Initialize direction (this will also set up the draconic output type selector)
-    updateTranslationDirection(true); 
-    
-    // Handle direction button clicks
-    englishToDraconicBtn.addEventListener('click', () => updateTranslationDirection(true));
-    draconicToEnglishBtn.addEventListener('click', () => updateTranslationDirection(false));
 
-    // NEW: Event listener for Draconic output type select on index.html
-    if (draconicOutputTypeSelect) {
-        draconicOutputTypeSelect.addEventListener('change', function() {
+    // Initial UI setup
+    sourceLangSelect.value = LANG_ENGLISH; // Default source
+    targetLangSelect.value = LANG_DRACONIC; // Default target
+    updateUIForLanguageSelection();
+
+    // Event listeners for language dropdowns
+    sourceLangSelect.addEventListener('change', updateUIForLanguageSelection);
+    targetLangSelect.addEventListener('change', updateUIForLanguageSelection);
+    
+    // Event listener for Draconic output type select on index.html
+    if (draconicOutputTypeSelectIndex) {
+        draconicOutputTypeSelectIndex.addEventListener('change', function() {
             const newOutputType = this.value;
             const currentSettings = Settings.get();
             currentSettings.draconicOutputType = newOutputType;
             Settings.save(currentSettings);
-            console.log("Draconic output type changed to:", newOutputType);
+            console.log("Draconic output type (on translator page) changed to:", newOutputType);
         });
     }
     
@@ -482,11 +495,11 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // Set up the translate button click handler
     translateBtn.addEventListener('click', async function() {
-        const sourceInput = document.getElementById('source-input').value.trim();
-        const targetOutput = document.getElementById('target-output');
-        const direction = isEnglishToDraconic ? 'e2d' : 'd2e';
+        const sourceText = sourceInputEl.value.trim();
+        const sourceLang = sourceLangSelect.value;
+        const targetLang = targetLangSelect.value;
         
-        if (!sourceInput) {
+        if (!sourceText) {
             alert('Please enter some text to translate');
             return;
         }
@@ -500,35 +513,43 @@ document.addEventListener('DOMContentLoaded', function() {
         // Show loading state
         translateBtn.disabled = true;
         translateBtn.textContent = 'Translating...';
-        targetOutput.value = 'Translating...';
+        targetOutputEl.value = 'Translating...';
         
         // Get settings to check if streaming is enabled
         const settings = Settings.get();
         
+        if (sourceLang === targetLang) {
+            alert('Source and target languages cannot be the same.');
+            translateBtn.disabled = false;
+            translateBtn.textContent = 'Translate';
+            targetOutputEl.value = ''; // Clear the "Translating..." message
+            return;
+        }
+
         try {
             if (settings.streamingEnabled !== false) {
                 // Use streaming translation with callback to update UI
-                targetOutput.classList.add('streaming');
-                const translation = await translateText(sourceInput, direction, function(partialTranslation) {
-                    targetOutput.value = partialTranslation;
+                targetOutputEl.classList.add('streaming');
+                const translation = await translateText(sourceText, sourceLang, targetLang, function(partialTranslation) {
+                    targetOutputEl.value = partialTranslation;
                 });
                 
                 // Make sure we have the final translation
-                targetOutput.value = translation;
-                targetOutput.classList.remove('streaming');
+                targetOutputEl.value = translation;
+                targetOutputEl.classList.remove('streaming');
             } else {
                 // Use regular translation
-                const translation = await translateText(sourceInput, direction);
-                targetOutput.value = translation;
+                const translation = await translateText(sourceText, sourceLang, targetLang);
+                targetOutputEl.value = translation;
             }
             
-            // Add to history with direction info
-            TranslationHistory.add(sourceInput, targetOutput.value, direction);
+            // Add to history
+            TranslationHistory.add(sourceText, targetOutputEl.value, sourceLang, targetLang);
             updateHistoryDisplay();
             
         } catch (error) {
-            draconicOutput.value = 'Error: ' + error.message;
-            draconicOutput.classList.remove('streaming');
+            targetOutputEl.value = 'Error: ' + error.message;
+            targetOutputEl.classList.remove('streaming');
             console.error('Translation error:', error);
         } finally {
             // Reset button state
