@@ -449,6 +449,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const targetLanguageLabelEl = document.getElementById('target-language-label');
     const sourceInputEl = document.getElementById('source-input');
     const targetOutputEl = document.getElementById('target-output');
+    const dwlInputWarningEl = document.getElementById('dwl-input-warning');
     
     const draconicOutputTypeContainer = document.getElementById('draconic-output-type-container');
     const draconicOutputTypeSelectIndex = document.getElementById('draconic-output-type-select-index');
@@ -477,6 +478,15 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         } else {
             draconicOutputTypeContainer.classList.add('hidden');
+        }
+
+        // Show/hide DWL input warning
+        if (dwlInputWarningEl) {
+            if (sourceLang === LANG_DWL) {
+                dwlInputWarningEl.classList.remove('hidden');
+            } else {
+                dwlInputWarningEl.classList.add('hidden');
+            }
         }
     }
     
