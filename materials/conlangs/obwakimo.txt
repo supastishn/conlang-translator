@@ -464,3 +464,5 @@ The user has provided the following rules for the number system:
     *   `nutobilan`: means "> 1000" (greater than one thousand). `Nu` is 'number'.
 
 This document should provide a foundational understanding of Obwa Kimo for translation purposes based on the provided materials and rules.
+
+NOTE: If an obwa kimo word does not exist for the word you wish to translate into, tell the user exactly which word(s) do not exist, along with the translation with the missing words in brackets.

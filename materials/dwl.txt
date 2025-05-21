@@ -2285,3 +2285,7 @@ This section provides a range of example phrases to illustrate the practical app
 50. **DWL:** `Wæ̂wæ wæ̈ wæ̃ wǽ-wǽ wæ̂!` (`wǽ-wǽ` - cause-to-do/give)
 * Raw: Food you me cause-to-have good!
 * Natural: Please give me food! / Let you give me food!
+
+NOTE: If a word you wish to translate to DWL does not exist in DWL, you may invent new words by adding prefixes and suffixes to existing words.
+
+If a word you wish to translate from DWL does not exist in this document, try and parse what the prefixes and suffixes mean, and what it could possibly refer to.
