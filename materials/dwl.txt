@@ -1,0 +1,350 @@
+
+Welcome to the WORST CONLANG EVER MADE, DiacritiWelcomealuigi Language (DWL), a conlang inspired by the expressive "wæ!" of Waluigi, built entirely around the word `wæ` modified by diacritics, prefixes, and suffixes.
+
+## I. Vocabulary
+
+The core of DWL is the base word `wæ`. All other words are variations of `wæ` using diacritics, or compounds/modifications using `wæ` itself or the suffix `æ`. Most words can function as nouns, verbs, adjectives, or adverbs depending on context and sentence position.
+
+### A. Core Words
+These are the fundamental semantic building blocks. The meaning is flexible. For example, `wæ̂` can mean "goodness" (noun), "good" (adjective), or "to be good/to like/to make good" (verb).
+
+1.  **`wæ`** (no diacritic): thing, entity, concept, it (neutral/base form)
+2.  **`wǽ`** (acute accent: ´): action, do, make, go, become, cause (dynamic, active)
+3.  **`wæ̀`** (grave accent: `): state, be, quality, have, exist, essence (stative, passive)
+4.  **`wæ̂`** (circumflex accent: ^): good, positive, yes, like, happy, want, agree
+5.  **`wǣ`** (macron: ¯): big, great, important, many, much, long (time/duration), augment
+6.  **`wæ̆`** (breve: ˘): small, little, few, short (time/duration), diminish
+7.  **`wæ̃`** (tilde: ~): I, me, my, self
+8.  **`wæ̈`** (diaeresis: ¨): you, your (singular/plural)
+9.  **`wæ̇`** (dot above: ˙): he, she, they, them, their, it (animate or specific 3rd person)
+10. **`wæ̣`** (dot below: .): this, here, now (proximal: near speaker, current time)
+11. **`wæ̉`** (hook above: hỏi accent): that, there, then (distal: away from speaker, other time)
+12. **`wæ̌`** (caron/hacek: ˇ): see, know, understand, perceive, sense, mind, truth
+13. **`wæ̧`** (cedilla: ¸): say, speak, communicate, name, word, message, sound
+
+### B. Prefixes
+Prefixes are formed by placing a core word (typically a `wæ`-form with a diacritic) before another `wæ`-form.
+
+1.  **`wæ̀-`**: Negation prefix (from `wæ̀` - state/quality). Indicates "not-", "un-", "opposite of".
+    *   Example: `wæ̀ wæ̂` (not-good = bad)
+2.  **`wǣ-`**: Intensifying prefix or Pluralizer (from `wǣ` - big/many). Indicates "very", "many", "much".
+    *   Example: `wǣ wæ̂` (very good); `wǣ wæ` (many things)
+3.  **`wæ̆-`**: Diminishing prefix (from `wæ̆` - small/little). Indicates "somewhat", "a little", "few".
+    *   Example: `wæ̆ wæ̂` (a little good); `wæ̆ wæ` (few things)
+
+### C. Suffixes (Tense/Aspect Markers)
+Suffixes are formed by adding `æ` followed by a diacritic to a `wæ`-form, typically a verb.
+
+1.  **`-ǽ`**: Past tense (completed action/state). (Related to `wǽ` - action)
+    *   Example: `wǽǽ` (did, acted, went); `wæ̂ǽ` (was good, liked in the past)
+2.  **`-ǣ`**: Future tense (intended or future action/state). (Related to `wǣ` - long time/future)
+    *   Example: `wǽǣ` (will do, will act, will go); `wæ̂ǣ` (will be good, will like)
+3.  **(No suffix)**: Present tense or general aspect.
+
+### D. Conjunctions
+Conjunctions are standalone words, formed by `wæ` + diacritic + `æ` suffix, connecting words or clauses.
+
+1.  **`wæ̂æ`**: And (positive or additive connection; from `wæ̂` - good/positive)
+2.  **`wæ̆æ`**: Or (alternative connection; from `wæ̆` - small/choice)
+3.  **`wæ̀æ`**: But, however (contrasting connection; from `wæ̀` - state/contrast)
+4.  **`wǽæ`**: Because, so, therefore (causal connection; from `wǽ` - action/cause)
+
+### E. Question Particle
+
+1.  **`wæ̃̈`** (tilde and diaeresis): Interrogative particle. Placed at the end of a sentence to mark a question. (Combination of `wæ̃` (I) and `wæ̈` (you) evokes inquiry between speaker and listener).
+
+## II. Grammar
+
+### A. Word Order
+The fundamental word order is **Object - Subject - Verb (OSV)**.
+*   Example: `wæ wæ̃ wǽ.` (Thing, I, do.) -> "I do the thing."
+
+### B. Parts of Speech Fluidity
+Most `wæ`-forms are highly versatile and can function as nouns, adjectives, verbs, or adverbs. Their role is determined by their position in the sentence (especially the final verb position) and context.
+*   `wæ̂` can be "goodness" (noun), "good" (adjective), or "to be good / to like" (verb).
+
+### C. Nouns
+*   Any `wæ`-form can serve as a noun.
+*   **Pluralization**: The prefix `wǣ-` (many) is used. `wǣ wæ` (many things).
+*   **Specificity**: Demonstratives `wæ̣` (this) and `wæ̉` (that) can specify nouns: `wæ̣ wæ` (this thing).
+
+### D. Adjectives
+*   Adjectives are `wæ`-forms that precede the noun they modify.
+*   Example: `wæ̂ wæ` (good thing).
+*   **Intensification**: The prefix `wǣ-` (very) can modify adjectives: `wǣ wæ̂ wæ` (very good thing).
+
+### E. Verbs
+*   Verbs are typically the final element in a clause.
+*   Tense is marked by suffixes: `-ǽ` (past), `-ǣ` (future), or no suffix (present).
+*   Example: `wæ wæ̃ wǽǽ.` (Thing, I, did.) -> "I did the thing."
+
+### F. Pronouns
+*   `wæ̃` (I), `wæ̈` (you), `wæ̇` (he/she/they/it).
+*   **Possession**: When a pronoun directly precedes a noun, it indicates possession.
+    *   Example: `wæ̃ wæ` (my thing); `wæ̈ wæ̂` (your goodness).
+
+### G. Negation
+*   There are no inherently negative words (e.g., "bad", "no").
+*   Negation is achieved using the prefix `wæ̀-` (not-).
+    *   Example: `wæ̀ wæ̂` (not-good = bad).
+    *   To negate a verb: `Object Subject wæ̀-Verb.`
+        *   `wæ wæ̃ wæ̀ wǽ.` (Thing, I, not-do.) -> "I do not do the thing."
+
+### H. Questions
+*   Yes/no questions are formed by adding the question particle `wæ̃̈` at the end of an OSV statement.
+    *   Example: `wæ wæ̃ wǽ wæ̃̈?` (Thing, I, do?) -> "Do I do the thing?"
+*   Wh-questions can be formed using a relevant `wæ`-form (e.g. `wæ` for "what thing", `wǽ` for "what action") in the object position, with the question particle.
+
+## III. Example Sentences
+
+1.  **Waluigi is good.**
+    *   Sentence: `wæ̂ Wæ̃́ wæ̀.` (Goodness, Waluigi [represented as `Wæ̃́` - "I, the active one!"], is.)
+    *   Or: `Wæ̃́ wæ̂.` (Waluigi is-good.)
+
+2.  **I like you.**
+    *   Sentence: `wæ̈ wæ̃ wæ̂.` (You, I, like.)
+
+3.  **You saw the big cat.** (Using `wæ` for "cat" in speech, or a more specific term from Section IV in writing)
+    *   Sentence: `wǣ wæ wæ̈ wæ̌ǽ.` (Big thing/cat, you, saw.)
+
+4.  **The small dog will not run.**
+    *   Sentence: `wǽ wæ̆ wæ wæ̀ wǽǣ.` (Running, the small thing/dog, will-not-do.)
+
+5.  **Is this food good?**
+    *   Sentence: `wæ̣ wæ wæ̂ wæ̃̈?` (This thing/food, is-good?)
+
+6.  **I am happy, and you are here.**
+    *   Sentence: `wæ̃ wæ̂ wæ̂æ wæ̣ wæ̈ wæ̀.` (I am-happy and here, you, are.)
+
+7.  **He says many words, but I understand little.**
+    *   Sentence: `wǣ wæ̧ wæ̇ wæ̧ wæ̀æ wæ̆ wæ̃ wæ̌.` (Many words, he, says, but little, I, understand.)
+
+## IV. Written Vocabulary (Clarifiers)
+
+In written DWL, where contextual clues from speech or shared immediate experience might be absent, the general term `wæ` (thing, entity) can sometimes be too vague. The following compound `wæ`-forms provide more specific denotations for common categories of nouns. These words are primarily for disambiguation in writing but can also be used in speech. They adhere to all standard grammatical rules, including fluid part-of-speech. For example, `wæ̃́` (animal) can mean "animal" (noun), "to behave like an animal" (verb), or "animalistic" (adjective).
+
+### A. Living Beings & Body Parts
+
+**General Living Beings:**
+1.  **`wæ̃́`**: Animal, beast, creature (Self + Active).
+2.  **`wæ̀̄`**: Plant, flora, vegetation (State/Growth + Big).
+3.  **`wæ̃wæ̇`**: Person, human, individual (Self + Other Animate).
+4.  **`wæ̆wǽ`**: Insect, bug, small active creature (Small + Active).
+5.  **`wǽwæ̂wæ̉`**: Bird, flying creature (Active + Good/Graceful + There/Sky).
+6.  **`wǽwæ̀wæ`**: Fish, water creature (Active + State/Medium + Thing).
+7.  **`wæ̀̄wæ̀`**: Tree (Plant + Stative/Strong).
+8.  **`wæ̂wæ̀̄`**: Flower (Good/Positive + Plant).
+9.  **`wǣwæ̃́`**: Mammal (Big + Animal).
+10. **`wæ̆wæ̃́`**: Reptile, amphibian (Small + Animal, often ground-based).
+11. **`wæ̃́wǣ`**: Monster, large beast (Animal + Very Big/Scary).
+12. **`wæ̃́wǽwæ`**: Predator (Animal + Action + Thing/Prey).
+13. **`wæ̃́wæ̀wæ`**: Prey (Animal + State + Thing/Hunted).
+
+**Human Roles & Types:**
+14. **`wæ̃wæ̇wæ̂`**: Child (Person + Good/Small/Developing).
+15. **`wæ̃wæ̇wǣ`**: Adult (Person + Big/Mature).
+16. **`wæ̃wæ̇wæ̀`**: Elder (Person + State/Wisdom/Age).
+17. **`wæ̃wæ̇wǽ`**: Leader, chief (Person + Action/Cause).
+18. **`wæ̃wæ̇wæ̧`**: Teacher, speaker (Person + Say/Communicate).
+19. **`wæ̃wæ̇wæ̌`**: Scholar, thinker (Person + Know/Mind).
+20. **`wæ̃wæ̇wǽwæ`**: Worker, maker (Person + Make-Thing).
+21. **`wæ̃wæ̇wǽwæ̂`**: Artist (Person + Make-Good).
+22. **`wæ̃wæ̇wǽwæ̇`**: Warrior, fighter (Person + Action-AnimateTarget).
+23. **`wæ̃wæ̇wæ̀wæ̂`**: Friend (Person + State-Good).
+24. **`wæ̃wæ̇wæ̀wæ̀`**: Enemy (Person + State-Not-Good).
+
+**Plant Parts & Types:**
+25. **`wæ̀̄wæ̆`**: Grass, herb (Plant + Small).
+26. **`wæ̀̄wǽ`**: Fruit (Plant + Action/Result/Eat).
+27. **`wæ̀̄wæ̣`**: Root (Plant + Below/This-Ground).
+28. **`wæ̀̄wæ̉`**: Leaf (Plant + That/Surface).
+
+**Body Parts:**
+29. **`wæ̃wæ`**: Body (Self + Thing).
+30. **`wæ̌wæ̃`**: Mind, consciousness (Know + Self).
+31. **`wæ̃wæ̂wæ`**: Head (Self + Good/Important + Thing).
+32. **`wæ̃wæ̌wæ`**: Eye (Self + See + Thing).
+33. **`wæ̃wæ̧wæ`**: Ear (Self + Hear/Sound + Thing).
+34. **`wæ̃wǽwæ`**: Nose (Self + Smell/Air + Thing) OR Hand/Arm (Self + Action + Thing). *Context distinguishes.*
+35. **`wæ̃wæ̂wæ̧`**: Mouth (Self + Food/Speak + Thing).
+36. **`wæ̃wæ̣wæ`**: Leg/Foot (Self + Ground + Thing).
+37. **`wæ̃wæ̂wæ̃`**: Heart (emotion/core) (Self + Good + Self).
+38. **`wæ̃wǽwæ̀`**: Heart (organ) (Self + Action + State/Life).
+39. **`wæ̃wæ̀wæ`**: Skin, hide (Self + State/Covering + Thing).
+40. **`wæ̃wæ̀wæ̀`**: Bone (Self + State + State/Structure).
+41. **`wæ̃wǽwæ̣`**: Blood (Self + Action/Flow + This/Internal).
+42. **`wæ̃wæ̧wæ̆`**: Tooth (Self + Speak/Eat + Small).
+43. **`wæ̃wæ̧wǣ`**: Tongue (Self + Speak/Taste + Long/Mobile).
+
+### B. Natural World & Elements
+
+**General Geography & Celestial:**
+44. **`wæ̣wæ̉`**: Place, location, area (This + That).
+45. **`wǣwæ̉`**: Sky, heavens (Big/Above + That/Expanse).
+46. **`wæ̣wæ̀`**: Earth, ground, land (This/Here + State/Foundation).
+47. **`wǽwæ̣`**: Water (liquid) (Action/Flow + This/Tangible).
+48. **`wǽwæ̂`**: Fire, flame (Action/Dynamic + Positive/Energy).
+49. **`wæ̀wæ`**: Stone, rock (State/Solid + Thing).
+50. **`wǣwæ̣`**: Mountain (Big + This/Landmark).
+51. **`wǽwæ̆`**: River, stream (Action/Flow + Small/Path).
+52. **`wǽwǣwæ`**: Sea, ocean (Action/Flow + Big/Expanse + Thing).
+53. **`wæ̂wæ̉`**: Star (Good/Positive + That/Distant Light).
+54. **`wæ̂wǣ`**: Sun (Good/Positive + Big/Important Light).
+55. **`wæ̀wæ̉`**: Moon (State/Passive Light + That/Distant).
+56. **`wæ̀wǣwæ`**: Forest, woods (State + Big + Place/Many Plants).
+57. **`wæ̆wæ̣`**: Sand, dust (Small + Earth/Ground).
+58. **`wæ̀wǽwæ`**: Metal (Stone + Action/Malleable OR Stone + Fire-affected).
+59. **`wæ̂wæ̀wæ`**: Crystal, gem (Good + Stone).
+60. **`wæ̣wǣ`**: Valley (Place + Big/Low).
+61. **`wæ̣wæ̆`**: Cave (Place + Small/Enclosed).
+62. **`wæ̣wǽwæ̣`**: Island (Place + Water-Surrounded).
+63. **`wæ̣wǽwæ̂`**: Beach, shore (Place + Water + Good/Edge).
+64. **`wæ̣wæ̀wæ`**: Soil, dirt (Place + Earth + Thing).
+65. **`wǽwæ̂wæ̣`**: Volcano (Fire + Mountain).
+66. **`wæ̀wǣwæ̆`**: Hill (State + Big + Small [smaller than mountain]).
+67. **`wǽwæ̣wæ`**: Wave (water) (Action + Water + Thing).
+68. **`wæ̀wǽwæ`**: Ice (State + Water).
+69. **`wæ̣wǽwæ̆`**: Path, trail (Place + Action + Small).
+
+**Biomes & Atmospherics:**
+70. **`wæ̀wǣwæ̣`**: Desert (State + Big + Earth/Dry).
+71. **`wæ̀wǣwǽwæ̣`**: Swamp, marsh (State + Big + Water + Earth).
+72. **`wǽwæ̈`**: Rain (Action/Falling + You/Affecting).
+73. **`wæ̀wæ̈`**: Snow (State/Covering + You/Affecting).
+74. **`wǽwæ̃`**: Wind, air (Action/Movement + Self/Permeating).
+75. **`wǽwǣwæ̉`**: Cloud (Action/Movement + Big + Sky).
+76. **`wǽwǽwæ̉`**: Lightning, thunder (Action + Action + Sky/Sound).
+77. **`wæ̂wǽwæ̉`**: Rainbow (Good + Action/Light + Sky).
+78. **`wæ̀wǽwæ̉`**: Fog, mist (State + Water + Sky/Air).
+79. **`wǽwæ̃wæ`**: Shadow (Action/Block + Light + Thing).
+80. **`wæ̂wæ̃wæ`**: Light (general illumination) (Good + Pervading + Thing).
+81. **`wæ̀wæ̃wæ`**: Darkness (State + Pervading + Thing).
+
+### C. Human-Made Objects & Constructs
+
+**Tools & Weapons:**
+82. **`wǽwæ`**: Crafted Object, tool, device (Action/Make + Thing).
+83. **`wǽwæ̇`**: Weapon (Action/Cause + Specific Animate Target/Effect).
+84. **`wǽwæ̆`**: Knife, blade (Tool + Small/Cutting).
+85. **`wǽwǣ`**: Sword, large blade (Tool + Big/Cutting).
+86. **`wǽwǽwæ`**: Hammer, blunt tool (Tool + Action + Thing).
+87. **`wǽwǽwæ̇`**: Bow, arrow (Tool + Action + Animate Target).
+88. **`wæ̆wæ̂wæ`**: Shield (Small + Good + Thing/Protection).
+89. **`wǽwǣwæ`**: Net, trap (Tool + Big/Catch).
+90. **`wǽwæ̂wǽwæ`**: Key (Tool + Good + Action/Open).
+91. **`wæ̀wǽwæ`**: Lock (State + Tool/Secure).
+
+**Food & Drink Related:**
+92. **`wæ̂wæ`**: Food, sustenance (Good/Positive + Thing).
+93. **`wǽwæ̂wæ`**: Bread, baked food (Food + Made/Baked).
+94. **`wǽwæ̣wæ`**: Drink, beverage (Water + Made/Prepared).
+95. **`wǽwæ̂wæ̆`**: Cup, mug (Food/Drink + Container).
+96. **`wǽwæ̂wǽwæ`**: Plate, dish (Food + Tool). *Same as Key, context is crucial.*
+97. **`wǽwæ̂wǽwæ̆`**: Spoon, fork (Food + Small Tool).
+
+**Shelter & Furniture:**
+98. **`wǣwæ̀`**: Building, house, structure (Big + State/Dwelling).
+99. **`wæ̀wæ̂`**: Bed, resting place (State + Good).
+100. **`wǽwæ̂wæ̀`**: Chair, seat (Action/Sit + Good + State).
+101. **`wǽwæ̂wæ̣`**: Table (Action/Use + Good + This/Surface).
+102. **`wæ̀wæ̆`**: Container, vessel, box (State/Holding + Small/Enclosure).
+103. **`wæ̀wǣwæ`**: Wall, barrier (State + Big + Thing). *Same as Forest, context crucial.*
+104. **`wǽwæ̀wæ̆`**: Door, gate (Action/Go + Building + Small/Opening).
+105. **`wǽwæ̂wæ̆wæ`**: Window (See + Building + Small/Opening).
+
+**Clothing:**
+106. **`wæ̆wæ̂`**: Clothing, garment (Small/Covering + Good/Protection).
+107. **`wæ̆wæ̂wǽ`**: Hat, headwear (Clothing + Head).
+108. **`wæ̆wæ̂wæ̣`**: Shoes, footwear (Clothing + Ground/Foot).
+
+**Communication & Art:**
+109. **`wæ̧wæ̌`**: Book, writing, text (Say/Communicate + Know/Mind).
+110. **`wæ̂wǽ`**: Art, creation (Good/Positive + Action/Make).
+111. **`wæ̧wæ̂`**: Music, song (Say/Sound + Good/Positive).
+112. **`wæ̀wæ̧`**: Letter, written message (State + Say/Communicate).
+113. **`wǽwæ̧`**: Speech, oration (Action + Say/Communicate).
+114. **`wæ̂wæ̧`**: Poem, song lyric (Good + Say/Communicate).
+
+**Societal & Miscellaneous Constructs:**
+115. **`wǽwǣwǽ`**: Vehicle, transport (Action + Big/Long Distance + Action/Movement).
+116. **`wǽwæ̀wæ`**: Money, currency (Action/Exchange + State/Value + Thing).
+117. **`wæ̀wǣwæ̌`**: Law, rule, principle (State + Big/Important + Know/Truth).
+118. **`wæ̣wǽ`**: Road, path (This/Here + Action/Go).
+119. **`wǣwæ̀wæ`**: City, town (Big Building Thing/Many Buildings). *Same as Wall, context crucial.*
+120. **`wæ̆wæ̀wæ`**: Village (Small Building Thing).
+121. **`wǽwǣwæ̀`**: Bridge (Vehicle/Path + Over Water/Gap).
+122. **`wǽwǣwæ`**: Ship, boat (Vehicle + Water). *Same as Sea/Ocean, context crucial.*
+123. **`wǽwæ̌wæ`**: Map (Action/Go + Know + Thing).
+124. **`wǽwǽwæ̂`**: Clock, timepiece (Action + Action + Good/Measure).
+125. **`wǽwæ̇wæ`**: Medicine, cure (Action/Heal + Animate + Thing).
+
+### D. Abstract Concepts, States & Qualities
+
+**Emotions & Feelings:**
+126. **`wæ̃wæ̂`**: Emotion, feeling (Self + Good/Positive State - base for general emotion).
+127. **`wæ̂wæ̃`**: Love, deep affection (Good/Positive + Self/Connection).
+128. **`wæ̀(wæ̂wæ̃)`**: Hate (Not-Love: Negation prefix + Love).
+129. **`wæ̂wæ̃wæ̂`**: Joy, happiness (Good + Self + Good State).
+130. **`wæ̀wæ̃wæ̂`**: Sadness, sorrow (Not + Self + Good State).
+131. **`wǽwæ̃wæ̂`**: Anger, wrath (Action + Self + Good State [intense state]).
+132. **`wæ̆wæ̃wæ̂`**: Fear, anxiety (Small + Self + Good State [diminished state]).
+133. **`wæ̂wæ̌`**: Hope (Good + Know/Future).
+134. **`wæ̀wæ̂wæ̌`**: Despair (Not + Good + Know/Future).
+
+**Cognitive & Moral Concepts:**
+135. **`wæ̌`**: Truth (Core word: Know/Perceive Truth).
+136. **`wæ̀wæ̌`**: Lie, falsehood (Not + Truth).
+137. **`wæ̆wæ̌`**: Stupidity, ignorance (Little + Knowing).
+138. **`wǣwæ̌`**: Knowledge, wisdom (Big/Much + Know/Understand).
+139. **`wæ̌wæ`**: Idea, thought (Know/Mind + Thing).
+140. **`wæ̧wǽ`**: Story, narrative (Say/Communicate + Action/Event).
+141. **`wǽwæ̧`**: Question (the noun) (Action/Seeking + Say/Ask).
+142. **`wæ̀wæ̧`**: Answer, response (State/Result + Say/Communicate). *Same as Letter, context crucial.*
+143. **`wǽwæ̀wæ̌`**: Justice, fairness (Action + State + Truth).
+144. **`wǽwæ̀(wæ̀wæ̌)`**: Injustice (Action + State + Not-Truth).
+145. **`wæ̌wǽ`**: Skill, craft (Know + Action).
+146. **`wæ̃wǽ`**: Will, intent (Self + Action).
+147. **`wæ̌wæ̀`**: Doubt, uncertainty (Know + State [unclear]).
+148. **`wæ̂wǽwæ̌`**: Purpose (Good + Action + Know).
+
+**States of Being & Existence:**
+149. **`wǽwæ̀`**: Life (animate existence) (Action/Dynamic + State/Essence).
+150. **`wæ̀wǽ`**: Death (cessation of life) (State + Not-Action/Life).
+151. **`wæ̃wæ̌`**: Dream, vision (Self/Mind + See/Perceive).
+152. **`wǽwǣ`**: Power, ability, strength (Action/Cause + Big/Great Effect).
+153. **`wæ̂wæ̀`**: Beauty (quality) (Good + State/Quality).
+154. **`wæ̀wǽwæ̀`**: Peace, calm (State + Not-Action + State).
+155. **`wǽwǽ`**: War, conflict (Action + Action).
+156. **`wæ̃wæ̀`**: Freedom, liberty (Self + State [unconstrained]).
+157. **`wæ̀wæ̃wæ̀`**: Slavery, bondage (State + Self + State [constrained]).
+158. **`wæ̂wǽwæ`**: Work, labor (noun) (Good + Action + Thing). *Same as Bread, context crucial.*
+159. **`wæ̀wǽwæ`**: Rest, leisure (noun) (State + Action + Thing). *Same as Metal/Ice, context crucial.*
+160. **`wæ̆wæ`**: Luck, chance (Small + Thing [unpredictable]).
+161. **`wǣwæ`**: Fate, destiny (Big + Thing [predetermined]).
+162. **`wæ̂wæ̀wæ`**: Order, system (Good + State + Thing). *Same as Crystal/Gem, context crucial.*
+163. **`wæ̀wæ̂wæ̀wæ`**: Chaos, disorder (Not + Good + State + Thing).
+
+**Time & Process:**
+164. **`wǣwǽ`**: Time (duration, passage) (Long/Duration + Action/Passing).
+165. **`wǣwǽwæ`**: Beginning, start (Action + Long + Thing). *Same as Work/Labor, context crucial.*
+166. **`wæ̀wǣwæ`**: End, conclusion (State + Long + Thing). *Same as Forest/Wall/City, context crucial.*
+167. **`wǣwǽwæ`**: Day (Big Light Time). *Same as Beginning/Work, context crucial.*
+168. **`wǣwæ̀wæ`**: Night (Big Dark Time). *Same as Forest/Wall/City/End, context crucial.*
+
+
+**Using Written Vocabulary - Example:**
+
+*   **"The wise person reads many books in the big house."**
+    *   Object 1 (books): `wǣ wæ̧wæ̌` (many books)
+    *   Object 2 (location - house): `wǣwæ̀` (big house - `wǣ` modifies `wæ̀` within `wǣwæ̀` or `wǣ (wǣwæ̀)`)
+        *   To be clearer: `wǣ (wǣwæ̀)` (many [big house]) or `wǣwæ̀ wǣ` (big house, many of them).
+        *   Let's assume "in the big house" is an adverbial phrase modifying the verb. DWL is flexible. We can treat "big house" as a location object.
+        *   `wǣ wæ̧wæ̌` (many books)
+        *   `wǣwæ̀` (big house - as location)
+    *   Subject: `wǣwæ̌ wæ̃wæ̇` (wise person - adjective `wǣwæ̌` modifying noun `wæ̃wæ̇`)
+    *   Verb: reads (`wæ̧wæ̌` - book/text, used as a verb "to interact with book/text")
+    *   Sentence: `wǣwæ̀ wǣ wæ̧wæ̌ wǣwæ̌ wæ̃wæ̇ wæ̧wæ̌.`
+        *   (Big-house, many books, wise person, reads/book-actions.)
+        *   The order of objects can be flexible if context allows, but typically direct object comes before indirect/locational.
+        *   A more standard OSV might be: `wǣ wæ̧wæ̌ wǣwæ̀ wǣwæ̌ wæ̃wæ̇ wæ̧wæ̌.` (Many books, big house [locative], wise person, reads.)
+
