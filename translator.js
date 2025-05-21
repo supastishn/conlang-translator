@@ -4,12 +4,14 @@
 const LANG_ENGLISH = 'english';
 const LANG_DRACONIC = 'draconic';
 const LANG_DWL = 'dwl'; // Diacritical Waluigi Language
+const LANG_OBWA_KIMO = 'obwakimo'; // Obwa Kimo
 const LANG_DETECT = 'detect'; // Detect language option
 
 const LANG_LABELS = {
     [LANG_ENGLISH]: 'English',
     [LANG_DRACONIC]: 'Draconic',
     [LANG_DWL]: 'Diacritical Waluigi Language',
+    [LANG_OBWA_KIMO]: 'Obwa Kimo',
     [LANG_DETECT]: 'Detect Language'
 };
 
@@ -71,6 +73,23 @@ async function loadDWLResources() {
     }
 }
 
+// Load Obwa Kimo resources
+async function loadObwaKimoResources() {
+    try {
+        const baseUrl = getBaseUrl();
+        const response = await fetch(`${baseUrl}/materials/conlangs/obwakimo.txt`);
+        if (!response.ok) {
+            console.warn(`Could not load obwakimo.txt: ${response.status} ${response.statusText}`);
+            return '[Obwa Kimo resources file (obwakimo.txt) not found or could not be loaded]';
+        }
+        const obwaKimoText = await response.text();
+        return obwaKimoText;
+    } catch (error) {
+        console.error('Error loading Obwa Kimo resources:', error);
+        return '[Obwa Kimo resources could not be loaded due to an error]';
+    }
+}
+
 
 // OpenAI API integration
 async function translateText(sourceText, sourceLang, targetLang, updateCallback = null) {
@@ -94,6 +113,7 @@ async function translateText(sourceText, sourceLang, targetLang, updateCallback 
     // Determine which resources are needed
     const needsDraconic = (sourceLang === LANG_DRACONIC || targetLang === LANG_DRACONIC || sourceLang === LANG_DETECT);
     const needsDWL = (sourceLang === LANG_DWL || targetLang === LANG_DWL || sourceLang === LANG_DETECT);
+    const needsObwaKimo = (sourceLang === LANG_OBWA_KIMO || targetLang === LANG_OBWA_KIMO || sourceLang === LANG_DETECT);
 
     if (needsDraconic) {
         const dictionaryPrompt = await loadDraconicDictionary();
@@ -103,6 +123,10 @@ async function translateText(sourceText, sourceLang, targetLang, updateCallback 
     if (needsDWL) {
         const dwlPromptText = await loadDWLResources();
         resourcesForPrompt += `\n\nDIACRITICAL WALUIGI LANGUAGE RESOURCES:\n${dwlPromptText}`;
+    }
+    if (needsObwaKimo) {
+        const obwaKimoPromptText = await loadObwaKimoResources();
+        resourcesForPrompt += `\n\nOBWA KIMO RESOURCES:\n${obwaKimoPromptText}`;
     }
     
     let finalSystemPrompt = systemPromptCore + resourcesForPrompt;
@@ -114,10 +138,11 @@ async function translateText(sourceText, sourceLang, targetLang, updateCallback 
         : "Translate into natural, grammatically correct English, interpreting diacritics for fluent output.";
 
     if (sourceLang === LANG_DETECT) {
-        userPrompt = `First, identify if the input text is English, Draconic, or Diacritical Waluigi Language. Then, translate the identified text into ${LANG_LABELS[targetLang]}.`;
-        if (targetLang === LANG_ENGLISH) {
+        userPrompt = `First, identify if the input text is English, Draconic, Diacritical Waluigi Language, or Obwa Kimo. Then, translate the identified text into ${LANG_LABELS[targetLang]}.`;
+        if (targetLang === LANG_ENGLISH) { // This specific instruction is for DWL -> English
             userPrompt += ` If the identified source is Diacritical Waluigi Language, ${dwlToEnglishInstruction}`;
         }
+        // Add similar specific instructions for Obwa Kimo if needed in the future, e.g., Obwa Kimo -> English raw/natural.
         userPrompt += ` Input text:\n\n"${sourceText}"`;
     } else {
         userPrompt = `Translate the following ${LANG_LABELS[sourceLang]} text to ${LANG_LABELS[targetLang]}:\n\n"${sourceText}"`;
@@ -476,7 +501,7 @@ document.addEventListener('DOMContentLoaded', function() {
         targetLanguageLabelEl.textContent = LANG_LABELS[targetLang];
         
         if (sourceLang === LANG_DETECT) {
-            sourceInputEl.placeholder = `Enter text in English, Draconic, or DWL...`;
+            sourceInputEl.placeholder = `Enter text in English, Draconic, DWL, or Obwa Kimo...`;
         } else {
             sourceInputEl.placeholder = `Enter ${LANG_LABELS[sourceLang]} text here...`;
         }
