@@ -130,25 +130,27 @@ header h1 {
 
 #clear-image-btn {
     position: absolute;
-    top: -10px;
-    right: -10px;
-    background-color: var(--error-color);
-    color: white;
+    top: -8px; /* Adjusted for better visual placement without background */
+    right: -8px; /* Adjusted for better visual placement without background */
+    background-color: transparent;
+    color: var(--error-color); /* Make the 'X' red */
     border: none;
-    border-radius: 50%;
-    width: 28px;
-    height: 28px;
-    font-size: 1.2rem;
-    line-height: 26px; /* Center the 'x' */
+    border-radius: 0; /* Remove rounded corners */
+    width: 32px; /* Slightly larger click target */
+    height: 32px; /* Slightly larger click target */
+    padding: 0; /* Ensure no extra padding */
+    font-size: 1.6rem; /* Make the 'X' larger */
+    font-weight: bold;
+    line-height: 32px; /* Center the 'X' vertically */
     text-align: center;
     cursor: pointer;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.2);
-    transition: background-color var(--transition-speed) ease, transform var(--transition-speed) ease;
+    box-shadow: none; /* Remove shadow */
+    transition: color var(--transition-speed) ease, transform var(--transition-speed) ease;
 }
 
 #clear-image-btn:hover {
-    background-color: #dc2626; /* Darker red */
-    transform: scale(1.1);
+    color: #a00; /* Darker red for the 'X' on hover */
+    transform: scale(1.2); /* Make it pop a bit more */
 }
 
 
