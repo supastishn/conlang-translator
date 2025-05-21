@@ -4,11 +4,13 @@
 const LANG_ENGLISH = 'english';
 const LANG_DRACONIC = 'draconic';
 const LANG_DWL = 'dwl'; // Diacritical Waluigi Language
+const LANG_DETECT = 'detect'; // Detect language option
 
 const LANG_LABELS = {
     [LANG_ENGLISH]: 'English',
     [LANG_DRACONIC]: 'Draconic',
-    [LANG_DWL]: 'Diacritical Waluigi Language'
+    [LANG_DWL]: 'Diacritical Waluigi Language',
+    [LANG_DETECT]: 'Detect Language'
 };
 
 // Translation history storage
@@ -89,8 +91,9 @@ async function translateText(sourceText, sourceLang, targetLang, updateCallback 
     let systemPromptCore = settings.systemPrompt;
     let resourcesForPrompt = "";
 
-    const needsDraconic = (sourceLang === LANG_DRACONIC || targetLang === LANG_DRACONIC);
-    const needsDWL = (sourceLang === LANG_DWL || targetLang === LANG_DWL);
+    // Determine which resources are needed
+    const needsDraconic = (sourceLang === LANG_DRACONIC || targetLang === LANG_DRACONIC || sourceLang === LANG_DETECT);
+    const needsDWL = (sourceLang === LANG_DWL || targetLang === LANG_DWL || sourceLang === LANG_DETECT);
 
     if (needsDraconic) {
         const dictionaryPrompt = await loadDraconicDictionary();
@@ -105,10 +108,14 @@ async function translateText(sourceText, sourceLang, targetLang, updateCallback 
     let finalSystemPrompt = systemPromptCore + resourcesForPrompt;
 
     // Build the user prompt
-    let userPrompt = `Translate the following ${LANG_LABELS[sourceLang]} text to ${LANG_LABELS[targetLang]}:\n\n"${sourceText}"`;
+    let userPrompt;
+    if (sourceLang === LANG_DETECT) {
+        userPrompt = `First, identify if the input text is English, Draconic, or Diacritical Waluigi Language. Then, translate the identified text into ${LANG_LABELS[targetLang]}. Input text:\n\n"${sourceText}"`;
+    } else {
+        userPrompt = `Translate the following ${LANG_LABELS[sourceLang]} text to ${LANG_LABELS[targetLang]}:\n\n"${sourceText}"`;
+    }
 
     if (targetLang === LANG_DRACONIC && settings.draconicOutputType === 'simplified') {
-        // Append to user prompt or system prompt. Let's try user prompt for specificity.
         userPrompt += " (When generating Draconic, output simplified romanization)";
     }
     
@@ -446,6 +453,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const draconicOutputTypeContainer = document.getElementById('draconic-output-type-container');
     const draconicOutputTypeSelectIndex = document.getElementById('draconic-output-type-select-index');
 
+    // Function to update UI elements based on current language selections
     function updateUIForLanguageSelection() {
         const sourceLang = sourceLangSelect.value;
         const targetLang = targetLangSelect.value;
@@ -453,31 +461,85 @@ document.addEventListener('DOMContentLoaded', function() {
 
         sourceLanguageLabelEl.textContent = LANG_LABELS[sourceLang];
         targetLanguageLabelEl.textContent = LANG_LABELS[targetLang];
-
-        sourceInputEl.placeholder = `Enter ${LANG_LABELS[sourceLang]} text here...`;
+        
+        if (sourceLang === LANG_DETECT) {
+            sourceInputEl.placeholder = `Enter text in English, Draconic, or DWL...`;
+        } else {
+            sourceInputEl.placeholder = `Enter ${LANG_LABELS[sourceLang]} text here...`;
+        }
         targetOutputEl.placeholder = `${LANG_LABELS[targetLang]} translation will appear here...`;
 
         // Show/hide Draconic output type selector
         if (targetLang === LANG_DRACONIC) {
             draconicOutputTypeContainer.classList.remove('hidden');
-            // Set its value from settings if not already set by user interaction on this page
             if (draconicOutputTypeSelectIndex) {
-                 // Ensure this element exists before trying to set its value
                 draconicOutputTypeSelectIndex.value = currentSettings.draconicOutputType || 'normal';
             }
         } else {
             draconicOutputTypeContainer.classList.add('hidden');
         }
     }
+    
+    // Function to manage mutually exclusive language options and update UI
+    function handleLanguageChange() {
+        const currentSourceVal = sourceLangSelect.value;
+        const currentTargetVal = targetLangSelect.value;
+
+        // Enable all options first, then disable specific ones
+        for (const option of sourceLangSelect.options) {
+            option.disabled = false;
+        }
+        for (const option of targetLangSelect.options) {
+            option.disabled = false;
+        }
+
+        // Disable option in source dropdown if it matches target (and is not "Detect Language")
+        if (currentTargetVal !== LANG_DETECT) { // LANG_DETECT is not a target option
+            for (const option of sourceLangSelect.options) {
+                if (option.value === currentTargetVal && option.value !== LANG_DETECT) {
+                    option.disabled = true;
+                }
+            }
+        }
+
+        // Disable option in target dropdown if it matches source (and source is not "Detect Language")
+        if (currentSourceVal !== LANG_DETECT) {
+            for (const option of targetLangSelect.options) {
+                if (option.value === currentSourceVal) {
+                    option.disabled = true;
+                }
+            }
+        }
+        
+        // If current selection became disabled, change it to the first available enabled option
+        if (sourceLangSelect.options[sourceLangSelect.selectedIndex].disabled) {
+            for (const option of sourceLangSelect.options) {
+                if (!option.disabled) {
+                    sourceLangSelect.value = option.value;
+                    break;
+                }
+            }
+        }
+        if (targetLangSelect.options[targetLangSelect.selectedIndex].disabled) {
+            for (const option of targetLangSelect.options) {
+                if (!option.disabled) {
+                    targetLangSelect.value = option.value;
+                    break;
+                }
+            }
+        }
+        // After adjusting states and potentially values, update the rest of the UI
+        updateUIForLanguageSelection();
+    }
 
     // Initial UI setup
     sourceLangSelect.value = LANG_ENGLISH; // Default source
     targetLangSelect.value = LANG_DRACONIC; // Default target
-    updateUIForLanguageSelection();
+    handleLanguageChange(); // Set initial states and UI
 
     // Event listeners for language dropdowns
-    sourceLangSelect.addEventListener('change', updateUIForLanguageSelection);
-    targetLangSelect.addEventListener('change', updateUIForLanguageSelection);
+    sourceLangSelect.addEventListener('change', handleLanguageChange);
+    targetLangSelect.addEventListener('change', handleLanguageChange);
     
     // Event listener for Draconic output type select on index.html
     if (draconicOutputTypeSelectIndex) {
@@ -518,11 +580,15 @@ document.addEventListener('DOMContentLoaded', function() {
         // Get settings to check if streaming is enabled
         const settings = Settings.get();
         
-        if (sourceLang === targetLang) {
-            alert('Source and target languages cannot be the same.');
+        // This check should ideally not be hit if handleLanguageChange works correctly,
+        // but it's a good safeguard. LANG_DETECT as source is fine with any target.
+        if (sourceLang === targetLang && sourceLang !== LANG_DETECT) {
+            alert('Source and target languages cannot be the same. Please select different languages.');
             translateBtn.disabled = false;
             translateBtn.textContent = 'Translate';
             targetOutputEl.value = ''; // Clear the "Translating..." message
+            // Re-validate dropdowns to fix any inconsistent state if possible
+            handleLanguageChange(); 
             return;
         }
 
