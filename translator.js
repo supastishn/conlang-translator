@@ -480,66 +480,112 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
     
-    // Function to manage mutually exclusive language options and update UI
-    function handleLanguageChange() {
+    let previousSourceLang = sourceLangSelect.value;
+    let previousTargetLang = targetLangSelect.value;
+
+    // Function to enable/disable options in dropdowns based on current selections
+    function updateLanguageDropdownInteractivity() {
         const currentSourceVal = sourceLangSelect.value;
         const currentTargetVal = targetLangSelect.value;
 
-        // Enable all options first, then disable specific ones
-        for (const option of sourceLangSelect.options) {
-            option.disabled = false;
-        }
-        for (const option of targetLangSelect.options) {
-            option.disabled = false;
+        // Enable all options first
+        Array.from(sourceLangSelect.options).forEach(opt => opt.disabled = false);
+        Array.from(targetLangSelect.options).forEach(opt => opt.disabled = false);
+
+        // Disable current target language in source dropdown (unless it's 'detect')
+        // Target language cannot be 'detect', so currentTargetVal !== LANG_DETECT is always true here.
+        const sourceOptionToDisable = sourceLangSelect.querySelector(`option[value="${currentTargetVal}"]`);
+        if (sourceOptionToDisable && sourceOptionToDisable.value !== LANG_DETECT) {
+            sourceOptionToDisable.disabled = true;
         }
 
-        // Disable option in source dropdown if it matches target (and is not "Detect Language")
-        if (currentTargetVal !== LANG_DETECT) { // LANG_DETECT is not a target option
-            for (const option of sourceLangSelect.options) {
-                if (option.value === currentTargetVal && option.value !== LANG_DETECT) {
-                    option.disabled = true;
-                }
-            }
-        }
-
-        // Disable option in target dropdown if it matches source (and source is not "Detect Language")
+        // Disable current source language in target dropdown
         if (currentSourceVal !== LANG_DETECT) {
-            for (const option of targetLangSelect.options) {
-                if (option.value === currentSourceVal) {
-                    option.disabled = true;
+            const targetOptionToDisable = targetLangSelect.querySelector(`option[value="${currentSourceVal}"]`);
+            if (targetOptionToDisable) {
+                targetOptionToDisable.disabled = true;
+            }
+        }
+    }
+
+    function handleSourceLangChange() {
+        const newSourceValue = sourceLangSelect.value;
+        let currentTargetValue = targetLangSelect.value; // Target's value before any swap
+
+        if (newSourceValue === currentTargetValue && newSourceValue !== LANG_DETECT) {
+            // Attempt to set target to what source *was* (previousSourceLang)
+            let swapped = false;
+            if (previousSourceLang && previousSourceLang !== LANG_DETECT && previousSourceLang !== newSourceValue) {
+                // Check if previousSourceLang is a valid and available option for targetLangSelect
+                const targetOptionForSwap = Array.from(targetLangSelect.options).find(opt => opt.value === previousSourceLang);
+                if (targetOptionForSwap) { // previousSourceLang is a listed target language
+                    targetLangSelect.value = previousSourceLang;
+                    swapped = true;
+                }
+            }
+
+            if (!swapped) {
+                // Fallback: if previousSourceLang was not suitable (e.g., 'detect', same as newSourceValue, or not a target option)
+                // Pick the first available, different language for the target.
+                const newTargetOption = Array.from(targetLangSelect.options).find(opt => opt.value !== newSourceValue);
+                if (newTargetOption) {
+                    targetLangSelect.value = newTargetOption.value;
                 }
             }
         }
-        
-        // If current selection became disabled, change it to the first available enabled option
-        if (sourceLangSelect.options[sourceLangSelect.selectedIndex].disabled) {
-            for (const option of sourceLangSelect.options) {
-                if (!option.disabled) {
-                    sourceLangSelect.value = option.value;
-                    break;
+        // previousSourceLang is updated by the focus listener for the next interaction.
+        updateLanguageDropdownInteractivity();
+        updateUIForLanguageSelection(); // Update labels, placeholders etc.
+    }
+
+    function handleTargetLangChange() {
+        const newTargetValue = targetLangSelect.value;
+        let currentSourceValue = sourceLangSelect.value; // Source's value before any swap
+
+        if (newTargetValue === currentSourceValue && currentSourceValue !== LANG_DETECT) {
+            // Attempt to set source to what target *was* (previousTargetLang)
+            // previousTargetLang cannot be LANG_DETECT.
+            let swapped = false;
+            if (previousTargetLang && previousTargetLang !== newTargetValue) {
+                 // Check if previousTargetLang is a valid and available option for sourceLangSelect
+                const sourceOptionForSwap = Array.from(sourceLangSelect.options).find(opt => opt.value === previousTargetLang);
+                if (sourceOptionForSwap) { // previousTargetLang is a listed source language
+                    sourceLangSelect.value = previousTargetLang;
+                    swapped = true;
+                }
+            }
+            
+            if (!swapped) {
+                // Fallback: if previousTargetLang was not suitable (e.g. same as newTargetValue)
+                // Pick the first available, different language for the source.
+                const newSourceOption = Array.from(sourceLangSelect.options).find(opt => opt.value !== newTargetValue);
+                if (newSourceOption) {
+                    sourceLangSelect.value = newSourceOption.value;
                 }
             }
         }
-        if (targetLangSelect.options[targetLangSelect.selectedIndex].disabled) {
-            for (const option of targetLangSelect.options) {
-                if (!option.disabled) {
-                    targetLangSelect.value = option.value;
-                    break;
-                }
-            }
-        }
-        // After adjusting states and potentially values, update the rest of the UI
-        updateUIForLanguageSelection();
+        // previousTargetLang is updated by the focus listener for the next interaction.
+        updateLanguageDropdownInteractivity();
+        updateUIForLanguageSelection(); // Update labels, placeholders etc.
     }
 
     // Initial UI setup
     sourceLangSelect.value = LANG_ENGLISH; // Default source
     targetLangSelect.value = LANG_DRACONIC; // Default target
-    handleLanguageChange(); // Set initial states and UI
+    
+    // Initialize previous values after setting defaults
+    previousSourceLang = sourceLangSelect.value;
+    previousTargetLang = targetLangSelect.value;
+
+    updateLanguageDropdownInteractivity(); // Set initial disabled states
+    updateUIForLanguageSelection(); // Set initial labels, placeholders
 
     // Event listeners for language dropdowns
-    sourceLangSelect.addEventListener('change', handleLanguageChange);
-    targetLangSelect.addEventListener('change', handleLanguageChange);
+    sourceLangSelect.addEventListener('focus', function() { previousSourceLang = this.value; });
+    targetLangSelect.addEventListener('focus', function() { previousTargetLang = this.value; });
+
+    sourceLangSelect.addEventListener('change', handleSourceLangChange);
+    targetLangSelect.addEventListener('change', handleTargetLangChange);
     
     // Event listener for Draconic output type select on index.html
     if (draconicOutputTypeSelectIndex) {
@@ -588,7 +634,8 @@ document.addEventListener('DOMContentLoaded', function() {
             translateBtn.textContent = 'Translate';
             targetOutputEl.value = ''; // Clear the "Translating..." message
             // Re-validate dropdowns to fix any inconsistent state if possible
-            handleLanguageChange(); 
+            updateLanguageDropdownInteractivity();
+            updateUIForLanguageSelection();
             return;
         }
 
