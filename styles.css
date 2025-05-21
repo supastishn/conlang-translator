@@ -88,7 +88,7 @@ header h1 {
 .image-upload-container {
     display: flex;
     flex-direction: column; /* Stack elements vertically */
-    align-items: flex-start; /* Align items to the start */
+    align-items: center; /* Align items to the center */
     gap: 0.75rem;
     padding: 0.75rem;
     background-color: var(--surface-2);
