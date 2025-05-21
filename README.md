@@ -1,3 +1,6 @@
+# THE DEVELOPER OF THIS PROGRAM IS AGAINST THE GENOCIDE IN GAZA.
+[Learn More](https://www.amnesty.org/en/wp-content/uploads/2024/12/MDE1586682024ENGLISH.pdf)
+
 # Conlang Translator
 
 A versatile web-based translation tool designed for constructed languages (conlangs) and natural languages, powered by Large Language Models (LLMs). This translator supports text and image input, camera capture, and offers a high degree of customization.
