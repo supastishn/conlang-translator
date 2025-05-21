@@ -84,8 +84,11 @@
                     <div class="source-input-controls">
                         <textarea id="source-input" placeholder="Enter text here, or describe what to do with the image..."></textarea>
                         <div class="image-upload-container">
-                            <label for="image-upload-input" class="button-like-label">Upload Image</label>
-                            <input type="file" id="image-upload-input" accept="image/png, image/jpeg, image/gif, image/webp">
+                            <div class="image-source-buttons">
+                                <label for="image-upload-input" class="button-like-label">Upload Image</label>
+                                <input type="file" id="image-upload-input" accept="image/png, image/jpeg, image/gif, image/webp">
+                                <button type="button" id="use-camera-btn" class="button-like-label">Use Camera</button>
+                            </div>
                             <div id="image-preview-container" class="hidden">
                                 <img id="image-preview" src="#" alt="Image preview"/>
                                 <button id="clear-image-btn" title="Clear selected image">&times;</button>
@@ -121,5 +124,17 @@
 
     <script src="settings.js"></script>
     <script src="translator.js"></script>
+
+    <!-- Camera Modal -->
+    <div id="camera-modal" class="modal hidden">
+        <div class="modal-content">
+            <video id="camera-video-feed" autoplay playsinline></video>
+            <canvas id="camera-canvas" class="hidden"></canvas> <!-- Hidden canvas for capturing frame -->
+            <div class="modal-actions">
+                <button id="capture-image-btn" class="button-like-label">Capture</button>
+                <button id="close-camera-btn" class="button-like-label secondary">Close Camera</button>
+            </div>
+        </div>
+    </div>
 </body>
 </html>

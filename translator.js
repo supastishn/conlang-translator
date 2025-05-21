@@ -536,6 +536,15 @@ document.addEventListener('DOMContentLoaded', function() {
     const imagePreview = document.getElementById('image-preview');
     const clearImageBtn = document.getElementById('clear-image-btn');
     let currentImageDataUrl = null;
+
+    // Camera elements
+    const useCameraBtn = document.getElementById('use-camera-btn');
+    const cameraModal = document.getElementById('camera-modal');
+    const cameraVideoFeed = document.getElementById('camera-video-feed');
+    const cameraCanvas = document.getElementById('camera-canvas');
+    const captureImageBtn = document.getElementById('capture-image-btn');
+    const closeCameraBtn = document.getElementById('close-camera-btn');
+    let currentStream = null;
     
     const draconicOutputTypeContainer = document.getElementById('draconic-output-type-container');
     const draconicOutputTypeSelectIndex = document.getElementById('draconic-output-type-select-index');
@@ -708,7 +717,62 @@ document.addEventListener('DOMContentLoaded', function() {
     // Update history display on page load
     updateHistoryDisplay();
 
-    // Image Upload Logic
+    // --- Camera Logic ---
+    async function openCamera() {
+        if (!cameraModal || !cameraVideoFeed) return;
+        cameraModal.classList.remove('hidden');
+        try {
+            currentStream = await navigator.mediaDevices.getUserMedia({ video: { facingMode: "environment" }, audio: false });
+            cameraVideoFeed.srcObject = currentStream;
+            // Ensure video plays, especially on mobile
+            cameraVideoFeed.play().catch(err => console.error("Error playing video:", err));
+        } catch (err) {
+            console.error("Error accessing camera:", err);
+            alert("Could not access the camera. Please ensure permissions are granted and no other app is using it. Error: " + err.message);
+            closeCamera(); // Close modal if camera access fails
+        }
+    }
+
+    function closeCamera() {
+        if (currentStream) {
+            currentStream.getTracks().forEach(track => track.stop());
+        }
+        currentStream = null;
+        if (cameraVideoFeed) cameraVideoFeed.srcObject = null;
+        if (cameraModal) cameraModal.classList.add('hidden');
+    }
+
+    function captureImageFromCamera() {
+        if (!cameraVideoFeed || !cameraCanvas || !imagePreview || !imagePreviewContainer) return;
+
+        // Set canvas dimensions to video dimensions
+        const videoWidth = cameraVideoFeed.videoWidth;
+        const videoHeight = cameraVideoFeed.videoHeight;
+        cameraCanvas.width = videoWidth;
+        cameraCanvas.height = videoHeight;
+
+        const context = cameraCanvas.getContext('2d');
+        context.drawImage(cameraVideoFeed, 0, 0, videoWidth, videoHeight);
+        
+        currentImageDataUrl = cameraCanvas.toDataURL('image/webp'); // Use webp for good compression/quality
+        imagePreview.src = currentImageDataUrl;
+        imagePreviewContainer.classList.remove('hidden');
+        sourceInputEl.placeholder = "Describe what to do with the captured image, or add text related to it...";
+        
+        closeCamera();
+    }
+
+    if (useCameraBtn) {
+        useCameraBtn.addEventListener('click', openCamera);
+    }
+    if (captureImageBtn) {
+        captureImageBtn.addEventListener('click', captureImageFromCamera);
+    }
+    if (closeCameraBtn) {
+        closeCameraBtn.addEventListener('click', closeCamera);
+    }
+
+    // --- Image File Upload Logic ---
     if (imageUploadInput) {
         imageUploadInput.addEventListener('change', function(event) {
             const file = event.target.files[0];
