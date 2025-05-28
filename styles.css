@@ -887,3 +887,8 @@ footer {
     border-radius: var(--rounded-sm);
     font-size: 0.9em;
 }
+
+/* make the “Use Camera” button label bold */
+#use-camera-btn {
+  font-weight: 700;
+}
