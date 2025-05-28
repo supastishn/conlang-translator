@@ -887,7 +887,9 @@ document.addEventListener('DOMContentLoaded', function() {
 
         // Helper to parse XML
         function parseXmlString(xml) {
-          const doc = new DOMParser().parseFromString(xml, "application/xml");
+          // wrap in a dummy root so DOMParser ignores “extra content”
+          const wrapped = `<root>${xml}</root>`;
+          const doc = new DOMParser().parseFromString(wrapped, "application/xml");
           return {
             translation: doc.querySelector("translation")?.textContent.trim() || "",
             explanation: doc.querySelector("explanation")?.textContent.trim() || ""
