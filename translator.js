@@ -551,6 +551,19 @@ document.addEventListener('DOMContentLoaded', function() {
     const clearImageBtn = document.getElementById('clear-image-btn');
     let currentImageDataUrl = null;
 
+    // NEW: Include Explanation main page toggle
+    const includeExplanationMainCheckbox = document.getElementById('include-explanation-main');
+    if (includeExplanationMainCheckbox) {
+      // initialize from Settings
+      includeExplanationMainCheckbox.checked = Settings.get().includeExplanation === true;
+      // whenever user toggles, save back to Settings
+      includeExplanationMainCheckbox.addEventListener('change', () => {
+        const s = Settings.get();
+        s.includeExplanation = includeExplanationMainCheckbox.checked;
+        Settings.save(s);
+      });
+    }
+
     // Camera elements
     const useCameraBtn = document.getElementById('use-camera-btn');
     const cameraModal = document.getElementById('camera-modal');
