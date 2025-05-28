@@ -115,6 +115,16 @@
                 <div class="translation-box">
                     <h2 id="target-language-label">Draconic</h2>
                     <textarea id="target-output" placeholder="Draconic translation will appear here..." readonly></textarea>
+                    <!-- NEW: Explanation inside the same translation-box -->
+                    <div id="explanation-box" class="hidden" style="margin-top:1rem;">
+                      <label for="explanation-output" style="font-weight:600;display:block;margin-bottom:0.25rem;">
+                        Explanation:
+                      </label>
+                      <textarea id="explanation-output"
+                                placeholder="Explanation will appear here..."
+                                readonly
+                                style="width:100%;min-height:100px;"></textarea>
+                    </div>
                 </div>
             </div>
 
@@ -126,11 +136,6 @@
             </div>
         </main>
 
-        <!-- NEW: Explanation output -->
-        <div id="explanation-container" class="translation-box hidden">
-          <h2>Explanation</h2>
-          <textarea id="explanation-output" placeholder="Explanation will appear here..." readonly></textarea>
-        </div>
 
         <div class="translation-history">
             <p>Draconic Translator - Using OpenAI API for constructed language translation</p>
