@@ -112,9 +112,9 @@ async function translateText(sourceText, sourceLang, targetLang, imageDataUrl = 
     let resourcesForPrompt = "";
 
     // Determine which resources are needed
-    const needsDraconic = (sourceLang === LANG_DRACONIC || targetLang === LANG_DRACONIC || sourceLang === LANG_DETECT);
-    const needsDWL = (sourceLang === LANG_DWL || targetLang === LANG_DWL || sourceLang === LANG_DETECT);
-    const needsObwaKimo = (sourceLang === LANG_OBWA_KIMO || targetLang === LANG_OBWA_KIMO || sourceLang === LANG_DETECT);
+    const needsDraconic = (sourceLang === LANG_DRACONIC || targetLang === LANG_DRACONIC);
+    const needsDWL = (sourceLang === LANG_DWL || targetLang === LANG_DWL);
+    const needsObwaKimo = (sourceLang === LANG_OBWA_KIMO || targetLang === LANG_OBWA_KIMO);
 
     if (needsDraconic) {
         const dictionaryPrompt = await loadDraconicDictionary();
