@@ -556,11 +556,26 @@ document.addEventListener('DOMContentLoaded', function() {
     if (includeExplanationMainCheckbox) {
       // initialize from Settings
       includeExplanationMainCheckbox.checked = Settings.get().includeExplanation === true;
-      // whenever user toggles, save back to Settings
+
+      // helper to show/hide the explanation container
+      function updateExplanationVisibility() {
+        if (!explanationContainer) return;
+        if (includeExplanationMainCheckbox.checked) {
+          explanationContainer.classList.remove('hidden');
+        } else {
+          explanationContainer.classList.add('hidden');
+        }
+      }
+
+      // set initial visibility
+      updateExplanationVisibility();
+
+      // save on toggle & update visibility immediately
       includeExplanationMainCheckbox.addEventListener('change', () => {
         const s = Settings.get();
         s.includeExplanation = includeExplanationMainCheckbox.checked;
         Settings.save(s);
+        updateExplanationVisibility();
       });
     }
 
