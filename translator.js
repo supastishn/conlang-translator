@@ -541,7 +541,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const targetOutputEl = document.getElementById('target-output');
     const dwlInputWarningEl = document.getElementById('dwl-input-warning');
     // NEW: Explanation elements
-    const explanationContainer = document.getElementById('explanation-box');
+    const explanationContainer = document.getElementById('explanation-container');
     const explanationOutputEl = document.getElementById('explanation-output');
 
     // Image upload elements
