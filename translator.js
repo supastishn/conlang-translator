@@ -94,6 +94,7 @@ async function loadObwaKimoResources() {
 // OpenAI API integration
 async function translateText(sourceText, sourceLang, targetLang, imageDataUrl = null, updateCallback = null) {
     const settings = Settings.get();
+    const includeExplanation = settings.includeExplanation === true;    // <<< NEW
     
     if (!settings.apiKey) {
         throw new Error('API key not configured. Please set your API key in Settings.');
@@ -195,6 +196,16 @@ async function translateText(sourceText, sourceLang, targetLang, imageDataUrl = 
                 userMessageContent += specificDwlInstruction;
              }
         }
+    }
+
+    // <<< NEW: tell the LLM to wrap its output in XML tags
+    const xmlInstr = includeExplanation
+      ? "\n\nWrap your response in XML exactly as:\n<translation>…</translation>\n<explanation>…</explanation>\nDo not include any other text."
+      : "\n\nWrap your response in XML exactly as:\n<translation>…</translation>\nDo not include any other text.";
+    if (Array.isArray(userMessageContent)) {
+      userMessageContent[0].text += xmlInstr;
+    } else {
+      userMessageContent += xmlInstr;
     }
     
     const requestBody = {
@@ -529,6 +540,9 @@ document.addEventListener('DOMContentLoaded', function() {
     const sourceInputEl = document.getElementById('source-input');
     const targetOutputEl = document.getElementById('target-output');
     const dwlInputWarningEl = document.getElementById('dwl-input-warning');
+    // NEW: Explanation elements
+    const explanationContainer = document.getElementById('explanation-container');
+    const explanationOutputEl = document.getElementById('explanation-output');
 
     // Image upload elements
     const imageUploadInput = document.getElementById('image-upload-input');
@@ -837,7 +851,11 @@ document.addEventListener('DOMContentLoaded', function() {
         translateBtn.disabled = true;
         translateBtn.textContent = 'Translating...';
         targetOutputEl.value = 'Translating...';
-        
+
+        // NEW: Explanation loading state
+        if (explanationContainer) explanationContainer.classList.add('hidden');
+        if (explanationOutputEl) explanationOutputEl.value = '';
+
         // Get settings to check if streaming is enabled
         const settings = Settings.get();
         
@@ -854,23 +872,49 @@ document.addEventListener('DOMContentLoaded', function() {
             return;
         }
 
+        // Helper to parse XML
+        function parseXmlString(xml) {
+          const doc = new DOMParser().parseFromString(xml, "application/xml");
+          return {
+            translation: doc.querySelector("translation")?.textContent.trim() || "",
+            explanation: doc.querySelector("explanation")?.textContent.trim() || ""
+          };
+        }
+
         try {
             const textToLog = sourceText || (currentImageDataUrl ? "[Image Input]" : "[No Text Input]");
 
+            let rawXml = "";
             if (settings.streamingEnabled !== false) {
                 // Use streaming translation with callback to update UI
                 targetOutputEl.classList.add('streaming');
-                const translation = await translateText(sourceText, sourceLang, targetLang, currentImageDataUrl, function(partialTranslation) {
+                // Accumulate the stream into rawXml
+                let lastPartial = "";
+                rawXml = await translateText(sourceText, sourceLang, targetLang, currentImageDataUrl, function(partialTranslation) {
+                    lastPartial = partialTranslation;
                     targetOutputEl.value = partialTranslation;
                 });
-                
                 // Make sure we have the final translation
-                targetOutputEl.value = translation;
+                targetOutputEl.value = rawXml;
                 targetOutputEl.classList.remove('streaming');
             } else {
                 // Use regular translation
-                const translation = await translateText(sourceText, sourceLang, targetLang, currentImageDataUrl);
-                targetOutputEl.value = translation;
+                rawXml = await translateText(sourceText, sourceLang, targetLang, currentImageDataUrl);
+                targetOutputEl.value = rawXml;
+            }
+
+            // Parse XML and update translation/explanation boxes
+            const { translation, explanation } = parseXmlString(rawXml);
+
+            // always show the translation:
+            targetOutputEl.value = translation;
+
+            // show or hide the explanation box based on setting:
+            if (settings.includeExplanation) {
+                if (explanationContainer) explanationContainer.classList.remove('hidden');
+                if (explanationOutputEl) explanationOutputEl.value = explanation;
+            } else {
+                if (explanationContainer) explanationContainer.classList.add('hidden');
             }
             
             // Add to history
@@ -880,6 +924,8 @@ document.addEventListener('DOMContentLoaded', function() {
         } catch (error) {
             targetOutputEl.value = 'Error: ' + error.message;
             targetOutputEl.classList.remove('streaming');
+            if (explanationContainer) explanationContainer.classList.add('hidden');
+            if (explanationOutputEl) explanationOutputEl.value = '';
             console.error('Translation error:', error);
         } finally {
             // Reset button state

@@ -9,7 +9,8 @@ const DEFAULT_SETTINGS = {
     systemPrompt: 'You are an expert multilingual translator. Translate the text as requested, using the provided linguistic resources. Provide only the translated text without explanations.',
     streamingEnabled: true,
     draconicOutputType: 'normal', // 'normal' or 'simplified'
-    dwlToEnglishType: 'natural' // 'natural' or 'raw' for DWL -> English
+    dwlToEnglishType: 'natural', // 'natural' or 'raw' for DWL -> English
+    includeExplanation: false    // <<< NEW
 };
 
 // Settings management
@@ -58,6 +59,11 @@ document.addEventListener('DOMContentLoaded', function() {
     document.getElementById('api-key').value = currentSettings.apiKey;
     document.getElementById('base-url').value = currentSettings.baseUrl;
     document.getElementById('streaming-enabled').checked = currentSettings.streamingEnabled !== false; // Default to true if not set
+
+    const includeExplanationCheckbox = document.getElementById('include-explanation');
+    if (includeExplanationCheckbox) {
+      includeExplanationCheckbox.checked = currentSettings.includeExplanation === true;
+    }
     
     const draconicOutputTypeSelectSettings = document.getElementById('draconic-output-type-select-settings');
     if (draconicOutputTypeSelectSettings) {
@@ -148,7 +154,8 @@ document.addEventListener('DOMContentLoaded', function() {
             systemPrompt: document.getElementById('system-prompt').value.trim(),
             streamingEnabled: document.getElementById('streaming-enabled').checked,
             draconicOutputType: draconicOutputTypeSelectSettings ? draconicOutputTypeSelectSettings.value : currentSettings.draconicOutputType,
-            dwlToEnglishType: dwlToEnglishTypeSelectSettings ? dwlToEnglishTypeSelectSettings.value : currentSettings.dwlToEnglishType
+            dwlToEnglishType: dwlToEnglishTypeSelectSettings ? dwlToEnglishTypeSelectSettings.value : currentSettings.dwlToEnglishType,
+            includeExplanation: document.getElementById('include-explanation').checked   // <<< NEW
         };
         
         Settings.save(newSettings);
