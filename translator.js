@@ -603,7 +603,7 @@ document.addEventListener('DOMContentLoaded', function() {
         targetLanguageLabelEl.textContent = LANG_LABELS[targetLang];
         
         if (sourceLang === LANG_DETECT) {
-            sourceInputEl.placeholder = `Enter text (or describe image task) in English, Draconic, DWL, or Obwa Kimo...`;
+            sourceInputEl.placeholder = `Enter text in any real language (English, Arabic)...`;
         } else {
             sourceInputEl.placeholder = `Enter ${LANG_LABELS[sourceLang]} text (or describe image task)...`;
         }
