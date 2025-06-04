@@ -1,0 +1,692 @@
+Okay, this is a fascinating challenge! Based on your extensive notes, here's a descriptive text document for an AI, using only Romanizations, to help it understand and translate between English and Illuveterian.
+
+Illuveterian Language Translation Guide for AI
+
+1. Introduction
+
+Illuveterian is an agglutinative language with a primary sentence structure that differs significantly from English. It features a system where punctuation marks are represented by actual words, often based on the pronoun "you" (Cheh). Modifiers (prefixes and suffixes) play a crucial role in conveying tense, aspect, subject focus, and other grammatical nuances. This document aims to provide a foundational understanding for translation.
+
+2. Phonology and Romanization Notes
+
+Vowels:
+
+a: as in "father" (short)
+
+aah: as in "father" (long)
+
+air: as in "air"
+
+ar: as in "car"
+
+ay: as in "say"
+
+ee: as in "see"
+
+eh: as in "bet"
+
+er: as in "her"
+
+eye: as in "eye" or "I"
+
+ih: as in "sit"
+
+oh: as in "go"
+
+oo: as in "moon"
+
+ow: as in "cow"
+
+uh: as in "but" or the schwa sound in "sofa"
+
+Consonants:
+
+b: often followed by a slight "uh" sound, like b(uh)
+
+bah: b + aah
+
+ch: as in "church"
+
+d: often followed by a slight "uh" sound, like d(uh)
+
+ff: as in "off"
+
+g: as in "go" (hard g), often g(uh)
+
+h: as in "hat"
+
+k: as in "kite"
+
+l: as in "light", often l(uh)
+
+m: as in "man"
+
+mo: m + oh
+
+n: as in "no", often n(uh)
+
+p: as in "pet", often p(uh)
+
+r: slightly rolled or tapped r
+
+s: as in "see"
+
+sh: as in "shoe"
+
+t: as in "top", often t(uh)
+
+th: as in "thin" (voiceless)
+
+w: as in "wet", often w(uh)
+
+yu: as in "you"
+
+Special Rule: yu + h often combines to form a yuh sound (like "young" without the 'ng').
+
+Apostrophe ('): Often indicates a glottal stop or a slight separation/emphasis between sounds, rather than a contraction in the English sense (e.g., Cheh'eht).
+
+Hyphens (-): Used in this document primarily to separate morphemes (prefixes/suffixes from root words) for clarity. In natural Illuveterian, these might be written as single compounded words.
+
+3. Core Grammar
+
+3.1. Sentence Structure (Default)
+
+The general order is:
+Secondary Subject(s)/Addresser -> Adjective -> State Of Being -> Action -> Time -> Primary Subject/Addressee
+
+Example: "Your brown cat" translates to Rew boraun Chech (Cat brown Your_possessive).
+
+Here, "Cat" (Rew) is the secondary subject (the thing being described). "brown" (boraun) is the adjective. "Your (possessive)" (Chech) indicates possession by the primary addressee (you). A full sentence might be Rew boraun Chech cheh:koh (Cat brown Your_possessive you_are/space).
+
+Example: "I am very bored." translates to [BoredWord]-tu Teh-ahs (Bored-very I-am).
+
+[BoredWord] is the state/adjective. -tu is "very". Teh is "I" (Primary Subject). -ahs is "am" (State of Being suffix).
+
+3.2. Pronouns
+
+I/Me: Teh
+
+My/Mine (possessive): Tesh
+
+You (singular): Cheh
+
+Your/Yours (singular, possessive): Chech
+
+He/Him: Mosh
+
+His (possessive): Mosht
+
+She/Her: Mah
+
+Her/Hers (possessive): Maht
+
+It/That/The: Meh
+
+We (exclusive, a group not including the listener): Teheht (derived from Teh + plural modifier -eht)
+
+We (inclusive, you and me/us): Tesheht (derived from Tesh (possessive I) + plural modifier -eht, implying sharedness)
+
+You (plural, addressing a group): Cheh'eht (derived from Cheh + plural modifier -eht)
+
+They/Them/Their (genderfluid singular): Rhet
+
+They/Them/Their (genderfluid plural): Rheteht (derived from Rhet + plural modifier -eht)
+
+3.3. Verbs and State of Being (SOB)
+
+State of Being Suffixes:
+
+-ahs: To be (am, is, are)
+
+-ohs: Not to be (am not, is not, are not)
+
+These are attached to the word they describe (often an adjective or noun).
+
+Example: Anaash Mah-ahs (Beautiful She-is) -> "She is beautiful."
+
+Standalone SOB/Preposition:
+
+Koh: Are / of
+
+Used in cheh:koh (see Punctuation-Words).
+
+Example: Fehsht-ahri koh yune-eht Dar-tesheht (Eldest of children Possessive-our_inclusive) -> "The eldest of our children."
+
+Action Verbs:
+
+Tense Prefixes (attach to the action verb):
+
+Ahb-: Past Tense (e.g., Ahb-krectah - came)
+
+Ohb-: Future Tense (e.g., Ohb-krectah - will come)
+
+Present Tense: No prefix, use the base verb.
+
+Action-Related Suffixes (attach to the action verb):
+
+-tay: Becomes an action (1st person progressive, like "-ing"). Example: Kahtuh (fall) -> Kahtuhtay (falling - done by primary subject).
+
+-tech: Action performed by someone else (second person context). Example: Krechtah-tech (you come / (someone) makes you come).
+
+-ahn: Can complete parent action (can, able to).
+
+-ohn: Cannot complete parent action (cannot, unable to).
+
+Combined Tense/Modal-like forms:
+
+Will (can): Ohb-[verb]-ahn (Future-[verb]-can)
+
+Did (could): Ahb-[verb]-ahn (Past-[verb]-can)
+
+Won't (cannot): Ohb-[verb]-ohn (Future-[verb]-cannot)
+
+Didn't (couldn't): Ahb-[verb]-ohn (Past-[verb]-cannot)
+
+Don't (command): Ahlntech (standalone). For a specific action: Ahl-[verb]-ohntech. (e.g. Ahl-kehksh-ohntech - Don't touch (it)!) This seems to be Ahl- (Primary Subject modifier, here referring to the one being commanded) + verb + -ohn (cannot) + -tech (2nd person action).
+
+3.4. Modifiers
+
+Modifiers can be prefixes or suffixes. Many can also function as standalone words.
+
+General Modifier Opposites: Often, words with an "ah" sound have a "better" or more positive connotation, while "oh" sounds have a "worse" or more negative/opposite connotation. (e.g., Ahth (more) vs Ohth (less); Ahn (can) vs Ohn (cannot)).
+
+Prefix Modifiers:
+
+Tense: Ahb- (Past), Ohb- (Future) - see Verbs
+
+Time (can also be standalone words):
+
+Towr-: Ever (e.g., Towr-ohsht - ever know)
+
+Towrohn-: Never (e.g., Towrohn-ohsht - never know)
+
+Ahd-: Soon
+
+Ohd-: Later
+
+Ahm-: Fast
+
+Ohm-: Slow
+
+Subject Focus (used for clarity with multiple subjects/clauses):
+
+Ahl-: Modifies a word to relate it to the Primary Subject.
+
+Ohl-: Modifies a word to relate it to the Secondary Subject.
+
+Possessive:
+
+Dar-: General possessive marker, attached to the possessed noun. Example: Dar-rew Mosh (Possessive-cat He) -> "His cat." (Compare with specific possessive pronouns like Tesh, Chech).
+
+Suffix Modifiers:
+
+Degree/Manner:
+
+-ori: Little (e.g., Bohrmoh-ori - very little)
+
+-ahri: Big (e.g., Rew-ahri - big cat)
+
+-tu: Very/So (e.g., Anaash-tu - very beautiful)
+
+-ohth: Less
+
+-ahth: More
+
+Plural:
+
+-eht: Makes a noun plural (e.g., Yune (child) -> Yune-eht (children)). Also used in forming plural pronouns.
+
+State of Being/Action: -ahs, -ohs, -tay, -tech, -ahn, -ohn - see Verbs
+
+3.5. Punctuation-Words
+
+These are critical and unique to Illuveterian. They often replace standard punctuation marks and are based on Cheh (you).
+
+Period / Full Stop (.): cheh (literally "you.")
+
+Indicates the end of a statement directed at or involving "you" as the implied final addressee or context.
+
+Apostrophe ('): cheh'eht (literally "y'all")
+
+This is not a general contraction marker. It specifically means "y'all" or "you (plural)". It's a distinct word.
+
+Question Mark (?): cheh-kwesht (romanization for cheh°, literally "you?")
+
+Used for questions directed at "you". For other types of questions, question words (see Lexicon) are used within the standard sentence structure.
+
+Quotation Marks (" "): Standard quotation marks " are used around Illuveterian text.
+
+Example: English "you" -> Illuveterian "cheh"
+
+Exclamation Mark (!): cheh-eksk (romanization for cheh', literally "you!")
+
+Expresses exclamation related to "you".
+
+Ellipses (...): cheh-elip (romanization for cheh_, literally "you...")
+
+Indicates trailing off, related to "you".
+
+Space (between major sentence components or as a copula): cheh:koh (literally "you are" or "you of")
+
+This is highly important. It can function as a separator similar to a space, but also carries the meaning "you are" or connects "you" to a state/object. It often links the main described entity/action to the final "you" (Primary Addressee).
+
+Example: Rew boraun Chech cheh:koh (Cat brown Your_possessive you_are/space).
+
+3.6. Honorifics
+
+Placed before a secondary subject.
+
+Placed after a primary subject.
+
+Example: "I really like his majesty" -> Ickmosh Mosh teck-tu Teh (Majesty him like-really I).
+
+Ickmosh (King/Majesty) is the secondary subject (object of liking). Mosh (him) clarifies who the majesty is. teck-tu (like-really) is the action. Teh (I) is the primary subject.
+
+Example: "King Raymond is lovely" -> Anaash-ahs Raymond Ickmosh (Lovely-is Raymond King).
+
+Anaash-ahs (Lovely-is) is Adjective+SOB. Raymond is the secondary subject. Ickmosh (King) is the honorific placed after the primary subject (Raymond, in this inverted structure where "lovely" is the focus).
+
+3.7. Split Sentences
+
+Sentences with multiple clauses connected by conjunctions.
+
+Example: "I love you more than you could ever know."
+
+Illuveterian: Teh tahaath Cheh looksh towr-ahn ohsht-ahn Cheh.
+
+Breakdown: Teh (I) tah-aath (love-more) Cheh (you) looksh (than) towr-ahn (ever-can) ohsht-ahn (know-can) Cheh (you).
+
+This translates to: "I love-more you than ever-can know-can you."
+
+(Note: The English implies "you cannot know the extent," while the provided Illuveterian is "you can know." The translation should follow the provided Illuveterian structure.)
+
+4. Basic Lexicon (Romanized)
+
+Nouns:
+
+Acksh: Pain
+
+Ahtool: Second summer month
+
+Bahno: (Meaning not specified, likely a noun)
+
+Beksh: Weep (can be verb or noun "a weep")
+
+Bohke: Mountain
+
+Bora: Light
+
+BoraMor: Twilight (light end)
+
+Boracios: Rainbow
+
+Bour: Sky
+
+Braise: Breeze/wind
+
+BourBora: Skylight/sunlight
+
+Carpeer: Cloth
+
+Chichuh: Bug/insect
+
+Chosk: Arrow
+
+Cios: Color
+
+Cuesht: Piece/part of
+
+Day: 10 (Ten)
+
+Dehshtah: Thursday
+
+Eck/Ecksh: They/them/their (likely an older or alternative form)
+
+Ehtoroh: Dirt
+
+Echt'ihm: 2nd spring month
+
+Eye-yesh: Path
+
+Eye-yesh-tu: Road (very path)
+
+Fairm: Spot
+
+Feh'shtahet: 1st autumn month
+
+Fehsht: First (1st)
+
+Gu'aatah: First summer month
+
+H'luah'efraya: Name of the magic source/universe
+
+H'reh: Wonder
+
+H'rahtih: Third autumn month
+
+Ickmosh: King
+
+Ihckshtah: Wreck
+
+Ishtmah: Queen
+
+Keerahmoh: Birthday
+
+Keertoh: Human
+
+Keh: Face
+
+Keht: Rest
+
+Kesh: Sleep
+
+Kihrahteth: Thousand
+
+Kreesht: (Meaning not specified, likely a noun, possibly related to color given Krohsh)
+
+Krohsh: Red
+
+Luera: Moon/The Moon
+
+Lohtah: Third summer month
+
+Lowsht: Stone
+
+Mair: Blood
+
+Mair-moryu: Death
+
+Meshrah: Today/This Day
+
+Meera: Shimmer
+
+Mohra: Foggy/misty
+
+Mor: End
+
+Moor: Warm
+
+Mahr: Cold
+
+Morosh: Saturday
+
+Nehfftihm: First spring month
+
+Nome: Food
+
+Nyahmesh: Parent who gave birth
+
+Nyeshteh: Parent who did not give birth
+
+Nefftrah: Morning
+
+Oh'shrah: Tuesday
+
+Pahff: Memory
+
+Pairehmosh: Bitch
+
+Prehtol: Third spring month
+
+Rah: Day (general)
+
+Resh: Bed
+
+Rew: Cat
+
+Rhet: Gender fluid (person)
+
+Reedahl: Second winter month
+
+Shairmoh: (Meaning not specified)
+
+Shairohk: Leap Day
+
+Shee'rah: First winter month
+
+Shem: Night
+
+Sheh: Dark (noun or adj)
+
+Shoraht: Last winter month
+
+Shuffter: Second autumn month
+
+Shoraaftah: Language (general)
+
+Tah: Love/heart
+
+Tohmah: A girl/woman
+
+Toheck: An enby (non-binary person)
+
+Tohmosh: A boy/man
+
+Tohrhet: A gender fluid (person) - (likely root of Rhet)
+
+Tohyune: A child (general)
+
+Yuktah: A child who has not yet come into their gender
+
+Yuktosh: (Meaning not specified, likely related to child/gender)
+
+Yune: Child
+
+Yush: Royal heir
+
+Yushmoh: Prince
+
+Yushtah: Princess
+
+Yulihn: 3rd winter month
+
+(eye)Eich'rah: Sunday (parenthesis likely indicates optional sound)
+
+Verbs (Base Forms - can take affixes):
+
+Ahntah: Happen
+
+Ahn: Can/Is (also a suffix -ahn)
+
+Beksh: Weep
+
+Chesh: Call
+
+Chay: Chase
+
+Ehshtrah: To make/create
+
+Freh: To tell stories
+
+Froh: To speak/say
+
+Hee'r: Sing
+
+Kah-tuh: Fall
+
+Kohtuh: Fly
+
+Kehksh: Touch
+
+Krechtah: Come
+
+Lahsh: Up (can be adverb/preposition or part of verb phrase)
+
+Lohsh: Down (can be adverb/preposition or part of verb phrase)
+
+Morlohn: Bury
+
+Nehbita: To optionally summon someone
+
+Nahbishtoh: To forcibly summon someone
+
+Ohsht: To know
+
+Ohshtbah: To know all/all knowing
+
+Pahffmohr: Forget
+
+Pahffshoh: Remember
+
+Preshtah: Stand
+
+So'eht: Steal
+
+Teck: Like
+
+Tehrair: Await/wait for
+
+Thesh: Ride
+
+Treff: Write
+
+Tuyaash: Annoy
+
+Adjectives (Many can take SOB suffixes like -ahs/-ohs):
+
+Anoush: Attractive
+
+Anaash: Beautiful/kind
+
+Bire: Bright
+
+Birecios: Bright color/vibrant
+
+Bohrmoh: Little (can also be -ori suffix)
+
+Dehl: Good
+
+Fairmet: Spotted
+
+Mahra: Clear
+
+Sheh: Dark
+
+Uhr: Crazy (mad)
+
+Ahnksh: Well/good
+
+Adverbs/Conjunctions/Prepositions/Other:
+
+Ahd: Soon (also prefix Ahd-)
+
+Ahff: In
+
+Ahffmet: Into
+
+Ahm: Fast (also prefix Ahm-)
+
+Ahth: More (also suffix -ahth)
+
+Anthah: Many/Much
+
+Ahri: Big (also suffix -ahri)
+
+Aash: Dear/Dearest
+
+Aashtesh: "Dearest of Mine"
+
+Almyuh: From
+
+Allyoor: Take (can be verb)
+
+Alyah: Have (can be verb)
+
+Ahnahtol: Teleportation magic (noun, but describes a type of action)
+
+Ahntoo: (Meaning not specified)
+
+Aach: What (question word)
+
+Aatah: 3 (Three)
+
+Dahl'hu'ite: (Meaning not specified)
+
+Dahl: Half
+
+Dye-ya: Thanks
+
+Dye-ya Cheh: Thank You
+
+Koh: Are/of (also SOB)
+
+Looksh: Than
+
+Mire: All
+
+Mesh: This
+
+Met: To (preposition)
+
+Nehim: (Meaning not specified)
+
+Nehsh: Under
+
+Nah: Yes
+
+Noh: No
+
+Nihth: Return (can be verb)
+
+Nedrah: Again
+
+Ohb: Future (also prefix Ohb-)
+
+Ohd: Later (also prefix Ohd-)
+
+Ohn: Cannot (also action suffix -ohn)
+
+Ohm: Slow (also prefix Ohm-)
+
+Ohff: Out
+
+Oon: (Meaning not specified)
+
+Ori: Little (also suffix -ori)
+
+Ohth: Less (also suffix -ohth)
+
+Pah: And
+
+Poh: But
+
+Seh: Safe (adjective)
+
+Tahw'r: Always
+
+Tay: Becomes an action (also suffix -tay)
+
+Toh: A/an
+
+Tow'r: Ever/Now (also prefix Towr-)
+
+Towrohn: Never (also prefix Towrohn-)
+
+Tah-er: When (question word)
+
+Tahn: Where (question word)
+
+Trehm: How (question word)
+
+Tu: Very/So (also suffix -tu)
+
+5. Key Translation Challenges & Notes for AI
+
+Agglutination: The AI must be proficient at identifying root words and the meanings of attached prefixes/suffixes. Word boundaries might be less distinct in fluent speech/writing than shown with hyphens here.
+
+Punctuation-Words: These are paramount. cheh:koh is especially complex, acting as both a "space" and a copula ("you are"). The AI needs to understand when to insert these words instead of using standard punctuation or assuming English-like spacing.
+
+Word Order: Strict adherence to the Illuveterian sentence structure is vital.
+
+Context for "am/is/are": The suffix -ahs or the word Koh (or cheh:koh) will convey this. The choice depends on what is being linked.
+
+"Ah" vs. "Oh" Semantic Pairs: Be aware of the tendency for "ah" sounds in modifiers/words to indicate "better/more/positive" and "oh" sounds for "worse/less/negative."
+
+Dual-Role Words: Many morphemes (e.g., Towr, Ahm, Ori) can be standalone words or affixes. Context will determine their function.
+
+Apostrophes: In Illuveterian romanization (e.g., Cheh'eht, Tahw'r), the apostrophe likely signifies a glottal stop, a distinct phonetic quality, or a syllable break, not an English-style contraction.
+
+Possession: Differentiate between general possessive prefix Dar- (on the possessed item) and specific possessive pronouns (Tesh, Chech, etc., which stand alone or follow the possessed item).
+
+Implied Subjects/Objects: Due to the structured nature, some subjects/objects might be implied by word position or affixes, especially concerning the "Primary Addressee" (often "you" / Cheh).
+
+This document provides a starting point. Further vocabulary acquisition and exposure to more complex sentence structures will be necessary for advanced translation.
