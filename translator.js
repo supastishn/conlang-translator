@@ -5,6 +5,7 @@ const LANG_ENGLISH = 'english';
 const LANG_DRACONIC = 'draconic';
 const LANG_DWL = 'dwl'; // Diacritical Waluigi Language
 const LANG_OBWA_KIMO = 'obwakimo'; // Obwa Kimo
+const LANG_ILLUVETERIAN = 'illuveterian';
 const LANG_DETECT = 'detect'; // Detect language option
 
 const LANG_LABELS = {
@@ -12,6 +13,7 @@ const LANG_LABELS = {
     [LANG_DRACONIC]: 'Draconic',
     [LANG_DWL]: 'Diacritical Waluigi Language',
     [LANG_OBWA_KIMO]: 'Obwa Kimo',
+    [LANG_ILLUVETERIAN]: 'Illuveterian',
     [LANG_DETECT]: 'Detect Language'
 };
 
@@ -90,6 +92,22 @@ async function loadObwaKimoResources() {
     }
 }
 
+// Load Illuveterian resources
+async function loadIlluveterianResources() {
+    try {
+        const baseUrl = getBaseUrl();
+        const response = await fetch(`${baseUrl}/materials/conlangs/illuveterian.txt`);
+        if (!response.ok) {
+            console.warn(`Could not load illuveterian.txt: ${response.status} ${response.statusText}`);
+            return '[Illuveterian resources file not found]';
+        }
+        return await response.text();
+    } catch (error) {
+        console.error('Error loading Illuveterian resources:', error);
+        return '[Error loading Illuveterian resources]';
+    }
+}
+
 
 // OpenAI API integration
 async function translateText(sourceText, sourceLang, targetLang, imageDataUrl = null, updateCallback = null) {
@@ -115,6 +133,7 @@ async function translateText(sourceText, sourceLang, targetLang, imageDataUrl = 
     const needsDraconic = (sourceLang === LANG_DRACONIC || targetLang === LANG_DRACONIC);
     const needsDWL = (sourceLang === LANG_DWL || targetLang === LANG_DWL);
     const needsObwaKimo = (sourceLang === LANG_OBWA_KIMO || targetLang === LANG_OBWA_KIMO);
+    const needsIlluveterian = (sourceLang === LANG_ILLUVETERIAN || targetLang === LANG_ILLUVETERIAN);
 
     if (needsDraconic) {
         const dictionaryPrompt = await loadDraconicDictionary();
@@ -128,6 +147,10 @@ async function translateText(sourceText, sourceLang, targetLang, imageDataUrl = 
     if (needsObwaKimo) {
         const obwaKimoPromptText = await loadObwaKimoResources();
         resourcesForPrompt += `\n\nOBWA KIMO RESOURCES:\n${obwaKimoPromptText}`;
+    }
+    if (needsIlluveterian) {
+        const illuveterianText = await loadIlluveterianResources();
+        resourcesForPrompt += `\n\nILLUVETERIAN RESOURCES:\n${illuveterianText}`;
     }
     
     let finalSystemPrompt = systemPromptCore + resourcesForPrompt;
@@ -169,7 +192,7 @@ async function translateText(sourceText, sourceLang, targetLang, imageDataUrl = 
 
     } else { // Text-only translation
         if (sourceLang === LANG_DETECT) {
-            userPromptText = `First, identify if the input text is English, Draconic, Diacritical Waluigi Language, or Obwa Kimo. Then, translate the identified text into ${LANG_LABELS[targetLang]}.`;
+            userPromptText = `First, identify if the input text is English, Draconic, Diacritical Waluigi Language, Obwa Kimo, or Illuveterian. Then, translate the identified text into ${LANG_LABELS[targetLang]}.`;
             if (targetLang === LANG_ENGLISH) { // This specific instruction is for DWL -> English
                 userPromptText += ` If the identified source is Diacritical Waluigi Language, ${dwlToEnglishInstruction}`;
             }
