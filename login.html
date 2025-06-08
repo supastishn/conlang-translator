@@ -46,29 +46,24 @@
     </div>
 
     <!-- Add Appwrite SDK -->
-    <script src="https://cdn.jsdelivr.net/npm/appwrite@14.1.0"></script>
+    <script src="https://cdn.jsdelivr.net/npm/appwrite@18.1.1"></script>
+    <script src="src/authService.js"></script>
     <script>
-        // Initialize Appwrite authService after SDK loads if not already present
-        document.addEventListener('DOMContentLoaded', function() {
-            if (!window.authService) {
-                window.authService = {
-                    // ... you may add stub methods here if needed ...
-                };
+    document.addEventListener('DOMContentLoaded', function() {
+        const loginForm = document.getElementById('login-form');
+        loginForm.addEventListener('submit', async function(e) {
+            e.preventDefault();
+            const email = document.getElementById('login-email').value;
+            const password = document.getElementById('login-password').value;
+            try {
+                await window.authService.login(email, password);
+                alert('Login successful!');
+                window.location.href = 'index.html';
+            } catch (error) {
+                alert('Login failed: ' + error.message);
             }
-            const loginForm = document.getElementById('login-form');
-            loginForm.addEventListener('submit', async function(e) {
-                e.preventDefault();
-                const email = document.getElementById('login-email').value;
-                const password = document.getElementById('login-password').value;
-                try {
-                    await window.authService.login(email, password);
-                    alert('Login successful!');
-                    window.location.href = 'index.html';
-                } catch (error) {
-                    alert('Login failed: ' + error.message);
-                }
-            });
         });
+    });
     </script>
     <script>
     document.addEventListener('DOMContentLoaded', () => {

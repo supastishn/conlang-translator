@@ -150,15 +150,14 @@ const protectedAPICall = async (payload) => {
  * Requires Appwrite JS SDK loaded and initialized.
  */
 async function callGeminiFunction({sourceText, sourceLang, targetLang, imageDataUrl}) {
-    // Add null check before creating Client
-    if (typeof window.Client === 'undefined') {
+    if (typeof window.Appwrite === 'undefined') {
         throw new Error('Appwrite SDK not loaded. Please refresh the page.');
     }
-    const client = new window.Client()
+    const client = new window.Appwrite.Client()
         .setEndpoint('https://YOUR_APPWRITE_ENDPOINT/v1') // <-- Replace with your endpoint
         .setProject('YOUR_PROJECT_ID'); // <-- Replace with your project ID
 
-    const functions = new window.Functions(client);
+    const functions = new window.Appwrite.Functions(client);
 
     try {
         const payload = {
