@@ -6,35 +6,23 @@ const client = new Client()
 
 const account = new Account(client);
 
-const authService = {
-    login: async (email, password) => {
-        return await account.createEmailSession(email, password);
-    },
-    
-    register: async (email, password) => {
-        return await account.create('unique()', email, password);
-    },
-    
-    logout: async () => {
-        return await account.deleteSession('current');
-    },
-    
-    getCurrentUser: async () => {
-        try {
-            return await account.get();
-        } catch (error) {
-            console.log('Current user not found', error);
-            return null;
-        }
+export const login = async (email, password) => {
+    return await account.createEmailSession(email, password);
+};
+
+export const register = async (email, password) => {
+    return await account.create('unique()', email, password);
+};
+
+export const logout = async () => {
+    return await account.deleteSession('current');
+};
+
+export const getCurrentUser = async () => {
+    try {
+        return await account.get();
+    } catch (error) {
+        console.log('Current user not found', error);
+        return null;
     }
 };
-
-// Make authService globally available
-window.authService = {
-    login: authService.login,
-    register: authService.register,
-    logout: authService.logout,
-    getCurrentUser: authService.getCurrentUser
-};
-
-export default authService;

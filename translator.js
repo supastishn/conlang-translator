@@ -1,6 +1,8 @@
 // translator.js - Handles translation functionality
 
-/* global authService, Client, Functions */
+import { getCurrentUser } from './src/authService.js';
+
+/* global Client, Functions */
 
 // Language constants
 const LANG_ENGLISH = 'english';
@@ -576,7 +578,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // Function to update auth UI based on login status
     async function updateAuthUI() {
         try {
-            const user = await authService.getCurrentUser();
+            const user = await getCurrentUser();
             
             if (user) {
                 authContainer.innerHTML = `

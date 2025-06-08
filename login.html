@@ -44,19 +44,16 @@
         </main>
     </div>
 
-    <script src="src/authService.js"></script>
-    <script>
+    <script type="module">
+        import { login } from './src/authService.js';
         document.addEventListener('DOMContentLoaded', function() {
             const loginForm = document.getElementById('login-form');
-            
             loginForm.addEventListener('submit', async function(e) {
                 e.preventDefault();
-                
                 const email = document.getElementById('login-email').value;
                 const password = document.getElementById('login-password').value;
-                
                 try {
-                    await authService.login(email, password);
+                    await login(email, password);
                     alert('Login successful!');
                     window.location.href = 'index.html';
                 } catch (error) {
