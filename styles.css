@@ -935,3 +935,35 @@ footer {
 .logout-btn {
     background-color: var(--error-color);
 }
+/* Add this to the bottom of styles.css */
+.account-info {
+    margin-bottom: 2rem;
+    padding: 1.5rem;
+    background-color: var(--surface-2);
+    border-radius: var(--rounded-md);
+    border-left: 4px solid var(--primary-color);
+}
+
+.account-actions h3 {
+    margin-bottom: 1rem;
+    color: var(--primary-dark);
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.warning-section .warning {
+    background-color: rgba(239, 68, 68, 0.1);
+    border: 1px solid var(--error-color);
+    color: var(--error-color);
+    padding: 1rem;
+    border-radius: var(--rounded-md);
+    margin-bottom: 1rem;
+}
+
+.error-btn {
+    background-color: var(--error-color) !important;
+}
+
+.error-btn:hover {
+    background-color: #dc2626 !important;
+}

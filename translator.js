@@ -609,6 +609,12 @@ document.addEventListener('DOMContentLoaded', function() {
                     `;
                 }
             });
+
+            // Show/hide account link in navbar
+            document.querySelectorAll('#account-nav-item').forEach(item => {
+                item.style.display = user ? 'block' : 'none';
+            });
+
         } catch (error) {
             console.error('Error checking auth state:', error);
         }

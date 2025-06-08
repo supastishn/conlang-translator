@@ -21,6 +21,18 @@ export const logout = async () => {
     return await account.deleteSession('current');
 };
 
+export const updateEmail = async (newEmail, password) => {
+    return await account.updateEmail(newEmail, password);
+};
+
+export const updatePassword = async (oldPassword, newPassword) => {
+    return await account.updatePassword(newPassword, oldPassword);
+};
+
+export const deleteAccount = async () => {
+    return await account.delete();
+};
+
 export const getCurrentUser = async () => {
     try {
         return await account.get();
