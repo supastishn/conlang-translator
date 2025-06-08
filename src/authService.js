@@ -45,10 +45,15 @@ export const getCurrentUser = async () => {
 // New function to update UI based on auth state
 export const updateAuthUI = async () => {
     const user = await getCurrentUser();
+    console.debug(`Auth state changed. User logged in: ${user ? 'Yes' : 'No'}`);
+    
     const accountLinks = document.querySelectorAll('#account-nav-item');
     const authContainers = document.querySelectorAll('.auth-container');
 
     authContainers.forEach(container => {
+        const action = user ? 'Account' : 'Login/Register links';
+        console.debug(`Setting auth container to: ${action}`);
+        
         container.innerHTML = user
             ? `<a href="account.html" class="auth-btn">Account</a>`
             : `<a href="login.html" class="auth-btn login-btn">Login</a>
@@ -56,7 +61,11 @@ export const updateAuthUI = async () => {
     });
 
     // Add account page nav item only if logged in
-    accountLinks.forEach(link => link.style.display = user ? 'block' : 'none');
+    accountLinks.forEach(link => {
+        const action = user ? 'block' : 'none';
+        console.debug(`Setting account nav item visibility: ${action}`);
+        link.style.display = user ? 'block' : 'none';
+    });
 };
 
 // Auth state change listener
