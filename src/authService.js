@@ -5,8 +5,8 @@
 document.addEventListener('DOMContentLoaded', function() {
     if (typeof window.Appwrite !== 'undefined') {
         const client = new window.Appwrite.Client()
-            .setEndpoint('https://your-appwrite-endpoint/v1') // ACTUAL ENDPOINT
-            .setProject('your-project-id'); // ACTUAL PROJECT ID
+            .setEndpoint('https://fra.cloud.appwrite.io/v1') // Updated endpoint
+            .setProject('draconic-translator'); // Updated project ID
 
         const account = new window.Appwrite.Account(client);
 
