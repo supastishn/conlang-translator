@@ -570,6 +570,80 @@ document.addEventListener('DOMContentLoaded', function() {
     const translateBtn = document.getElementById('translate-btn');
     if (!translateBtn) return;
 
+    // --- AUTH UI LOGIC ---
+    const authContainer = document.querySelector('.auth-container');
+    
+    // Function to update auth UI based on login status
+    async function updateAuthUI() {
+        try {
+            const user = await authService.getCurrentUser();
+            
+            if (user) {
+                authContainer.innerHTML = `
+                    <span style="margin-right: 10px; font-weight: 600;">${user.email}</span>
+                    <button id="logout-btn" class="auth-btn logout-btn">Logout</button>
+                `;
+                
+                document.getElementById('logout-btn').addEventListener('click', async () => {
+                    try {
+                        await authService.logout();
+                        updateAuthUI();
+                        alert('You have been logged out');
+                    } catch (error) {
+                        console.error('Logout failed:', error);
+                    }
+                });
+            } else {
+                authContainer.innerHTML = `
+                    <button id="login-btn" class="auth-btn login-btn">Login</button>
+                    <button id="register-btn" class="auth-btn">Register</button>
+                `;
+                
+                // Add event listeners
+                document.getElementById('login-btn').addEventListener('click', async () => {
+                    const email = prompt('Enter your email:');
+                    const password = prompt('Enter your password:');
+                    if (email && password) {
+                        try {
+                            await authService.login(email, password);
+                            updateAuthUI();
+                            alert('Login successful!');
+                        } catch (error) {
+                            console.error('Login failed:', error);
+                            alert('Login failed: ' + error.message);
+                        }
+                    }
+                });
+                
+                document.getElementById('register-btn').addEventListener('click', async () => {
+                    const email = prompt('Enter your email:');
+                    const password = prompt('Create a password:');
+                    if (email && password) {
+                        try {
+                            await authService.register(email, password);
+                            alert('Registration successful! Please log in');
+                        } catch (error) {
+                            console.error('Registration failed:', error);
+                            alert('Registration failed: ' + error.message);
+                        }
+                    }
+                });
+            }
+        } catch (error) {
+            console.error('Error checking auth state:', error);
+        }
+    }
+
+    // Update provider UI whenever auth state changes
+    if (authService.onAuthStateChanged) {
+        authService.onAuthStateChanged(() => {
+            updateAuthUI();
+            updateProviderUI();
+        });
+    }
+    // Initial call
+    updateAuthUI();
+
     const sourceLangSelect = document.getElementById('source-lang-select');
     const targetLangSelect = document.getElementById('target-lang-select');
     const sourceLanguageLabelEl = document.getElementById('source-language-label');

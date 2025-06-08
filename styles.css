@@ -892,3 +892,38 @@ footer {
 #use-camera-btn {
   font-weight: 700;
 }
+
+/* Add this to the bottom of the file */
+.auth-container {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    display: flex;
+    gap: 0.5rem;
+    z-index: 10;
+}
+
+.auth-btn {
+    padding: 0.5rem 1rem;
+    background-color: var(--primary-color);
+    color: white;
+    border: none;
+    border-radius: var(--rounded-md);
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: all var(--transition-speed) ease;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.auth-btn:hover {
+    background-color: var(--primary-dark);
+}
+
+.login-btn {
+    background-color: var(--surface-2);
+    color: var(--primary-color);
+}
+
+.logout-btn {
+    background-color: var(--error-color);
+}
