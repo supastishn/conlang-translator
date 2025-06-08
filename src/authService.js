@@ -6,7 +6,7 @@ const client = new Client()
 
 const account = new Account(client);
 
-export default {
+const authService = {
     login: async (email, password) => {
         return await account.createEmailSession(email, password);
     },
@@ -28,3 +28,13 @@ export default {
         }
     }
 };
+
+// Make authService globally available
+window.authService = {
+    login: authService.login,
+    register: authService.register,
+    logout: authService.logout,
+    getCurrentUser: authService.getCurrentUser
+};
+
+export default authService;
