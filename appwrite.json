@@ -19,7 +19,10 @@
             "logging": true,
             "entrypoint": "src/main.js",
             "commands": "npm install",
-            "path": "functions/gemini"
+            "path": "functions/gemini",
+            "environmentVariables": {
+                "API_KEY": "your-encrypted-api-key"
+            }
         }
     ]
 }
