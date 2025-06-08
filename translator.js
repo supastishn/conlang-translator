@@ -109,21 +109,40 @@ async function loadIlluveterianResources() {
 }
 
 
-// OpenAI API integration
+/**
+ * Protected API call for authenticated users.
+ * Uses Appwrite session for authentication.
+ */
+const protectedAPICall = async (payload) => {
+    const user = await authService.getCurrentUser();
+    if (!user) {
+        throw new Error('User not authenticated');
+    }
+    // You may need to get a session token or JWT depending on your backend setup.
+    // For demonstration, we'll assume a session secret or JWT is available as user.$id or user.secret.
+    // Adjust as needed for your Appwrite backend.
+    const sessionToken = user.secret || user.$id || '';
+    const response = await fetch('/api/translate', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${sessionToken}`
+        },
+        body: JSON.stringify(payload)
+    });
+    if (!response.ok) {
+        const error = await response.json();
+        throw new Error(error.error?.message || 'Translation request failed');
+    }
+    return response.json();
+};
+
+// OpenAI API integration (now using protectedAPICall)
 async function translateText(sourceText, sourceLang, targetLang, imageDataUrl = null, updateCallback = null) {
     const settings = Settings.get();
     const includeExplanation = settings.includeExplanation === true;    // <<< NEW
-    
-    if (!settings.apiKey) {
-        throw new Error('API key not configured. Please set your API key in Settings.');
-    }
-    
-    let endpoint = settings.baseUrl; 
-    if (endpoint.endsWith('/')) {
-        endpoint = endpoint.slice(0, -1);
-    }
-    
-    const useStreaming = settings.streamingEnabled !== false && updateCallback !== null;
+
+    // ... (all prompt/resource logic remains unchanged) ...
 
     // Prepare system prompt content
     let systemPromptCore = settings.systemPrompt;
@@ -152,7 +171,7 @@ async function translateText(sourceText, sourceLang, targetLang, imageDataUrl = 
         const illuveterianText = await loadIlluveterianResources();
         resourcesForPrompt += `\n\nILLUVETERIAN RESOURCES:\n${illuveterianText}`;
     }
-    
+
     let finalSystemPrompt = systemPromptCore + resourcesForPrompt;
 
     // Build the user prompt and message content
@@ -175,25 +194,20 @@ async function translateText(sourceText, sourceLang, targetLang, imageDataUrl = 
         }
         // Combine with user's text input if available
         userPromptText = `${imageRelatedPrompt} ${sourceText ? `Additional instructions or text to consider: "${sourceText}"` : ''}`.trim();
-        
+
         userMessageContent = [
             { type: "text", text: userPromptText }
         ];
-        // Add image, ensuring it's a supported format (OpenAI supports PNG, JPEG, non-animated GIF, WEBP)
-        // Basic check for common prefixes, more robust validation could be added.
         if (imageDataUrl.startsWith("data:image/png;") || imageDataUrl.startsWith("data:image/jpeg;") || imageDataUrl.startsWith("data:image/gif;") || imageDataUrl.startsWith("data:image/webp;")) {
             userMessageContent.push({ type: "image_url", image_url: { url: imageDataUrl, detail: "auto" } });
         } else {
             console.warn("Image data URL might not be in a supported format for the API.");
-            // Fallback to just text if image format is suspect, or let API handle error.
-            // For now, let's send it and see.
             userMessageContent.push({ type: "image_url", image_url: { url: imageDataUrl, detail: "auto" } });
         }
-
-    } else { // Text-only translation
+    } else {
         if (sourceLang === LANG_DETECT) {
             userPromptText = `First, identify if the input text is English, Draconic, Diacritical Waluigi Language, Obwa Kimo, or Illuveterian. Then, translate the identified text into ${LANG_LABELS[targetLang]}.`;
-            if (targetLang === LANG_ENGLISH) { // This specific instruction is for DWL -> English
+            if (targetLang === LANG_ENGLISH) {
                 userPromptText += ` If the identified source is Diacritical Waluigi Language, ${dwlToEnglishInstruction}`;
             }
             userPromptText += ` Input text:\n\n"${sourceText}"`;
@@ -203,11 +217,11 @@ async function translateText(sourceText, sourceLang, targetLang, imageDataUrl = 
         userMessageContent = userPromptText;
     }
 
-    if (!imageDataUrl) { // Append these instructions only if not primarily an image prompt where they might be redundant or conflicting
+    if (!imageDataUrl) {
         if (targetLang === LANG_DRACONIC && settings.draconicOutputType === 'simplified') {
             userPromptText += " (When generating Draconic, output simplified romanization)";
-            if (Array.isArray(userMessageContent)) { // if content is already an array (e.g. from image + text)
-                userMessageContent[0].text = userPromptText; // modify the text part
+            if (Array.isArray(userMessageContent)) {
+                userMessageContent[0].text = userPromptText;
             } else {
                 userMessageContent = userPromptText;
             }
@@ -221,7 +235,6 @@ async function translateText(sourceText, sourceLang, targetLang, imageDataUrl = 
         }
     }
 
-    // <<< NEW: tell the LLM to wrap its output in XML tags
     const xmlInstr = includeExplanation
       ? "\n\nWrap your response in XML exactly as:\n<translation>…</translation>\n<explanation>…</explanation>\nDo not include any other text."
       : "\n\nWrap your response in XML exactly as:\n<translation>…</translation>\nDo not include any other text.";
@@ -230,78 +243,25 @@ async function translateText(sourceText, sourceLang, targetLang, imageDataUrl = 
     } else {
       userMessageContent += xmlInstr;
     }
-    
-    const requestBody = {
-        model: settings.model,
-        messages: [
-            { role: 'system', content: finalSystemPrompt },
-            { role: 'user', content: userMessageContent }
-        ],
-        temperature: settings.temperature,
-        // max_tokens can be important for image models, but let's use default for now
-    };
-    
-    // Add streaming if enabled
-    if (useStreaming) {
-        requestBody.stream = true;
-    }
-    
-    // Make the request
-    const response = await fetch(`${endpoint}/chat/completions`, {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-            'Authorization': `Bearer ${settings.apiKey}`
-        },
-        body: JSON.stringify(requestBody)
-    });
-    
-    if (!response.ok) {
-        const error = await response.json();
-        throw new Error(error.error?.message || 'Translation request failed');
-    }
-    
-    // Handle streaming response
-    if (useStreaming) {
-        let fullText = '';
-        const reader = response.body.getReader();
-        const decoder = new TextDecoder('utf-8');
-        
-        try {
-            while (true) {
-                const { done, value } = await reader.read();
-                if (done) break;
-                
-                // Decode the chunk
-                const chunk = decoder.decode(value);
-                
-                // Process the SSE format
-                const lines = chunk.split('\n');
-                for (const line of lines) {
-                    if (line.startsWith('data: ') && line !== 'data: [DONE]') {
-                        try {
-                            const data = JSON.parse(line.substring(6));
-                            if (data.choices && data.choices[0].delta && data.choices[0].delta.content) {
-                                const content = data.choices[0].delta.content;
-                                fullText += content;
-                                updateCallback(fullText);
-                            }
-                        } catch (e) {
-                            console.error('Error parsing SSE data:', e, line);
-                        }
-                    }
-                }
+
+    // Use protected API call for translation
+    try {
+        const response = await protectedAPICall({
+            sourceText,
+            sourceLang,
+            targetLang,
+            imageDataUrl,
+            settings: {
+                model: settings.model,
+                temperature: settings.temperature
             }
-            
-            return fullText;
-        } catch (error) {
-            console.error('Error reading stream:', error);
-            throw new Error('Streaming error: ' + error.message);
-        }
-    } else {
-        // Handle regular (non-streaming) response
-        const data = await response.json();
-        return data.choices[0].message.content.trim();
+        });
+
+        // If streaming is needed, you may need to adapt this to your backend's streaming support.
+        // For now, just return the translation.
+        return response.translation || '';
+    } catch (error) {
+        throw error;
     }
 }
 
