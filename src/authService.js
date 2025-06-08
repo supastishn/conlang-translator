@@ -11,14 +11,14 @@ document.addEventListener('DOMContentLoaded', function() {
         const account = new window.Appwrite.Account(client);
 
         const login = async (email, password) => {
-            return await account.createEmailSession(email, password);
+            return await account.createEmailPasswordSession(email, password);
         };
 
         const register = async (email, password) => {
             // Create account
             await account.create('unique()', email, password);
             // Automatically log in the new user
-            return await account.createEmailSession(email, password);
+            return await account.createEmailPasswordSession(email, password);
         };
 
         const logout = async () => {
