@@ -41,3 +41,20 @@ export const getCurrentUser = async () => {
         return null;
     }
 };
+
+// New function to update UI based on auth state
+export const updateAuthUI = async () => {
+    const user = await getCurrentUser();
+    const accountLinks = document.querySelectorAll('#account-nav-item');
+    const authContainers = document.querySelectorAll('.auth-container');
+
+    authContainers.forEach(container => {
+        container.innerHTML = user
+            ? `<a href="account.html" class="auth-btn">Account</a>`
+            : `<a href="login.html" class="auth-btn login-btn">Login</a>
+               <a href="register.html" class="auth-btn">Register</a>`;
+    });
+
+    // Add account page nav item only if logged in
+    accountLinks.forEach(link => link.style.display = user ? 'block' : 'none');
+};

@@ -64,5 +64,10 @@
             });
         });
     </script>
+    <script>
+    document.addEventListener('DOMContentLoaded', () => {
+        if (window.handleAuthStateChange) handleAuthStateChange();
+    });
+    </script>
 </body>
 </html>
