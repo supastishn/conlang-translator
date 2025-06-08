@@ -580,58 +580,35 @@ document.addEventListener('DOMContentLoaded', function() {
         try {
             const user = await getCurrentUser();
             
-            if (user) {
-                authContainer.innerHTML = `
-                    <span style="margin-right: 10px; font-weight: 600;">${user.email}</span>
-                    <button id="logout-btn" class="auth-btn logout-btn">Logout</button>
-                `;
-                
-                document.getElementById('logout-btn').addEventListener('click', async () => {
-                    try {
-                        await authService.logout();
-                        updateAuthUI();
-                        alert('You have been logged out');
-                    } catch (error) {
-                        console.error('Logout failed:', error);
+            // All pages:
+            document.querySelectorAll('.auth-container').forEach(authContainer => {
+                if (user) {
+                    // Show user email and logout button
+                    authContainer.innerHTML = `
+                        <span style="margin-right: 10px; font-weight: 600;">${user.email}</span>
+                        <button id="logout-btn" class="auth-btn logout-btn">Logout</button>
+                    `;
+                    
+                    const logoutBtn = document.getElementById('logout-btn');
+                    if (logoutBtn) {
+                        logoutBtn.addEventListener('click', async () => {
+                            try {
+                                await authService.logout();
+                                updateAuthUI();
+                                alert('You have been logged out');
+                            } catch (error) {
+                                console.error('Logout failed:', error);
+                            }
+                        });
                     }
-                });
-            } else {
-                authContainer.innerHTML = `
-                    <button id="login-btn" class="auth-btn login-btn">Login</button>
-                    <button id="register-btn" class="auth-btn">Register</button>
-                `;
-                
-                // Add event listeners
-                document.getElementById('login-btn').addEventListener('click', async () => {
-                    const email = prompt('Enter your email:');
-                    const password = prompt('Enter your password:');
-                    if (email && password) {
-                        try {
-                            await authService.login(email, password);
-                            updateAuthUI();
-                            alert('Login successful!');
-                        } catch (error) {
-                            console.error('Login failed:', error);
-                            alert('Login failed: ' + error.message);
-                        }
-                    }
-                });
-                
-                document.getElementById('register-btn').addEventListener('click', async () => {
-                    const email = prompt('Enter your email:');
-                    const password = prompt('Create a password:');
-                    if (email && password) {
-                        try {
-                            await authService.register(email, password);
-                            // Automatically update UI to logged-in state
-                            updateAuthUI();
-                            alert('Registration successful! You are now logged in.');
-                        } catch (error) {
-                            alert('Registration failed: ' + error.message);
-                        }
-                    }
-                });
-            }
+                } else {
+                    // Show login and register links
+                    authContainer.innerHTML = `
+                        <a href="login.html" class="auth-btn login-btn">Login</a>
+                        <a href="register.html" class="auth-btn">Register</a>
+                    `;
+                }
+            });
         } catch (error) {
             console.error('Error checking auth state:', error);
         }
