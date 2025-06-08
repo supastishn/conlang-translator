@@ -11,8 +11,8 @@
             ],
             "events": [],
             "scopes": [
-                "users.read",
-                "function.gemini.exec"
+                "execution.read",
+                "execution.write"
             ],
             "schedule": "",
             "timeout": 15,
