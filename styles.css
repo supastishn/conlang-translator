@@ -57,11 +57,13 @@ body {
 
 /* Header and Navigation */
 header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
     margin-bottom: 2.5rem;
     padding-bottom: 1.5rem;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
 }
 
 header h1 {
@@ -849,6 +851,12 @@ footer {
 
 /* Responsive design */
 @media (max-width: 768px) {
+    header {
+        flex-direction: column;
+    }
+    header h1 {
+        margin-bottom: 1.5rem;
+    }
     .translation-container {
         grid-template-columns: 1fr;
     }

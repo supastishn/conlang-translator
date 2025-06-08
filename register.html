@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Draconic Translator - Register</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <header style="flex-direction: row; justify-content: space-between; align-items: center;">
+            <h1 style="margin-bottom: 0;">Draconic Translator Register</h1>
+            <nav>
+                <ul>
+                    <li><a href="index.html">Translator</a></li>
+                    <li><a href="settings.html">Settings</a></li>
+                </ul>
+            </nav>
+        </header>
+
+        <main>
+            <div class="settings-container">
+                <h2>Create a New Account</h2>
+                <form id="register-form" class="auth-form">
+                    <div class="form-group">
+                        <label for="register-email">Email:</label>
+                        <input type="email" id="register-email" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="register-password">Password:</label>
+                        <input type="password" id="register-password" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="register-confirm">Confirm Password:</label>
+                        <input type="password" id="register-confirm" required>
+                    </div>
+                    
+                    <button type="submit" class="auth-btn">Register</button>
+                    <p>
+                        Already have an account? <a href="login.html">Login here</a>
+                    </p>
+                </form>
+            </div>
+        </main>
+    </div>
+
+    <script src="authService.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const registerForm = document.getElementById('register-form');
+            
+            registerForm.addEventListener('submit', async function(e) {
+                e.preventDefault();
+                
+                const email = document.getElementById('register-email').value;
+                const password = document.getElementById('register-password').value;
+                const confirm = document.getElementById('register-confirm').value;
+                
+                if (password !== confirm) {
+                    alert('Passwords do not match');
+                    return;
+                }
+                
+                try {
+                    await authService.register(email, password);
+                    alert('Registration successful! Please log in');
+                    window.location.href = 'login.html';
+                } catch (error) {
+                    alert('Registration failed: ' + error.message);
+                }
+            });
+        });
+    </script>
+</body>
+</html>

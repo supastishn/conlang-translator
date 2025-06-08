@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Draconic Translator - Login</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <header style="flex-direction: row; justify-content: space-between; align-items: center;">
+            <h1 style="margin-bottom: 0;">Draconic Translator Login</h1>
+            <nav>
+                <ul>
+                    <li><a href="index.html">Translator</a></li>
+                    <li><a href="settings.html">Settings</a></li>
+                </ul>
+            </nav>
+        </header>
+
+        <main>
+            <div class="settings-container">
+                <h2>Login to Your Account</h2>
+                <form id="login-form" class="auth-form">
+                    <div class="form-group">
+                        <label for="login-email">Email:</label>
+                        <input type="email" id="login-email" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="login-password">Password:</label>
+                        <input type="password" id="login-password" required>
+                    </div>
+                    
+                    <button type="submit" class="auth-btn">Login</button>
+                    <p>
+                        Don't have an account? <a href="register.html">Register here</a>
+                    </p>
+                </form>
+            </div>
+        </main>
+    </div>
+
+    <script src="authService.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const loginForm = document.getElementById('login-form');
+            
+            loginForm.addEventListener('submit', async function(e) {
+                e.preventDefault();
+                
+                const email = document.getElementById('login-email').value;
+                const password = document.getElementById('login-password').value;
+                
+                try {
+                    await authService.login(email, password);
+                    alert('Login successful!');
+                    window.location.href = 'index.html';
+                } catch (error) {
+                    alert('Login failed: ' + error.message);
+                }
+            });
+        });
+    </script>
+</body>
+</html>
