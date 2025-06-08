@@ -1,4 +1,4 @@
-import authService from '../authService.js';
+const authService = window.authService;
 
 export default class AuthModal {
     constructor() {

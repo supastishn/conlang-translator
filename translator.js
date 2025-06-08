@@ -1,6 +1,6 @@
+/*
 // translator.js - Handles translation functionality
-
-import { getCurrentUser } from './src/authService.js';
+*/
 
 /* global Client, Functions */
 
@@ -122,7 +122,7 @@ async function loadIlluveterianResources() {
  * Uses Appwrite session for authentication.
  */
 const protectedAPICall = async (payload) => {
-    const user = await authService.getCurrentUser();
+    const user = await window.authService.getCurrentUser();
     if (!user) {
         throw new Error('User not authenticated');
     }

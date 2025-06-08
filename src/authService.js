@@ -1,39 +1,41 @@
-import { Client, Account } from 'https://cdn.jsdelivr.net/npm/appwrite@14.1.0/+esm';
-
-const client = new Client()
+/*
+// Remove import statement
+// Initialize Appwrite using window object
+*/
+const client = new window.Appwrite.Client()
     .setEndpoint('https://your-appwrite-endpoint/v1') // ACTUAL ENDPOINT
     .setProject('your-project-id'); // ACTUAL PROJECT ID
 
-const account = new Account(client);
+const account = new window.Appwrite.Account(client);
 
-export const login = async (email, password) => {
+const login = async (email, password) => {
     return await account.createEmailSession(email, password);
 };
 
-export const register = async (email, password) => {
+const register = async (email, password) => {
     // Create account
     await account.create('unique()', email, password);
     // Automatically log in the new user
     return await account.createEmailSession(email, password);
 };
 
-export const logout = async () => {
+const logout = async () => {
     return await account.deleteSession('current');
 };
 
-export const updateEmail = async (newEmail, password) => {
+const updateEmail = async (newEmail, password) => {
     return await account.updateEmail(newEmail, password);
 };
 
-export const updatePassword = async (oldPassword, newPassword) => {
+const updatePassword = async (oldPassword, newPassword) => {
     return await account.updatePassword(newPassword, oldPassword);
 };
 
-export const deleteAccount = async () => {
+const deleteAccount = async () => {
     return await account.delete();
 };
 
-export const getCurrentUser = async () => {
+const getCurrentUser = async () => {
     try {
         return await account.get();
     } catch (error) {
@@ -43,7 +45,7 @@ export const getCurrentUser = async () => {
 };
 
 // New function to update UI based on auth state
-export const updateAuthUI = async () => {
+const updateAuthUI = async () => {
     const user = await getCurrentUser();
     console.debug(`Auth state changed. User logged in: ${user ? 'Yes' : 'No'}`);
     
@@ -83,4 +85,16 @@ document.addEventListener('DOMContentLoaded', async () => {
 // Expose to global scope for legacy pages
 window.handleAuthStateChange = async () => {
     await updateAuthUI();
+};
+
+// Make functions available globally
+window.authService = {
+    login,
+    register,
+    logout,
+    updateEmail,
+    updatePassword,
+    deleteAccount,
+    getCurrentUser,
+    updateAuthUI
 };

@@ -45,8 +45,11 @@
         </main>
     </div>
 
-    <script type="module">
-        import { login } from './src/authService.js';
+    <!-- Add Appwrite SDK -->
+    <script src="https://cdn.jsdelivr.net/npm/appwrite@14.1.0"></script>
+
+    <script>
+        // Update login module to use global authService
         document.addEventListener('DOMContentLoaded', function() {
             const loginForm = document.getElementById('login-form');
             loginForm.addEventListener('submit', async function(e) {
@@ -54,7 +57,7 @@
                 const email = document.getElementById('login-email').value;
                 const password = document.getElementById('login-password').value;
                 try {
-                    await login(email, password);
+                    await window.authService.login(email, password);
                     alert('Login successful!');
                     window.location.href = 'index.html';
                 } catch (error) {
