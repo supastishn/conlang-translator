@@ -1,3 +1,4 @@
+/*
 // translator.js - Handles translation functionality
 */
 
