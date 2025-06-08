@@ -115,6 +115,19 @@
                         <textarea id="system-prompt" rows="6">You are a translator for the constructed Draconic language. Translate English text to Draconic following the dictionary and grammar rules. Provide only the translated text without explanations.</textarea>
                     </div>
 
+                    <!-- Gemini Option Toggle -->
+                    <div class="form-group">
+                        <label for="gemini-option">Enable Gemini Function:</label>
+                        <div class="toggle-container">
+                            <label class="switch">
+                                <input type="checkbox" id="gemini-option">
+                                <span class="slider round"></span>
+                            </label>
+                            <span class="toggle-label">Show Gemini option for authenticated users</span>
+                        </div>
+                        <small>When enabled, logged-in users will see a Gemini provider option</small>
+                    </div>
+
                     <div class="form-group">
                         <label for="draconic-output-type-select-settings">Default Draconic Output Type (for English → Draconic):</label>
                         <select id="draconic-output-type-select-settings">

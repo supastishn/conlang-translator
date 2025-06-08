@@ -10,7 +10,8 @@ const DEFAULT_SETTINGS = {
     streamingEnabled: true,
     draconicOutputType: 'normal', // 'normal' or 'simplified'
     dwlToEnglishType: 'natural', // 'natural' or 'raw' for DWL -> English
-    includeExplanation: false    // <<< NEW
+    includeExplanation: false,    // <<< NEW
+    geminiOption: false           // New setting for Gemini option
 };
 
 // Settings management
@@ -63,6 +64,12 @@ document.addEventListener('DOMContentLoaded', function() {
     const includeExplanationCheckbox = document.getElementById('include-explanation');
     if (includeExplanationCheckbox) {
       includeExplanationCheckbox.checked = currentSettings.includeExplanation === true;
+    }
+
+    // Gemini option checkbox
+    const geminiOptionCheckbox = document.getElementById('gemini-option');
+    if (geminiOptionCheckbox) {
+        geminiOptionCheckbox.checked = currentSettings.geminiOption === true;
     }
     
     const draconicOutputTypeSelectSettings = document.getElementById('draconic-output-type-select-settings');
@@ -155,7 +162,8 @@ document.addEventListener('DOMContentLoaded', function() {
             streamingEnabled: document.getElementById('streaming-enabled').checked,
             draconicOutputType: draconicOutputTypeSelectSettings ? draconicOutputTypeSelectSettings.value : currentSettings.draconicOutputType,
             dwlToEnglishType: dwlToEnglishTypeSelectSettings ? dwlToEnglishTypeSelectSettings.value : currentSettings.dwlToEnglishType,
-            includeExplanation: document.getElementById('include-explanation').checked   // <<< NEW
+            includeExplanation: document.getElementById('include-explanation').checked,   // <<< NEW
+            geminiOption: document.getElementById('gemini-option') ? document.getElementById('gemini-option').checked : false
         };
         
         Settings.save(newSettings);

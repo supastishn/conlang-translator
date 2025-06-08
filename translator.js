@@ -1,5 +1,7 @@
 // translator.js - Handles translation functionality
 
+/* global authService, Client, Functions */
+
 // Language constants
 const LANG_ENGLISH = 'english';
 const LANG_DRACONIC = 'draconic';
@@ -7,6 +9,10 @@ const LANG_DWL = 'dwl'; // Diacritical Waluigi Language
 const LANG_OBWA_KIMO = 'obwakimo'; // Obwa Kimo
 const LANG_ILLUVETERIAN = 'illuveterian';
 const LANG_DETECT = 'detect'; // Detect language option
+
+// Provider constants
+const PROVIDER_OPENAI = 'openai';
+const PROVIDER_GEMINI = 'gemini';
 
 const LANG_LABELS = {
     [LANG_ENGLISH]: 'English',
@@ -137,10 +143,59 @@ const protectedAPICall = async (payload) => {
     return response.json();
 };
 
-// OpenAI API integration (now using protectedAPICall)
+/**
+ * Call Gemini function via Appwrite Functions SDK.
+ * Requires Appwrite JS SDK loaded and initialized.
+ */
+async function callGeminiFunction({sourceText, sourceLang, targetLang, imageDataUrl}) {
+    // You must have Appwrite JS SDK loaded and configured globally
+    // with window.Client and window.Functions available.
+    // You may want to move this config elsewhere.
+    const client = new window.Client()
+        .setEndpoint('https://YOUR_APPWRITE_ENDPOINT/v1') // <-- Replace with your endpoint
+        .setProject('YOUR_PROJECT_ID'); // <-- Replace with your project ID
+
+    const functions = new window.Functions(client);
+
+    try {
+        const payload = {
+            sourceText,
+            sourceLang,
+            targetLang,
+            imageDataUrl
+        };
+
+        const execution = await functions.createExecution(
+            'gemini', // Your function ID
+            JSON.stringify(payload),
+            false // sync execution
+        );
+
+        const response = JSON.parse(execution.response);
+        return response.translation;
+    } catch (error) {
+        throw new Error('Gemini function call failed: ' + error.message);
+    }
+}
+
+// OpenAI API integration (now using protectedAPICall or Gemini)
 async function translateText(sourceText, sourceLang, targetLang, imageDataUrl = null, updateCallback = null) {
     const settings = Settings.get();
     const includeExplanation = settings.includeExplanation === true;    // <<< NEW
+
+    // Provider selection
+    const providerSelect = document.getElementById('provider-select');
+    const provider = providerSelect ? providerSelect.value : PROVIDER_OPENAI;
+
+    if (provider === PROVIDER_GEMINI) {
+        // Call Gemini function via Appwrite
+        return await callGeminiFunction({
+            sourceText,
+            sourceLang,
+            targetLang,
+            imageDataUrl
+        });
+    }
 
     // ... (all prompt/resource logic remains unchanged) ...
 
@@ -510,7 +565,6 @@ function updateHistoryDisplay() {
     });
 }
 
-// Initialize the translator when the DOM is loaded
 document.addEventListener('DOMContentLoaded', function() {
     // Only run on the translator page
     const translateBtn = document.getElementById('translate-btn');
@@ -526,6 +580,34 @@ document.addEventListener('DOMContentLoaded', function() {
     // NEW: Explanation elements
     const explanationContainer = document.getElementById('explanation-container');
     const explanationOutputEl = document.getElementById('explanation-output');
+
+    // Provider select
+    const providerSelect = document.getElementById('provider-select');
+    // Show/hide provider select based on Gemini option and auth
+    async function updateProviderUI() {
+        if (!providerSelect) return;
+        const settings = Settings.get();
+        let showGemini = false;
+        if (settings.geminiOption && typeof authService !== "undefined" && authService.getCurrentUser) {
+            try {
+                const user = await authService.getCurrentUser();
+                showGemini = !!user;
+            } catch (e) {
+                showGemini = false;
+            }
+        }
+        providerSelect.parentElement.style.display = showGemini ? 'block' : 'none';
+        if (!showGemini) {
+            providerSelect.value = PROVIDER_OPENAI;
+        }
+    }
+    if (providerSelect) {
+        updateProviderUI();
+        // Optionally, listen for login/logout events to update UI
+        if (typeof authService !== "undefined" && authService.onAuthStateChanged) {
+            authService.onAuthStateChanged(updateProviderUI);
+        }
+    }
 
     // Image upload elements
     const imageUploadInput = document.getElementById('image-upload-input');
