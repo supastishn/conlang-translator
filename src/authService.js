@@ -48,19 +48,26 @@ export const updateAuthUI = async () => {
     console.debug(`Auth state changed. User logged in: ${user ? 'Yes' : 'No'}`);
     
     const accountLinks = document.querySelectorAll('#account-nav-item');
-    const authContainers = document.querySelectorAll('.auth-container');
+    const navContainers = document.querySelectorAll('nav ul');
 
-    authContainers.forEach(container => {
-        const action = user ? 'Account' : 'Login/Register links';
-        console.debug(`Setting auth container to: ${action}`);
-        
-        container.innerHTML = user
+    navContainers.forEach(nav => {
+        // Remove any existing auth container
+        const existingAuthContainer = nav.querySelector('.auth-container');
+        if (existingAuthContainer) {
+            nav.removeChild(existingAuthContainer);
+        }
+
+        // Create new auth container as a nav item (li)
+        const authContainer = document.createElement('li');
+        authContainer.className = 'auth-container';
+        authContainer.innerHTML = user
             ? `<a href="account.html" class="auth-btn">Account</a>`
             : `<a href="login.html" class="auth-btn login-btn">Login</a>
                <a href="register.html" class="auth-btn">Register</a>`;
+        nav.appendChild(authContainer);
     });
 
-    // Add account page nav item only if logged in
+    // Show/hide account nav item
     accountLinks.forEach(link => {
         const action = user ? 'block' : 'none';
         console.debug(`Setting account nav item visibility: ${action}`);
@@ -68,12 +75,9 @@ export const updateAuthUI = async () => {
     });
 };
 
-// Auth state change listener
 document.addEventListener('DOMContentLoaded', async () => {
-    const authContainers = document.querySelectorAll('.auth-container');
-    if (authContainers.length > 0) {
-        await updateAuthUI();
-    }
+    console.log("AuthService DOMContentLoaded triggered");
+    await updateAuthUI();
 });
 
 // Expose to global scope for legacy pages

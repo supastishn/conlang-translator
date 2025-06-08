@@ -903,12 +903,21 @@ footer {
 
 /* Add this to the bottom of the file */
 .auth-container {
-    position: absolute;
-    top: 1rem;
-    right: 1rem;
+    position: static !important;
     display: flex;
     gap: 0.5rem;
-    z-index: 10;
+    margin-left: auto;
+}
+
+nav ul li {
+    display: inline-block;
+}
+
+@media (max-width: 768px) {
+    .auth-container {
+        flex-direction: column;
+        gap: 0.25rem;
+    }
 }
 
 .auth-btn {
