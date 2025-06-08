@@ -623,9 +623,10 @@ document.addEventListener('DOMContentLoaded', function() {
                     if (email && password) {
                         try {
                             await authService.register(email, password);
-                            alert('Registration successful! Please log in');
+                            // Automatically update UI to logged-in state
+                            updateAuthUI();
+                            alert('Registration successful! You are now logged in.');
                         } catch (error) {
-                            console.error('Registration failed:', error);
                             alert('Registration failed: ' + error.message);
                         }
                     }

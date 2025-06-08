@@ -11,7 +11,10 @@ export const login = async (email, password) => {
 };
 
 export const register = async (email, password) => {
-    return await account.create('unique()', email, password);
+    // Create account
+    await account.create('unique()', email, password);
+    // Automatically log in the new user
+    return await account.createEmailSession(email, password);
 };
 
 export const logout = async () => {
