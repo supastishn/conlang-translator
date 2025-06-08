@@ -1,8 +1,8 @@
-import { Client, Account } from 'appwrite';
+import { Client, Account } from 'https://cdn.jsdelivr.net/npm/appwrite@14.1.0/+esm';
 
 const client = new Client()
-    .setEndpoint('https://[HOSTNAME_OR_IP]/v1') // Your Appwrite endpoint
-    .setProject('[YOUR_PROJECT_ID]'); // Your Appwrite project ID
+    .setEndpoint('https://your-appwrite-endpoint/v1') // ACTUAL ENDPOINT
+    .setProject('your-project-id'); // ACTUAL PROJECT ID
 
 const account = new Account(client);
 
