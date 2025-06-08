@@ -1,0 +1,468 @@
+Okay, I will create a basic document describing the constructed language "Obwa Kimo" based on the information you've provided from the video and your additional rules. This document is intended to help an AI understand the language for translation purposes.
+
+## Obwa Kimo Language Document
+
+**Language Name:** Obwa Kimo
+
+### 1. Vocabulary
+
+This section lists words with their meanings, romanized from the video.
+
+*   Ada: be
+*   Afe: scoop
+*   Afwa: Reflect (light)
+*   Aga: gift
+*   Agata: give
+*   Agu: group
+*   Ahe: take
+*   Aheko: stack
+*   Aia: become
+*   Aibe: worth
+*   Aieko: (undefined)
+*   Aiyema: possible
+*   Aka: piece
+*   Akoya: instead
+*   Alai: color
+*   Amo: arrow
+*   Anoi: part
+*   Ao: tong
+*   Aogiba: long time ago
+*   Apa: fruit
+*   Aru: wild
+*   Ata: want/need
+*   Awen: 1.8kg
+*   Ba: bad
+*   Ba: boy
+*   Bale: kick
+*   Balo: storm
+*   Baluda: fight
+*   Bamo: butt
+*   Ban: man
+*   Baneki: crazy person
+*   Banfa: old man
+*   Bani: brother
+*   Baon: what you control
+*   Bashi: bush
+*   Bawe: fat
+*   Beiki: control
+*   Bikagi: corrupt
+*   Blepi: fungus
+*   Bo: backwards
+*   Bochi: read (red)
+*   Bodi: body
+*   Boko: book (from English "book")
+*   Bomiga: twisted love
+*   Bwa: ocean/sea
+*   Cao: cow/buffalo
+*   Chi: 2/3PS (2nd/3rd person singular)
+*   D: (undefined)
+*   Da: do
+*   Dai: serve
+*   Daoka: partial shade
+*   Daoto: blind (verb)
+*   Daowa: water cave
+*   Daoyaki: lie
+*   De: is
+*   Denoi: gone
+*   D'nan: has been done to
+*   -Do: imperfect suffix (from table); also used to form infinitives (user rule)
+*   Doki: foundation/basis
+*   Doru: door
+*   Doruka: knock
+*   Dorusa: arrive
+*   Dragon: dragon (from English "dragon")
+*   Drom: canine-like animal
+*   Dwa: ability/manner
+*   E: if
+*   Emano: opponent
+*   Eni: birthday
+*   Emo: emotion
+*   Esole: risk
+*   Eto: different
+*   Fa: flat/boring/plain
+*   Faba: sit
+*   Fada: move
+*   Fai: cloth
+*   Fain: danger
+*   Faro: land
+*   Fasuku: stick/branch
+*   Fi: easy
+*   F'mida: to dark to see
+*   Fo: food
+*   Fomoda: eat
+*   Foso: reality/world
+*   Fotsu: pot
+*   Fra: forward
+*   Fuzhin: bug
+*   Fwa: calm
+*   Fya: ignore
+*   F'paka: leaf
+*   Ga: good
+*   Ga: girl
+*   Gachi: clothes
+*   Gacho: library (building)
+*   Gaisha: music
+*   Gaka: chaos
+*   Galuda: buy/trade/sell
+*   Gan: mud
+*   Gao: honor/shame/pride
+*   Gaonto: protect, barrier
+*   Gashio: Beautiful
+*   Ge: home
+*   Gi: time
+*   Glo: grey
+*   Gloro: rock
+*   Gloso: cemetery
+*   G'michi: (undefined)
+*   Go: left
+*   Gorai: bend
+*   Gra: grass
+*   Gu: PLU (plural marker)
+*   Gyeto: foreign
+*   Hada: grow/raise
+*   Hai: high
+*   Haile: wing/arm
+*   Haimo: loud/noisy
+*   Haina: bird meant for eating
+*   Haito: middle
+*   Haiyena: reach
+*   Hana: help
+*   Hane: ruler
+*   Haoma: happy
+*   He: head (body part)
+*   Hechi: log
+*   Heda: handle/touch
+*   Hei: vine
+*   Hein: bare/empty
+*   Heit: hate
+*   Heka: bad/broken finger
+*   Heku: cup (with hands)
+*   Helai: shadow
+*   Henin: reject
+*   Hesoda: kill
+*   Heto: find
+*   Heto: god
+*   Heto: present/show
+*   Hetogi: teacher
+*   Hu: hard
+*   H'we: power
+*   Hyo: safe water
+*   Hyohyo: good rain
+*   Hyomi: work
+*   Hyomiko: morning fog
+*   Hyosi: happy tear/cry
+*   I: air
+*   Ida: wind
+*   Iden: wilds/wilderness
+*   Ifao: impede
+*   Ihe: tap
+*   Ilai: blue
+*   Ilo: fast
+*   Imoda: 4 day period (week)
+*   Iro: erosion
+*   Ita: you sound
+*   Jai: small/young girt (likely 'girl')
+*   Je: idiot
+*   Ka: (Used in number system, see section 3)
+*   -ka: FUT (future marker)
+*   Kaha: all
+*   Kai: night time
+*   Kaida: sleep
+*   Kaiko: main fire
+*   Kaji: forest/trees
+*   Kane: family
+*   Kato: past
+*   Ke: skin
+*   Keiso: haze
+*   Kento: cliff
+*   Ki: a tool used to write
+*   Ki: greetings
+*   Kiaraki: overthink a simple solution
+*   Kika: readable
+*   Kimo: language
+*   Kito: create/make
+*   Klotwa: beach
+*   Ko: bed
+*   Ko: friend/buddy
+*   Koi: that
+*   Korion: story with meaning/warning
+*   Kowachi: abuse of power
+*   Kudeje: ride up/ give energy to
+*   -Ku: NEG (negative marker)
+*   Kuheso: wipe
+*   Kwaro: quiver
+*   Kyu: room
+*   Kyuka: wall
+*   Kyun: large bird
+*   La: ADJ marker (adjective marker)
+*   Lai: light
+*   Lando: land
+*   Lao: 32.5 cm
+*   Laro: building
+*   Lein: torture
+*   Lele: stand
+*   Len: lean
+*   Leta: it feels like
+*   Leta: walk
+*   L'gushu: jumper/jacket/coat
+*   Li: fire
+*   Lida: fire do
+*   Lila: like (similar)
+*   Liro: burnable rock (coal)
+*   Litsu: cook
+*   Lo: lighting
+*   Lo: low
+*   Loki: head piece/ware
+*   Lomo: quiet
+*   Lu: life
+*   Luda: live
+*   Lumo: magic
+*   L'ai: similar
+*   Mai: connect
+*   Man: ball
+*   Mataro: force
+*   M'dwa: ask
+*   Mer: rope
+*   Metala: metal
+*   Mi: dark/black
+*   Michi: tool
+*   Miichida: use
+*   Mijo: speech
+*   Min: mean
+*   Mira: solar eclipse
+*   Miyada: wish
+*   M'lao: coerce
+*   Mo: moon
+*   Mochee: event
+*   Mofa: tone
+*   Mofuta: illusion/non-tangibe (untouchable)
+*   Mojimo: drone on
+*   Mon: moon
+*   Mota: it tastes like
+*   Nai: boat
+*   Nai: but
+*   Naido: dream
+*   Naiya: need
+*   Nami: unclear
+*   Nan: whole
+*   Nanzho: present (existing now in this place)
+*   Nao: exclude
+*   Nate: friendly rivalry
+*   Nawa: fish
+*   Nema: murky/dangerous rive (likely 'river')
+*   Neto: gender
+*   Newin: Bathroom
+*   Ni: at
+*   Ni: in
+*   Nida: thread
+*   Nika: ill
+*   Niya: plan
+*   Noba: smooth
+*   Nodasu: blind
+*   Noiata: nonsense
+*   Noki: wrong
+*   Nomai: prison
+*   Nomo: shut up
+*   Nonaki: waste of time
+*   Nonida: through
+*   Noparo: heaven/hell
+*   Noroma: not from earth
+*   Nowe: dry
+*   Nu: number
+*   Nutobilan: > 1000 (greater than 1000)
+*   N'yaki: Yin and Yang
+*   N'yo: cave
+*   N'tono: conquer
+*   O: my
+*   Odo: sword/knife
+*   Ogi: age
+*   Ohe: hold/carry
+*   Oki: name
+*   Ono: bone
+*   Oni: target
+*   Ore: this
+*   Ota: it looks (FPS view)
+*   Otoro: crystal
+*   Pa: plant
+*   Paka: leaf
+*   Panapa: survive
+*   Pi: here
+*   Pinka: picture
+*   Poto: library (room)
+*   Ra: sun
+*   Rahadagi: sun rising time (morning)
+*   Rahadapa: east
+*   Rai: right
+*   Rain: ride
+*   Rarsa: release
+*   Rein: geode
+*   Rena: die with honor
+*   Ro: earth
+*   Roje: volcano
+*   Rokan: dust
+*   Roku: bridge
+*   Romo: mouth of the cave/ cave enterance
+*   Rua: smoke/steam created when water is used to put out a fire
+*   Sagaka: peace
+*   Same: same (assumed meaning)
+*   San: scare
+*   Sao: close
+*   Saon: fast on foot
+*   Saoga: innocent
+*   Sapi: sap
+*   Sehadapa: north
+*   Sehadagi: moon rising time (night/evening)
+*   Sei: normal
+*   Seno: less than
+*   Sesogi: moon dying time (morning)
+*   Sesopa: south
+*   Shaoda: plant bud
+*   Shai: shy
+*   Shi: small/young boy
+*   Shindao: disperse
+*   Shio: eye catching
+*   Shugashi: someone who does bad for good
+*   Shun: lie
+*   Si: eye
+*   Sigo: map
+*   Sikofe: navigate
+*   Sina: ugly
+*   Siwa: sad tear/cry
+*   Ska: sky
+*   Skada: fly
+*   Ski: High tone/pitch
+*   Slo: crawl
+*   Smeda: smell
+*   Smeta: it smells like
+*   Snafi: frog
+*   So: death
+*   Sona: tie
+*   Sota: moment after death
+*   Soto: last words
+*   Sta: stomach
+*   Staba: ill
+*   Sunoku: chair
+*   Suta: take
+*   Suku: wood
+*   Taki: waterfall
+*   Tasme: new book smell
+*   Tata: fast
+*   Tei: is/test (most/least)
+*   Teila: table
+*   To: and
+*   Toda: return
+*   Tofada: workout/train
+*   Toke: the flow/fate/uncontrollable/natural order
+*   Toka: ok/sure/whatever
+*   Toto: slow
+*   Tri: tree
+*   Tsu: as
+*   Tsun: almost/nearly/not quiet
+*   Tsuki: full moon
+*   Tu: and
+*   Twada: cause
+*   Uki: pumped/fiery spirit
+*   Vaidao: canopy
+*   Vanto: aim
+*   Vazhu: waste
+*   Vi: script
+*   Vo: cool
+*   Vono: lava
+*   Wa: water
+*   Wa (ha): topic marker (pronunciation 'ha')
+*   Wada: flow
+*   Waleda: swim
+*   Walone: slip in water
+*   Wamako: round
+*   Washio: liquid
+*   Wawa: bad rain
+*   Wei: direction
+*   Wein: four legged mammal
+*   W'naba: fish on a stick
+*   W'taba: swamp (noun)
+*   Ya: idea/thought
+*   Yabata: popular
+*   Yada: think
+*   Yaga: like (admire)
+*   Yagi: same time
+*   Yai: feather
+*   Yantogi: teenager
+*   Yao: bless
+*   Yatsugi: aspire to be
+*   Yi: yes
+*   Yo: bow (weapon)
+*   Yu: 3/2PP (3rd/2nd person plural)
+*   Yunabe: torch
+*   Zha: re-
+*   Zhao: wheat
+*   Zhaoa: yellow
+*   Zhe: energy
+*   Zhi: fear
+*   Zho: morning
+*   Zhwelo: space below the local tree line
+
+### 2. Grammar
+
+*   **Sentence Order:** SVO (Subject - Verb - Object).
+*   **Verbs:**
+    *   Verbs do not take tense.
+    *   To form an infinitive from a finitive verb, add 'do' or change a final 'da' to 'do'. (e.g., if 'X' is a verb, 'X do' might be its infinitive form; if 'Yda' is a verb, 'Ydo' might be its infinitive).
+    *   The suffix `-ka` is listed as a future marker (FUT). This might be used to indicate future concepts despite the general rule of tenseless verbs.
+*   **Adjectives:**
+    *   Adjectives are placed *after* the noun they modify.
+    *   The particle `la` is attached to the *last* adjective in a series modifying a single noun.
+*   **Particles and Affixes:**
+    *   `-Ku`: Negative marker (NEG).
+    *   `Wa (ha)`: Topic marker.
+    *   `-Do`: Imperfect suffix (as listed in the table from the video).
+
+### 3. Number System
+
+The user has provided the following rules for the number system:
+
+*   **General Format:** Numbers are written using the prefix `nu-` (meaning 'number'), followed by a term "Igari" (whose origin is not specified in the video material), then the "letter" or sequence of syllables representing the number, and finally a suffix `-n`. Example: `nu-Igari letter-n`.
+*   **Base:** The system is Base 16.
+*   **Digits/Coefficients (0-15):** The following consonants (or initial parts of syllables) represent the hexadecimal digits 0 through 15. The order presented here is assumed from the list `ka...ja`:
+    *   k = 0
+    *   g = 1
+    *   t = 2
+    *   d = 3
+    *   n = 4
+    *   m = 5
+    *   h = 6
+    *   l = 7
+    *   r = 8
+    *   s = 9
+    *   f = 10 (hex A)
+    *   y = 11 (hex B)
+    *   w = 12 (hex C)
+    *   p = 13 (hex D)
+    *   b = 14 (hex E)
+    *   j = 15 (hex F)
+*   **Powers of 16 (Vowels):** Vowels indicate the power of 16 to which the coefficient is applied.
+    *   `a`: 16<sup>0</sup> (value 1)
+    *   `i`: 16<sup>1</sup> (value 16)
+    *   `o`: 16<sup>2</sup> (value 256)
+    *   `e`: 16<sup>3</sup> (value 4096)
+    *   `u`: 16<sup>4</sup> (value 65,536)
+    *   `ai`: 16<sup>5</sup> (value 1,048,576)
+    *   `ao`: 16<sup>6</sup> (value 16,777,216)
+    *   `kei`: 16<sup>7</sup> (value 268,435,456) (Note: 'kei' is specified, 'ei' might be expected for regularity).
+*   **Construction of Number Words ("letter"):**
+    A number is formed by syllables, each comprising a consonant (coefficient) and a vowel (power of 16). These are typically ordered from the highest power of 16 to the lowest.
+    For example, to represent 255 (decimal), which is FF in hexadecimal:
+    *   First F (15) is `j`, at position 16<sup>1</sup> (vowel `i`) -> `ji`
+    *   Second F (15) is `j`, at position 16<sup>0</sup> (vowel `a`) -> `ja`
+    *   So, 255 would be represented by the "letter" `jija`.
+    *   Written form: `nu-Igari jija-n`.
+*   **Explicitly Listed Number Syllables:** The user provided these lists:
+    *   `ka, ga, ta, da, na, ma, ha, la, ra, sa, fa, ya, wa, pa, ba, ja`
+        *   These correspond to the digits 0-15 respectively, combined with the vowel `a` (16<sup>0</sup>). So, `ka` = 0, `ga` = 1, ..., `ja` = 15.
+    *   `ki, ko, ke, ku, kai, kao, kei`
+        *   These appear to be examples of the consonant `k` (value 0) combined with the vowels for different powers of 16 (`i, o, e, u, ai, ao, kei`). As `k` represents 0, these syllables (`0 * 16^1`, `0 * 16^2`, etc.) would all evaluate to 0.
+*   **Specific Number Term:**
+    *   `nutobilan`: means "> 1000" (greater than one thousand). `Nu` is 'number'.
+
+This document should provide a foundational understanding of Obwa Kimo for translation purposes based on the provided materials and rules.
+
+NOTE: If an obwa kimo word does not exist for the word you wish to translate into, tell the user exactly which word(s) do not exist, along with the translation with the missing words in brackets.

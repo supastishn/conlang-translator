@@ -1,0 +1,515 @@
+Draconic - itræχnâħyq̇
+
+A Conlang by human1011
+
+tōrūlq̇ χħóq̇âdoq̇ ħáhuman1011
+
+
+
+
+
+
+⚠️ THIS LANGUAGE IS STILL A WIP ⚠️
+
+(this version was last updated 3/1/25; I’m working on a finished version!)
+
+
+1. Preface - qēr'aq̇
+I started creating this conlang mostly just for fun back in like January of 2024, but when I made a video about it in October, it kinda blew up out of nowhere. I've been delighted to see the enthusiasm behind it, and though I don't think anyone will actually bother learning Draconic, I hope you at least enjoy perusing through the documents!
+
+Idk how to write a reference grammar (and I wanted this to be at least partially accessible to those with little knowledge of linguistics), so the writing style is… well idk, let me know what you think as this is all still a work in progress. Never too late to change things!
+
+You may want to join the discord if you haven’t yet. See also the Draconic Dictionary.
+
+        In case you're interested in using Draconic and/or its supporting materials for your own creative project, feel free to do so as long as you give credit and it's not for commercial use. If you want to use it for commercial use, reach out to me directly and we can discuss! I also require that the work not be used for hateful, obscene, bigoted, or nefarious purposes. I really don't think that's actually gonna happen, but I just wanna cover all my bases!
+
+
+
+
+
+
+
+
+
+
+
+© 2025. This work is licensed under CC BY-NC-SA 4.0 
+
+2. Writing - χħátrūq̇
+2.1 Phonology and Romanization - sēχħúħáq̇ ħá'ē'ūq̇ si romanχħâxul
+The sounds of Draconic, as they are spoken by dragons in Universe, are given in the table below. The standard romanization of each sound is listed alongside each character. If the romanization is not present, the sound is written with the same letter as the phonetic symbol. The “pyric” (aka “emphatic”) sounds are highlighted in red.
+
+Consonants
+
+Bilabial
+
+Dental
+
+Alveolar
+
+Velar
+
+Uvular
+
+Pharyngeal
+
+Glottal
+
+Plosive
+
+
+/t/
+
+
+/k/
+
+/q/
+
+/ʡ/ q̇
+
+/ʔ/ '
+
+Affricate
+
+
+
+/tʃ/ c
+
+/kx/
+
+/qχ/
+
+
+
+“Pyric” Plosive
+
+
+
+
+
+/qħ/ qħ
+
+/ʡħ/ q̇ħ
+
+
+Fricative
+
+/ɸ/ f
+
+/θ/ th, /ð/ d
+
+/s/, /z/
+
+/x/, /ɣ/ g
+
+/χ/
+
+
+/h/
+
+“Pyric” Fricative
+
+
+
+
+
+/χħ/ χħ
+
+/ħ/
+
+
+Lateral
+
+
+/l/, /r/
+
+/ɬ/ ll
+
+
+
+
+
+Nasal
+
+/m/
+
+
+/n/
+
+/ŋ/
+
+
+
+
+
+Vowels
+
+Front/Central
+
+Back
+
+“Pyric”
+
+High
+
+/i/, /iː/ ī
+
+/u/, /uː/ ū
+
+/uˤ/ ú, /uˤː/ û
+
+Mid
+
+/e/, /eː/ ē, /ə/ y
+
+/o/, /oː/ ō
+
+/oˤ/ ó, /oˤː/ ô
+
+Low
+
+/a/, æ
+
+/ɑ/ a, /ɑː/ ā
+
+/ɒˤ/ á, /ɒˤː/ â
+
+This is the standard Romanization, and is what I will use in all documentation. Since <q̇> is hard to type on many keyboards, you can use any other modified <q> (e.g. <ꝗ>, <Q>, etc). However, because Draconic contains a number of special characters, there is a “simplified” romanization for general use so that you don't have to get a special keyboard, which will also be used for typing in the Draconic script once it is complete. The changes in the simplified romanization are as follows:
+
+<H> instead of <ħ> (this applies to all “pyric” consonants, e.g. <qH> instead of <qħ>)
+<X> instead of <χ> (this applies to all uvular consonants, e.g. <qX> instead of <qχ>
+<Q> instead of <q̇> (also, due to change #1, implies <QH> instead of <q̇H> or <q̇ħ>)
+<ng> instead of <ŋ>
+<ae> instead of <æ>
+Vowel doubling instead of macron for long vowels (e.g. <uu> instead of <ū>, etc.)
+“Pyric” vowels are capitalized instead of using acute accents (e.g. <A> instead of <á>)
+Long “pyric” vowels are doubled and capitalized instead of using circumflexes (e.g. <OO> instead of <ô>)
+        “Pyric” sounds are pronounced by humans with pharyngealization, as well as with aspiration for the consonants. Dragons, however, pronounce these differently. I call these sounds “pyric” because, canonically, I intended this language for fire breathing dragons, who would couple these sounds with a slight exhale of flame. However, if you would like to use this language for a personal project for a dragon species that does not breathe fire, you can simply replace any “pyric” sound with any other aspect of dragon physiology that is not replicable by humans. Maybe your dragons have ice breath, and so pronounce them with chilled air. Maybe your dragons pronounce them with a bit of smoke expelling from their noses. Or maybe you invent some new organ in your dragons' throats that resonates in a weird way to produce unique sounds. You're at liberty to create any new idea for sound that humans cannot produce. As such, the term “pyric” only really applies to fire breathing dragons, so I also use the term “emphatic” to more generally represent any sort of uniquely emphatic, draconic sound represented by these letters (ħ, χħ, qħ, q̇ħ, á, â, ó, ô, ú, and û). For more details on the phonology and allophones, see the dictionary (link in Preface).
+
+        As a final note, all words in Draconic must start with a consonant, but words that begin with the glottal stop <'> do not write it in. So, a word pronounced as <'oq> is written <oq>. This is the only part of the Romanization that is not strictly phonetic.
+
+2.2 WIP - Orthography
+        The Orthography is still a work in progress, and I should have it up in a few weeks. It is planned to be an alphabet with logographic elements that evolved from cuneiform-like hieroglyphs. Suggestions welcome!
+
+
+3. Noun Phrases - q̇ehōq̇ ħáhantoxōq̇
+3.1 Gender - χħēhāq̇
+The most important thing for understanding nouns in Draconic is understanding the gender system. Though we are often used to languages that use “masculine” and “feminine” as genders, that's not the only way to do it, and plenty of languages across the world define their grammatical genders completely independently of social genders. Draconic is one of those languages. There are 7 genders in Draconic, which are organized according to an animacy hierarchy. 7 may sound like a lot, but genders in Draconic are much simpler than in most European languages for two reasons. For one, most gender assignments are logical: you'll rarely have a situation where a word is classed into a gender you wouldn't expect. Monstrous beings are in the monstrous gender, magical things are in the magical gender, etc. Second, gender assignment is transparent: unlike languages like French, where there is often no way to tell what word is what gender based on its appearance other than rote memorization, in Draconic, you can always tell the gender of a noun based on the very last letter of the word. Below is a list of the 7 genders in order, the abbreviation in brackets, what sorts of nouns fall into the category, and what letter the gender corresponds with. The first four genders are collectively considered “animate,” and the last three “inanimate.” Some aspects of the grammar distinguish between animate and inanimate nouns.
+
+1 - Exalted [e.]: also called “Esteemed,” this gender encompasses anything that dragons would consider as intelligent, powerful, and worthy of respect. This includes most dragons, deities, and other supremely powerful beings. All Exalted nouns end with “n.”
+2 - Rational [r.]: this gender refers to any rational, sentient, and intelligent being. The most obvious example is humans, but it can also refer to other humanoids (elves, dwarves, etc.), to other intelligent creatures (angels, fiends, etc.), and to lesser dragons that do not qualify as Exalted (baby dragons, wyverns, etc.). It is considered extremely rude to refer to a greater dragon as Rational, not Exalted. All Rational nouns end with “f.”
+3 - Monstrous [mon.]: generally the same as Rational, but referring to creatures that are bestial or feral, typically hostile, but still sentient. This includes spirits, monsters, intelligent beasts, etc. A werewolf, for example, may be considered Rational in most circumstances, but Monstrous under the transformation of a full moon. All Monstrous nouns end with “ô,” or sometimes “ó.”
+4 - Irrational [i.]: generally refers to any non-sentient but animate being. Includes animals, plants, and sometimes mindless monsters, such as some undead. Can also refer to any thinking thing without a soul, like a robot. All Irrational nouns end with “l,” often “llūl.”
+5 - Magical [mag.]: refers to any magical object or energy, such as enchanted items, spells, mana, etc. Often used for non-animate things closely associated with the living (e.g. core body parts). Sometimes used for non-magical objects of high cultural significance. Can also refer to particularly powerful phenomena, even if technically non-magical (e.g. lightning). All Magical nouns end with “χ.”
+6 - Mundane [mun.]: refers to any non-magical object, typically physical. Also refers to manifestations of forces, particularly natural phenomena. Occasionally refers to particularly weak magical objects. All Mundane nouns end with “k,” often “rk.”
+7 - Abstract [a.]: refers to anything abstract or non-physical, such as ideas, concepts, and beliefs. Also often used to refer to collectives and generalizations. All Abstract nouns end with “q̇.”
+Often, a single root can be classed into different genders depending on context. For example, the root qūrax refers to things that are very tall. It can mean “altitude” in the Abstract (qūraxyq̇), “mountain” in the Mundane (qūraxyrk), “volcano” in the Magical (qūraxōχ), etc. Thus, learning just a single new root often results in learning a bunch of new terms, very often with related meanings that fit the gender. Plus, this system is largely productive, which means you can coin new words with it all the time. For example, you can usually take any root and put it in the Abstract to make a noun meaning the general concept of the root. So if the root lli means “sister,” then lliq̇ could mean the concept/idea of a sister, or a bond between sisters, or sisterhood. Even if a word is not available in the dictionary, feel free to play around and coin new words as long as 1) the meaning logically follows from the root and gender, and 2) the meaning can be easily inferred from the context in which you use it.
+
+        Note that sometimes, words may historically diverge from what they originally meant, so you may end up with multiple definitions under the same word that don't really make sense any more. The root trotry means “giggle” in the Abstract (trotryq̇), but “shark” in the Irrational (trotryllūl). These two senses seem entirely unrelated; however, the root trotry originally meant “toothy,” or “having many teeth.” Abstractly, this was interpreted as showing your teeth, smiling, and eventually giggling. But in the Irrational, this was taken to be a toothy animal: a shark. So words that have etymological connections may have evolved to have their related definitions seem more opaque.
+
+        The manifestation of each root in each gender is a little more complicated than a simple suffix. Draconic has four declensions, which each take different suffixes depending on the gender. Every root is associated with a different declension as listed in the Dictionary (linked in Preface). For example, the basic Draconic suffix can be -ēn, -æn, or -ħán, depending on the declension. So the root tutuŋ is declension 3 and becomes tutuŋēn, the root hāxær is declension 2 and becomes hāxæræn, and the root mân is declension 4 and becomes mânħán. There is no rule for how to predict what declension a word will be in, though there are some generalities: declension 4 is often associated with Emphatic sounds, and declensions 1 and 3 are the most common, especially in roots ending in vowels. Typically, newly derived words or loanwords will be placed into declension 1. Sometimes, two roots can look identical but have different meanings in different declensions. The table of all the suffixes given a declension is in the Dictionary.
+
+3.2 Number & Case - ēlceloq̇ si kæmōq̇
+        Nouns also decline for number and case. There are three grammatical numbers: singular, dual, and plural. For mass nouns and nouns in inanimate genders (Magical, Mundane, and Abstract), there is only a singular/plural distinction. Pronouns in the language reflect two cases: Subject and Oblique (the same difference between “he” and “him,” “I” and “me,” etc.). There are two separate grammatical cases for all other nouns: Directive and Recessive. The difference between these two is a little complicated: the Directive form of a noun is the “default” form and is used in most situations, including basic sentence structure. The Recessive form is used to mark indirect word order or obviation. Nine times out of ten, you can just use the Directive without thinking about it; more on the Recessive is discussed in section 5.2.
+
+Nouns will have different forms depending on gender, number, and case. Take, for example, trærūn, a declension 4 root meaning “uncle.” Below is the suffix table for declension 4 Exalted nouns:
+
+Exalted (4):
+
+Singular
+
+Dual
+
+Plural
+
+Directive
+
+-ħán
+
+-ħóχħón
+
+-q̇yn
+
+Recessive
+
+-q̇ân
+
+-ħûn
+
+-q̇yrn
+
+
+For example, the suffix -q̇yn simultaneously encodes that the word is Exalted, the word is plural, and the words is the Directive case. So if we apply the root trærūn, we get:
+
+trærūn (4) Exalted Forms
+
+Singular
+
+Dual
+
+Plural
+
+Directive
+
+trærūnħán
+
+trærūnħóχħón
+
+trærūnq̇yn
+
+Recessive
+
+trærūnq̇ân
+
+trærūnħûn
+
+trærūnq̇yrn
+
+Here we see how we could say “uncle,” “(2) uncles,” and “(more than 2) uncles,” in both cases. The suffixes will be different depending on declension and gender. A full set of all suffixes for all genders and declensions is available in the Dictionary (linked in the Preface).
+
+3.3 Adjectives - sē'adūq̇ ħáhantoxōq̇
+Adjectives can be in the form of individual words or prepositional phrases. As individual words, they always come directly after the noun which they modify, and agree in gender, number, and case. They also have declensions, and take the exact same set of suffixes as nouns. For example, the adjective texyll (declension 1) means “thick.” Notice how it takes different forms to match the noun it describes:
+
+hāxærô texyllô, “thick snake”
+kēxerk texyllerk, “thick wing”
+qūraxōχ texyllōχ, “thick volcano”
+thō'ûq̇ô texyllōq̇ô, “thick trolls
+xærâħúħáq̇ texyllyq̇, “thick wood”
+Since adjectives follow their own declensions, the suffixes they take may have different forms than the nouns they describe. The key is that the suffixes must agree in gender/number/case, not necessarily be identical in form.
+
+All adjectives have a separate “Elative” form, which declines just like the regular form. This form can be used as a comparative (meaning “more”), superlative (meaning “most”), or an augmentative (meaning “very”). The Elative is formed differently for every adjective: generally, it is formed by either reduplicating the first consonant and vowel of the adjective (e.g. fūfū “tinier, tiniest” from fū “tiny”) or by elongating the first vowel (e.g. llāz “drier, driest” from llaz “dry”), but there are many irregulars (e.g. thorx “very fragile” from thox “fragile”).
+
+Adjectives can also be derived from prepositional phrases. These must always be directly adjacent to the noun phrase, typically after but sometimes before the noun. To say “toothless dragon,” for example, one would literally saying “dragon without-teeth” or “without-teeth dragon.” Using prepositional phrases like this demands no agreement between the adjective and the noun.
+
+3.4 Determiners - soqaχōq̇
+Determiners, also known as “quantifiers,” are words that specify what you're talking about (e.g. “the,” “this,” “those”), or that specify a quantity (e.g. “some,” “many,” “few”). For the most part, they agree in gender, but not in number or case. They come directly before the noun which they modify, and take their own unique set of suffixes. Determiners do not have declensions, and the table of determiners is available in the Dictionary (linked in Preface). Also note that many determiners require a certain form of the noun they describe, typically a certain number. This information is also in the Dictionary.
+
+There are four irregular determiners: the first three are the words for “the,” “this,” and “that.” Unlike the other determiners, these also decline for singular vs plural. The last irregular determiner is q̇e which means “no” or “none.” This word is unique in that it does not decline whatsoever; no matter the gender, number, or case, you simply put q̇e before a noun to say there is none of it.
+
+
+
+
+4. Verb Phrases - q̇ehōq̇ ħá'āxkōq̇
+4.1 Verb forms - ūlōq̇ ħá'āxkōq̇
+Most draconic verbs have 2 basic forms: the simple aka “Episodic” (sometimes abbreviated ep.) and the “Gnomic” (sometimes abbreviated gn.). The simple stem is the default, dictionary form of the verb, and is the stem from which other forms are built. There is no way to perfectly predict what the Gnomic form of a verb will look like based on its simple stem: the general rule of thumb is that the Gnomic is the same as the Episodic, just with the first consonant and vowel reduplicated. For example, χall “to bite” has the gnomic form χaχall. Another very common formation of the Gnomic is to lengthen the first vowel. For example, oq “to fly” has the Gnomic form ōq. However, there are plenty of irregular verbs: llina “to work hard” has the Gnomic form llinīna.
+
+The Episodic is used to refer to specific events and temporary states, whereas the Gnomic is used to refer to general truths, things that last a very long time, or things that recur regularly/habitually. If you are familiar with the difference between estar and ser in Spanish, this is kind of the same thing, just extrapolated to all verbs instead of just “to be.” Below is a list of some examples demonstrating the differences between the episodic and the gnomic:
+
+I eat (ep.) meat - “I am eating meat”
+I eat (gn.) meat - “I regularly eat meat; I am not a vegetarian”
+He is (ep.) happy - “He is happy right now; he's been happy recently”
+He is (gn.) happy - “He is generally happy; he is a joyful person”
+Do you work (ep.)? - “Are you working right now?”
+Do you work (gn.)? - “Are you in the habit of working? Are you employed?”
+She is strong (ep.) - “She is strong right now; she demonstrates strength”
+She is strong (gn.) - “She is intrinsically strong; she has long been strong”
+Power corrupts (ep.) - “Power corrupts in this instance; power is currently corrupting”
+Power corrupts (gn.) - “Power always corrupts; power is known to corrupt”
+        Draconic forms the past tense with a suffix. The standard suffix is -ad, but there are many irregular verbs, like χall “to bite” becoming χad, or fāl “to tie” becoming fāled. Another common strategy with words ending with vowels is to lengthen the vowel and add -d, like hisi “to whisper” becoming hisīd, or χōzi “to shrink” becoming χōzīd, but this rule too has exceptions (e.g. χōlliχħo “to announce” becoming χōlliχħād). Regardless, the past tense form always ends in -d.
+
+        Verbs conjugate for person, gender, and number, and display polypersonal agreement, which means they agree with both the subject and object. Verbs take prefixes in accordance with the subject of the verb, and suffixes in accordance with the direct object of the verb. If a verb has no direct object, it takes no suffix. If a verb's direct object refers to or describes the same noun as the subject (e.g. “I love myself,” “He is happy,” “They fought each other”), then the object suffix is usually omitted. The exception is reflexive verbs, which do take an object suffix that agrees with the subject prefix. These conjugational affixes are entirely regular, and a full list of them can be found in the Dictionary (linked in Preface). Due to the extensive person agreement in the verbs, Draconic is a pro-drop language, and pronouns are rarely used outside of specific situations.
+
+4.2 Word Order - fōlntyq̇ ħáχħâllōq̇
+        The default word order is VSO: verb-subject-object. However, this placement of the verb in this word order is very fragile, and sentences will regularly switch to SVO in a number of situations. If a speaker wants to put emphasis on the subject of a sentence, they can choose to bring the noun phrase to the front of the sentence. Plus, the verb can often come after the subject when it is complemented by an adverb at the beginning of the clause (adverb-subejct-verb-object).
+
+In addition to these optional syntactic switches, there are some situations where VSO is strictly ungrammatical. For example, a subject pronoun can never come after the verb it acts upon (though this is rarely a problem since Draconic is pro-drop). The same goes for interrogative pronouns, which always precede the verb. Another example is when using auxiliary verbs: the auxiliary must come before the subject, and the lexical verb must come after it (xSVO word order).
+
+4.3 Adverbs and Auxiliaries - sē'adūq̇ ħá'āxkōq̇ si siŋōq̇
+        Adverbs can appear in the form of individual words or prepositional phrases. As prepositional phrases, they typically occur after the verb, often at the end of the clause. When using multiple prepositional adverbs in a row, the order is typically adverbs of place, then manner, then time (similar to English). As individual words, adverbs can appear in multiple places. They can be placed at the end of the clause, functioning similarly to prepositional phrases. However, it's more common to find them directly before the verb they describe. If the verb would otherwise be the first word in the clause, this typically triggers a word order switch, leaving the adverb at the beginning and the rest of the clause becoming SVO. Some (not all) of these types of adverbs also have Elative forms, which pattern the same as Elative adjectives. They imply comparative, superlative, or augmentative meanings, and are formed similarly (reduplication or vowel elongation, though there are many irregulars).
+
+Verbs can take a number of different auxiliaries to encode optional extra information about the action, typically modal or aspectual. When a phrase contains an auxiliary structure, the auxiliary verb takes the subject prefix, and the lexical verb takes the object suffix if applicable. Additionally, the lexical verb is always placed in the simple form. If possible, the auxiliary verb takes any tensual or aspectual inflection. However, many so-called “defective auxiliaries” cannot inflect for tense or aspect. Some auxiliaries are indistinguishable in form from verbs, but can be differentiated through syntax (see section 6.2).
+
+Finally, many verbs can themselves become auxiliaries. This is done when serializing two different verbs that share a subject. So a sentence like “the human tries to cook” could be translated as tolliseχħû  tyf  kālôŋlef  foxeχ, literally “tries the human cook.” Verbs can only be made auxiliaries in this way if they are transitive and could otherwise take the noun form of the following verb as a direct object.
+
+
+
+
+5. Animacy & Agency - nānoq̇ si āxaχyq̇
+5.1 Hierarchy - χħēhāq̇
+Draconic has a strict animacy hierarchy, where nouns of higher animacy must precede words of lower animacy in a sentence. This animacy hierarchy is the exact same as the 7 genders, where Exalted is the most animate and Abstract is the least animate. So in a sentence mentioning a dragon, a human, and a mouse, the dragon must be the first noun in the sentence, followed by the human, followed by the mouse. This applies to all nouns (except interrogative pronouns) and only applies to the first instance of using a noun within a sentence.
+
+However, Draconic clauses (in declarative sentences) also display a presumptive agency hierarchy, where nouns with more agency are presumed to come before nouns with less agency within the same clause: i.e., subjects come before objects, and direct objects before indirect objects. As such, speakers must employ linguistic strategies in order to maintain the animacy hierarchy and minimize ambiguity from the agency hierarchy.
+
+One such strategy involves placing verbs into the passive voice to keep the most animate noun at the beginning of the sentence. For example, if a speaker wanted to say “the man struck the dragon,” they may be inclined to instead say “the dragon was struck from the man” in order to keep the Exalted noun as the subject (the agent of a passive verb is indicated with “from,” not “by”). Speakers may also shift prepositional phrases around to maintain this hierarchy. If a speaker wanted to say “the dragon gave the coin to the human,” a speaker could say “the dragon gave to the human the coin.” Another strategy is to insert an extra clause at the beginning to front the more animate noun. Instead of saying “the man struck the dragon,” a speaker may instead say something like “the dragon was flying, and the man struck her.” This satisfies the animacy hierarchy by placing the most animate noun at the beginning of the sentence, and it satisfies the agency hierarchy by putting the highest agency noun at the beginning of the clause.
+
+5.2 Directive & Recessive - fūrχoq̇ si ūkoq̇
+However, the aforementioned strategies are sometimes seen as poetic, flowery, or even rude by native speakers. The first word in a sentence is typically viewed as the most important, so speakers feel inclined to keep high animacy nouns at the beginning. The passive voice is one way to do this, but speakers often conceive of the passive voice as indicating weakness, which they don't want to ascribe to high animacy nouns. Therefore, the most common strategy to resolve animacy violations is with the Recessive case. The primary function of the Recessive is to indicate that a word has less agency than would be expected of its syntactic placement. For example, the sentence “the man struck the dragon” could be said as “the dragon-(Rec.) struck the man.” Even though agency hierarchy suggests that the dragon should be the subject since it comes first in the sentence, placing the dragon in the Recessive indicates that the word has less agency than would be expected, so the man is presumed to be the subject instead.
+
+This is a tough concept to wrap your head around. It's similar to Direct-Inverse alignment, where you mark a sentence that violates expected word order, but it only marks individual nouns that are out of hierarchical order. Below are a few examples of sentences in English with two possible strategies for translation: the first using one of the aforementioned strategies, and the latter using the recessive
+
+English Sentence
+
+(ungrammatical in Draconic)
+
+Draconic Translation
+
+(without Recessive)
+
+Draconic Translation
+
+(with Recessive)
+
+–A fire warms a dragon
+
+
+–*toħhāreχtón qaχhuχ træχonēn
+
+–literally “a dragon is warmed from a fire”
+
+–ten’oryħ træχonēn hāreχ huqaχhuχ
+
+–literally “a dragon(Rec.) warms a fire”
+
+–toħhāreχtón træχonēq̇ân qaχhuχ
+
+–A human struck a dragon with an arrow
+
+
+–*tolliqχâdtón kālôŋlef træχonēn lleŋlliqatyk
+
+–A dragon was flying, and a human struck her with an arrow
+
+–tenlūrxed træχonēn coktizad, si kālôŋlef tolliqχâdtón lleŋlliqatyk
+
+–A dragon(Rec.) struck a human with an arrow
+
+
+–tolliqχâdtón træχonēq̇ân kālôŋlef lleŋlliqatyk
+
+–A mouse gives prisoners to a dragon
+
+–*tócusyq̇úr qūħcūl ōχfāled’yf thūtræχonēn
+
+–To a dragon prisoners are given from a mouse
+
+–thūtræχonēn tyf’oryħ ōχfāled’yf syq̇ huqūħcūl
+
+–To a dragon prisoners(Rec.) gives a mouse
+
+–thūtræχonēn tócusyq̇úr ōχfāledūlef qūħcūl
+
+The second use of the Recessive is to mark the obviative. This is not done often in Draconic, and is typically reserved for cases of ambiguity when there are two referents of the same gender. Obviation in Draconic works similarly to how it works in Blackfoot: in cases of obviation, the Recessive will refer to the referent that was not most recently the subject. Distal demonstratives can indicate obviation in the same way.
+
+
+6. Correlatives - qāxōq̇
+        “Correlatives” refer to a series of pronouns that correspond to each other. They are used in more complex sentence structure, such as in questions and subordinate clauses, where the referent must be tracked and kept a consistent gender. The full table of correlatives is in the Dictionary (linked in Preface)
+
+6.1 Questions - tharχaħôq̇
+        Yes or no questions are formed by simply putting the particle syr at the beginning of indicative sentences, with no other changes, not even triggering a word order switch. However, all other questions have more difficult formation strategies. Henceforth, “all questions” refer to all questions except yes or no questions.
+
+        All questions must be expressed through a noun of some sort. English questions like “how many do you want,” “why are you sad,” “when are we arriving,” and “how quickly can you run” must all be rephrased as something like “what number do you want,” “for what reason are you sad,” “what time are we arriving,” and “with how much quickness can you run.” Note that interrogative pronouns like “what, who, whom” and “which” all qualify as nouns.
+
+        Draconic has two types of interrogative pronouns which all questions use: gendered, and plain. Gendered interrogative pronouns work in the same way as a sole “who” or “what” in English: “who wants to eat,” “what is that,” etc. These pronouns inflect for all seven genders, so note that “who” referring to dragons and “who” referring to humans are different words. Gendered interrogatives simply substitute for the noun in a sentence, but always come before the verb. Thus, the sentence order will be SVO or OVS depending on whether the pronoun is the subject or object. Different forms are used for the subject and the object (the same difference as who/whom), and the agency hierarchy does not apply to interrogatives.
+
+        Plain interrogative pronouns work more like adjectives which describe the noun through which the question is expressed. Compare “what did you prepare” with “what meal did you prepare.” The first sentence would use a gendered interrogative, but the second sentence would use a plain interrogative. Plain interrogatives do not inflect for all 7 genders and only differentiate between animate and inanimate. Just like gendered interrogatives, plain interrogatives (and the noun they describe) will come before the verb and place the sentence in SVO or OVS. They also have different forms for the subject and the object.
+
+6.2 Demonstrative Pronouns - hantoxōq̇ fēlōq̇
+        The proximal and distal demonstratives (mentioned in section 3.4) double as demonstrative pronouns, just like English “this” and “that.” In addition to frequent deictic use, they also function as conjunctions for verbs that take subordinate clauses. In Draconic, verbs with different subjects cannot serialize, so all such sequences of multiple verbs are nested within subordinate clauses separated by demonstrative pronouns. For example, English “I wish you’d realize he knows she’s smart” would be something like “I wish that you’d realize that he knows that she’s smart.” The singular of the demonstrative is always used.
+
+        Both the proximal and distal can be used largely interchangeably, though there are some connotation differences. The proximal is more often used for words closer or more related to the subject, and the distal is preferred in situations that are not as concrete/not yet realized (a kind of optional subjunctive). The distal can also indicate obviation in instances of two referents with the same gender.
+
+The gender of the demonstrative pronoun must match the subject of the following subordinate clause. Likewise, the verbs in the head clause and the subordinate clause respectively take subject and object affixes agreeing with the demonstrative pronoun, in theory. However, if the head verb is directly adjacent to the demonstrative pronoun, the affix is optional, usually dropped. Moreover, the subject affix on the subordinate verb is almost always dropped unless this would cause ambiguity. Thus, gender tracking is done largely through the demonstratives rather than verbal affixes when there are subordinate clauses.
+
+6.3 Relative Clauses - q̇ehōq̇ qæxōq̇
+Relative noun clauses in Draconic are formed using correlative structures, similar to Hindi, which means you need both a relative pronoun and a correlative pronoun. The sentence “I love men who cook” would be structured something like “I love which men who cook.” Instead of just using a relative pronoun (who) to introduce the relative clause, we use a correlative pronoun (which) to mark the noun we are describing, and then use a relative pronoun (who) to introduce the relative clause. The pronouns must match in gender, though not necessarily case, as the object of the head clause may be the subject of the relative clause, and vice versa. Relative clauses typically follow head clauses, but can be shuffled around, especially to resolve animacy hierarchy issues.
+
+The aforementioned structure is mandatory for restrictive relative clauses in Draconic, but optional for non-restrictive relative clauses. In such clauses, the correlative pronoun can be omitted altogether, and the relative pronoun then takes either the animate or inanimate plain form. Fused relatives can also be constructed in Draconic. Instead of using a gendered correlative before a noun, in fused relatives, an animate/inanimate plain correlative takes the position of the noun in the head clause. The relative pronoun functions as in non-restrictive relative clauses.
+
+
+
+7. WIP - Miscellaneous - selleŋahyq̇
+
+Still working on more stuff, especially with numbers, pragmatics, and formality!
+
+
+7.1 Numbers - q̇ħónllaħôq̇
+        Draconic uses a base-8 number system. The following list shows the numbers from 0-15:
+
+0 - q̇em
+
+1 - χu
+
+2 - eχ
+
+3 - fo
+
+4 -  se
+
+5 - aq
+
+6 - qah
+
+7 - hog
+
+8 - xēχ
+
+9 - χyz
+
+10 - ez
+
+11 - fyz
+
+12 - selz
+
+13 - agz
+
+14 - qaz
+
+15 - hyz
+
+Below are the multiples of 8 from 16-64:
+
+16 - sē(h)
+
+24 - fōrz
+
+32 - sēlz
+
+40 - qāz
+
+48 - qōz
+
+56 - hōz
+
+64 - lān
+
+Note that 16 contains an h in parentheses. This means the h only appears in compounds (i.e., numbers 17-23). To form any number from 17-63 that is not a multiple of eight, the largest multiple of 8 that is smaller than the desired number is used as a base and then suffixed with whatever number would need to be added to reach the desired number. Some of the suffixed forms of the numbers 1-7 are different from their independent forms, like so:
+
+1 - -u
+
+2 - -eχ
+
+3 - -o
+
+4 -  -ys
+
+5 - -aq
+
+6 - -ga
+
+7 - -yg
+
+Thus, the number 35 would be decomposed into 32 + 3, yielding sēlzo. The only exceptions to this rule are the numbers 20, 22, 30, and 38, which are sēs, sēχa, fōrga, and sēlga, respectively.
+
+        Numbers larger than 64 are split up into a multiple of 64 and the remainder separated by si, “and.” So a number like 157 would be broken up into 128 + 29, which is equivalent to 2*64 + 24+5, yielding eχ lān si fōrzaq. This strategy works up to 511, after which words are additionally broken up into multiples of 512. This continues for all powers of 8 up to 262,144. The following are the words for the powers of 8 above 64:
+
+512 - lāran
+
+4,096 - xeglārn
+
+32,768 - táħû
+
+262,144 -  torħû
+
+Thus, a number like 878,439 would be split up as 3*262,144 + 2*32,768 + 6*4,096 + 3*512 + 5*64 + 32+7: fo torħû, eχ táħû, qah xeglārn, fo lāran, aq lān, si sēlzyg (I’ve added commas for ease of parsing, but these would not actually be written).
+
+        When using numbers to describe nouns, numbers will be treated as either determiners or adjectives depending on whether they’re being used as cardinals or ordinals, respectively. When used as cardinals (one book, two books, etc.), they work the same as all other determiners. The number will directly precede the noun, agree with the noun in gender, and the last number of the sequence will take the demonstrative suffix. For example, “eighty five dragons” would be lān si sēhaqhyn træχonē’yn. When used as ordinals (first book, second book, etc.), numbers are treated as adjectives. They will directly follow the noun, but only some numbers will agree in gender and case: only the portion of the number smaller than 64 as well as powers of 8 take agreement. All numbers are treated as first declension, and the described noun must be singular and definite. For example, “the one thousand four hundred fiftieth dragon” would be tyn træχonēn eχ lāranēn, qah lānēn, si qāzeχēn.
+
+8. WIP - Written Sample - χħátrūrk
+        
+
+        Still working on a translation of The North Wind and the Sun :P
+
+
+
+

@@ -1,0 +1,2291 @@
+﻿## The Diacritical Waluigi Language (DWL) - Detailed Specification
+
+
+**Introduction:**
+The Diacritical Waluigi Language (DWL) is a minimalist, yet surprisingly expressive, constructed language. It is built upon the foundational morpheme `wæ`, which, when combined with a rich system of diacritics, prefixes, suffixes, and compounding, allows for a wide range of semantic and grammatical functions. DWL is characterized by its fluid parts of speech, Object-Subject-Verb (OSV) word order, and a thematic connection to the expressive interjections of the character Waluigi. The language prioritizes context and the inherent flexibility of its core components.
+
+
+---
+
+
+## I. Phonology & Orthography (Brief Overview)
+
+
+While DWL is primarily a conceptual and written language for this specification, a basic understanding of its sound and writing is helpful.
+
+
+*   **Core Morpheme:** `wæ`
+    *   Pronunciation: Intended to be similar to Waluigi's characteristic interjection. A common realization might be /wæh/ or /wɛː/. The final /h/ is often subtle or dropped, especially when followed by other morphemes.
+*   **Diacritics:** These primarily modify the semantic content of `wæ` but may also subtly influence intonation or stress in a spoken form. Their visual representation is key.
+    *   Acute (´), Grave (`), Circumflex (^), Macron (¯), Breve (˘), Tilde (~), Diaeresis (¨), Dot Above (˙), Dot Below (.), Hook Above (̉), Caron (ˇ), Cedilla (¸).
+*   **Suffix `æ`:** Pronounced as the vowel in `wæ`. When forming suffixes like `-ǽ`, the diacritic applies to this suffix vowel.
+*   **Stress:** Generally, the primary stress falls on the `wæ` morpheme that carries the core semantic load of a word. In compounds, the first meaningful `wæ` often receives primary stress, with secondary stress on subsequent ones. Prefixes are typically unstressed or lightly stressed.
+*   **Intonation:**
+    *   Statements usually have a falling intonation at the end.
+    *   Questions marked by `wæ̃̈` often have a rising intonation on the particle itself or the final syllable of the sentence.
+*   **Orthography:** DWL uses the Latin alphabet with the specified diacritics. Consistency in diacritic placement is crucial for meaning.
+
+
+---
+
+
+## II. Core Vocabulary & Morphemes
+
+
+The entire lexicon of DWL is derived from `wæ` and its modifications.
+
+
+### A. Core Semantic `wæ`-forms (Base Words)
+
+
+These are the fundamental building blocks. Each can function as a noun, verb, adjective, or adverb depending on context and grammatical position. Their meanings are broad and often metaphorical.
+
+
+1.  **`wæ`** (no diacritic)
+    *   **Core Meaning:** Thing, entity, concept, being, it, the basic unit of existence or discourse. The most neutral and general form.
+    *   **As Noun:** "thing," "object," "matter," "concept," "it" (impersonal).
+        *   *Example:* `wæ` (a thing)
+    *   **As Verb:** "to be a thing," "to exist (neutrally)," "to pertain to."
+        *   *Example:* `wæ wæ̃ wæ.` (Thing, I, am-thing/exist.) -> "I am."
+    *   **As Adjective:** "general," "basic," "such."
+        *   *Example:* `wæ wæ` (a general thing)
+    *   **As Adverb:** "generally," "basically."
+
+
+2.  **`wǽ`** (acute accent: ´)
+    *   **Core Meaning:** Action, doing, making, causing, going, becoming, dynamism, energy, initiation.
+    *   **As Noun:** "action," "deed," "event," "cause," "process," "energy."
+        *   *Example:* `wǽ` (an action)
+    *   **As Verb:** "to do," "to make," "to act," "to cause," "to go," "to become."
+        *   *Example:* `wæ wæ̃ wǽ.` (Thing, I, do.) -> "I do the thing."
+    *   **As Adjective:** "active," "dynamic," "causal," "new."
+        *   *Example:* `wǽ wæ` (an active thing)
+    *   **As Adverb:** "actively," "causally."
+
+
+3.  **`wæ̀`** (grave accent: `)
+    *   **Core Meaning:** State, being, quality, having, existence, essence, passivity, reception.
+    *   **As Noun:** "state," "quality," "essence," "possession," "existence."
+        *   *Example:* `wæ̀` (a state)
+    *   **As Verb:** "to be (in a state)," "to have," "to exist (as a quality)," "to possess."
+        *   *Example:* `wæ̂ wæ̃ wæ̀.` (Goodness, I, have/am-in-state-of.) -> "I have goodness / I am good."
+    *   **As Adjective:** "stative," "passive," "essential," "existent."
+        *   *Example:* `wæ̀ wæ` (an existing thing)
+    *   **As Adverb:** "statively," "passively."
+
+
+4.  **`wæ̂`** (circumflex accent: ^)
+    *   **Core Meaning:** Good, positive, yes, like, happy, want, agree, benefit, pleasure, approval.
+    *   **As Noun:** "goodness," "positivity," "happiness," "desire," "agreement," "benefit."
+        *   *Example:* `wæ̂` (goodness)
+    *   **As Verb:** "to be good," "to like," "to make good," "to want," "to agree," "to benefit."
+        *   *Example:* `wæ̈ wæ̃ wæ̂.` (You, I, like.) -> "I like you."
+    *   **As Adjective:** "good," "positive," "happy," "desirable," "agreeable."
+        *   *Example:* `wæ̂ wæ` (a good thing)
+    *   **As Adverb:** "well," "positively," "happily."
+
+
+5.  **`wǣ`** (macron: ¯)
+    *   **Core Meaning:** Big, great, important, many, much, long (time/duration), augment, increase, intensity.
+    *   **As Noun:** "size," "greatness," "importance," "multitude," "duration," "intensity."
+        *   *Example:* `wǣ` (greatness)
+    *   **As Verb:** "to be big/many," "to increase," "to augment," "to intensify," "to last long."
+        *   *Example:* `wæ wæ̃ wǣ.` (Thing, I, make-big/increase.) -> "I enlarge the thing."
+    *   **As Adjective:** "big," "great," "important," "many," "much," "long."
+        *   *Example:* `wǣ wæ` (a big thing)
+    *   **As Adverb:** "greatly," "very," "much," "for a long time."
+
+
+6.  **`wæ̆`** (breve: ˘)
+    *   **Core Meaning:** Small, little, few, short (time/duration), diminish, decrease, subtlety.
+    *   **As Noun:** "smallness," "littleness," "scarcity," "brevity," "subtlety."
+        *   *Example:* `wæ̆` (smallness)
+    *   **As Verb:** "to be small/few," "to decrease," "to diminish," "to be short."
+        *   *Example:* `wæ wæ̃ wæ̆.` (Thing, I, make-small/decrease.) -> "I diminish the thing."
+    *   **As Adjective:** "small," "little," "few," "short," "subtle."
+        *   *Example:* `wæ̆ wæ` (a small thing)
+    *   **As Adverb:** "little," "slightly," "briefly."
+
+
+7.  **`wæ̃`** (tilde: ~)
+    *   **Core Meaning:** I, me, my, self, ego, the speaker's identity.
+    *   **As Noun:** "self," "ego," "identity."
+        *   *Example:* `wæ̃` (the self)
+    *   **As Pronoun:** "I," "me."
+        *   *Example:* `wæ wæ̃ wǽ.` (Thing, I, do.)
+    *   **As Adjective (Possessive):** "my," "mine," "of self." (When preceding a noun)
+        *   *Example:* `wæ̃ wæ` (my thing)
+    *   **As Verb:** "to be oneself," "to self-actualize."
+
+
+8.  **`wæ̈`** (diaeresis: ¨)
+    *   **Core Meaning:** You, your (singular/plural), the addressee.
+    *   **As Noun:** "you-ness," "the other (in dialogue)."
+    *   **As Pronoun:** "you" (singular or plural).
+        *   *Example:* `wæ wæ̈ wǽ.` (Thing, you, do.)
+    *   **As Adjective (Possessive):** "your," "yours." (When preceding a noun)
+        *   *Example:* `wæ̈ wæ` (your thing)
+    *   **As Verb:** "to be you," "to address."
+
+
+9.  **`wæ̇`** (dot above: ˙)
+    *   **Core Meaning:** He, she, they, them, their, it (animate or specific 3rd person), the other (distinct from speaker/addressee).
+    *   **As Noun:** "otherness," "the third party."
+    *   **As Pronoun:** "he," "she," "it" (animate/specific), "they," "them."
+        *   *Example:* `wæ wæ̇ wǽ.` (Thing, they, do.)
+    *   **As Adjective (Possessive):** "his," "her," "its," "their." (When preceding a noun)
+        *   *Example:* `wæ̇ wæ` (their thing)
+    *   **As Verb:** "to be other," "to refer to a third party."
+
+
+10. **`wæ̣`** (dot below: .)
+    *   **Core Meaning:** This, here, now, proximal (near speaker in space/time), concrete, tangible, present.
+    *   **As Noun:** "thisness," "hereness," "nowness," "presence."
+    *   **As Demonstrative Adjective/Pronoun:** "this," "these."
+        *   *Example:* `wæ̣ wæ` (this thing); `wæ̣ wæ̃ wǽ.` (This, I, do.)
+    *   **As Adverb:** "here," "now."
+        *   *Example:* `wæ̃ wæ̣ wǽ.` (I, here, do.) -> "I do it here."
+    *   **As Verb:** "to be here/now," "to presentiate."
+
+
+11. **`wæ̉`** (hook above: hỏi accent)
+    *   **Core Meaning:** That, there, then, distal (away from speaker in space/time), abstract, less tangible, past/future relative to a 'now'.
+    *   **As Noun:** "thatness," "thereness," "thenness," "absence (from here)."
+    *   **As Demonstrative Adjective/Pronoun:** "that," "those."
+        *   *Example:* `wæ̉ wæ` (that thing); `wæ̉ wæ̃ wǽ.` (That, I, do.)
+    *   **As Adverb:** "there," "then."
+        *   *Example:* `wæ̃ wæ̉ wǽ.` (I, there, do.) -> "I do it there."
+    *   **As Verb:** "to be there/then," "to make distant."
+
+
+12. **`wæ̌`** (caron/hacek: ˇ)
+    *   **Core Meaning:** See, know, understand, perceive, sense, mind, truth, awareness, cognition, intellect.
+    *   **As Noun:** "knowledge," "perception," "understanding," "truth," "mind," "awareness."
+        *   *Example:* `wæ̌` (knowledge)
+    *   **As Verb:** "to see," "to know," "to understand," "to perceive," "to sense," "to realize."
+        *   *Example:* `wæ wæ̃ wæ̌.` (Thing, I, know.) -> "I know the thing."
+    *   **As Adjective:** "known," "perceived," "true," "mental," "aware."
+        *   *Example:* `wæ̌ wæ` (a known thing)
+    *   **As Adverb:** "knowingly," "truly," "perceptibly."
+
+
+13. **`wæ̧`** (cedilla: ¸)
+    *   **Core Meaning:** Say, speak, communicate, name, word, message, sound, expression, language.
+    *   **As Noun:** "word," "speech," "message," "sound," "name," "language."
+        *   *Example:* `wæ̧` (a word)
+    *   **As Verb:** "to say," "to speak," "to communicate," "to name," "to sound."
+        *   *Example:* `wæ wæ̃ wæ̧.` (Thing, I, say.) -> "I say the thing."
+    *   **As Adjective:** "spoken," "communicative," "linguistic," "named."
+        *   *Example:* `wæ̧ wæ` (a spoken thing)
+    *   **As Adverb:** "verbally," "communicatively."
+
+
+### B. Affixes
+
+
+#### 1. Prefixes
+Prefixes are formed by placing a core `wæ`-form (usually one with a strong adjectival or adverbial sense) before another `wæ`-form (the head word). They modify the head word.
+
+
+*   **`wæ̀-`**: Negation/Opposition Prefix (from `wæ̀` - state/quality, implying an alternative or opposite state).
+    *   **Function:** Indicates "not-", "un-", "opposite of", "lack of".
+    *   **Examples:**
+        *   `wæ̀ wæ̂`: not-good = bad, evil, unpleasant. (`wæ̀ wæ̂ wæ` - a bad thing)
+        *   `wæ̀ wæ̌`: not-know = ignorant, unknown. (`wæ̀ wæ̌ wæ̃ wæ̀.` - Ignorance, I, have.)
+        *   `wæ̀ wǽ`: not-do = undo, stop, prevent; inaction. (`wæ wæ̃ wæ̀ wǽ.` - Thing, I, not-do.)
+
+
+*   **`wǣ-`**: Augmentative/Intensifying/Pluralizing Prefix (from `wǣ` - big/many).
+    *   **Function:** Indicates "very", "much", "many", "greatly", "intensely"; also serves as a primary pluralizer for nouns.
+    *   **Examples:**
+        *   `wǣ wæ̂`: very good, excellent. (`wǣ wæ̂ wæ` - an excellent thing)
+        *   `wǣ wǽ`: do greatly, do much. (`wæ wæ̃ wǣ wǽ.` - Thing, I, do-much.)
+        *   `wǣ wæ`: many things, much stuff (plural).
+        *   `wǣ wæ̃wæ̇`: many people.
+
+
+*   **`wæ̆-`**: Diminishing/Attenuating Prefix (from `wæ̆` - small/little).
+    *   **Function:** Indicates "somewhat", "a little", "few", "slightly", "less".
+    *   **Examples:**
+        *   `wæ̆ wæ̂`: somewhat good, okay. (`wæ̆ wæ̂ wæ` - an okay thing)
+        *   `wæ̆ wǽ`: do a little, do slightly. (`wæ wæ̃ wæ̆ wǽ.` - Thing, I, do-little.)
+        *   `wæ̆ wæ`: few things, a little stuff.
+
+
+*   **`wǽ-`**: Causative/Inchoative Prefix (from `wǽ` - action/cause/become).
+    *   **Function:** Can indicate "to cause to be X", "to make X", "to start to be X", "to become X". Often used with stative concepts to make them dynamic.
+    *   **Examples:**
+        *   `wǽ wæ̂`: to make good, to improve; to become good. (`wæ wæ̃ wǽ wæ̂.` - Thing, I, make-good.)
+        *   `wǽ wæ̀`: to bring into existence, to cause a state. (`wæ wæ̃ wǽ wæ̀.` - Thing, I, cause-to-be.)
+        *   `wǽ wǣ`: to cause to be big, to enlarge; to become big.
+
+
+*   **`wæ̂-`**: Benefactive/Positive Aspect Prefix (from `wæ̂` - good/positive).
+    *   **Function:** Can indicate an action done for the benefit of someone, or an action viewed positively, or a desired action.
+    *   **Examples:**
+        *   `wæ̂ wǽ`: to do good, to act beneficially. (`wæ wæ̃ wæ̂ wǽ.` - Thing, I, do-for-good.)
+        *   `wæ̂ wæ̧`: to speak well of, to praise.
+
+
+#### 2. Suffixes (Primarily Tense/Aspect Markers)
+Suffixes are formed by adding `æ` followed by a diacritic to a `wæ`-form, most commonly a verb or a word functioning as a verb.
+
+
+*   **`-ǽ`**: Past Tense / Perfective Aspect (related to `wǽ` - action, implying completed action).
+    *   **Function:** Marks a completed action or a state that was true in the past.
+    *   **Examples:**
+        *   `wǽǽ`: did, acted, went, became (from `wǽ` + `-ǽ`).
+        *   `wæ̂ǽ`: was good, liked (in the past), wanted (from `wæ̂` + `-ǽ`).
+        *   `wæ wæ̃ wæ̌ǽ.` (Thing, I, knew-past.) -> "I knew the thing."
+
+
+*   **`-ǣ`**: Future Tense / Prospective Aspect (related to `wǣ` - long time/augment, implying future or potential).
+    *   **Function:** Marks an action or state that will or is intended to occur in the future.
+    *   **Examples:**
+        *   `wǽǣ`: will do, will act, will go, will become (from `wǽ` + `-ǣ`).
+        *   `wæ̂ǣ`: will be good, will like, will want (from `wæ̂` + `-ǣ`).
+        *   `wæ wæ̃ wæ̌ǣ.` (Thing, I, will-know.) -> "I will know the thing."
+
+
+*   **`-æ̀`**: Stative/Resultative Suffix (related to `wæ̀` - state, implying a resulting state or ongoing condition).
+    *   **Function:** Can indicate a state resulting from an action, or an ongoing, non-dynamic state. Sometimes overlaps with the simple stative verb `wæ̀`.
+    *   **Examples:**
+        *   `wǽæ̀`: done (as in, "the work is done"), in a state of having been acted upon.
+        *   `wæ̂æ̀`: in a state of being good, being liked.
+        *   `wæ wæ̃ wǽæ̀.` (Thing, I, is-done-by.) -> "The thing is done by me / I have the thing in a done state." (Can express a passive-like meaning).
+
+
+*   **(No Suffix)**: Present Tense / General Aspect / Imperfective Aspect.
+    *   **Function:** Used for actions happening now, habitual actions, or general truths without specific tense marking. The default form.
+
+
+### C. Conjunctions & Particles
+
+
+These are typically standalone words, often formed by `wæ` + diacritic + `æ` suffix, or specific `wæ`-forms.
+
+
+1.  **`wæ̂æ`**: And (Additive Conjunction)
+    *   **Derivation:** `wæ̂` (good/positive) + `æ` (suffix marker). Implies a positive or neutral joining.
+    *   **Function:** Connects words, phrases, or clauses with an additive sense.
+    *   **Example:** `wæ̃ wæ̂ wæ̂æ wæ̈ wæ̂.` (I am-good and you are-good.)
+
+
+2.  **`wæ̆æ`**: Or (Alternative Conjunction)
+    *   **Derivation:** `wæ̆` (small/choice) + `æ` (suffix marker). Implies a choice between alternatives.
+    *   **Function:** Connects alternatives.
+    *   **Example:** `wæ̣ wæ̆æ wæ̉ wæ̃ wæ̂.` (This or that, I, want.)
+
+
+3.  **`wæ̀æ`**: But, However (Contrastive Conjunction)
+    *   **Derivation:** `wæ̀` (state/contrast) + `æ` (suffix marker). Implies a contrast or opposition.
+    *   **Function:** Connects contrasting ideas.
+    *   **Example:** `wæ̃ wæ̂ wæ̀æ wæ̈ wæ̀ wæ̂.` (I am-good but you are-not-good.)
+
+
+4.  **`wǽæ`**: Because, So, Therefore (Causal Conjunction)
+    *   **Derivation:** `wǽ` (action/cause) + `æ` (suffix marker). Implies a causal relationship.
+    *   **Function:** Indicates cause or result.
+    *   **Example:** `wæ̃ wǽǽ wǽæ wæ̃ wæ̂.` (I acted-past, because/so I am-happy.)
+
+
+5.  **`wæ̌æ`**: If, When (Conditional/Temporal Conjunction)
+    *   **Derivation:** `wæ̌` (see/perceive/condition) + `æ` (suffix marker).
+    *   **Function:** Introduces a conditional or temporal clause.
+    *   **Example:** `wæ̈ wǽ wæ̌æ wæ̃ wǽǣ.` (You act, if/when, I will-act.)
+
+
+6.  **`wæ̃̈`**: Interrogative Particle (Question Marker)
+    *   **Derivation:** Combination of `wæ̃` (I) and `wæ̈` (you), evoking an inquiry between speaker and listener.
+    *   **Function:** Placed at the end of a sentence to mark it as a yes/no question. Can also appear with Wh-question words.
+    *   **Example:** `wæ wæ̃ wǽ wæ̃̈?` (Thing, I, do?) -> "Do I do the thing?"
+
+
+7.  **`wæ̂!`**: Exclamatory/Hortative Particle
+    *   **Derivation:** `wæ̂` (good/positive) used emphatically.
+    *   **Function:** Expresses exclamation, strong affirmation, or a suggestion ("Let's!").
+    *   **Example:** `wǽ wæ̂!` (Let's do! / Let's go!)
+
+
+---
+
+
+## III. Grammar
+
+
+### A. Word Order
+
+
+*   **Fundamental Order:** Object - Subject - Verb (OSV). This is the canonical order for declarative sentences.
+    *   `wæ̂wæ wæ̃ wǽǽ.` (Food, I, ate-past.) -> "I ate the food."
+*   **Adverbial Placement:** Adverbial phrases (time, place, manner) are relatively flexible but often appear at the beginning of the clause or before the verb.
+    *   `wæ̉ wæ̂wæ wæ̃ wǽǽ.` (Then, food, I, ate-past.) -> "Then I ate the food."
+    *   `wæ̂wæ wæ̃ wæ̣ wǽǽ.` (Food, I, here, ate-past.) -> "I ate the food here."
+*   **Indirect Objects:** Often handled by context or by using a specific verb that implies an indirect object, or by serial verb constructions. Sometimes, the indirect object can appear before the direct object if it's topicalized.
+    *   `wæ̈ wæ̂wæ wæ̃ wǽǽ.` (You, food, I, gave-past.) -> "I gave you the food." (Here, `wæ̈` is the recipient/indirect object).
+*   **Emphasis:** While OSV is standard, fronting an element (moving it to the beginning of the sentence before the object) can emphasize it. The verb nearly always remains final in declarative clauses.
+
+
+### B. Parts of Speech Fluidity
+
+
+This is a core feature of DWL. Most `wæ`-forms (Core Words and many from the Written Vocabulary) are not intrinsically locked into one part of speech. Their grammatical role is determined by:
+1.  **Position in the sentence:** Especially the final position for verbs.
+2.  **Affixes:** Prefixes and suffixes can clarify or shift function.
+3.  **Context:** The surrounding words and the overall meaning of the discourse.
+
+
+*   **Example with `wæ̂` (good/positive):**
+    *   Noun: `wæ̂ wæ̃ wæ̀.` (Goodness, I, have.) -> "I have goodness."
+    *   Adjective: `wæ̂ wæ wæ̃ wǽ.` (Good thing, I, make.) -> "I make a good thing."
+    *   Verb: `wæ wæ̃ wæ̂.` (Thing, I, like/consider-good.) -> "I like the thing."
+    *   Adverb: `wæ wæ̃ wæ̂ wǽ.` (Thing, I, well, do.) -> "I do the thing well." (Here `wæ̂` modifies `wǽ`).
+
+
+### C. Nouns
+
+
+*   **Formation:** Any core `wæ`-form or Written Vocabulary item can function as a noun. Abstract nouns are often the direct `wæ`-form (e.g., `wæ̂` - goodness), while concrete nouns might use the Written Vocabulary or be `wæ` specified by adjectives.
+*   **Pluralization:**
+    *   Primary method: Prefix `wǣ-` (many).
+        *   `wǣ wæ` (many things)
+        *   `wǣ wæ̃wæ̇` (many people)
+    *   Context can also imply plurality if `wǣ-` is absent but the meaning is clear.
+*   **Articles:** DWL does not have explicit definite ("the") or indefinite ("a/an") articles. Definiteness is inferred from context, demonstratives, or prior mention.
+*   **Demonstratives:** `wæ̣` (this/these) and `wæ̉` (that/those) precede the noun.
+    *   `wæ̣ wǣ wæ` (these many things)
+*   **Case:** DWL is primarily an analytic language. Grammatical roles (subject, object) are indicated by word order (OSV), not by case endings on nouns.
+*   **Genitive/Possession:**
+    *   Pronouns: Possessive pronoun precedes the noun: `wæ̃ wæ` (my thing).
+    *   Nouns: The possessor noun precedes the possessed noun.
+        *   `wæ̃wæ̇ wæ` (the person's thing).
+        *   `Waluigi wæ̂wæ` (Waluigi's food).
+
+
+### D. Adjectives
+
+
+*   **Formation:** Any core `wæ`-form or Written Vocabulary item that can describe a quality can function as an adjective.
+*   **Placement:** Adjectives typically precede the noun they modify.
+    *   `wæ̂ wæ` (good thing)
+    *   `wǣ wæ̆ wæ` (big small thing - a big thing that is also small in another aspect, or a thing that is "big-small")
+*   **Comparison:**
+    *   **Comparative:** Use `wǣ` (more/bigger) or `wæ̆` (less/smaller) before the adjective, often with a standard of comparison introduced by a phrase.
+        *   `wæ wæ̃ wǣ wæ̂.` (Thing, I, am more good.) -> "I am better."
+        *   To compare X to Y: `X Y wǣ wæ̂ wæ̀.` (X, Y, more good, is.) -> "X is better than Y." (Y is the standard).
+    *   **Superlative:** Use `wǣ wǣ` (very much/most) or by context implying "most among a group."
+        *   `wæ wæ̃ wǣ wǣ wæ̂.` (Thing, I, am most good.) -> "I am the best."
+*   **Derivation:** Adjectives are often inherent in the core `wæ`-forms. They can also be formed from verbs or nouns contextually. For example, a verb in an adjectival position can act like a participle: `wǽ wæ` (acting thing / thing that acts).
+
+
+### E. Verbs
+
+
+*   **Formation:** Any core `wæ`-form or Written Vocabulary item can function as a verb, typically appearing as the final element in a clause.
+*   **Valency:**
+    *   **Intransitive:** Subject - Verb. `wæ̃ wǽ.` (I act.)
+    *   **Transitive:** Object - Subject - Verb. `wæ wæ̃ wǽ.` (Thing, I, do.)
+    *   **Ditransitive (e.g., give):** Often IndirectObject - DirectObject - Subject - Verb, or by using serial verb constructions or specific verbs from the Written Vocabulary that imply multiple arguments.
+        *   `wæ̈ wæ̂wæ wæ̃ wǽǽ.` (You [IO], food [DO], I, gave-past.)
+*   **Tense/Aspect:** Marked by suffixes (`-ǽ`, `-ǣ`, `-æ̀`) or lack thereof (see Section II.B.2).
+*   **Mood:**
+    *   **Indicative:** Default mood for statements.
+    *   **Imperative:** Often formed by using the bare verb form, sometimes with `wæ̈` (you) omitted if clear. The particle `wæ̂!` can add hortative/suggestive force.
+        *   `wæ wǽ!` (Thing, do!) -> "Do the thing!"
+        *   `wǽ wæ̂!` (Let's go/do!)
+    *   **Subjunctive/Conditional:** Often handled by conditional conjunctions like `wæ̌æ` (if/when) followed by a standard clause.
+        *   `wæ̈ wǽ wæ̌æ wæ̃ wǽǣ.` (You act, if, I will-act.)
+*   **Voice:**
+    *   **Active:** The default voice, indicated by OSV order.
+    *   **Passive-like constructions:**
+        *   Using the stative/resultative suffix `-æ̀`: `wæ wǽæ̀.` (The thing is done/in a state of having been acted upon.)
+        *   Omitting the agent (subject) if unknown or unimportant: `wæ wǽǽ.` (The thing was done.)
+        *   Using `wæ̀` (to be) with a past participle-like form (often a verb with `-ǽ` used adjectivally): `wæ (wǽǽ) wæ̀.` (The thing is acted-upon.)
+*   **Serial Verb Constructions:** DWL can use sequences of verbs to express complex actions or nuances.
+    *   `wæ wæ̃ wǽ wæ̂.` (Thing, I, do make-good.) -> "I do the thing well / I improve the thing by doing."
+    *   `wæ̃ wǽ wæ̌.` (I go see.) -> "I go to see."
+
+
+### F. Pronouns
+
+
+*   **Personal Pronouns:** `wæ̃` (I), `wæ̈` (you), `wæ̇` (he/she/it/they). See Section II.A.
+*   **Possession:**
+    *   Attributive: Possessive pronoun precedes the noun: `wæ̃ wæ` (my thing).
+    *   Predicative: "The thing is mine" -> `wæ wæ̃ wæ̀.` (Thing, mine, is.) or `wæ̃ wæ wæ wæ̀.` (My thing, the thing, is.)
+*   **Reflexive:** Often expressed by using the pronoun `wæ̃` (self) as an object or in conjunction with a verb.
+    *   `wæ̃ wæ̃ wæ̌.` (Myself, I, see.) -> "I see myself."
+    *   The prefix `wæ̃-` can also indicate self-action: `wæ̃-wǽ` (to self-do, to act upon oneself).
+*   **Reciprocal:** "Each other" can be expressed by using plural pronouns and context, or a construction like "Person A, Person B, they-act-together."
+    *   `wæ̃ wæ̈ wæ̂.` (I, you, like.) and `wæ̈ wæ̃ wæ̂.` (You, I, like.) implies reciprocity.
+    *   A compound like `wæ̃wæ̈-wǽ` (I-you-act) could develop.
+
+
+### G. Negation
+
+
+*   **Primary Method:** The prefix `wæ̀-` (not-).
+    *   Applied to nouns/adjectives: `wæ̀ wæ̂` (bad).
+    *   Applied to verbs: `wæ wæ̃ wæ̀ wǽ.` (Thing, I, not-do.)
+*   **Scope:** The negation prefix `wæ̀-` typically applies to the word it is directly attached to. For clausal negation, it attaches to the main verb.
+*   **No Negative Words:** DWL avoids inherently negative words (e.g., "no," "never"). "No" as a response can be `wæ̀ wæ̂` (not good/not yes) or simply `wæ̀`. "Never" could be `wǣ wæ̀ wǽ` (long-time not-do).
+
+
+### H. Questions
+
+
+*   **Yes/No Questions:** Add the interrogative particle `wæ̃̈` at the end of an OSV statement.
+    *   `wæ wæ̃ wǽ wæ̃̈?` (Thing, I, do?)
+*   **Wh-Questions (Content Questions):** Use a relevant core `wæ`-form as an interrogative pronoun/adverb in the object (or relevant) position, usually followed by `wæ̃̈`.
+    *   **What (thing)?** `wæ wæ̈ wǽ wæ̃̈?` (What-thing, you, do?)
+    *   **Who (person)?** Use `wæ̃wæ̇` (person) or contextually `wæ` if "who" is clear. `wæ̃wæ̇ wæ wǽǽ wæ̃̈?` (Who, thing, did?)
+    *   **Why (reason/cause)?** `wǽ wæ wæ̈ wǽǽ wæ̃̈?` (What-cause/action, thing, you, did?) -> "Why did you do the thing?"
+    *   **Where (place)?** `wæ̣wæ̉ wæ̈ wǽ wæ̃̈?` (What-place, you, go?)
+    *   **When (time)?** `wǣwǽ wæ̈ wǽǣ wæ̃̈?` (What-time, you, will-go?)
+    *   **How (manner)?** `wǽ wæ wæ̈ wǽ wæ̃̈?` (What-action/manner, thing, you, do?) -> "How do you do the thing?"
+*   **Intonation:** Spoken questions typically have a rising intonation towards the end, especially on `wæ̃̈`.
+
+
+---
+
+
+## IV. Example Sentences (Illustrative)
+
+
+1.  **Simple Statement:**
+    *   `wæ̂wæ wæ̃ wæ̂.` (Food, I, like.)
+    *   "I like the food."
+
+
+2.  **With Tense:**
+    *   `wǣ wæ̧ wæ̇ wæ̧ǽ.` (Many words, he, said-past.)
+    *   "He said many words."
+
+
+3.  **With Negation:**
+    *   `wæ̆ wæ wæ̈ wæ̀ wæ̌ǣ.` (Few things, you, will-not-know.)
+    *   "You will not know few things." (i.e., You will know many things, or You won't be ignorant of much.)
+    *   More directly "You will not know this small thing": `wæ̆ wæ wæ̈ wæ̀ wæ̌ǣ.`
+
+
+4.  **Complex Sentence with Conjunction:**
+    *   `wæ̃ wǽǽ wǽæ wǣ wæ̃wæ̂ wæ̃ wæ̀, wæ̀æ wæ̈ wæ̂ wæ̂æ wæ̃ wæ̂.`
+    *   (I acted-past, because great emotion, I, have, but you are-good and I am-good.)
+    *   "I acted because I have strong emotions, but you are good and I am good."
+
+
+5.  **Question:**
+    *   `wǽwæ̂ wǣwæ̣ wæ̈ wǽǽ wæ̃̈?` (Fire-mountain, you, went-past, question?)
+    *   "Did you go to the volcano?"
+    *   `wǽ wǽwæ̂ wǣwæ̣ wæ̈ wǽǽ wæ̃̈?` (Why/what-cause, fire-mountain, you, went-past, question?)
+    *   "Why did you go to the volcano?"
+
+
+6.  **Sentence with Adjective and Possessive:**
+    *   `wæ̃ wǣ wæ̂ wǽwæ wæ̇ wæ̆ǽ.` (My big good tool, he, diminished-past.)
+    *   "He diminished my big good tool." (e.g. made it smaller or less effective).
+
+
+7.  **Sentence illustrating fluid part of speech (`wæ̌` - know/see):**
+    *   Noun: `wæ̌ wæ̃ wǣ wæ̀.` (Knowledge, I, much, have.) -> "I have much knowledge."
+    *   Verb: `wæ̉ wæ wæ̃ wæ̌ǽ.` (That thing, I, saw/knew-past.) -> "I saw/knew that thing."
+    *   Adjective: `wæ̌ wæ wæ̃ wæ̧.` (Known thing, I, speak.) -> "I speak of a known thing."
+    *   Adverb: `wæ wæ̃ wæ̌ wǽ.` (Thing, I, knowingly, do.) -> "I do the thing knowingly."
+
+
+—
+
+
+## V. Written Vocabulary (Clarifiers)
+
+
+In written DWL, where contextual clues from speech or shared immediate experience might be absent, the general term `wæ` (thing, entity) can sometimes be too vague. The following compound `wæ`-forms provide more specific denotations for common concepts. These words are primarily for disambiguation in writing but can also be used in speech. They adhere to all standard grammatical rules, including fluid part-of-speech. Each entry includes:
+*   **DWL Word**
+*   **Etymological Breakdown:** (e.g., `wæ̃` [Self] + `wǽ` [Active])
+*   **Primary English Meaning(s)**
+*   **Functional Examples:** (Noun, Verb, Adjective where plausible)
+*   **Notes:** Specific connotations or potential ambiguities.
+
+
+---
+
+
+### Part A: Living Beings & Body Parts
+
+
+#### A.1. General Living Beings
+
+
+1.  **`wæ̃́`**
+    *   **Etymology:** `wæ̃` (Self/I) + `wǽ` (Active/Life/Dynamic)
+    *   **Meanings:** Animal, beast, creature; living being (non-plant); instinct.
+    *   **Noun:** `wæ̃́` (an animal). `wǣ wæ̃́` (many animals).
+    *   **Verb:** `wæ̃́` (to act like an animal, to live as an animal, to hunt, to move with animalistic agility). `wæ wæ̇ wæ̃́ǽ.` (Thing, it, animal-acted-past.) -> "It behaved like an animal towards the thing."
+    *   **Adjective:** `wæ̃́` (animalistic, wild, instinctual, faunal). `wæ̃́ wǽ` (an animalistic action).
+    *   **Notes:** General term for fauna. Can imply wildness or being driven by instinct depending on context. Contrasts with `wæ̀̄` (plant).
+
+
+2.  **`wæ̀̄`**
+    *   **Etymology:** `wæ̀` (State/Existence/Rooted) + `wǣ` (Big/Growth/Duration)
+    *   **Meanings:** Plant, flora, vegetation; growth (especially biological); something rooted or sessile.
+    *   **Noun:** `wæ̀̄` (a plant). `wæ̆ wæ̀̄` (a small plant).
+    *   **Verb:** `wæ̀̄` (to grow [like a plant], to cultivate, to vegetate, to take root). `wæ̣ wæ̀̄ǣ.` (Here, it-will-grow.)
+    *   **Adjective:** `wæ̀̄` (plant-like, vegetative, botanical, rooted, sessile). `wæ̀̄ wæ̀` (a plant-like state).
+    *   **Notes:** Encompasses all forms of plant life. Can sometimes metaphorically mean slow, steady growth or being firmly established.
+
+
+3.  **`wæ̃wæ̇`**
+    *   **Etymology:** `wæ̃` (Self/I) + `wæ̇` (Other Animate/He/She/They)
+    *   **Meanings:** Person, human being, individual; someone; a member of a sentient species.
+    *   **Noun:** `wæ̃wæ̇` (a person). `wǣ wæ̃wæ̇` (many people).
+    *   **Verb:** `wæ̃wæ̇` (to be a person, to humanize, to interact as people, to personalize). `wæ wæ̃ wæ̃wæ̇.` (Thing, I, person-ify.) -> "I treat the thing as a person."
+    *   **Adjective:** `wæ̃wæ̇` (human, personal, individual, pertaining to people). `wæ̃wæ̇ wæ̂` (human goodness / a good person).
+    *   **Notes:** Standard term for humans or similar sentient beings. The combination of "self" and "other animate" suggests a being that is both self-aware and recognizes other similar beings as distinct individuals.
+
+
+4.  **`wæ̆wǽ`**
+    *   **Etymology:** `wæ̆` (Small/Little) + `wǽ` (Active/Life/Dynamic)
+    *   **Meanings:** Insect, bug, small active creature; a minor but active entity.
+    *   **Noun:** `wæ̆wǽ` (an insect). `wǣ wæ̆wǽ` (many insects).
+    *   **Verb:** `wæ̆wǽ` (to swarm, to crawl like an insect, to be a pest, to act in a small but irritatingly active way). `wæ̆wǽ wæ̇ wǽ.` (Insect, it, acts.)
+    *   **Adjective:** `wæ̆wǽ` (insect-like, tiny and active, pesky). `wæ̆wǽ wæ̧` (an insect-like sound).
+    *   **Notes:** Covers insects, arachnids, and other small, active invertebrates. Can also be used metaphorically for something small and persistently active or annoying.
+
+
+5.  **`wǽwæ̂wæ̉`**
+    *   **Etymology:** `wǽ` (Active/Dynamic) + `wæ̂` (Good/Positive/Graceful) + `wæ̉` (That/There/Sky)
+    *   **Meanings:** Bird, flying creature (especially graceful ones); something that soars.
+    *   **Noun:** `wǽwæ̂wæ̉` (a bird). `wæ̆ wǽwæ̂wæ̉` (a small bird).
+    *   **Verb:** `wǽwæ̂wæ̉` (to fly like a bird, to soar, to sing like a bird). `wǽwæ̂wæ̉ wæ̇ wǽǽ.` (Bird, it, flew-past.)
+    *   **Adjective:** `wǽwæ̂wæ̉` (avian, bird-like, soaring, graceful in flight). `wǽwæ̂wæ̉ wæ̧` (a bird's song).
+    *   **Notes:** The `wæ̂` component suggests a generally positive or admired quality of flight or song. Might be contrasted with other flying creatures if they lack this grace.
+
+
+6.  **`wǽwæ̀wæ`**
+    *   **Etymology:** `wǽ` (Active/Dynamic) + `wæ̀` (State/Medium/Existence) + `wæ` (Thing)
+    *   **Meanings:** Fish, aquatic creature (primarily water-breathing); something that swims or lives primarily in water.
+    *   **Noun:** `wǽwæ̀wæ` (a fish). `wǣ wǽwæ̀wæ` (many fish).
+    *   **Verb:** `wǽwæ̀wæ` (to swim like a fish, to live underwater). `wǽwæ̀wæ wæ̇ wǽ.` (Fish, it, acts/swims.)
+    *   **Adjective:** `wǽwæ̀wæ` (fish-like, aquatic). `wǽwæ̀wæ wæ̂wæ` (fish food).
+    *   **Notes:** The `wæ̀` here implies existence *within* a medium (water). Could be distinguished from aquatic mammals which might use `wæ̃́` + a water descriptor.
+
+
+7.  **`wæ̀̄wæ̀`**
+    *   **Etymology:** `wæ̀̄` (Plant) + `wæ̀` (State/Strong/Enduring)
+    *   **Meanings:** Tree; large, woody plant; something strong and rooted.
+    *   **Noun:** `wæ̀̄wæ̀` (a tree). `wǣ wæ̀̄wæ̀` (a forest, literally "many trees").
+    *   **Verb:** `wæ̀̄wæ̀` (to be tree-like, to stand firm like a tree). `wæ̀̄wæ̀ wæ̇ wæ̀.` (Tree, it, is-state/stands.)
+    *   **Adjective:** `wæ̀̄wæ̀` (arboreal, tree-like, woody, strong and rooted). `wæ̀̄wæ̀ wæ` (a tree-thing, e.g., wood).
+    *   **Notes:** Emphasizes the strength, size, and enduring nature of trees compared to other plants.
+
+
+8.  **`wæ̂wæ̀̄`**
+    *   **Etymology:** `wæ̂` (Good/Positive/Beautiful) + `wæ̀̄` (Plant)
+    *   **Meanings:** Flower; beautiful or notable part of a plant; bloom.
+    *   **Noun:** `wæ̂wæ̀̄` (a flower). `wǣ wæ̂wæ̀̄` (many flowers).
+    *   **Verb:** `wæ̂wæ̀̄` (to flower, to bloom, to be beautiful like a flower). `wæ̂wæ̀̄ wæ̇ wǽǣ.` (Flower, it, will-bloom.)
+    *   **Adjective:** `wæ̂wæ̀̄` (floral, flower-like, blooming, beautiful [of plants]). `wæ̂wæ̀̄ wæ̆` (a floral scent, "flower-smallness/subtlety").
+    *   **Notes:** Highlights the aesthetic or positive aspect of the plant or its parts.
+
+
+9.  **`wǣwæ̃́`**
+    *   **Etymology:** `wǣ` (Big/Great) + `wæ̃́` (Animal)
+    *   **Meanings:** Mammal; large animal (often warm-blooded, furred).
+    *   **Noun:** `wǣwæ̃́` (a mammal/large animal).
+    *   **Verb:** `wǣwæ̃́` (to behave like a large animal/mammal).
+    *   **Adjective:** `wǣwæ̃́` (mammalian, like a large animal). `wǣwæ̃́ wæ̃wæ` (mammal body).
+    *   **Notes:** While literally "big animal," it often serves as the default for mammals due to their typical size relative to insects, birds, etc. Context helps distinguish from exceptionally large non-mammals.
+
+
+10. **`wæ̆wæ̃́`**
+    *   **Etymology:** `wæ̆` (Small/Little) + `wæ̃́` (Animal)
+    *   **Meanings:** Reptile, amphibian; small ground animal (often cold-blooded).
+    *   **Noun:** `wæ̆wæ̃́` (a reptile/small animal).
+    *   **Verb:** `wæ̆wæ̃́` (to crawl, to slither, to behave like a reptile).
+    *   **Adjective:** `wæ̆wæ̃́` (reptilian, amphibian-like, small and animalistic). `wæ̆wæ̃́ wæ̃wæ̀wæ` (reptile skin).
+    *   **Notes:** Often refers to creatures that are smaller than typical `wǣwæ̃́` and may have scales or moist skin.
+
+
+11. **`wæ̃́wǣ`**
+    *   **Etymology:** `wæ̃́` (Animal) + `wǣ` (Very Big/Great/Important/Scary)
+    *   **Meanings:** Monster, large beast, formidable creature; a significant or fearsome animal.
+    *   **Noun:** `wæ̃́wǣ` (a monster).
+    *   **Verb:** `wæ̃́wǣ` (to act monstrously, to rampage). `wæ̃́wǣ wæ̇ wǽǽ.` (Monster, it, acted-past.)
+    *   **Adjective:** `wæ̃́wǣ` (monstrous, huge and animalistic, fearsome). `wæ̃́wǣ wǽ` (a monstrous action).
+    *   **Notes:** The second `wǣ` intensifies the "animal" aspect, often implying danger or unusual size/power.
+
+
+12. **`wæ̃́wǽwæ`**
+    *   **Etymology:** `wæ̃́` (Animal) + `wǽ` (Action/Do/Cause) + `wæ` (Thing/Target)
+    *   **Meanings:** Predator; an animal that hunts other things.
+    *   **Noun:** `wæ̃́wǽwæ` (a predator).
+    *   **Verb:** `wæ̃́wǽwæ` (to predate, to hunt [as a predator]). `wæ̃́wæ̀wæ wæ̃́wǽwæ wæ̇ wǽ.` (Prey, predator, it, acts-on.)
+    *   **Adjective:** `wæ̃́wǽwæ` (predatory). `wæ̃́wǽwæ wæ̃́` (a predatory animal).
+    *   **Notes:** Focuses on the active hunting role of the animal.
+
+
+13. **`wæ̃́wæ̀wæ`**
+    *   **Etymology:** `wæ̃́` (Animal) + `wæ̀` (State/Passive/Quality) + `wæ` (Thing/Targeted)
+    *   **Meanings:** Prey; an animal that is hunted.
+    *   **Noun:** `wæ̃́wæ̀wæ` (prey).
+    *   **Verb:** `wæ̃́wæ̀wæ` (to be prey, to be hunted). `wæ̃́wæ̀wæ wæ̇ wæ̀.` (Prey, it, is-state-of [being hunted].)
+    *   **Adjective:** `wæ̃́wæ̀wæ` (prey-like, hunted).
+    *   **Notes:** Focuses on the passive role of being the target of a predator.
+
+
+#### A.2. Human Roles & Types (Sub-category of `wæ̃wæ̇` - Person)
+
+
+14. **`wæ̃wæ̇wæ̂`**
+    *   **Etymology:** `wæ̃wæ̇` (Person) + `wæ̂` (Good/Positive/Small/Developing)
+    *   **Meanings:** Child, young person; offspring.
+    *   **Noun:** `wæ̃wæ̇wæ̂` (a child). `wǣ wæ̃wæ̇wæ̂` (many children).
+    *   **Verb:** `wæ̃wæ̇wæ̂` (to be a child, to act childishly [can be neutral or negative depending on context]).
+    *   **Adjective:** `wæ̃wæ̇wæ̂` (childish, young, pertaining to children). `wæ̃wæ̇wæ̂ wæ̌` (childish knowledge).
+    *   **Notes:** `wæ̂` here can imply innocence, potential, or simply smallness in the context of development.
+
+
+15. **`wæ̃wæ̇wǣ`**
+    *   **Etymology:** `wæ̃wæ̇` (Person) + `wǣ` (Big/Great/Mature)
+    *   **Meanings:** Adult, mature person; grown-up.
+    *   **Noun:** `wæ̃wæ̇wǣ` (an adult).
+    *   **Verb:** `wæ̃wæ̇wǣ` (to be an adult, to act maturely).
+    *   **Adjective:** `wæ̃wæ̇wǣ` (adult, mature). `wæ̃wæ̇wǣ wǽ` (adult action).
+    *   **Notes:** Contrasts with `wæ̃wæ̇wæ̂` (child).
+
+
+16. **`wæ̃wæ̇wæ̀`**
+    *   **Etymology:** `wæ̃wæ̇` (Person) + `wæ̀` (State/Essence/Wisdom/Age)
+    *   **Meanings:** Elder, old person; wise person (often due to age/experience).
+    *   **Noun:** `wæ̃wæ̇wæ̀` (an elder).
+    *   **Verb:** `wæ̃wæ̇wæ̀` (to be an elder, to age, to possess wisdom of age).
+    *   **Adjective:** `wæ̃wæ̇wæ̀` (elderly, old [of people], wise due to age). `wæ̃wæ̇wæ̀ wæ̧` (elder's words).
+    *   **Notes:** `wæ̀` here implies a state of accumulated experience or essence.
+
+
+17. **`wæ̃wæ̇wǽ`**
+    *   **Etymology:** `wæ̃wæ̇` (Person) + `wǽ` (Action/Do/Cause/Lead)
+    *   **Meanings:** Leader, chief, commander, director; someone who causes action or directs others.
+    *   **Noun:** `wæ̃wæ̇wǽ` (a leader).
+    *   **Verb:** `wæ̃wæ̇wǽ` (to lead, to command, to direct). `wǣ wæ̃wæ̇ wæ̃wæ̇wǽ wæ̇ wǽ.` (Many people, leader, he/she, leads.)
+    *   **Adjective:** `wæ̃wæ̇wǽ` (leading, commanding, directorial). `wæ̃wæ̇wǽ wæ̧` (leader's command).
+    *   **Notes:** Focuses on the active, causative role of a leader.
+
+
+18. **`wæ̃wæ̇wæ̧`**
+    *   **Etymology:** `wæ̃wæ̇` (Person) + `wæ̧` (Say/Speak/Communicate)
+    *   **Meanings:** Teacher, speaker, orator, messenger; someone who communicates information or instructs.
+    *   **Noun:** `wæ̃wæ̇wæ̧` (a teacher/speaker).
+    *   **Verb:** `wæ̃wæ̇wæ̧` (to teach, to speak publicly, to deliver a message). `wæ̌ wæ̃wæ̇wæ̧ wæ̇ wæ̧.` (Knowledge, teacher, he/she, speaks.)
+    *   **Adjective:** `wæ̃wæ̇wæ̧` (teaching, speaking, communicative [of a person]). `wæ̃wæ̇wæ̧ wæ` (teacher's thing/lesson).
+    *   **Notes:** Emphasizes the role of verbal communication.
+
+
+19. **`wæ̃wæ̇wæ̌`**
+    *   **Etymology:** `wæ̃wæ̇` (Person) + `wæ̌` (Know/Understand/Mind/Truth)
+    *   **Meanings:** Scholar, thinker, wise person, philosopher, scientist; someone focused on knowledge and understanding.
+    *   **Noun:** `wæ̃wæ̇wæ̌` (a scholar).
+    *   **Verb:** `wæ̃wæ̇wæ̌` (to be a scholar, to think deeply, to study, to philosophize). `wæ̧wæ̌ wæ̃wæ̇wæ̌ wæ̇ wæ̌.` (Books, scholar, he/she, knows.)
+    *   **Adjective:** `wæ̃wæ̇wæ̌` (scholarly, thoughtful, wise, intellectual). `wæ̃wæ̇wæ̌ wæ̌` (scholar's knowledge).
+    *   **Notes:** Focuses on the mental and intellectual aspects.
+
+
+20. **`wæ̃wæ̇wǽwæ`**
+    *   **Etymology:** `wæ̃wæ̇` (Person) + `wǽwæ` (Crafted Object/Tool/Make-Thing)
+    *   **Meanings:** Worker, maker, crafter, artisan, laborer; someone who creates or works with objects.
+    *   **Noun:** `wæ̃wæ̇wǽwæ` (a worker).
+    *   **Verb:** `wæ̃wæ̇wǽwæ` (to work [especially manually], to craft, to make things). `wǽwæ wæ̃wæ̇wǽwæ wæ̇ wǽ.` (Tool, worker, he/she, makes.)
+    *   **Adjective:** `wæ̃wæ̇wǽwæ` (working, crafting, pertaining to labor). `wæ̃wæ̇wǽwæ wǽ` (worker's action).
+    *   **Notes:** Emphasizes creation or labor involving tangible things.
+
+
+21. **`wæ̃wæ̇wǽwæ̂`**
+    *   **Etymology:** `wæ̃wæ̇` (Person) + `wǽwæ̂` (Art/Creation/Make-Good OR Fire/Passion)
+    *   **Meanings:** Artist; someone who creates art or beautiful things; a passionate creator.
+    *   **Noun:** `wæ̃wæ̇wǽwæ̂` (an artist).
+    *   **Verb:** `wæ̃wæ̇wǽwæ̂` (to create art, to be an artist). `wæ̂wǽ wæ̃wæ̇wǽwæ̂ wæ̇ wǽ.` (Art, artist, he/she, makes.)
+    *   **Adjective:** `wæ̃wæ̇wǽwæ̂` (artistic). `wæ̃wæ̇wǽwæ̂ wæ` (artist's creation).
+    *   **Notes:** The `wǽwæ̂` component can imply either "making something good/beautiful" (art) or "making with fire/passion."
+
+
+22. **`wæ̃wæ̇wǽwæ̇`**
+    *   **Etymology:** `wæ̃wæ̇` (Person) + `wǽwæ̇` (Weapon/Action-AnimateTarget)
+    *   **Meanings:** Warrior, fighter, soldier; someone who engages in combat or uses weapons.
+    *   **Noun:** `wæ̃wæ̇wǽwæ̇` (a warrior).
+    *   **Verb:** `wæ̃wæ̇wǽwæ̇` (to fight, to be a warrior, to engage in combat).
+    *   **Adjective:** `wæ̃wæ̇wǽwæ̇` (martial, warrior-like, combative). `wæ̃wæ̇wǽwæ̇ wǽ` (warrior's action).
+    *   **Notes:** Focuses on the role of combat and the use of `wǽwæ̇` (weapons).
+
+
+23. **`wæ̃wæ̇wæ̀wæ̂`**
+    *   **Etymology:** `wæ̃wæ̇` (Person) + `wæ̀wæ̂` (State-Good, derived from `wæ̀` State + `wæ̂` Good)
+    *   **Meanings:** Friend; a person with whom one has a good/positive relationship.
+    *   **Noun:** `wæ̃wæ̇wæ̀wæ̂` (a friend). `wæ̃ wæ̃wæ̇wæ̀wæ̂` (my friend).
+    *   **Verb:** `wæ̃wæ̇wæ̀wæ̂` (to be a friend, to befriend). `wæ̈ wæ̃ wæ̃wæ̇wæ̀wæ̂.` (You, I, befriend.)
+    *   **Adjective:** `wæ̃wæ̇wæ̀wæ̂` (friendly, amicable). `wæ̃wæ̇wæ̀wæ̂ wǽ` (a friendly action).
+    *   **Notes:** The `wæ̀wæ̂` signifies a positive state or bond.
+
+
+24. **`wæ̃wæ̇wæ̀wæ̀`**
+    *   **Etymology:** `wæ̃wæ̇` (Person) + `wæ̀wæ̀` (State-Not-Good, derived from `wæ̀` State + `wæ̀` [as negation prefix to `wæ̂` good, i.e., `wæ̀(wæ̂)`])
+    *   **Meanings:** Enemy, foe; a person with whom one has a negative/hostile relationship.
+    *   **Noun:** `wæ̃wæ̇wæ̀wæ̀` (an enemy).
+    *   **Verb:** `wæ̃wæ̇wæ̀wæ̀` (to be an enemy, to make an enemy of).
+    *   **Adjective:** `wæ̃wæ̇wæ̀wæ̀` (hostile, enemy-like). `wæ̃wæ̇wæ̀wæ̀ wǽ` (a hostile action).
+    *   **Notes:** The `wæ̀wæ̀` signifies a negative state or hostile bond, effectively "person of a not-good state."
+
+
+#### A.3. Plant Parts & Types (Sub-category of `wæ̀̄` - Plant)
+
+
+25. **`wæ̀̄wæ̆`**
+    *   **Etymology:** `wæ̀̄` (Plant) + `wæ̆` (Small/Little)
+    *   **Meanings:** Grass, herb, small plant, seedling.
+    *   **Noun:** `wæ̀̄wæ̆` (grass/herb). `wǣ wæ̀̄wæ̆` (a field of grass, many small plants).
+    *   **Verb:** `wæ̀̄wæ̆` (to be like grass, to grow low).
+    *   **Adjective:** `wæ̀̄wæ̆` (grassy, herbaceous). `wæ̀̄wæ̆ wæ̣wæ̉` (a grassy place).
+    *   **Notes:** General term for non-woody, smaller plants.
+
+
+26. **`wæ̀̄wǽ`**
+    *   **Etymology:** `wæ̀̄` (Plant) + `wǽ` (Action/Result/Produce/Eat)
+    *   **Meanings:** Fruit, berry, nut, seed (edible part of a plant); produce of a plant.
+    *   **Noun:** `wæ̀̄wǽ` (fruit). `wæ̂ wæ̀̄wǽ` (good fruit).
+    *   **Verb:** `wæ̀̄wǽ` (to bear fruit, to produce [of plants]). `wæ̀̄wæ̀ wæ̀̄wǽǽ.` (Tree, it, fruited-past.)
+    *   **Adjective:** `wæ̀̄wǽ` (fruit-bearing, fruity).
+    *   **Notes:** Focuses on the part of the plant that is often a result of action (pollination, growth) and is often consumed.
+
+
+27. **`wæ̀̄wæ̣`**
+    *   **Etymology:** `wæ̀̄` (Plant) + `wæ̣` (This/Here/Below/Ground)
+    *   **Meanings:** Root; the below-ground part of a plant; foundation.
+    *   **Noun:** `wæ̀̄wæ̣` (a root). `wǣ wæ̀̄wæ̣` (many roots).
+    *   **Verb:** `wæ̀̄wæ̣` (to take root, to root, to establish a foundation). `wæ̀̄ wæ̇ wæ̀̄wæ̣ǽ.` (Plant, it, rooted-past.)
+    *   **Adjective:** `wæ̀̄wæ̣` (root-like, foundational). `wæ̀̄wæ̣ wæ` (root system).
+    *   **Notes:** `wæ̣` signifies its position relative to the ground or its foundational role.
+
+
+28. **`wæ̀̄wæ̉`**
+    *   **Etymology:** `wæ̀̄` (Plant) + `wæ̉` (That/There/Surface/Exposed)
+    *   **Meanings:** Leaf; the broad, flat part of a plant (typically above ground); foliage.
+    *   **Noun:** `wæ̀̄wæ̉` (a leaf). `wǣ wæ̀̄wæ̉` (many leaves, foliage).
+    *   **Verb:** `wæ̀̄wæ̉` (to leaf out, to produce leaves).
+    *   **Adjective:** `wæ̀̄wæ̉` (leafy, foliate). `wæ̀̄wæ̉ wæ̂` (a beautiful leaf).
+    *   **Notes:** `wæ̉` suggests its position as an outward or exposed surface of the plant.
+
+
+#### A.4. Body Parts (Primarily related to `wæ̃wæ` - Body, or `wæ̃́` - Animal)
+
+
+29. **`wæ̃wæ`**
+    *   **Etymology:** `wæ̃` (Self/I) + `wæ` (Thing/Entity)
+    *   **Meanings:** Body (of a person or animal); physical form; torso.
+    *   **Noun:** `wæ̃wæ` (the body). `wæ̃ wæ̃wæ` (my body).
+    *   **Verb:** `wæ̃wæ` (to embody, to have a physical form).
+    *   **Adjective:** `wæ̃wæ` (bodily, physical, corporal). `wæ̃wæ wæ̀` (bodily state).
+    *   **Notes:** General term for the physical corpus.
+
+
+30. **`wæ̌wæ̃`**
+    *   **Etymology:** `wæ̌` (Know/Understand/Mind/Perceive) + `wæ̃` (Self/I)
+    *   **Meanings:** Mind, consciousness, intellect, psyche, thought-process.
+    *   **Noun:** `wæ̌wæ̃` (the mind). `wæ̃ wæ̌wæ̃` (my mind).
+    *   **Verb:** `wæ̌wæ̃` (to think, to use one's mind, to be conscious). `wæ wæ̃ wæ̌wæ̃ǽ.` (Thing, I, thought-about-past.)
+    *   **Adjective:** `wæ̌wæ̃` (mental, conscious, intellectual, psychological). `wæ̌wæ̃ wǽ` (a mental action).
+    *   **Notes:** The seat of thought and self-awareness.
+
+
+31. **`wæ̃wæ̂wæ`**
+    *   **Etymology:** `wæ̃` (Self/I) + `wæ̂` (Good/Positive/Important) + `wæ` (Thing/Entity)
+    *   **Meanings:** Head (of a person or animal); primary or most important part.
+    *   **Noun:** `wæ̃wæ̂wæ` (the head).
+    *   **Verb:** `wæ̃wæ̂wæ` (to lead with the head, to be the head/leader [metaphorical]).
+    *   **Adjective:** `wæ̃wæ̂wæ` (cephalic, pertaining to the head). `wæ̃wæ̂wæ wǽ` (a head movement).
+    *   **Notes:** `wæ̂` signifies the importance or primary nature of the head.
+
+
+32. **`wæ̃wæ̌wæ`**
+    *   **Etymology:** `wæ̃` (Self/I) + `wæ̌` (See/Know/Perceive) + `wæ` (Thing/Organ)
+    *   **Meanings:** Eye; organ of sight.
+    *   **Noun:** `wæ̃wæ̌wæ` (an eye). `wǣ wæ̃wæ̌wæ` (eyes - "many eye").
+    *   **Verb:** `wæ̃wæ̌wæ` (to eye something, to watch closely with the eyes). `wæ wæ̃ wæ̃wæ̌wæǽ.` (Thing, I, eyed-past.)
+    *   **Adjective:** `wæ̃wæ̌wæ` (ocular, visual, pertaining to eyes). `wæ̃wæ̌wæ wæ̂` (good eyes).
+    *   **Notes:** Directly links the organ to its function of seeing/perceiving.
+
+
+33. **`wæ̃wæ̧wæ`**
+    *   **Etymology:** `wæ̃` (Self/I) + `wæ̧` (Say/Speak/Sound/Hear) + `wæ` (Thing/Organ)
+    *   **Meanings:** Ear; organ of hearing.
+    *   **Noun:** `wæ̃wæ̧wæ` (an ear).
+    *   **Verb:** `wæ̃wæ̧wæ` (to listen with the ears, to perk up one's ears).
+    *   **Adjective:** `wæ̃wæ̧wæ` (aural, pertaining to ears). `wæ̃wæ̧wæ wæ̂` (good ears).
+    *   **Notes:** Directly links the organ to its function of perceiving sound/speech.
+
+
+34. **`wæ̃wǽwæ` (Sense 1: Nose)**
+    *   **Etymology:** `wæ̃` (Self/I) + `wǽ` (Action/Dynamic [of air intake/smell]) + `wæ` (Thing/Organ)
+    *   **Meanings:** Nose; organ of smell.
+    *   **Noun:** `wæ̃wǽwæ` (the nose).
+    *   **Verb:** `wæ̃wǽwæ` (to smell with the nose, to sniff).
+    *   **Adjective:** `wæ̃wǽwæ` (nasal).
+    *   **Notes:** `wǽ` relates to the active process of breathing/smelling. Homophonous with Hand/Arm; context is critical.
+
+
+35. **`wæ̃wǽwæ` (Sense 2: Hand/Arm)**
+    *   **Etymology:** `wæ̃` (Self/I) + `wǽ` (Action/Do/Make) + `wæ` (Thing/Limb)
+    *   **Meanings:** Hand, arm; limb used for manipulation and action.
+    *   **Noun:** `wæ̃wǽwæ` (a hand/arm). `wǣ wæ̃wǽwæ` (hands/arms).
+    *   **Verb:** `wæ̃wǽwæ` (to handle, to use one's hands, to gesture with arms). `wæ wæ̃ wæ̃wǽwæǽ.` (Thing, I, handled-past.)
+    *   **Adjective:** `wæ̃wǽwæ` (manual, brachial).
+    *   **Notes:** `wǽ` relates to the primary function of doing/making. Homophonous with Nose; context is critical.
+
+
+36. **`wæ̃wæ̂wæ̧`**
+    *   **Etymology:** `wæ̃` (Self/I) + `wæ̂` (Good/Positive [for eating/speaking]) + `wæ̧` (Say/Speak/Sound/Taste) + `wæ` (Thing/Organ - implied by `wæ̧`)
+    *   **Meanings:** Mouth; organ for eating and speaking.
+    *   **Noun:** `wæ̃wæ̂wæ̧` (the mouth).
+    *   **Verb:** `wæ̃wæ̂wæ̧` (to mouth words, to speak from the mouth).
+    *   **Adjective:** `wæ̃wæ̂wæ̧` (oral).
+    *   **Notes:** `wæ̂` suggests the positive/essential functions of the mouth. The final `wæ` is often implied by the `wæ̧` (organ of speech/sound).
+
+
+37. **`wæ̃wæ̣wæ`**
+    *   **Etymology:** `wæ̃` (Self/I) + `wæ̣` (This/Here/Ground/Support) + `wæ` (Thing/Limb)
+    *   **Meanings:** Leg, foot; limb used for standing and locomotion.
+    *   **Noun:** `wæ̃wæ̣wæ` (a leg/foot). `wǣ wæ̃wæ̣wæ` (legs/feet).
+    *   **Verb:** `wæ̃wæ̣wæ` (to walk, to use legs/feet, to kick). `wæ wæ̃ wæ̃wæ̣wæǽ.` (Thing, I, kicked-past.)
+    *   **Adjective:** `wæ̃wæ̣wæ` (pedal, crural).
+    *   **Notes:** `wæ̣` relates to its connection with the ground.
+
+
+38. **`wæ̃wæ̂wæ̃`**
+    *   **Etymology:** `wæ̃` (Self/I) + `wæ̂` (Good/Positive/Core) + `wæ̃` (Self/I - inner self)
+    *   **Meanings:** Heart (as seat of emotion/core being); spirit, soul (less supernatural, more core essence).
+    *   **Noun:** `wæ̃wæ̂wæ̃` (the heart/spirit). `wæ̃ wæ̃wæ̂wæ̃` (my heart/spirit).
+    *   **Verb:** `wæ̃wæ̂wæ̃` (to feel deeply in one's heart, to be spirited).
+    *   **Adjective:** `wæ̃wæ̂wæ̃` (heartfelt, spiritual [in a core essence sense], emotional). `wæ̃wæ̂wæ̃ wæ̃wæ̂` (heartfelt emotion).
+    *   **Notes:** Focuses on the metaphorical heart. Contrasts with the physical organ.
+
+
+39. **`wæ̃wǽwæ̀`**
+    *   **Etymology:** `wæ̃` (Self/I) + `wǽ` (Action/Dynamic/Pumping) + `wæ̀` (State/Essence/Life)
+    *   **Meanings:** Heart (physical organ); the life-pumping organ.
+    *   **Noun:** `wæ̃wǽwæ̀` (the heart [organ]).
+    *   **Verb:** `wæ̃wǽwæ̀` (to beat [of the heart]). `wæ̃wǽwæ̀ wæ̃ wǽ.` (Heart my, it, beats.)
+    *   **Adjective:** `wæ̃wǽwæ̀` (cardiac).
+    *   **Notes:** Focuses on the physical, active organ essential for life.
+
+
+40. **`wæ̃wæ̀wæ`**
+    *   **Etymology:** `wæ̃` (Self/I) + `wæ̀` (State/Covering/Passive) + `wæ` (Thing/Material)
+    *   **Meanings:** Skin, hide, pelt; outer covering of the body.
+    *   **Noun:** `wæ̃wæ̀wæ` (skin). `wæ̂ wæ̃wæ̀wæ` (good skin).
+    *   **Verb:** `wæ̃wæ̀wæ` (to skin, to have skin).
+    *   **Adjective:** `wæ̃wæ̀wæ` (dermal, cutaneous).
+    *   **Notes:** Emphasizes its role as a passive covering.
+
+
+41. **`wæ̃wæ̀wæ̀`**
+    *   **Etymology:** `wæ̃` (Self/I) + `wæ̀` (State/Essence/Structure) + `wæ̀` (State/Solid/Internal)
+    *   **Meanings:** Bone; internal structural component of the body.
+    *   **Noun:** `wæ̃wæ̀wæ̀` (a bone). `wǣ wæ̃wæ̀wæ̀` (bones).
+    *   **Verb:** `wæ̃wæ̀wæ̀` (to be bony, to ossify).
+    *   **Adjective:** `wæ̃wæ̀wæ̀` (bony, osseous). `wæ̃wæ̀wæ̀ wæ` (bone structure).
+    *   **Notes:** The repeated `wæ̀` emphasizes its solid, structural, internal state.
+
+
+42. **`wæ̃wǽwæ̣`**
+    *   **Etymology:** `wæ̃` (Self/I) + `wǽ` (Action/Dynamic/Flowing) + `wæ̣` (This/Here/Internal/Tangible)
+    *   **Meanings:** Blood; vital fluid of the body.
+    *   **Noun:** `wæ̃wǽwæ̣` (blood).
+    *   **Verb:** `wæ̃wǽwæ̣` (to bleed). `wæ̃wǽwæ̣ wæ̃ wǽǽ.` (Blood, I, flowed-past [I bled].)
+    *   **Adjective:** `wæ̃wǽwæ̣` (bloody, sanguineous).
+    *   **Notes:** `wǽ` for its dynamic flow, `wæ̣` for its internal, tangible presence.
+
+
+43. **`wæ̃wæ̧wæ̆`**
+    *   **Etymology:** `wæ̃` (Self/I) + `wæ̧` (Say/Speak/Eat/Sound) + `wæ̆` (Small/Pointed)
+    *   **Meanings:** Tooth; small, hard appendage in the mouth.
+    *   **Noun:** `wæ̃wæ̧wæ̆` (a tooth). `wǣ wæ̃wæ̧wæ̆` (teeth).
+    *   **Verb:** `wæ̃wæ̧wæ̆` (to teethe, to bite with teeth).
+    *   **Adjective:** `wæ̃wæ̧wæ̆` (dental, tooth-like).
+    *   **Notes:** `wæ̧` for its location/function in the mouth, `wæ̆` for its typical size and often pointed nature.
+
+
+44. **`wæ̃wæ̧wǣ`**
+    *   **Etymology:** `wæ̃` (Self/I) + `wæ̧` (Say/Speak/Taste/Sound) + `wǣ` (Long/Mobile/Important [for speech/taste])
+    *   **Meanings:** Tongue; muscular organ in the mouth.
+    *   **Noun:** `wæ̃wæ̧wǣ` (the tongue).
+    *   **Verb:** `wæ̃wæ̧wǣ` (to use the tongue, to lick, to speak with the tongue).
+    *   **Adjective:** `wæ̃wæ̧wǣ` (lingual).
+    *   **Notes:** `wæ̧` for its functions, `wǣ` for its characteristic shape/mobility or importance in speech/taste.
+
+
+### Part B: Natural World & Elements
+
+
+#### B.1. General Geography & Celestial Bodies
+
+
+45. **`wæ̣wæ̉`**
+    *   **Etymology:** `wæ̣` (This/Here/Proximal) + `wæ̉` (That/There/Distal)
+    *   **Meanings:** Place, location, area, spot, region; a defined or general space.
+    *   **Noun:** `wæ̣wæ̉` (a place). `wæ̂ wæ̣wæ̉` (a good place).
+    *   **Verb:** `wæ̣wæ̉` (to place, to locate, to be situated). `wæ wæ̃ wæ̣wæ̉ǽ.` (Thing, I, placed-past.)
+    *   **Adjective:** `wæ̣wæ̉` (local, spatial, regional). `wæ̣wæ̉ wæ̌` (local knowledge).
+    *   **Notes:** The combination of proximal and distal markers suggests an encompassing idea of location, both specific and general.
+
+
+46. **`wǣwæ̉`**
+    *   **Etymology:** `wǣ` (Big/Great/Above) + `wæ̉` (That/There/Expanse/Distal)
+    *   **Meanings:** Sky, heavens, firmament; the expanse above.
+    *   **Noun:** `wǣwæ̉` (the sky).
+    *   **Verb:** `wǣwæ̉` (to be sky-like, to extend like the sky).
+    *   **Adjective:** `wǣwæ̉` (celestial [related to the sky], aerial). `wǣwæ̉ wæ̂` (a beautiful sky).
+    *   **Notes:** `wǣ` implies vastness and its position above, while `wæ̉` indicates its distal nature.
+
+
+47. **`wæ̣wæ̀`**
+    *   **Etymology:** `wæ̣` (This/Here/Proximal/Tangible) + `wæ̀` (State/Essence/Foundation)
+    *   **Meanings:** Earth, ground, land, soil; the solid surface beneath.
+    *   **Noun:** `wæ̣wæ̀` (the earth/ground). `wæ̃ wæ̣wæ̀` (my land).
+    *   **Verb:** `wæ̣wæ̀` (to ground, to be on land, to earth [an electrical connection]). `wæ̃wæ̇ wæ̣wæ̀ǽ.` (Person, he/she, landed-past.)
+    *   **Adjective:** `wæ̣wæ̀` (terrestrial, earthen, ground-level). `wæ̣wæ̀ wæ` (an earth-thing, e.g., soil).
+    *   **Notes:** `wæ̣` emphasizes its tangible, immediate presence, while `wæ̀` points to its foundational quality.
+
+
+48. **`wǽwæ̣`**
+    *   **Etymology:** `wǽ` (Action/Dynamic/Flowing) + `wæ̣` (This/Here/Tangible/Substance)
+    *   **Meanings:** Water (especially liquid, flowing); a fundamental liquid.
+    *   **Noun:** `wǽwæ̣` (water). `wǣ wǽwæ̣` (much water).
+    *   **Verb:** `wǽwæ̣` (to water, to flow like water, to become wet). `wæ̀̄ wæ̃ wǽwæ̣ǽ.` (Plant, I, watered-past.)
+    *   **Adjective:** `wǽwæ̣` (watery, aquatic [related to water itself], wet). `wǽwæ̣ wæ̃́` (a water animal).
+    *   **Notes:** `wǽ` highlights its dynamic nature (flow, movement), and `wæ̣` its tangible substance.
+
+
+49. **`wǽwæ̂`**
+    *   **Etymology:** `wǽ` (Action/Dynamic/Consuming) + `wæ̂` (Good/Positive/Energy/Light)
+    *   **Meanings:** Fire, flame, heat; dynamic energy, combustion.
+    *   **Noun:** `wǽwæ̂` (fire). `wæ̆ wǽwæ̂` (a small fire).
+    *   **Verb:** `wǽwæ̂` (to burn, to be on fire, to heat, to ignite). `wæ wæ̃ wǽwæ̂ǽ.` (Thing, I, burned-past.)
+    *   **Adjective:** `wǽwæ̂` (fiery, hot, burning, igneous). `wǽwæ̂ wǽ` (a fiery action).
+    *   **Notes:** `wǽ` for its active, consuming nature, `wæ̂` for the energy/light it produces (often seen as a powerful, if dangerous, 'good').
+
+
+50. **`wæ̀wæ`**
+    *   **Etymology:** `wæ̀` (State/Essence/Passive) + `wæ` (Thing/Substance)
+    *   **Meanings:** Stone, rock, pebble; a solid, inert mineral substance.
+    *   **Noun:** `wæ̀wæ` (a stone). `wǣ wæ̀wæ` (many stones/a big rock).
+    *   **Verb:** `wæ̀wæ` (to turn to stone, to be stone-like, to stone someone). `wæ̃wæ̇ wæ̀wæǽ.` (Person, he/she, was-stoned-past.)
+    *   **Adjective:** `wæ̀wæ` (stony, rocky, petric). `wæ̀wæ wǣwæ̀` (a stone building).
+    *   **Notes:** Emphasizes its inert, stative quality as a basic 'thing'.
+
+
+51. **`wǣwæ̣`**
+    *   **Etymology:** `wǣ` (Big/Great/Important) + `wæ̣` (This/Here/Landmark/Tangible)
+    *   **Meanings:** Mountain, large hill, significant peak.
+    *   **Noun:** `wǣwæ̣` (a mountain). `wǣ wǣwæ̣` (a very big mountain/mountain range).
+    *   **Verb:** `wǣwæ̣` (to be mountainous, to rise like a mountain).
+    *   **Adjective:** `wǣwæ̣` (mountainous, alpine). `wǣwæ̣ wæ̣wæ̉` (a mountain place).
+    *   **Notes:** `wǣ` for its size and prominence, `wæ̣` for its tangible presence as a landmark.
+
+
+52. **`wǽwæ̆`**
+    *   **Etymology:** `wǽ` (Action/Dynamic/Flowing) + `wæ̆` (Small/Little/Path-like)
+    *   **Meanings:** River, stream, brook, creek; a flowing body of water, typically smaller than a sea.
+    *   **Noun:** `wǽwæ̆` (a river). `wǣ wǽwæ̆` (a big river).
+    *   **Verb:** `wǽwæ̆` (to flow like a river, to stream). `wǽwæ̣ wǽwæ̆ǽ.` (Water, it, streamed-past.)
+    *   **Adjective:** `wǽwæ̆` (fluvial, riverine). `wǽwæ̆ wǽwæ̀wæ` (river fish).
+    *   **Notes:** `wǽ` for flow, `wæ̆` for its relatively smaller or more defined path compared to `wǽwǣwæ` (sea).
+
+
+53. **`wǽwǣwæ`**
+    *   **Etymology:** `wǽ` (Action/Dynamic/Flowing/Vast) + `wǣ` (Big/Great/Expanse) + `wæ` (Thing/Body of water)
+    *   **Meanings:** Sea, ocean; a very large body of saltwater.
+    *   **Noun:** `wǽwǣwæ` (the sea).
+    *   **Verb:** `wǽwǣwæ` (to be like the sea, to sail the sea).
+    *   **Adjective:** `wǽwǣwæ` (marine, oceanic). `wǽwǣwæ wæ̃́` (a sea animal).
+    *   **Notes:** The combination of `wǽ` and `wǣ` emphasizes the vast, dynamic expanse. Distinguishable from `wǽwǣwǽ` (vehicle) by context or the final `wæ` vs `wǽ`.
+
+
+54. **`wæ̂wæ̉`**
+    *   **Etymology:** `wæ̂` (Good/Positive/Shining) + `wæ̉` (That/There/Distal/Sky-object)
+    *   **Meanings:** Star; a distant celestial body emitting light.
+    *   **Noun:** `wæ̂wæ̉` (a star). `wǣ wæ̂wæ̉` (many stars).
+    *   **Verb:** `wæ̂wæ̉` (to shine like a star, to be starlit). `wǣwæ̉ wæ̂wæ̉ǽ.` (Sky, it, was-starlit-past.)
+    *   **Adjective:** `wæ̂wæ̉` (stellar, star-like, starry). `wæ̂wæ̉ wæ̂wæ̃wæ` (starlight).
+    *   **Notes:** `wæ̂` for its perceived beauty or positive guiding light, `wæ̉` for its distance.
+
+
+55. **`wæ̂wǣ`**
+    *   **Etymology:** `wæ̂` (Good/Positive/Important/Life-giving) + `wǣ` (Big/Great/Dominant)
+    *   **Meanings:** Sun; the star that Earth orbits, primary source of light and heat.
+    *   **Noun:** `wæ̂wǣ` (the sun).
+    *   **Verb:** `wæ̂wǣ` (to shine like the sun, to sunbathe). `wæ̃ wæ̂wǣǽ.` (I, sunbathed-past.)
+    *   **Adjective:** `wæ̂wǣ` (solar, sunny). `wæ̂wǣ wæ̂wæ̃wæ` (sunlight).
+    *   **Notes:** `wæ̂` for its essential, positive role, `wǣ` for its dominance and size/importance.
+
+
+56. **`wæ̀wæ̉`**
+    *   **Etymology:** `wæ̀` (State/Passive/Reflected) + `wæ̉` (That/There/Distal/Sky-object)
+    *   **Meanings:** Moon; Earth's natural satellite, reflecting light.
+    *   **Noun:** `wæ̀wæ̉` (the moon).
+    *   **Verb:** `wæ̀wæ̉` (to shine like the moon [reflected light], to be moonlit). `wǣwæ̉ wæ̀wæ̉ǽ.` (Sky, it, was-moonlit-past.)
+    *   **Adjective:** `wæ̀wæ̉` (lunar, moonlit). `wæ̀wæ̉ wæ̂wæ̃wæ` (moonlight).
+    *   **Notes:** `wæ̀` emphasizes its passive light (reflection) compared to `wæ̂wǣ` (sun) or `wæ̂wæ̉` (star).
+
+
+57. **`wæ̀wǣwæ`**
+    *   **Etymology:** `wæ̀` (State/Essence) + `wǣ` (Big/Many) + `wæ` (Thing/Place [often with plants])
+    *   **Meanings:** Forest, woods, jungle; a large area covered with many trees and undergrowth.
+    *   **Noun:** `wæ̀wǣwæ` (a forest).
+    *   **Verb:** `wæ̀wǣwæ` (to be forested, to live in a forest).
+    *   **Adjective:** `wæ̀wǣwæ` (sylvan, forest-like). `wæ̀wǣwæ wæ̃́` (a forest animal).
+    *   **Notes:** `wæ̀` for the general state of being a place, `wǣ` for the "many" aspect (often trees). Can be homophonous with "wall" or "city" or "end"; context is vital. The implied presence of `wæ̀̄wæ̀` (trees) is strong.
+
+
+58. **`wæ̆wæ̣`**
+    *   **Etymology:** `wæ̆` (Small/Little/Fine) + `wæ̣` (This/Here/Earth-substance)
+    *   **Meanings:** Sand, dust, powder, fine particles of earth or stone.
+    *   **Noun:** `wæ̆wæ̣` (sand/dust). `wǣ wæ̆wæ̣` (much sand).
+    *   **Verb:** `wæ̆wæ̣` (to turn to dust, to cover with sand).
+    *   **Adjective:** `wæ̆wæ̣` (sandy, dusty, powdery). `wæ̆wæ̣ wæ̣wæ̉` (a sandy place).
+    *   **Notes:** `wæ̆` for the small particle size.
+
+
+59. **`wæ̀wǽwæ`**
+    *   **Etymology:** `wæ̀wæ` (Stone/Rock) + `wǽ` (Action/Change/Malleable/Fire-affected)
+    *   **Meanings:** Metal, ore; a stone-like substance that can be changed or worked (often with fire/action).
+    *   **Noun:** `wæ̀wǽwæ` (metal). `wæ̂ wæ̀wǽwæ` (good metal).
+    *   **Verb:** `wæ̀wǽwæ` (to metallize, to work metal). `wǽwæ wæ̃ wæ̀wǽwæǽ.` (Tool, I, made-of-metal-past.)
+    *   **Adjective:** `wæ̀wǽwæ` (metallic). `wæ̀wǽwæ wǽwæ` (a metal tool).
+    *   **Notes:** Differentiates from plain `wæ̀wæ` (stone) by its potential for transformation (`wǽ`). Can be homophonous with "ice"; context is key.
+
+
+60. **`wæ̂wæ̀wæ`**
+    *   **Etymology:** `wæ̂` (Good/Positive/Beautiful/Valuable) + `wæ̀wæ` (Stone/Rock)
+    *   **Meanings:** Crystal, gem, precious stone; a beautiful or valuable stone.
+    *   **Noun:** `wæ̂wæ̀wæ` (a crystal/gem).
+    *   **Verb:** `wæ̂wæ̀wæ` (to crystallize, to adorn with gems).
+    *   **Adjective:** `wæ̂wæ̀wæ` (crystalline, gem-like, precious [of stones]).
+    *   **Notes:** `wæ̂` highlights its aesthetic or monetary value. Can be homophonous with "order/system"; context is key.
+
+
+61. **`wæ̣wǣ`**
+    *   **Etymology:** `wæ̣wæ̉` (Place - implied base) + `wǣ` (Big/Great, but here implying Low/Depressed relative to surroundings)
+    *   **Meanings:** Valley, dale, glen; a low area between hills or mountains.
+    *   **Noun:** `wæ̣wǣ` (a valley).
+    *   **Verb:** `wæ̣wǣ` (to form a valley, to be situated in a valley).
+    *   **Adjective:** `wæ̣wǣ` (valley-like). `wæ̣wǣ wæ̀̄wæ̆` (valley grass).
+    *   **Notes:** While `wǣ` usually means big/great, in geographical pairs like mountain/valley, it can take on a contrastive meaning related to the primary feature (e.g., mountain is high, so valley is "big-low").
+
+
+62. **`wæ̣wæ̆`**
+    *   **Etymology:** `wæ̣wæ̉` (Place - implied base) + `wæ̆` (Small/Little/Enclosed/Confined)
+    *   **Meanings:** Cave, cavern, grotto; a small, enclosed natural space (often in rock).
+    *   **Noun:** `wæ̣wæ̆` (a cave). `wǣ wæ̣wæ̆` (a large cave).
+    *   **Verb:** `wæ̣wæ̆` (to live in a cave, to explore a cave).
+    *   **Adjective:** `wæ̣wæ̆` (cave-like, cavernous). `wæ̣wæ̆ wæ̃́` (a cave animal).
+    *   **Notes:** `wæ̆` refers to its enclosed or relatively small nature compared to open spaces.
+
+
+63. **`wæ̣wǽwæ̣`**
+    *   **Etymology:** `wæ̣wæ̉` (Place) + `wǽwæ̣` (Water) - with elision or reinterpretation. More directly: `wæ̣` (This/Land) + `wǽwæ̣` (Water) surrounding it.
+    *   **Meanings:** Island; a piece of land surrounded by water.
+    *   **Noun:** `wæ̣wǽwæ̣` (an island).
+    *   **Verb:** `wæ̣wǽwæ̣` (to be an island, to isolate like an island).
+    *   **Adjective:** `wæ̣wǽwæ̣` (insular, island-like).
+    *   **Notes:** The structure suggests "land (in relation to) water."
+
+
+64. **`wæ̣wǽwæ̂`**
+    *   **Etymology:** `wæ̣wæ̉` (Place) + `wǽwæ̣` (Water) + `wæ̂` (Good/Positive/Edge)
+    *   **Meanings:** Beach, shore, coast; the land along the edge of a body of water.
+    *   **Noun:** `wæ̣wǽwæ̂` (a beach).
+    *   **Verb:** `wæ̣wǽwæ̂` (to go to the beach, to be on the shore).
+    *   **Adjective:** `wæ̣wǽwæ̂` (coastal, littoral). `wæ̣wǽwæ̂ wæ̆wæ̣` (beach sand).
+    *   **Notes:** `wæ̂` can imply the desirable nature of a beach or simply its distinct edge quality.
+
+
+65. **`wæ̣wæ̀wæ`**
+    *   **Etymology:** `wæ̣wæ̀` (Earth/Ground/Land) + `wæ` (Thing/Material)
+    *   **Meanings:** Soil, dirt, earth (as a material).
+    *   **Noun:** `wæ̣wæ̀wæ` (soil). `wæ̂ wæ̣wæ̀wæ` (good soil).
+    *   **Verb:** `wæ̣wæ̀wæ` (to soil, to cover with dirt).
+    *   **Adjective:** `wæ̣wæ̀wæ` (earthen, soil-like).
+    *   **Notes:** More specific than `wæ̣wæ̀` (land in general), referring to the material itself.
+
+
+66. **`wǽwæ̂wæ̣`**
+    *   **Etymology:** `wǽwæ̂` (Fire) + `wǣwæ̣` (Mountain) - with elision. More directly: `wǽwæ̂` (Fire) + `wæ̣` (This/Place/Landmark).
+    *   **Meanings:** Volcano; a mountain or opening in the earth's crust from which lava, ash, and gases erupt.
+    *   **Noun:** `wǽwæ̂wæ̣` (a volcano).
+    *   **Verb:** `wǽwæ̂wæ̣` (to erupt [like a volcano]). `wǽwæ̂wæ̣ wæ̇ wǽǽ.` (Volcano, it, erupted-past.)
+    *   **Adjective:** `wǽwæ̂wæ̣` (volcanic). `wǽwæ̂wæ̣ wæ̀wæ` (volcanic rock).
+    *   **Notes:** Combines "fire" with a "place/landmark" concept.
+
+
+67. **`wæ̀wǣwæ̆`**
+    *   **Etymology:** `wæ̀` (State/Essence) + `wǣ` (Big/Great) + `wæ̆` (Small/Little - relative to mountain)
+    *   **Meanings:** Hill, mound; a naturally raised area of land, smaller than a mountain.
+    *   **Noun:** `wæ̀wǣwæ̆` (a hill).
+    *   **Verb:** `wæ̀wǣwæ̆` (to form a hill, to be hilly).
+    *   **Adjective:** `wæ̀wǣwæ̆` (hilly).
+    *   **Notes:** The `wæ̆` distinguishes it as smaller than `wǣwæ̣` (mountain), despite the `wǣ`. It's "big-small," meaning a significant but not maximal elevation.
+
+
+68. **`wǽwæ̣wæ`**
+    *   **Etymology:** `wǽ` (Action/Dynamic) + `wǽwæ̣` (Water) + `wæ` (Thing/Phenomenon)
+    *   **Meanings:** Wave (on water); a moving ridge or swell on the surface of water.
+    *   **Noun:** `wǽwæ̣wæ` (a wave). `wǣ wǽwæ̣wæ` (a big wave).
+    *   **Verb:** `wǽwæ̣wæ` (to wave [like water], to surge). `wǽwǣwæ wǽwæ̣wæǽ.` (Sea, it, waved-past.)
+    *   **Adjective:** `wǽwæ̣wæ` (wave-like).
+    *   **Notes:** Emphasizes the action (`wǽ`) of the water (`wǽwæ̣`).
+
+
+69. **`wæ̀wǽwæ`** (Sense 2: Ice)
+    *   **Etymology:** `wæ̀` (State/Passive/Solid) + `wǽwæ̣` (Water) - with elision. More directly: `wæ̀` (State) + `wǽ` (Action [of freezing]) + `wæ` (Thing).
+    *   **Meanings:** Ice; frozen water.
+    *   **Noun:** `wæ̀wǽwæ` (ice).
+    *   **Verb:** `wæ̀wǽwæ` (to freeze, to turn to ice, to cover with ice). `wǽwæ̣ wæ̀wǽwæǽ.` (Water, it, froze-past.)
+    *   **Adjective:** `wæ̀wǽwæ` (icy, frozen). `wæ̀wǽwæ wæ̣wæ̉` (an icy place).
+    *   **Notes:** `wæ̀` for its solid state, derived from water. Homophonous with "metal"; context is key.
+
+
+70. **`wæ̣wǽwæ̆`**
+    *   **Etymology:** `wæ̣wæ̉` (Place) + `wǽ` (Action/Go) + `wæ̆` (Small/Narrow)
+    *   **Meanings:** Path, trail, track; a narrow way or route.
+    *   **Noun:** `wæ̣wǽwæ̆` (a path).
+    *   **Verb:** `wæ̣wǽwæ̆` (to make a path, to follow a trail).
+    *   **Adjective:** `wæ̣wǽwæ̆` (path-like).
+    *   **Notes:** A place (`wæ̣wæ̉` implied) defined by going (`wǽ`) in a narrow (`wæ̆`) way.
+
+
+#### B.2. Biomes & Atmospheric Phenomena
+
+
+71. **`wæ̀wǣwæ̣`**
+    *   **Etymology:** `wæ̀` (State/Essence) + `wǣ` (Big/Great/Expanse) + `wæ̣` (This/Here/Earth-substance [often implying dryness or specific terrain])
+    *   **Meanings:** Desert; a large, arid region with sparse vegetation.
+    *   **Noun:** `wæ̀wǣwæ̣` (a desert).
+    *   **Verb:** `wæ̀wǣwæ̣` (to be a desert, to desertify).
+    *   **Adjective:** `wæ̀wǣwæ̣` (desert-like, arid). `wæ̀wǣwæ̣ wæ̆wæ̣` (desert sand).
+    *   **Notes:** `wæ̣` here often carries a connotation of dryness or barrenness when combined with `wæ̀` (state) and `wǣ` (expanse).
+
+
+72. **`wæ̀wǣwǽwæ̣`**
+    *   **Etymology:** `wæ̀` (State/Essence) + `wǣ` (Big/Great/Expanse) + `wǽwæ̣` (Water)
+    *   **Meanings:** Swamp, marsh, bog; a large area of waterlogged ground.
+    *   **Noun:** `wæ̀wǣwǽwæ̣` (a swamp).
+    *   **Verb:** `wæ̀wǣwǽwæ̣` (to be a swamp, to become waterlogged).
+    *   **Adjective:** `wæ̀wǣwǽwæ̣` (swampy, marshy). `wæ̀wǣwǽwæ̣ wæ̀̄` (swamp plant).
+    *   **Notes:** A "big state of water" place.
+
+
+73. **`wǽwæ̈`**
+    *   **Etymology:** `wǽ` (Action/Dynamic/Falling) + `wæ̈` (You/Affecting [the environment or observer])
+    *   **Meanings:** Rain; precipitation in the form of water droplets.
+    *   **Noun:** `wǽwæ̈` (rain). `wǣ wǽwæ̈` (heavy rain).
+    *   **Verb:** `wǽwæ̈` (to rain). `wǽwæ̈ǽ.` (It rained-past.)
+    *   **Adjective:** `wǽwæ̈` (rainy). `wǽwæ̈ wǣwǽwæ` (a rainy day).
+    *   **Notes:** `wǽ` for the action of falling, `wæ̈` because it directly affects "you" or the surroundings.
+
+
+74. **`wæ̀wæ̈`**
+    *   **Etymology:** `wæ̀` (State/Passive/Covering) + `wæ̈` (You/Affecting)
+    *   **Meanings:** Snow; precipitation in the form of ice crystals.
+    *   **Noun:** `wæ̀wæ̈` (snow). `wǣ wæ̀wæ̈` (heavy snow).
+    *   **Verb:** `wæ̀wæ̈` (to snow). `wæ̀wæ̈ǽ.` (It snowed-past.)
+    *   **Adjective:** `wæ̀wæ̈` (snowy). `wæ̀wæ̈ wæ̣wæ̉` (a snowy place).
+    *   **Notes:** `wæ̀` for its state of covering the ground, `wæ̈` for its effect.
+
+
+75. **`wǽwæ̃`**
+    *   **Etymology:** `wǽ` (Action/Dynamic/Moving) + `wæ̃` (Self/Pervading/Everywhere)
+    *   **Meanings:** Wind, air (especially moving air), breeze.
+    *   **Noun:** `wǽwæ̃` (wind). `wæ̆ wǽwæ̃` (a light breeze).
+    *   **Verb:** `wǽwæ̃` (to blow [of wind]). `wǽwæ̃ǽ.` (It was-windy-past.)
+    *   **Adjective:** `wǽwæ̃` (windy, airy).
+    *   **Notes:** `wǽ` for movement, `wæ̃` for its pervasive, "self-present everywhere" nature.
+
+
+76. **`wǽwǣwæ̉`**
+    *   **Etymology:** `wǽ` (Action/Dynamic/Moving) + `wǣ` (Big/Great/Expanse) + `wæ̉` (That/There/Sky-object)
+    *   **Meanings:** Cloud; a visible mass of water droplets or ice crystals in the sky.
+    *   **Noun:** `wǽwǣwæ̉` (a cloud). `wǣ wǽwǣwæ̉` (many clouds).
+    *   **Verb:** `wǽwǣwæ̉` (to cloud over, to form clouds). `wǣwæ̉ wǽwǣwæ̉ǽ.` (Sky, it, clouded-over-past.)
+    *   **Adjective:** `wǽwǣwæ̉` (cloudy).
+    *   **Notes:** A "big moving thing in the sky."
+
+
+77. **`wǽwǽwæ̉`**
+    *   **Etymology:** `wǽ` (Action/Dynamic/Sudden) + `wǽ` (Action/Sound/Light) + `wæ̉` (That/There/Sky-phenomenon)
+    *   **Meanings:** Lightning, thunder; a storm phenomenon involving electrical discharge and sound.
+    *   **Noun:** `wǽwǽwæ̉` (lightning/thunder).
+    *   **Verb:** `wǽwǽwæ̉` (to strike [lightning], to thunder). `wǽwǽwæ̉ǽ.` (It thundered/lightninged-past.)
+    *   **Adjective:** `wǽwǽwæ̉` (stormy [with thunder/lightning]).
+    *   **Notes:** The repeated `wǽ` emphasizes the intense, dual action (light and sound) from the sky.
+
+
+78. **`wæ̂wǽwæ̉`**
+    *   **Etymology:** `wæ̂` (Good/Positive/Beautiful) + `wǽ` (Action/Light/Phenomenon) + `wæ̉` (That/There/Sky-phenomenon)
+    *   **Meanings:** Rainbow; an optical and meteorological phenomenon.
+    *   **Noun:** `wæ̂wǽwæ̉` (a rainbow).
+    *   **Verb:** `wæ̂wǽwæ̉` (to form a rainbow).
+    *   **Adjective:** `wæ̂wǽwæ̉` (rainbow-like).
+    *   **Notes:** `wæ̂` for its beauty, `wǽ` for the action of light, `wæ̉` for its appearance in the sky.
+
+
+79. **`wæ̀wǽwæ̉`**
+    *   **Etymology:** `wæ̀` (State/Passive/Obscuring) + `wǽwæ̣` (Water - implied) / `wǽ` (Action [of obscuring]) + `wæ̉` (That/There/Sky/Air)
+    *   **Meanings:** Fog, mist; a state of obscured visibility due to water droplets in the air.
+    *   **Noun:** `wæ̀wǽwæ̉` (fog/mist).
+    *   **Verb:** `wæ̀wǽwæ̉` (to be foggy, to become misty). `wæ̀wǽwæ̉ǽ.` (It was-foggy-past.)
+    *   **Adjective:** `wæ̀wǽwæ̉` (foggy, misty).
+    *   **Notes:** `wæ̀` for the obscuring state, `wǽ` (implied from water or action) and `wæ̉` for its presence in the air/sky.
+
+
+80. **`wǽwæ̃wæ`**
+    *   **Etymology:** `wǽ` (Action/Dynamic [of blocking]) + `wæ̃wæ` (Light - from `wæ̂wæ̃wæ` with elision) OR `wǽ` (Action) + `wæ̃` (Self/Figure) + `wæ` (Thing/Result)
+    *   **Meanings:** Shadow; an area of darkness caused by an object blocking light.
+    *   **Noun:** `wǽwæ̃wæ` (a shadow). `wǣ wǽwæ̃wæ` (a big shadow).
+    *   **Verb:** `wǽwæ̃wæ` (to cast a shadow). `wæ̃wæ̇ wǽwæ̃wæǽ.` (Person, he/she, cast-shadow-past.)
+    *   **Adjective:** `wǽwæ̃wæ` (shadowy, dark).
+    *   **Notes:** The "action of blocking light" or "thing resulting from a self/figure blocking."
+
+
+81. **`wæ̂wæ̃wæ`**
+    *   **Etymology:** `wæ̂` (Good/Positive/Essential) + `wæ̃` (Self/Pervading) + `wæ` (Thing/Phenomenon)
+    *   **Meanings:** Light (general illumination, not a specific source like sun/star); brightness.
+    *   **Noun:** `wæ̂wæ̃wæ` (light). `wæ̆ wæ̂wæ̃wæ` (dim light).
+    *   **Verb:** `wæ̂wæ̃wæ` (to illuminate, to be light). `wæ̣wæ̉ wæ̂wæ̃wæǽ.` (Place, it, was-lit-past.)
+    *   **Adjective:** `wæ̂wæ̃wæ` (light, bright, illuminated).
+    *   **Notes:** `wæ̂` for its positive/essential nature, `wæ̃` for its pervasive quality.
+
+
+82. **`wæ̀wæ̃wæ`**
+    *   **Etymology:** `wæ̀` (State/Passive/Not-) + `wæ̂wæ̃wæ` (Light - with elision of `wæ̂`) OR `wæ̀` (Not-) + `wæ̃` (Pervading) + `wæ` (Thing)
+    *   **Meanings:** Darkness, absence of light.
+    *   **Noun:** `wæ̀wæ̃wæ` (darkness). `wǣ wæ̀wæ̃wæ` (deep darkness).
+    *   **Verb:** `wæ̀wæ̃wæ` (to darken, to be dark). `wæ̣wæ̉ wæ̀wæ̃wæǽ.` (Place, it, darkened-past.)
+    *   **Adjective:** `wæ̀wæ̃wæ` (dark, unlit).
+    *   **Notes:** The negation of light, or a "not-pervading (light) thing."
+
+
+
+
+### Part C: Human-Made Objects & Constructs
+
+
+#### C.1. Tools & Weapons
+
+
+83. **`wǽwæ`**
+    *   **Etymology:** `wǽ` (Action/Do/Make) + `wæ` (Thing/Entity)
+    *   **Meanings:** Crafted Object, tool, device, instrument, implement; a thing made for a purpose or used for an action.
+    *   **Noun:** `wǽwæ` (a tool). `wæ̃ wǽwæ` (my tool).
+    *   **Verb:** `wǽwæ` (to use a tool, to craft, to implement). `wæ wæ̃ wǽwæǽ.` (Thing, I, tooled/crafted-past.)
+    *   **Adjective:** `wǽwæ` (instrumental, tool-like, crafted). `wǽwæ wǽ` (a tool's action).
+    *   **Notes:** Very general term for any made object with a function. Specific types of tools will have further modifiers.
+
+
+84. **`wǽwæ̇`**
+    *   **Etymology:** `wǽ` (Action/Do/Cause) + `wæ̇` (He/She/It/They [Animate Target/Specific Effect])
+    *   **Meanings:** Weapon; a tool designed to cause harm or affect an animate target.
+    *   **Noun:** `wǽwæ̇` (a weapon). `wǣ wǽwæ̇` (many weapons).
+    *   **Verb:** `wǽwæ̇` (to weaponize, to arm, to use a weapon). `wæ̃wæ̇ wæ̃ wǽwæ̇ǽ.` (Person, I, armed-past.)
+    *   **Adjective:** `wǽwæ̇` (martial, weaponized). `wǽwæ̇ wǽ` (a weapon's strike).
+    *   **Notes:** The `wæ̇` specifies that the action/tool is directed towards or has a specific effect on an animate (or otherwise targeted) entity.
+
+
+85. **`wǽwæ̆`** (Sense 2: Knife/Blade - distinct from River)
+    *   **Etymology:** `wǽwæ` (Tool/Crafted Object) + `wæ̆` (Small/Sharp/Cutting)
+    *   **Meanings:** Knife, blade, dagger, sharp cutting tool (typically small).
+    *   **Noun:** `wǽwæ̆` (a knife).
+    *   **Verb:** `wǽwæ̆` (to cut with a knife, to stab). `wæ̂wæ wæ̃ wǽwæ̆ǽ.` (Food, I, knifed-past.)
+    *   **Adjective:** `wǽwæ̆` (sharp, knife-like).
+    *   **Notes:** `wæ̆` here implies smallness and/or sharpness. Context distinguishes from `wǽwæ̆` (river).
+
+
+86. **`wǽwǣ`** (Sense 2: Sword/Large Blade - distinct from Sun/Power)
+    *   **Etymology:** `wǽwæ` (Tool/Crafted Object) + `wǣ` (Big/Great/Long)
+    *   **Meanings:** Sword, large blade, long cutting tool.
+    *   **Noun:** `wǽwǣ` (a sword).
+    *   **Verb:** `wǽwǣ` (to wield a sword, to cut with a sword).
+    *   **Adjective:** `wǽwǣ` (sword-like, bladed [large]).
+    *   **Notes:** `wǣ` implies larger size compared to `wǽwæ̆` (knife). Context distinguishes from `wæ̂wǣ` (sun) or `wǽwǣ` (power).
+
+
+87. **`wǽwǽwæ`** (Sense 2: Hammer/Blunt Tool - distinct from Predator)
+    *   **Etymology:** `wǽwæ` (Tool/Crafted Object) + `wǽ` (Action/Impact) + `wæ` (Thing - target of impact)
+    *   **Meanings:** Hammer, mace, club, blunt impact tool.
+    *   **Noun:** `wǽwǽwæ` (a hammer).
+    *   **Verb:** `wǽwǽwæ` (to hammer, to strike with a blunt tool). `wæ̀wæ wæ̃ wǽwǽwæǽ.` (Stone, I, hammered-past.)
+    *   **Adjective:** `wǽwǽwæ` (hammer-like, blunt).
+    *   **Notes:** The repeated `wǽ` suggests a forceful action or impact. Context distinguishes from `wæ̃́wǽwæ` (predator).
+
+
+88. **`wǽwǽwæ̇`**
+    *   **Etymology:** `wǽwæ` (Tool/Crafted Object) + `wǽ` (Action/Propel) + `wæ̇` (Animate Target/Distant Effect)
+    *   **Meanings:** Bow and/or arrow; projectile weapon system.
+    *   **Noun:** `wǽwǽwæ̇` (a bow/arrow).
+    *   **Verb:** `wǽwǽwæ̇` (to shoot with a bow). `wæ̃́ wæ̃ wǽwǽwæ̇ǽ.` (Animal, I, shot-past.)
+    *   **Adjective:** `wǽwǽwæ̇` (pertaining to archery).
+    *   **Notes:** `wǽ` for the propelling action, `wæ̇` for the targeted, often distant, effect. Can refer to the bow, the arrow, or the system.
+
+
+89. **`wæ̆wæ̂wæ`** (Sense 2: Shield - distinct from Head)
+    *   **Etymology:** `wæ̆` (Small/Covering [relative to body]) + `wæ̂` (Good/Positive/Protection) + `wæ` (Thing/Device)
+    *   **Meanings:** Shield; a piece of defensive armor.
+    *   **Noun:** `wæ̆wæ̂wæ` (a shield).
+    *   **Verb:** `wæ̆wæ̂wæ` (to shield, to defend with a shield). `wæ̃ wæ̃ wæ̆wæ̂wæǽ.` (Self, I, shielded-past.)
+    *   **Adjective:** `wæ̆wæ̂wæ` (shield-like, defensive).
+    *   **Notes:** `wæ̆` for its typical size relative to a person, `wæ̂` for its protective quality. Context distinguishes from `wæ̃wæ̂wæ` (head).
+
+
+90. **`wǽwǣwæ`** (Sense 2: Net/Trap - distinct from Sea/Forest/Wall/City/End)
+    *   **Etymology:** `wǽwæ` (Tool/Crafted Object) + `wǣ` (Big/Covering/Ensnaring) + `wæ` (Thing)
+    *   **Meanings:** Net, trap, snare; a device for catching or ensnaring.
+    *   **Noun:** `wǽwǣwæ` (a net/trap).
+    *   **Verb:** `wǽwǣwæ` (to net, to trap, to ensnare). `wæ̃́ wæ̃ wǽwǣwæǽ.` (Animal, I, netted-past.)
+    *   **Adjective:** `wǽwǣwæ` (net-like, trapping).
+    *   **Notes:** `wǣ` implies its often expansive or encompassing nature. Heavy reliance on context to distinguish from its many homophones.
+
+
+91. **`wǽwæ̂wǽwæ`** (Sense 1: Key)
+    *   **Etymology:** `wǽwæ` (Tool/Crafted Object) + `wæ̂` (Good/Positive/Access) + `wǽ` (Action/Open/Operate) + `wæ` (Thing [lock])
+    *   **Meanings:** Key; a tool for operating a lock.
+    *   **Noun:** `wǽwæ̂wǽwæ` (a key).
+    *   **Verb:** `wǽwæ̂wǽwæ` (to use a key, to unlock). `wæ̀wǽwæ wæ̃ wǽwæ̂wǽwæǽ.` (Lock, I, keyed-past.)
+    *   **Adjective:** `wǽwæ̂wǽwæ` (key-like).
+    *   **Notes:** A tool (`wǽwæ`) that provides good (`wæ̂`) access by an action (`wǽ`) on a thing (`wæ` - the lock). Homophonous with Plate/Dish.
+
+
+92. **`wæ̀wǽwæ`** (Sense 3: Lock - distinct from Metal/Ice)
+    *   **Etymology:** `wæ̀` (State/Secure/Closed) + `wǽwæ` (Tool/Device)
+    *   **Meanings:** Lock; a mechanism for securing something.
+    *   **Noun:** `wæ̀wǽwæ` (a lock).
+    *   **Verb:** `wæ̀wǽwæ` (to lock, to secure). `wǽwæ̀wæ̆ wæ̃ wæ̀wǽwæǽ.` (Door, I, locked-past.)
+    *   **Adjective:** `wæ̀wǽwæ` (locked, secure).
+    *   **Notes:** A device (`wǽwæ`) that creates a secure state (`wæ̀`). Context distinguishes from Metal/Ice.
+
+
+#### C.2. Food & Drink Related
+
+
+93. **`wæ̂wæ`** (Sense 2: Food - distinct from Beauty)
+    *   **Etymology:** `wæ̂` (Good/Positive/Nourishing) + `wæ` (Thing/Substance)
+    *   **Meanings:** Food, sustenance, nourishment, provisions.
+    *   **Noun:** `wæ̂wæ` (food). `wǣ wæ̂wæ` (much food).
+    *   **Verb:** `wæ̂wæ` (to eat, to consume food, to nourish). `wæ̃wæ̇ wæ̂wæǽ.` (Person, he/she, ate-past.)
+    *   **Adjective:** `wæ̂wæ` (edible, nourishing, culinary). `wæ̂wæ wæ̀̄` (food plant).
+    *   **Notes:** General term for anything consumed for sustenance. Context distinguishes from `wæ̂wæ` (beauty quality).
+
+
+94. **`wǽwæ̂wæ`** (Sense 2: Bread/Baked Food - distinct from Shield/Head)
+    *   **Etymology:** `wǽ` (Action/Make/Bake) + `wæ̂wæ` (Food)
+    *   **Meanings:** Bread, baked food, cake, pastry.
+    *   **Noun:** `wǽwæ̂wæ` (bread). `wæ̆ wǽwæ̂wæ` (a small piece of bread).
+    *   **Verb:** `wǽwæ̂wæ` (to bake [bread/cakes]). `wæ̃ wǽwæ̂wæǽ.` (I, baked-past.)
+    *   **Adjective:** `wǽwæ̂wæ` (baked, bread-like).
+    *   **Notes:** Specifically food that is made or baked. Context distinguishes from Shield/Head.
+
+
+95. **`wǽwæ̣wæ`** (Sense 2: Drink/Beverage - distinct from Wave/Island)
+    *   **Etymology:** `wǽwæ̣` (Water) + `wæ` (Thing/Prepared Substance) OR `wǽ` (Action/Consume) + `wǽwæ̣` (Water)
+    *   **Meanings:** Drink, beverage, potable liquid.
+    *   **Noun:** `wǽwæ̣wæ` (a drink).
+    *   **Verb:** `wǽwæ̣wæ` (to drink). `wæ̃ wǽwæ̣wæǽ.` (I, drank-past.)
+    *   **Adjective:** `wǽwæ̣wæ` (potable, drinkable).
+    *   **Notes:** A substance, often water-based, prepared or intended for drinking. Context distinguishes from Wave/Island.
+
+
+96. **`wǽwæ̂wæ̆`**
+    *   **Etymology:** `wǽwæ̂wæ` (Food/Drink - implied base) + `wæ̆` (Small/Container) OR `wǽ` (Action/Hold) + `wæ̂` (Good) + `wæ̆` (Small Container)
+    *   **Meanings:** Cup, mug, glass, small vessel for drinking.
+    *   **Noun:** `wǽwæ̂wæ̆` (a cup).
+    *   **Verb:** `wǽwæ̂wæ̆` (to cup [hands], to drink from a cup).
+    *   **Adjective:** `wǽwæ̂wæ̆` (cup-like).
+    *   **Notes:** A small (`wæ̆`) container, often for good (`wæ̂`) things like drinks.
+
+
+97. **`wǽwæ̂wǽwæ`** (Sense 2: Plate/Dish - distinct from Key)
+    *   **Etymology:** `wǽwæ̂wæ` (Food) + `wǽwæ` (Tool/Crafted Object [for holding]) OR `wǽ` (Action/Hold) + `wæ̂` (Good) + `wǽwæ` (Crafted Surface)
+    *   **Meanings:** Plate, dish, bowl; a vessel for holding or serving food.
+    *   **Noun:** `wǽwæ̂wǽwæ` (a plate).
+    *   **Verb:** `wǽwæ̂wǽwæ` (to plate food).
+    *   **Adjective:** `wǽwæ̂wǽwæ` (plate-like).
+    *   **Notes:** A tool/surface (`wǽwæ`) for food (`wǽwæ̂wæ`). Homophonous with Key.
+
+
+98. **`wǽwæ̂wǽwæ̆`**
+    *   **Etymology:** `wǽwæ̂wæ` (Food) + `wǽwæ̆` (Small Tool/Knife-like)
+    *   **Meanings:** Spoon, fork, eating utensil (small, often pointed or scooping).
+    *   **Noun:** `wǽwæ̂wǽwæ̆` (a spoon/fork).
+    *   **Verb:** `wǽwæ̂wǽwæ̆` (to use a spoon/fork).
+    *   **Adjective:** `wǽwæ̂wǽwæ̆` (utensil-like).
+    *   **Notes:** A small tool (`wǽwæ̆`) for food (`wǽwæ̂wæ`).
+
+
+#### C.3. Shelter & Furniture
+
+
+99. **`wǣwæ̀`**
+    *   **Etymology:** `wǣ` (Big/Great/Enclosing) + `wæ̀` (State/Dwelling/Shelter)
+    *   **Meanings:** Building, house, structure, shelter; a large, man-made dwelling or enclosure.
+    *   **Noun:** `wǣwæ̀` (a building). `wæ̃ wǣwæ̀` (my house).
+    *   **Verb:** `wǣwæ̀` (to build, to inhabit a building, to shelter). `wæ̃ wǣwæ̀ǽ.` (I, built-past.)
+    *   **Adjective:** `wǣwæ̀` (architectural, structural, pertaining to buildings). `wǣwæ̀ wæ` (building material).
+    *   **Notes:** General term for significant man-made structures.
+
+
+100. **`wæ̀wæ̂`** (Sense 2: Bed/Resting Place - distinct from Emotion/Feeling)
+     *   **Etymology:** `wæ̀` (State/Passive/Rest) + `wæ̂` (Good/Positive/Comfort)
+     *   **Meanings:** Bed, resting place, comfortable spot for lying down.
+     *   **Noun:** `wæ̀wæ̂` (a bed).
+     *   **Verb:** `wæ̀wæ̂` (to go to bed, to rest in a bed). `wæ̃ wæ̀wæ̂ǽ.` (I, went-to-bed-past.)
+     *   **Adjective:** `wæ̀wæ̂` (bed-like, comfortable for resting).
+     *   **Notes:** A place for a good (`wæ̂`) state (`wæ̀`) of rest. Context distinguishes from `wæ̃wæ̂` (emotion).
+
+
+101. **`wǽwæ̂wæ̀`**
+     *   **Etymology:** `wǽ` (Action/Sit/Use) + `wæ̂` (Good/Positive/Support) + `wæ̀` (State/Object)
+     *   **Meanings:** Chair, seat, bench; furniture for sitting.
+     *   **Noun:** `wǽwæ̂wæ̀` (a chair).
+     *   **Verb:** `wǽwæ̂wæ̀` (to sit in a chair, to provide a seat).
+     *   **Adjective:** `wǽwæ̂wæ̀` (chair-like).
+     *   **Notes:** An object (`wæ̀`) for the good (`wæ̂`) action (`wǽ`) of sitting.
+
+
+102. **`wǽwæ̂wæ̣`**
+     *   **Etymology:** `wǽ` (Action/Use/Place upon) + `wæ̂` (Good/Positive/Support) + `wæ̣` (This/Here/Surface)
+     *   **Meanings:** Table, desk, flat raised surface for placing things.
+     *   **Noun:** `wǽwæ̂wæ̣` (a table).
+     *   **Verb:** `wǽwæ̂wæ̣` (to use a table, to place on a table).
+     *   **Adjective:** `wǽwæ̂wæ̣` (table-like).
+     *   **Notes:** A surface (`wæ̣`) for good (`wæ̂`) use/action (`wǽ`).
+
+
+103. **`wæ̀wæ̆`** (Sense 2: Container - distinct from Stupidity/Ignorance)
+     *   **Etymology:** `wæ̀` (State/Holding/Enclosing) + `wæ̆` (Small/Little [or general size])
+     *   **Meanings:** Container, vessel, box, jar, pot; an object for holding things.
+     *   **Noun:** `wæ̀wæ̆` (a container). `wǣ wæ̀wæ̆` (a big container).
+     *   **Verb:** `wæ̀wæ̆` (to contain, to put in a container). `wæ̂wæ wæ̃ wæ̀wæ̆ǽ.` (Food, I, contained-past.)
+     *   **Adjective:** `wæ̀wæ̆` (container-like).
+     *   **Notes:** An object in a state (`wæ̀`) of holding, often small (`wæ̆`) but can be modified. Context distinguishes from `wæ̆wæ̌` (stupidity).
+
+
+104. **`wæ̀wǣwæ`** (Sense 2: Wall/Barrier - distinct from Sea/Forest/City/End/Net)
+     *   **Etymology:** `wæ̀` (State/Blocking/Boundary) + `wǣ` (Big/Long/Significant) + `wæ` (Thing/Structure)
+     *   **Meanings:** Wall, barrier, fence; a structure that encloses or divides.
+     *   **Noun:** `wæ̀wǣwæ` (a wall).
+     *   **Verb:** `wæ̀wǣwæ` (to wall off, to build a wall).
+     *   **Adjective:** `wæ̀wǣwæ` (wall-like, enclosing).
+     *   **Notes:** A significant (`wǣ`) thing (`wæ`) creating a state (`wæ̀`) of blockage or boundary. Heavy reliance on context.
+
+
+105. **`wǽwæ̀wæ̆`**
+     *   **Etymology:** `wǽ` (Action/Go/Pass through) + `wǣwæ̀` (Building - implied base) / `wæ̀` (State/Boundary) + `wæ̆` (Small/Opening)
+     *   **Meanings:** Door, gate, entrance, exit; an opening for passage in a wall or building.
+     *   **Noun:** `wǽwæ̀wæ̆` (a door).
+     *   **Verb:** `wǽwæ̀wæ̆` (to use a door, to pass through an entrance). `wæ̃ wǽwæ̀wæ̆ǽ.` (I, went-through-door-past.)
+     *   **Adjective:** `wǽwæ̀wæ̆` (door-like).
+     *   **Notes:** A small opening (`wæ̆`) in a boundary/building (`wæ̀`/`wǣwæ̀`) for action/passage (`wǽ`).
+
+
+106. **`wǽwæ̂wæ̆wæ`**
+     *   **Etymology:** `wæ̌` (See/Perceive - with `wǽ` for action of looking) + `wǣwæ̀` (Building - implied base) / `wæ̂` (Good/Light) + `wæ̆` (Small/Opening) + `wæ` (Thing)
+     *   **Meanings:** Window; an opening in a wall or vehicle for light and viewing.
+     *   **Noun:** `wǽwæ̂wæ̆wæ` (a window).
+     *   **Verb:** `wǽwæ̂wæ̆wæ` (to look through a window).
+     *   **Adjective:** `wǽwæ̂wæ̆wæ` (window-like).
+     *   **Notes:** A small opening (`wæ̆wæ`) that is good (`wæ̂`) for seeing/light (`wǽ`/`wæ̌`).
+
+
+#### C.4. Clothing
+
+
+107. **`wæ̆wæ̂`** (Sense 2: Clothing - distinct from Childish Knowledge)
+     *   **Etymology:** `wæ̆` (Small/Covering/Fitting) + `wæ̂` (Good/Positive/Protection/Comfort)
+     *   **Meanings:** Clothing, garment, attire, apparel; items worn on the body.
+     *   **Noun:** `wæ̆wæ̂` (clothing). `wǣ wæ̆wæ̂` (many clothes).
+     *   **Verb:** `wæ̆wæ̂` (to clothe, to wear clothing). `wæ̃ wæ̆wæ̂ǽ.` (I, dressed-past.)
+     *   **Adjective:** `wæ̆wæ̂` (textile, related to clothing). `wæ̆wæ̂ wæ` (a piece of clothing).
+     *   **Notes:** Something that covers (`wæ̆`) and is good/protective (`wæ̂`). Context distinguishes from `wæ̃wæ̇wæ̂ wæ̌` (childish knowledge).
+
+
+108. **`wæ̆wæ̂wǽ`** (Sense 2: Hat/Headwear - distinct from Artistic Person)
+     *   **Etymology:** `wæ̆wæ̂` (Clothing) + `wæ̃wæ̂wæ` (Head - with elision of `wæ̃` and `wæ`) / `wǽ` (Action of wearing on head)
+     *   **Meanings:** Hat, cap, headwear, helmet.
+     *   **Noun:** `wæ̆wæ̂wǽ` (a hat).
+     *   **Verb:** `wæ̆wæ̂wǽ` (to wear a hat).
+     *   **Adjective:** `wæ̆wæ̂wǽ` (hat-like).
+     *   **Notes:** Clothing (`wæ̆wæ̂`) for the head (`wǽ` as a shortened reference or action). Context distinguishes from `wæ̃wæ̇wǽwæ̂` (artist).
+
+
+109. **`wæ̆wæ̂wæ̣`**
+     *   **Etymology:** `wæ̆wæ̂` (Clothing) + `wæ̃wæ̣wæ` (Foot/Leg - with elision) / `wæ̣` (Ground/Contact)
+     *   **Meanings:** Shoes, footwear, boots, sandals.
+     *   **Noun:** `wæ̆wæ̂wæ̣` (shoes).
+     *   **Verb:** `wæ̆wæ̂wæ̣` (to wear shoes, to shoe).
+     *   **Adjective:** `wæ̆wæ̂wæ̣` (footwear-related).
+     *   **Notes:** Clothing (`wæ̆wæ̂`) for the part that contacts the ground (`wæ̣`).
+
+
+#### C.5. Communication & Art (Non-Utilitarian Constructs)
+
+
+110. **`wæ̧wæ̌`**
+     *   **Etymology:** `wæ̧` (Say/Speak/Communicate/Word) + `wæ̌` (Know/Understand/Mind/Truth/Record)
+     *   **Meanings:** Book, writing, text, scripture, document, recorded knowledge, information, message.
+     *   **Noun:** `wæ̧wæ̌` (a book). `wæ̃ wæ̧wæ̌` (my book).
+     *   **Verb:** `wæ̧wæ̌` (to read, to write [text], to study text, to record knowledge). `wæ̧wæ̌ wæ̃ wǽǣ.` (Book/text, I, will-read/write.)
+     *   **Adjective:** `wæ̧wæ̌` (written, textual, informative, scholarly, literary). `wæ̧wæ̌ wæ` (a written thing).
+     *   **Notes:** Communication (`wæ̧`) that is for knowledge/record (`wæ̌`).
+
+
+111. **`wæ̂wǽ`** (Sense 2: Art/Creation - distinct from Life)
+     *   **Etymology:** `wæ̂` (Good/Positive/Beautiful/Expressive) + `wǽ` (Action/Do/Make/Create)
+     *   **Meanings:** Art, aesthetic creation, masterpiece, performance (artistic).
+     *   **Noun:** `wæ̂wǽ` (art). `wǣ wæ̂wǽ` (great art).
+     *   **Verb:** `wæ̂wǽ` (to create art, to perform artistically). `wæ̃wæ̇wǽwæ̂ wæ̂wǽǽ.` (Artist, he/she, created-art-past.)
+     *   **Adjective:** `wæ̂wǽ` (artistic, aesthetic, creative). `wæ̂wǽ wæ` (an art piece).
+     *   **Notes:** Making (`wǽ`) something good/beautiful (`wæ̂`). Context distinguishes from `wǽwæ̀` (life).
+
+
+112. **`wæ̧wæ̂`** (Sense 2: Music/Song - distinct from Bed)
+     *   **Etymology:** `wæ̧` (Say/Speak/Sound/Express) + `wæ̂` (Good/Positive/Beautiful/Harmonious)
+     *   **Meanings:** Music, song, melody, harmony, pleasant sound.
+     *   **Noun:** `wæ̧wæ̂` (music/song). `wæ̃ wæ̧wæ̂` (my song).
+     *   **Verb:** `wæ̧wæ̂` (to make music, to sing, to play an instrument). `wæ̃ wæ̧wæ̂ǽ.` (I, sang-past.)
+     *   **Adjective:** `wæ̧wæ̂` (musical, melodic, harmonious). `wæ̧wæ̂ wǽwæ` (a musical instrument).
+     *   **Notes:** Sound/expression (`wæ̧`) that is good/beautiful (`wæ̂`). Context distinguishes from `wæ̀wæ̂` (bed).
+
+
+113. **`wæ̀wæ̧`** (Sense 2: Letter/Written Message - distinct from Answer)
+     *   **Etymology:** `wæ̀` (State/Recorded/Passive) + `wæ̧` (Say/Speak/Communicate/Message)
+     *   **Meanings:** Letter (correspondence), written message, note.
+     *   **Noun:** `wæ̀wæ̧` (a letter).
+     *   **Verb:** `wæ̀wæ̧` (to write a letter). `wæ̃ wæ̀wæ̧ǽ.` (I, wrote-letter-past.)
+     *   **Adjective:** `wæ̀wæ̧` (epistolary).
+     *   **Notes:** Communication (`wæ̧`) in a recorded/passive state (`wæ̀`). Context distinguishes from `wæ̀wæ̧` (answer).
+
+
+114. **`wǽwæ̧`** (Sense 2: Speech/Oration - distinct from Question)
+     *   **Etymology:** `wǽ` (Action/Dynamic/Perform) + `wæ̧` (Say/Speak/Communicate)
+     *   **Meanings:** Speech, oration, lecture, public address.
+     *   **Noun:** `wǽwæ̧` (a speech). `wǣ wǽwæ̧` (a long speech).
+     *   **Verb:** `wǽwæ̧` (to give a speech, to orate). `wæ̃wæ̇wǽ wǽwæ̧ǽ.` (Leader, he/she, gave-speech-past.)
+     *   **Adjective:** `wǽwæ̧` (oratorical).
+     *   **Notes:** The action (`wǽ`) of speaking (`wæ̧`). Context distinguishes from `wǽwæ̧` (question noun).
+
+
+115. **`wæ̂wæ̧`** (Sense 2: Poem/Song Lyric - distinct from Music/Song in general)
+     *   **Etymology:** `wæ̂` (Good/Positive/Artistic/Beautiful) + `wæ̧` (Say/Speak/Word/Text)
+     *   **Meanings:** Poem, song lyric, artistic text, verse.
+     *   **Noun:** `wæ̂wæ̧` (a poem).
+     *   **Verb:** `wæ̂wæ̧` (to write poetry, to recite a poem).
+     *   **Adjective:** `wæ̂wæ̧` (poetic, lyrical).
+     *   **Notes:** Words/text (`wæ̧`) that are good/artistic (`wæ̂`). More specific than `wæ̧wæ̂` (music/song) as it focuses on the textual component.
+
+
+#### C.6. Societal & Miscellaneous Constructs
+
+
+116. **`wǽwǣwǽ`**
+     *   **Etymology:** `wǽ` (Action/Go/Move) + `wǣ` (Big/Great/Long Distance) + `wǽ` (Action/Means of Movement)
+     *   **Meanings:** Vehicle, transport, conveyance; a means of traveling long distances.
+     *   **Noun:** `wǽwǣwǽ` (a vehicle). `wæ̃ wǽwǣwǽ` (my vehicle).
+     *   **Verb:** `wǽwǣwǽ` (to travel by vehicle, to drive/pilot a vehicle). `wæ̃ wǽwǣwǽǽ.` (I, traveled-by-vehicle-past.)
+     *   **Adjective:** `wǽwǣwǽ` (vehicular).
+     *   **Notes:** Emphasizes action (`wǽ`) over long distances (`wǣ`) by a means of action (`wǽ`).
+
+
+117. **`wǽwæ̀wæ`** (Sense 2: Money/Currency - distinct from Fish/Metal/Ice)
+     *   **Etymology:** `wǽ` (Action/Exchange/Trade) + `wæ̀` (State/Value/Representation) + `wæ` (Thing/Medium)
+     *   **Meanings:** Money, currency, wealth (as medium of exchange).
+     *   **Noun:** `wǽwæ̀wæ` (money). `wǣ wǽwæ̀wæ` (much money).
+     *   **Verb:** `wǽwæ̀wæ` (to pay with money, to be currency). `wæ̂wæ wæ̃ wǽwæ̀wæǽ.` (Food, I, paid-with-money-past.)
+     *   **Adjective:** `wǽwæ̀wæ` (monetary, financial).
+     *   **Notes:** A thing (`wæ`) representing a state of value (`wæ̀`) used in action/exchange (`wǽ`). Heavy reliance on context.
+
+
+118. **`wæ̀wǣwæ̌`**
+     *   **Etymology:** `wæ̀` (State/Established/Binding) + `wǣ` (Big/Great/Important) + `wæ̌` (Know/Truth/Principle)
+     *   **Meanings:** Law, rule, principle, regulation, decree.
+     *   **Noun:** `wæ̀wǣwæ̌` (a law). `wǣ wæ̀wǣwæ̌` (many laws).
+     *   **Verb:** `wæ̀wǣwæ̌` (to legislate, to make a law, to be a rule).
+     *   **Adjective:** `wæ̀wǣwæ̌` (legal, lawful, regulatory). `wæ̀wǣwæ̌ wæ̧wæ̌` (a legal document).
+     *   **Notes:** An important (`wǣ`) truth/principle (`wæ̌`) that is in an established state (`wæ̀`).
+
+
+119. **`wæ̣wǽ`** (Sense 2: Road/Path - distinct from Water)
+     *   **Etymology:** `wæ̣wæ̉` (Place - implied base) / `wæ̣` (This/Here/Ground) + `wǽ` (Action/Go/Travel)
+     *   **Meanings:** Road, path, way, route (man-made or established).
+     *   **Noun:** `wæ̣wǽ` (a road). `wǣ wæ̣wǽ` (a long road).
+     *   **Verb:** `wæ̣wǽ` (to travel on a road, to make a road).
+     *   **Adjective:** `wæ̣wǽ` (road-like).
+     *   **Notes:** A place/ground (`wæ̣`) for going/travel (`wǽ`). Context distinguishes from `wǽwæ̣` (water).
+
+
+120. **`wǣwæ̀wæ`** (Sense 3: City/Town - distinct from Sea/Forest/Wall/End/Net)
+     *   **Etymology:** `wǣ` (Big/Many) + `wǣwæ̀` (Building - with elision) / `wæ̀` (State/Dwelling) + `wæ` (Thing/Place)
+     *   **Meanings:** City, town, large settlement.
+     *   **Noun:** `wǣwæ̀wæ` (a city).
+     *   **Verb:** `wǣwæ̀wæ` (to live in a city, to urbanize).
+     *   **Adjective:** `wǣwæ̀wæ` (urban, civic).
+     *   **Notes:** A big/many (`wǣ`) place (`wæ`) of dwellings (`wæ̀`, from `wǣwæ̀`). Heavy reliance on context.
+
+
+121. **`wæ̆wæ̀wæ`** (Sense 2: Village - distinct from Container)
+     *   **Etymology:** `wæ̆` (Small/Little) + `wǣwæ̀` (Building - with elision) / `wæ̀` (State/Dwelling) + `wæ` (Thing/Place)
+     *   **Meanings:** Village, small settlement.
+     *   **Noun:** `wæ̆wæ̀wæ` (a village).
+     *   **Verb:** `wæ̆wæ̀wæ` (to live in a village).
+     *   **Adjective:** `wæ̆wæ̀wæ` (rural, village-like).
+     *   **Notes:** A small (`wæ̆`) place (`wæ`) of dwellings (`wæ̀`). Context distinguishes from `wæ̀wæ̆` (container).
+
+
+122. **`wǽwǣwæ̀`**
+     *   **Etymology:** `wæ̣wǽ` (Road/Path - implied base) / `wǽ` (Action/Go/Cross) + `wǣ` (Big/Span) + `wǽwæ̣` (Water - implied obstacle) / `wæ̀` (State/Structure)
+     *   **Meanings:** Bridge; a structure for crossing an obstacle (like water or a valley).
+     *   **Noun:** `wǽwǣwæ̀` (a bridge).
+     *   **Verb:** `wǽwǣwæ̀` (to bridge, to cross via a bridge).
+     *   **Adjective:** `wǽwǣwæ̀` (bridge-like).
+     *   **Notes:** A structure (`wæ̀`) for going/crossing (`wǽ`) a span (`wǣ`).
+
+
+123. **`wǽwǣwæ`** (Sense 3: Ship/Boat - distinct from Sea/Forest/Wall/City/End/Net)
+     *   **Etymology:** `wǽwǣwǽ` (Vehicle) + `wǽwæ̣` (Water - with elision) OR `wǽ` (Action/Go) + `wǣ` (Big/Long Distance) + `wæ` (Thing [on water])
+     *   **Meanings:** Ship, boat, watercraft.
+     *   **Noun:** `wǽwǣwæ` (a ship).
+     *   **Verb:** `wǽwǣwæ` (to sail, to travel by ship).
+     *   **Adjective:** `wǽwǣwæ` (nautical, ship-like).
+     *   **Notes:** A vehicle (`wǽwǣwǽ` implied) for water (`wǽwæ̣` implied). Heavy reliance on context.
+
+
+124. **`wǽwæ̌wæ`** (Sense 2: Map - distinct from Eye)
+     *   **Etymology:** `wǽ` (Action/Go/Navigate) + `wæ̌` (Know/Understand/See [representation]) + `wæ` (Thing/Representation)
+     *   **Meanings:** Map, chart; a representation of an area.
+     *   **Noun:** `wǽwæ̌wæ` (a map).
+     *   **Verb:** `wǽwæ̌wæ` (to map, to chart, to use a map).
+     *   **Adjective:** `wǽwæ̌wæ` (cartographic).
+     *   **Notes:** A thing (`wæ`) for knowing/seeing (`wæ̌`) how to go (`wǽ`). Context distinguishes from `wæ̃wæ̌wæ` (eye).
+
+
+125. **`wǽwǽwæ̂`** (Sense 2: Clock/Timepiece - distinct from Artist)
+     *   **Etymology:** `wǽ` (Action/Measure/Mark) + `wǽ` (Action/Passing [of time]) + `wæ̂` (Good/Accurate/Device)
+     *   **Meanings:** Clock, timepiece, device for measuring time.
+     *   **Noun:** `wǽwǽwæ̂` (a clock).
+     *   **Verb:** `wǽwǽwæ̂` (to time, to measure time with a clock).
+     *   **Adjective:** `wǽwǽwæ̂` (horological).
+     *   **Notes:** A good device (`wæ̂`) for the action (`wǽ`) of [time] action/passing (`wǽ`). Context distinguishes from `wæ̃wæ̇wǽwæ̂` (artist).
+
+
+126. **`wǽwæ̇wæ`**
+     *   **Etymology:** `wǽ` (Action/Do/Cause [healing/change]) + `wæ̇` (Animate Target/Body) + `wæ` (Thing/Substance)
+     *   **Meanings:** Medicine, cure, remedy, drug.
+     *   **Noun:** `wǽwæ̇wæ` (medicine).
+     *   **Verb:** `wǽwæ̇wæ` (to medicate, to cure, to administer medicine). `wæ̃wæ̇ wæ̃ wǽwæ̇wæǽ.` (Person, I, medicated-past.)
+     *   **Adjective:** `wǽwæ̇wæ` (medicinal, therapeutic).
+     *   **Notes:** A thing/substance (`wæ`) for action/causing change (`wǽ`) in an animate being/body (`wæ̇`).
+
+
+---
+### Part D: Abstract Concepts, States & Qualities
+
+
+#### D.1. Emotions & Feelings
+
+
+127. **`wæ̃wæ̂`** (Sense 2: Emotion/Feeling - distinct from Bed/Clothing)
+     *   **Etymology:** `wæ̃` (Self/I/Internal) + `wæ̂` (Good/Positive/State/Intensity)
+     *   **Meanings:** Emotion, feeling, sentiment, mood; general internal affective state.
+     *   **Noun:** `wæ̃wæ̂` (an emotion). `wǣ wæ̃wæ̂` (a strong emotion).
+     *   **Verb:** `wæ̃wæ̂` (to feel [an emotion], to emote). `wæ̃ wæ̃wæ̂ǽ.` (I, felt-emotion-past.)
+     *   **Adjective:** `wæ̃wæ̂` (emotional, sentimental, affective). `wæ̃wæ̂ wæ̀` (an emotional state).
+     *   **Notes:** Base term for internal states. Specific emotions are often compounds of this or other core `wæ`-forms. Context distinguishes from `wæ̀wæ̂` (bed) and `wæ̆wæ̂` (clothing).
+
+
+128. **`wæ̂wæ̃`** (Sense 2: Love/Affection - distinct from Wind/Air)
+     *   **Etymology:** `wæ̂` (Good/Positive/Deep) + `wæ̃` (Self/I/Connection with another Self)
+     *   **Meanings:** Love, deep affection, fondness, strong positive connection.
+     *   **Noun:** `wæ̂wæ̃` (love).
+     *   **Verb:** `wæ̂wæ̃` (to love, to feel deep affection for). `wæ̈ wæ̃ wæ̂wæ̃.` (You, I, love.)
+     *   **Adjective:** `wæ̂wæ̃` (loving, affectionate, beloved). `wæ̂wæ̃ wǽ` (a loving action).
+     *   **Notes:** A good/positive (`wæ̂`) connection involving the self (`wæ̃`) and often another. Context distinguishes from `wǽwæ̃` (wind).
+
+
+129. **`wæ̀(wæ̂wæ̃)`**
+     *   **Etymology:** `wæ̀-` (Negation Prefix) + `wæ̂wæ̃` (Love)
+     *   **Meanings:** Hate, deep animosity, strong negative connection.
+     *   **Noun:** `wæ̀wæ̂wæ̃` (hate).
+     *   **Verb:** `wæ̀wæ̂wæ̃` (to hate). `wæ̈ wæ̃ wæ̀wæ̂wæ̃.` (You, I, hate.)
+     *   **Adjective:** `wæ̀wæ̂wæ̃` (hateful, malevolent).
+     *   **Notes:** Literally "not-love."
+
+
+130. **`wæ̂wæ̃wæ̂`**
+     *   **Etymology:** `wæ̂` (Good/Positive/Intense) + `wæ̃wæ̂` (Emotion/Feeling)
+     *   **Meanings:** Joy, happiness, elation, delight; a strong positive emotion.
+     *   **Noun:** `wæ̂wæ̃wæ̂` (joy).
+     *   **Verb:** `wæ̂wæ̃wæ̂` (to be joyful, to rejoice). `wæ̃ wæ̂wæ̃wæ̂ǽ.` (I, rejoiced-past.)
+     *   **Adjective:** `wæ̂wæ̃wæ̂` (joyful, happy, elated).
+     *   **Notes:** An intensified good/positive emotion.
+
+
+131. **`wæ̀wæ̃wæ̂`**
+     *   **Etymology:** `wæ̀-` (Negation Prefix/Opposite) + `wæ̃wæ̂` (Emotion, often implying positive or baseline) OR `wæ̀` (State) + `wæ̃wæ̂` (Emotion [negative connotation])
+     *   **Meanings:** Sadness, sorrow, grief, unhappiness; a negative emotional state.
+     *   **Noun:** `wæ̀wæ̃wæ̂` (sadness).
+     *   **Verb:** `wæ̀wæ̃wæ̂` (to be sad, to grieve). `wæ̃ wæ̀wæ̃wæ̂ǽ.` (I, was-sad-past.)
+     *   **Adjective:** `wæ̀wæ̃wæ̂` (sad, sorrowful, grieving).
+     *   **Notes:** "Not-(good)-emotion" or a "state of (negative)-emotion."
+
+
+132. **`wǽwæ̃wæ̂`**
+     *   **Etymology:** `wǽ` (Action/Dynamic/Intense) + `wæ̃wæ̂` (Emotion/Feeling)
+     *   **Meanings:** Anger, wrath, fury, rage; a strong, active, negative emotion.
+     *   **Noun:** `wǽwæ̃wæ̂` (anger).
+     *   **Verb:** `wǽwæ̃wæ̂` (to be angry, to rage). `wæ̃ wǽwæ̃wæ̂ǽ.` (I, was-angry-past.)
+     *   **Adjective:** `wǽwæ̃wæ̂` (angry, wrathful, furious).
+     *   **Notes:** An active, intense (`wǽ`) emotion (`wæ̃wæ̂`).
+
+
+133. **`wæ̆wæ̃wæ̂`**
+     *   **Etymology:** `wæ̆` (Small/Little/Diminished) + `wæ̃wæ̂` (Emotion/Feeling/Well-being)
+     *   **Meanings:** Fear, anxiety, apprehension, nervousness; an emotion of diminished well-being or anticipation of negative outcome.
+     *   **Noun:** `wæ̆wæ̃wæ̂` (fear).
+     *   **Verb:** `wæ̆wæ̃wæ̂` (to fear, to be anxious). `wæ̃́ wæ̃ wæ̆wæ̃wæ̂.` (Animal, I, fear.)
+     *   **Adjective:** `wæ̆wæ̃wæ̂` (fearful, anxious, apprehensive).
+     *   **Notes:** A "small" or "diminished" state of emotion/self.
+
+
+134. **`wæ̂wæ̌`** (Sense 2: Hope - distinct from Book/Text)
+     *   **Etymology:** `wæ̂` (Good/Positive/Want) + `wæ̌` (Know/See/Perceive [future possibility])
+     *   **Meanings:** Hope, positive expectation, desire for a future good.
+     *   **Noun:** `wæ̂wæ̌` (hope). `wǣ wæ̂wæ̌` (great hope).
+     *   **Verb:** `wæ̂wæ̌` (to hope). `wæ̃ wæ̂wæ̌.` (I, hope.)
+     *   **Adjective:** `wæ̂wæ̌` (hopeful).
+     *   **Notes:** Seeing/knowing (`wæ̌`) a good/desired (`wæ̂`) outcome. Context distinguishes from `wæ̧wæ̌` (book).
+
+
+135. **`wæ̀wæ̂wæ̌`**
+     *   **Etymology:** `wæ̀-` (Negation Prefix) + `wæ̂wæ̌` (Hope)
+     *   **Meanings:** Despair, hopelessness, lack of positive expectation.
+     *   **Noun:** `wæ̀wæ̂wæ̌` (despair).
+     *   **Verb:** `wæ̀wæ̂wæ̌` (to despair).
+     *   **Adjective:** `wæ̀wæ̂wæ̌` (despairing, hopeless).
+     *   **Notes:** Literally "not-hope."
+
+
+#### D.2. Cognitive & Moral Concepts
+
+
+136. **`wæ̌`** (Core Word)
+     *   **Etymology:** (Core `wæ`-form)
+     *   **Meanings:** Truth, reality, fact; knowledge, understanding, perception (as a concept).
+     *   **Noun:** `wæ̌` (truth). `wǣ wæ̌` (great truth).
+     *   **Verb:** (Covered by core verb meaning: to know, to see, to perceive truth).
+     *   **Adjective:** `wæ̌` (true, real, factual, known). `wæ̌ wæ̧` (true words).
+     *   **Notes:** Fundamental concept of what is known or real.
+
+
+137. **`wæ̀wæ̌`**
+     *   **Etymology:** `wæ̀-` (Negation Prefix) + `wæ̌` (Truth/Know)
+     *   **Meanings:** Lie, falsehood, untruth, deception; ignorance (lack of knowledge).
+     *   **Noun:** `wæ̀wæ̌` (a lie/falsehood).
+     *   **Verb:** `wæ̀wæ̌` (to lie, to deceive, to be ignorant). `wæ̃wæ̇ wæ̀wæ̌ǽ.` (Person, he/she, lied-past.)
+     *   **Adjective:** `wæ̀wæ̌` (false, untrue, deceptive, ignorant).
+     *   **Notes:** "Not-truth" or "not-knowing."
+
+
+138. **`wæ̆wæ̌`** (Sense 2: Stupidity/Ignorance - distinct from Container)
+     *   **Etymology:** `wæ̆` (Small/Little/Lacking) + `wæ̌` (Know/Understand/Mind)
+     *   **Meanings:** Stupidity, ignorance, lack of intelligence or understanding, folly.
+     *   **Noun:** `wæ̆wæ̌` (stupidity).
+     *   **Verb:** `wæ̆wæ̌` (to be stupid, to act foolishly).
+     *   **Adjective:** `wæ̆wæ̌` (stupid, ignorant, foolish).
+     *   **Notes:** "Little-knowing." Context distinguishes from `wæ̀wæ̆` (container).
+
+
+139. **`wǣwæ̌`**
+     *   **Etymology:** `wǣ` (Big/Great/Much) + `wæ̌` (Know/Understand/Mind/Truth)
+     *   **Meanings:** Knowledge, wisdom, deep understanding, learning, scholarship.
+     *   **Noun:** `wǣwæ̌` (knowledge/wisdom). `wæ̃ wǣwæ̌` (my wisdom).
+     *   **Verb:** `wǣwæ̌` (to possess great knowledge, to be wise).
+     *   **Adjective:** `wǣwæ̌` (knowledgeable, wise, learned). `wǣwæ̌ wæ̃wæ̇` (a wise person).
+     *   **Notes:** "Much-knowing."
+
+
+140. **`wæ̌wæ`**
+     *   **Etymology:** `wæ̌` (Know/Understand/Mind/See) + `wæ` (Thing/Concept/Entity)
+     *   **Meanings:** Idea, thought, concept, notion, opinion, mental construct.
+     *   **Noun:** `wæ̌wæ` (an idea). `wæ̂ wæ̌wæ` (a good idea).
+     *   **Verb:** `wæ̌wæ` (to think [of an idea], to conceive, to opine). `wæ̃ wæ̌wæǽ.` (I, had-an-idea-past.)
+     *   **Adjective:** `wæ̌wæ` (conceptual, mental, pertaining to ideas).
+     *   **Notes:** A "known-thing" or "mind-thing."
+
+
+141. **`wæ̧wǽ`**
+     *   **Etymology:** `wæ̧` (Say/Speak/Communicate/Narrate) + `wǽ` (Action/Event/Process)
+     *   **Meanings:** Story, narrative, tale, account, history (as a narrative).
+     *   **Noun:** `wæ̧wǽ` (a story). `wǣ wæ̧wǽ` (a long story).
+     *   **Verb:** `wæ̧wǽ` (to tell a story, to narrate). `wæ̃wæ̇wæ̀ wæ̧wǽǽ.` (Elder, he/she, told-story-past.)
+     *   **Adjective:** `wæ̧wǽ` (narrative, historical [story-based]).
+     *   **Notes:** Communication (`wæ̧`) about actions/events (`wǽ`).
+
+
+142. **`wǽwæ̧`** (Sense 1: Question [noun] - distinct from Speech/Oration)
+     *   **Etymology:** `wǽ` (Action/Seeking/Inquiring) + `wæ̧` (Say/Speak/Communicate/Ask)
+     *   **Meanings:** Question (as a noun), inquiry, query, interrogation.
+     *   **Noun:** `wǽwæ̧` (a question). `wæ̃ wǽwæ̧` (my question).
+     *   **Verb:** `wǽwæ̧` (to question, to ask, to inquire [less common as verb than using `wæ̧` with `wæ̃̈`]).
+     *   **Adjective:** `wǽwæ̧` (interrogative, questioning).
+     *   **Notes:** The action (`wǽ`) of asking/communicating (`wæ̧`) to seek information. Context distinguishes from `wǽwæ̧` (speech).
+
+
+143. **`wæ̀wæ̧`** (Sense 1: Answer/Response - distinct from Letter)
+     *   **Etymology:** `wæ̀` (State/Result/Reaction) + `wæ̧` (Say/Speak/Communicate)
+     *   **Meanings:** Answer, response, reply, solution (to a question/problem).
+     *   **Noun:** `wæ̀wæ̧` (an answer). `wæ̂ wæ̀wæ̧` (a good answer).
+     *   **Verb:** `wæ̀wæ̧` (to answer, to respond). `wǽwæ̧ wæ̃ wæ̀wæ̧ǽ.` (Question, I, answered-past.)
+     *   **Adjective:** `wæ̀wæ̧` (responsive).
+     *   **Notes:** Communication (`wæ̧`) that is a result/reaction (`wæ̀`) to a prior communication or situation. Context distinguishes from `wæ̀wæ̧` (letter).
+
+
+144. **`wǽwæ̀wæ̌`**
+     *   **Etymology:** `wǽ` (Action/Do/Implement) + `wæ̀` (State/Balance/Fairness) + `wæ̌` (Truth/Principle/Know)
+     *   **Meanings:** Justice, fairness, righteousness, equity.
+     *   **Noun:** `wǽwæ̀wæ̌` (justice).
+     *   **Verb:** `wǽwæ̀wæ̌` (to enact justice, to be fair).
+     *   **Adjective:** `wǽwæ̀wæ̌` (just, fair, righteous, equitable).
+     *   **Notes:** Implementing (`wǽ`) a state (`wæ̀`) of truth/principle (`wæ̌`).
+
+
+145. **`wǽwæ̀(wæ̀wæ̌)`**
+     *   **Etymology:** `wǽ` (Action/Do/Implement) + `wæ̀` (State/Balance) + `wæ̀wæ̌` (Falsehood/Not-Truth)
+     *   **Meanings:** Injustice, unfairness, wrongdoing.
+     *   **Noun:** `wǽwæ̀wæ̀wæ̌` (injustice).
+     *   **Verb:** `wǽwæ̀wæ̀wæ̌` (to commit injustice, to be unfair).
+     *   **Adjective:** `wǽwæ̀wæ̀wæ̌` (unjust, unfair).
+     *   **Notes:** Implementing (`wǽ`) a state (`wæ̀`) of falsehood/not-truth (`wæ̀wæ̌`).
+
+
+146. **`wæ̌wǽ`**
+     *   **Etymology:** `wæ̌` (Know/Understand/Mind) + `wǽ` (Action/Do/Skill)
+     *   **Meanings:** Skill, craft, ability, expertise, talent, technique.
+     *   **Noun:** `wæ̌wǽ` (skill). `wǣ wæ̌wǽ` (great skill).
+     *   **Verb:** `wæ̌wǽ` (to be skilled, to use a skill).
+     *   **Adjective:** `wæ̌wǽ` (skilled, crafty, able, expert, talented). `wæ̌wǽ wæ̃wæ̇` (a skilled person).
+     *   **Notes:** Knowing (`wæ̌`) how to do/act (`wǽ`).
+
+
+147. **`wæ̃wǽ`** (Sense 2: Will/Intent - distinct from Animal)
+     *   **Etymology:** `wæ̃` (Self/I/Mind) + `wǽ` (Action/Cause/Direction)
+     *   **Meanings:** Will, willpower, intention, determination, purpose (personal).
+     *   **Noun:** `wæ̃wǽ` (will/intent). `wǣ wæ̃wǽ` (strong will).
+     *   **Verb:** `wæ̃wǽ` (to will, to intend, to determine). `wæ wæ̃ wæ̃wǽ.` (Thing, I, intend.)
+     *   **Adjective:** `wæ̃wǽ` (willful, intentional, determined).
+     *   **Notes:** The self's (`wæ̃`) direction of action (`wǽ`). Context distinguishes from `wæ̃́` (animal).
+
+
+148. **`wæ̌wæ̀`**
+     *   **Etymology:** `wæ̌` (Know/Understand/See) + `wæ̀` (State/Unclear/Passive)
+     *   **Meanings:** Doubt, uncertainty, skepticism, hesitation.
+     *   **Noun:** `wæ̌wæ̀` (doubt).
+     *   **Verb:** `wæ̌wæ̀` (to doubt, to be uncertain, to hesitate). `wæ̃ wæ̌wæ̀.` (I, doubt.)
+     *   **Adjective:** `wæ̌wæ̀` (doubtful, uncertain, skeptical).
+     *   **Notes:** Knowing/seeing (`wæ̌`) an unclear or passive state (`wæ̀`).
+
+
+149. **`wæ̂wǽwæ̌`**
+     *   **Etymology:** `wæ̂` (Good/Positive/Desired) + `wǽ` (Action/Goal) + `wæ̌` (Know/Understand/Reason)
+     *   **Meanings:** Purpose, aim, goal, objective, reason (for action).
+     *   **Noun:** `wæ̂wǽwæ̌` (purpose). `wæ̃ wæ̂wǽwæ̌` (my purpose).
+     *   **Verb:** `wæ̂wǽwæ̌` (to have a purpose, to aim for).
+     *   **Adjective:** `wæ̂wǽwæ̌` (purposeful).
+     *   **Notes:** A known/understood (`wæ̌`) action/goal (`wǽ`) that is good/desired (`wæ̂`).
+
+
+#### D.3. States of Being & Existence
+
+
+150. **`wǽwæ̀`** (Sense 1: Life - distinct from Art)
+     *   **Etymology:** `wǽ` (Action/Dynamic/Process) + `wæ̀` (State/Essence/Existence)
+     *   **Meanings:** Life (animate existence), vitality, being alive.
+     *   **Noun:** `wǽwæ̀` (life). `wæ̂ wǽwæ̀` (good life).
+     *   **Verb:** `wǽwæ̀` (to live, to be alive). `wæ̃ wǽwæ̀.` (I, live.)
+     *   **Adjective:** `wǽwæ̀` (alive, living, vital). `wǽwæ̀ wæ̃́` (a living animal).
+     *   **Notes:** The dynamic action/process (`wǽ`) of the state of existence (`wæ̀`). Context distinguishes from `wæ̂wǽ` (art).
+
+
+151. **`wæ̀wǽ`**
+     *   **Etymology:** `wæ̀` (State/Cessation) + `wǽwæ̀` (Life - with elision) OR `wæ̀` (Not-) + `wǽ` (Action/Life)
+     *   **Meanings:** Death, cessation of life, end of existence (for animate beings).
+     *   **Noun:** `wæ̀wǽ` (death).
+     *   **Verb:** `wæ̀wǽ` (to die). `wæ̃́ wæ̀wǽǽ.` (Animal, it, died-past.)
+     *   **Adjective:** `wæ̀wǽ` (dead, deceased, lifeless).
+     *   **Notes:** The state (`wæ̀`) of not-life (`wǽwæ̀` implied) or not-action (`wǽ`).
+
+
+152. **`wæ̃wæ̌`** (Sense 2: Dream/Vision - distinct from Mind)
+     *   **Etymology:** `wæ̃` (Self/I/Internal) + `wæ̌` (See/Know/Perceive [non-ordinary])
+     *   **Meanings:** Dream, vision, imagination (vivid), reverie.
+     *   **Noun:** `wæ̃wæ̌` (a dream). `wæ̂ wæ̃wæ̌` (a good dream).
+     *   **Verb:** `wæ̃wæ̌` (to dream, to envision, to imagine vividly). `wæ̃ wæ̃wæ̌ǽ.` (I, dreamed-past.)
+     *   **Adjective:** `wæ̃wæ̌` (dream-like, visionary, imaginary).
+     *   **Notes:** Internal (`wæ̃`) seeing/perception (`wæ̌`). Context distinguishes from `wæ̌wæ̃` (mind).
+
+
+153. **`wǽwǣ`** (Sense 1: Power/Ability - distinct from Sun/Sword)
+     *   **Etymology:** `wǽ` (Action/Do/Cause/Influence) + `wǣ` (Big/Great/Effective)
+     *   **Meanings:** Power, ability, strength, capability, influence, might.
+     *   **Noun:** `wǽwǣ` (power). `wæ̃ wǽwǣ` (my power).
+     *   **Verb:** `wǽwǣ` (to empower, to be able, to have strength). `wæ̃ wǽwǣ.` (I, am-able.)
+     *   **Adjective:** `wǽwǣ` (powerful, able, strong, capable, influential). `wǽwǣ wæ̃wæ̇` (a powerful person).
+     *   **Notes:** The ability to do/cause (`wǽ`) great/effective (`wǣ`) things. Context distinguishes from `wæ̂wǣ` (sun) and `wǽwǣ` (sword).
+
+
+154. **`wæ̂wæ̀`** (Sense 1: Beauty [quality] - distinct from Bed)
+     *   **Etymology:** `wæ̂` (Good/Positive/Pleasing) + `wæ̀` (State/Quality/Essence)
+     *   **Meanings:** Beauty (as a quality or concept), attractiveness, aesthetic appeal.
+     *   **Noun:** `wæ̂wæ̀` (beauty). `wǣ wæ̂wæ̀` (great beauty).
+     *   **Verb:** `wæ̂wæ̀` (to be beautiful, to beautify). `wæ̂wæ̀̄ wæ̂wæ̀.` (Flower, it, is-beautiful.)
+     *   **Adjective:** `wæ̂wæ̀` (beautiful, attractive, aesthetic). `wæ̂wæ̀ wæ` (a beautiful thing).
+     *   **Notes:** A good/pleasing (`wæ̂`) state/quality (`wæ̀`). Context distinguishes from `wæ̀wæ̂` (bed).
+
+
+155. **`wæ̀wǽwæ̀`**
+     *   **Etymology:** `wæ̀` (State/Absence of) + `wǽ` (Action/Conflict/Disturbance) + `wæ̀` (State/Condition)
+     *   **Meanings:** Peace, calm, tranquility, serenity.
+     *   **Noun:** `wæ̀wǽwæ̀` (peace).
+     *   **Verb:** `wæ̀wǽwæ̀` (to be peaceful, to make peace).
+     *   **Adjective:** `wæ̀wǽwæ̀` (peaceful, calm, tranquil, serene). `wæ̀wǽwæ̀ wæ̣wæ̉` (a peaceful place).
+     *   **Notes:** A state (`wæ̀`) without action/conflict (`wǽ`), resulting in a state (`wæ̀`).
+
+
+156. **`wǽwǽ`**
+     *   **Etymology:** `wǽ` (Action/Do/Conflict) + `wǽ` (Action/Do/Conflict - intensified)
+     *   **Meanings:** War, conflict, battle, fight (large scale).
+     *   **Noun:** `wǽwǽ` (war). `wǣ wǽwǽ` (a great war).
+     *   **Verb:** `wǽwǽ` (to wage war, to fight [in war], to conflict). `wæ̃wæ̇wǽwæ̇ wǽwǽǽ.` (Warriors, they, warred-past.)
+     *   **Adjective:** `wǽwǽ` (warlike, martial, conflict-ridden).
+     *   **Notes:** Intensified action/conflict.
+
+
+157. **`wæ̃wæ̀`** (Sense 2: Freedom/Liberty - distinct from Elder)
+     *   **Etymology:** `wæ̃` (Self/I) + `wæ̀` (State/Unconstrained/Able to choose)
+     *   **Meanings:** Freedom, liberty, autonomy, independence.
+     *   **Noun:** `wæ̃wæ̀` (freedom).
+     *   **Verb:** `wæ̃wæ̀` (to be free, to liberate). `wæ̃ wæ̃wæ̀.` (I, am-free.)
+     *   **Adjective:** `wæ̃wæ̀` (free, liberated, autonomous, independent).
+     *   **Notes:** The self (`wæ̃`) in an unconstrained state (`wæ̀`). Context distinguishes from `wæ̃wæ̇wæ̀` (elder).
+
+
+158. **`wæ̀wæ̃wæ̀`**
+     *   **Etymology:** `wæ̀` (State/Constrained/Not-) + `wæ̃wæ̀` (Freedom)
+     *   **Meanings:** Slavery, bondage, servitude, lack of freedom.
+     *   **Noun:** `wæ̀wæ̃wæ̀` (slavery).
+     *   **Verb:** `wæ̀wæ̃wæ̀` (to enslave, to be enslaved).
+     *   **Adjective:** `wæ̀wæ̃wæ̀` (enslaved, in bondage).
+     *   **Notes:** "Not-freedom" or a "constrained state of self."
+
+
+159. **`wæ̂wǽwæ`** (Sense 3: Work/Labor [noun] - distinct from Key/Plate/Bread)
+     *   **Etymology:** `wæ̂` (Good/Productive/Purposeful) + `wǽ` (Action/Do/Effort) + `wæ` (Thing/Activity/Result)
+     *   **Meanings:** Work, labor, task, job, effort (productive).
+     *   **Noun:** `wæ̂wǽwæ` (work). `wǣ wæ̂wǽwæ` (much work).
+     *   **Verb:** `wæ̂wǽwæ` (to work, to labor, to perform a task). `wæ̃ wæ̂wǽwæǽ.` (I, worked-past.)
+     *   **Adjective:** `wæ̂wǽwæ` (laborious, work-related).
+     *   **Notes:** A good/productive (`wæ̂`) action/effort (`wǽ`) or its result (`wæ`). Heavy reliance on context.
+
+
+160. **`wæ̀wǽwæ`** (Sense 4: Rest/Leisure [noun] - distinct from Metal/Ice/Lock)
+     *   **Etymology:** `wæ̀` (State/Absence of) + `wæ̂wǽwæ` (Work - with elision) OR `wæ̀` (State) + `wǽ` (Action [of ceasing work]) + `wæ` (Thing/Activity)
+     *   **Meanings:** Rest, leisure, break, relaxation.
+     *   **Noun:** `wæ̀wǽwæ` (rest).
+     *   **Verb:** `wæ̀wǽwæ` (to rest, to relax). `wæ̃ wæ̀wǽwæǽ.` (I, rested-past.)
+     *   **Adjective:** `wæ̀wǽwæ` (restful, leisurely).
+     *   **Notes:** The state (`wæ̀`) of not-work, or an activity (`wæ`) of ceasing action (`wǽ`). Heavy reliance on context.
+
+
+161. **`wæ̆wæ`** (Sense 2: Luck/Chance - distinct from Small Thing)
+     *   **Etymology:** `wæ̆` (Small/Unpredictable/Subtle) + `wæ` (Thing/Event/Influence)
+     *   **Meanings:** Luck, chance, fortune (unpredictable), fate (minor).
+     *   **Noun:** `wæ̆wæ` (luck). `wæ̂ wæ̆wæ` (good luck).
+     *   **Verb:** `wæ̆wæ` (to be lucky, to happen by chance).
+     *   **Adjective:** `wæ̆wæ` (lucky, fortunate, random, coincidental).
+     *   **Notes:** A small, unpredictable (`wæ̆`) thing/influence (`wæ`). Context distinguishes from a generic "small thing."
+
+
+162. **`wǣwæ`** (Sense 2: Fate/Destiny - distinct from Big Thing)
+     *   **Etymology:** `wǣ` (Big/Great/Overarching) + `wæ` (Thing/Event/Influence/Path)
+     *   **Meanings:** Fate, destiny, predetermination, overarching plan.
+     *   **Noun:** `wǣwæ` (fate). `wæ̃ wǣwæ` (my destiny).
+     *   **Verb:** `wǣwæ` (to be fated, to destine).
+     *   **Adjective:** `wǣwæ` (fated, destined, predetermined).
+     *   **Notes:** A big, overarching (`wǣ`) thing/influence (`wæ`). Context distinguishes from a generic "big thing."
+
+
+163. **`wæ̂wæ̀wæ`** (Sense 2: Order/System - distinct from Crystal/Gem)
+     *   **Etymology:** `wæ̂` (Good/Positive/Structured) + `wæ̀` (State/Arrangement) + `wæ` (Thing/Pattern)
+     *   **Meanings:** Order, system, arrangement, organization, pattern, harmony (structural).
+     *   **Noun:** `wæ̂wæ̀wæ` (order).
+     *   **Verb:** `wæ̂wæ̀wæ` (to order, to arrange, to systematize). `wæ wæ̃ wæ̂wæ̀wæǽ.` (Things, I, ordered-past.)
+     *   **Adjective:** `wæ̂wæ̀wæ` (orderly, systematic, organized, harmonious).
+     *   **Notes:** A good/structured (`wæ̂`) state/arrangement (`wæ̀`) or thing/pattern (`wæ`). Context distinguishes from Crystal/Gem.
+
+
+164. **`wæ̀wæ̂wæ̀wæ`**
+     *   **Etymology:** `wæ̀-` (Negation Prefix) + `wæ̂wæ̀wæ` (Order/System)
+     *   **Meanings:** Chaos, disorder, disarray, confusion, lack of system.
+     *   **Noun:** `wæ̀wæ̂wæ̀wæ` (chaos).
+     *   **Verb:** `wæ̀wæ̂wæ̀wæ` (to be chaotic, to cause disorder).
+     *   **Adjective:** `wæ̀wæ̂wæ̀wæ` (chaotic, disorderly, confused).
+     *   **Notes:** Literally "not-order."
+
+
+#### D.4. Time & Process
+
+
+165. **`wǣwǽ`** (Sense 2: Time [duration/passage] - distinct from Power/Sword)
+     *   **Etymology:** `wǣ` (Big/Long/Duration) + `wǽ` (Action/Passing/Flowing)
+     *   **Meanings:** Time (as duration or passage), era, period, age.
+     *   **Noun:** `wǣwǽ` (time). `wæ̆ wǣwǽ` (a short time).
+     *   **Verb:** `wǣwǽ` (to pass time, for time to elapse). `wǣwǽ wǽǽ.` (Time, it, passed-past.)
+     *   **Adjective:** `wǣwǽ` (temporal, pertaining to time).
+     *   **Notes:** The long duration (`wǣ`) of action/passing (`wǽ`). Context distinguishes from Power/Sword.
+
+
+166. **`wǣwǽwæ`** (Sense 4: Beginning/Start - distinct from Sea/Forest/Wall/City/End/Net/Ship/Work)
+     *   **Etymology:** `wǣ` (Big/Important [as a point]) / `wǽ` (Action/Initiation) + `wǽ` (Action/Process) + `wæ` (Thing/Point in time)
+     *   **Meanings:** Beginning, start, commencement, origin, inception.
+     *   **Noun:** `wǣwǽwæ` (the beginning).
+     *   **Verb:** `wǣwǽwæ` (to begin, to start, to commence, to originate). `wæ wæ̃ wǣwǽwæǽ.` (Thing, I, began-past.)
+     *   **Adjective:** `wǣwǽwæ` (initial, original, incipient).
+     *   **Notes:** An important action/point (`wǣ`/`wǽ`) that initiates a process (`wǽwæ`). Heavy reliance on context.
+
+
+167. **`wæ̀wǣwæ`** (Sense 4: End/Conclusion - distinct from Sea/Forest/Wall/City/Net/Ship)
+     *   **Etymology:** `wæ̀` (State/Cessation/Finality) + `wǣ` (Big/Important [as a point]) + `wæ` (Thing/Point in time)
+     *   **Meanings:** End, conclusion, termination, finish, result (final).
+     *   **Noun:** `wæ̀wǣwæ` (the end).
+     *   **Verb:** `wæ̀wǣwæ` (to end, to conclude, to terminate, to finish). `wæ wæ̃ wæ̀wǣwæǽ.` (Thing, I, ended-past.)
+     *   **Adjective:** `wæ̀wǣwæ` (final, concluding, terminal).
+     *   **Notes:** The state of finality (`wæ̀`) of an important point/thing (`wǣwæ`). Heavy reliance on context.
+
+
+168. **`wǣwǽwæ`** (Sense 5: Day [period of light/24 hours] - distinct from Sea/Forest/Wall/City/End/Net/Ship/Work/Beginning)
+     *   **Etymology:** `wǣ` (Big/Duration) + `wæ̂wǣ` (Sun - with elision) / `wǽ` (Action/Cycle) + `wæ` (Thing/Period)
+     *   **Meanings:** Day (period of daylight, or a 24-hour cycle).
+     *   **Noun:** `wǣwǽwæ` (a day). `wæ̣ wǣwǽwæ` (today).
+     *   **Verb:** `wǣwǽwæ` (for a day to pass).
+     *   **Adjective:** `wǣwǽwæ` (daily, diurnal).
+     *   **Notes:** A significant period (`wǣwæ`) associated with light/sun (`wæ̂wǣ` implied) or a cycle (`wǽ`). Heavy reliance on context.
+
+
+169. **`wǣwæ̀wæ`** (Sense 5: Night [period of darkness] - distinct from Sea/Forest/Wall/City/End/Net/Ship)
+     *   **Etymology:** `wǣ` (Big/Duration) + `wæ̀wæ̃wæ` (Darkness - with elision) / `wæ̀` (State/Dark) + `wæ` (Thing/Period)
+     *   **Meanings:** Night (period of darkness).
+     *   **Noun:** `wǣwæ̀wæ` (a night). `wæ̉ wǣwæ̀wæ` (that night).
+     *   **Verb:** `wǣwæ̀wæ` (for night to fall, for a night to pass).
+     *   **Adjective:** `wǣwæ̀wæ` (nightly, nocturnal).
+     *   **Notes:** A significant period (`wǣwæ`) associated with darkness (`wæ̀wæ̃wæ` implied). Heavy reliance on context.
+
+
+
+
+## VI. Example Phrases
+
+
+This section provides a range of example phrases to illustrate the practical application of DWL grammar and vocabulary. Translations aim to be literal first, then more natural.
+
+
+**Basic Greetings & Responses:**
+
+
+1. **DWL:** `Wæ̂!`
+* Raw: Good!
+* Natural: Hello! / Hi! / Good!
+2. **DWL:** `Wæ̈ wæ̂!`
+* Raw: You good!
+* Natural: Good day to you! / Hope you're well!
+3. **DWL:** `Wæ̃ wæ̂.`
+* Raw: I good.
+* Natural: I am well. / I'm good.
+4. **DWL:** `Wǽwæ̧ wæ̃̈?` (`wǽwæ̧` - question noun)
+* Raw: What-question question-particle?
+* Natural: What's up? / What's the news? (Literally "What question is there?")
+5. **DWL:** `Wæ̀ wæ̂.`
+* Raw: Not good.
+* Natural: Bad. / Not good. (Can be a response or a statement)
+
+
+**Simple Statements & Questions:**
+
+
+6. **DWL:** `Wæ̣ wæ wæ̂.`
+* Raw: This thing good.
+* Natural: This thing is good.
+7. **DWL:** `Wæ̉ wæ wæ̀ wæ̂.`
+* Raw: That thing not good.
+* Natural: That thing is bad.
+8. **DWL:** `Wæ̂wæ wæ̃ wæ̂.`
+* Raw: Food I like.
+* Natural: I like the food.
+9. **DWL:** `Wǽwæ̣ wæ̈ wæ̂ wæ̃̈?`
+* Raw: Water you want question-particle?
+* Natural: Do you want water?
+10. **DWL:** `Wæ̃ wǽǽ.`
+* Raw: I did/acted-past.
+* Natural: I did it. / I acted.
+11. **DWL:** `Wæ̇ wæ̧ǣ.`
+* Raw: He/She/They will-speak.
+* Natural: They will speak.
+12. **DWL:** `Wǣ wæ̃́ wæ̣ wæ̀.`
+* Raw: Big animal here is.
+* Natural: The big animal is here.
+13. **DWL:** `Wæ̆ wæ̀̄ wæ̉ wæ̀.`
+* Raw: Small plant there is.
+* Natural: The small plant is there.
+14. **DWL:** `Wæ̃ wæ̌.`
+* Raw: I know/see.
+* Natural: I know. / I see.
+15. **DWL:** `Wæ̈ wæ̀ wæ̌ wæ̃̈?`
+* Raw: You not-know question-particle?
+* Natural: Don't you know? / Are you ignorant (of this)?
+
+
+**Using Adjectives & Adverbs:**
+
+
+16. **DWL:** `Wǣ wæ̂ wæ wæ̃ wǽ.`
+* Raw: Very good thing I make.
+* Natural: I make a very good thing.
+17. **DWL:** `Wæ wæ̃ wæ̆ wǽ.`
+* Raw: Thing I little do.
+* Natural: I do the thing a little bit. / I do it slightly.
+18. **DWL:** `Wǽwæ̂ wæ wæ̇ wǽ.` (`wǽwæ̂` as adverb "hotly/fiercely")
+* Raw: Fiery thing it does. / Hotly thing it acts.
+* Natural: It does the thing fiercely. / It acts hotly upon the thing.
+19. **DWL:** `Wæ̃ wæ̂ wæ̧.`
+* Raw: I well speak.
+* Natural: I speak well.
+20. **DWL:** `Wæ̣wæ̉ wæ wæ̃ wǽ.` (`wæ̣wæ̉` as adverb "locally")
+* Raw: Locally thing I do.
+* Natural: I do the thing locally. / I do it in this area.
+
+
+**Possession & Pronouns:**
+
+
+21. **DWL:** `Wæ̃ wǽwæ wæ̂.`
+* Raw: My tool good.
+* Natural: My tool is good.
+22. **DWL:** `Wæ̈ wæ̧wæ̌ wæ̃ wǽǽ.`
+* Raw: Your book I took-past.
+* Natural: I took your book.
+23. **DWL:** `Wæ̇ wæ̃wæ wæ̀ wæ̂.`
+* Raw: Their body not-good.
+* Natural: Their body is unwell/bad.
+24. **DWL:** `Wæ̣ wæ̃ wæ̀.`
+* Raw: This mine is.
+* Natural: This is mine.
+25. **DWL:** `Wæ̃ wæ̃ wæ̌ǽ.`
+* Raw: Myself I saw-past.
+* Natural: I saw myself.
+
+
+**Conjunctions & Clauses:**
+
+
+26. **DWL:** `Wæ̃ wǽǽ wæ̂æ wæ̈ wǽǽ.`
+* Raw: I did-past and you did-past.
+* Natural: I did it and you did it.
+27. **DWL:** `Wæ̃ wæ̂, wæ̀æ wæ̈ wæ̀ wæ̂.`
+* Raw: I good, but you not good.
+* Natural: I am good, but you are bad.
+28. **DWL:** `Wæ̃ wǽwæ̂wæǽ wǽæ wæ̃ wæ̂.` (`wǽwæ̂wæ` - bake)
+* Raw: I baked-past, because/so I happy.
+* Natural: I baked, so I am happy.
+29. **DWL:** `Wæ̈ wǽ wæ̌æ wæ̃ wǽǣ.`
+* Raw: You act if/when I will-act.
+* Natural: If you act, I will act. / When you act, I will act.
+30. **DWL:** `Wæ wæ̃ wæ̂ wæ̆æ wæ wæ̃ wæ̀ wæ̂.`
+* Raw: Thing I want or thing I not want.
+* Natural: I want the thing or I don't want the thing.
+
+
+**More Complex Structures & Vocabulary:**
+
+
+31. **DWL:** `Wǣwæ̌ wæ̃wæ̇ wǣ wæ̧wæ̌ wæ̇ wæ̧wæ̌ǽ.`
+* Raw: Wise person many books he/she read-past.
+* Natural: The wise person read many books.
+32. **DWL:** `Wǽwæ̂wæ̣ wæ wǽwæ̂ wǽǽ wæ̃̈?` (`wǽwæ̂wæ̣` - volcano)
+* Raw: Volcano thing fire made-past question-particle?
+* Natural: Did the volcano erupt (make fire)?
+33. **DWL:** `Wæ̀wǣwæ wæ̃́ wǣ wæ̀.` (`wæ̀wǣwæ` - forest)
+* Raw: Forest animals many are-in-state.
+* Natural: Many animals are in the forest.
+34. **DWL:** `Wǽwǣwǽ wæ̃ wæ̣wæ̉ wǽǣ.` (`wǽwǣwǽ` - vehicle)
+* Raw: Vehicle I to-place will-go.
+* Natural: I will go to the place by vehicle.
+35. **DWL:** `Wæ̀wǣwæ̌ wǣ wæ̃wæ̇ wæ̀ wæ̌.` (`wæ̀wǣwæ̌` - law)
+* Raw: Law all people not know. (i.e. not all people know the law)
+* Natural: Not all people know the law.
+36. **DWL:** `Wǽwæ̀wæ wæ̃ wæ̈ wǽ-wǽǽ.` (`wǽwæ̀wæ` - money; `wǽ-wǽ` - cause-to-do/give)
+* Raw: Money I you caused-to-have-past.
+* Natural: I gave you money.
+37. **DWL:** `Wæ̃wæ̂wæ̃ wæ̃ wǣ wæ̀.` (`wæ̃wæ̂wæ̃` - heart [emotional])
+* Raw: Heart my big is-in-state [of emotion].
+* Natural: My heart is full (of emotion). / I feel deeply.
+38. **DWL:** `Wǽwæ̀ wæ̂ wæ, wæ̀æ wæ̀wǽ wæ̀ wæ̂ wæ.`
+* Raw: Life good thing, but death not-good thing.
+* Natural: Life is a good thing, but death is a bad thing.
+39. **DWL:** `Wæ̣wæ̉ (wæ̃ wæ̀ wæ̂wǽǽ) wæ̃ wǽ wæ̂!` (`wæ̂wǽ` - invite/welcome)
+* Raw: Place (I not-welcomed-past) I go good!
+* Natural: Let's go to a place where I wasn't welcomed!
+40. **DWL:** `Wǣwǽ wǽǽ, wǽæ wæ̃wæ̇ wǣ wǽwæ̀wæ̀ǽ.` (`wǣwǽ` - time; `wǽwæ̀wæ̀` - peace)
+* Raw: Time passed-past, so people much peace-had-past.
+* Natural: As time passed, the people had much peace.
+
+
+**Figurative or Idiomatic Expressions (Hypothetical):**
+
+
+41. **DWL:** `Wæ̃wæ̌wæ wæ̃ wǣ wǽ.` (Literally: Eyes my big act.)
+* Natural: I am very surprised. / My eyes are wide.
+42. **DWL:** `Wǽwæ̂ wæ̃wæ̂wæ̃ wæ̃ wǽ.` (Literally: Fire heart my makes.)
+* Natural: I am very passionate. / My heart is on fire.
+43. **DWL:** `Wæ̀wæ wæ̧ wæ̃.` (Literally: Stone words mine.)
+* Natural: My words are firm/unchanging.
+44. **DWL:** `Wǽwæ̃ wæ wæ̃ wǽ.` (Literally: Wind thing I do.)
+* Natural: I do something quickly/effortlessly.
+45. **DWL:** `Wǣwæ̣ wæ̆ wǽ.` (Literally: Mountain small make.)
+* Natural: To make a mountain out of a molehill (to make a small problem big).
+
+
+**Commands & Suggestions:**
+
+
+46. **DWL:** `Wæ wǽ!`
+* Raw: Thing do!
+* Natural: Do it!
+47. **DWL:** `Wæ̀ wǽ!`
+* Raw: Not do!
+* Natural: Don't do it!
+48. **DWL:** `Wæ̃ wæ̈ wǽ wæ̂!`
+* Raw: I you go good!
+* Natural: Let's (us) go!
+49. **DWL:** `Wæ̧ wæ̂!`
+* Raw: Speak good!
+* Natural: Speak well! / Let's speak!
+50. **DWL:** `Wæ̂wæ wæ̈ wæ̃ wǽ-wǽ wæ̂!` (`wǽ-wǽ` - cause-to-do/give)
+* Raw: Food you me cause-to-have good!
+* Natural: Please give me food! / Let you give me food!
+
+NOTE: If a word you wish to translate to DWL does not exist in DWL, you may invent new words by adding prefixes and suffixes to existing words.
+
+If a word you wish to translate from DWL does not exist in this document, try and parse what the prefixes and suffixes mean, and what it could possibly refer to.
