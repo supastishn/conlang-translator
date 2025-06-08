@@ -185,9 +185,12 @@ async function translateText(sourceText, sourceLang, targetLang, imageDataUrl = 
     const settings = Settings.get();
     const includeExplanation = settings.includeExplanation === true;    // <<< NEW
 
-    // Provider selection
+    // Provider selection, with URL param override for Gemini
     const providerSelect = document.getElementById('provider-select');
-    const provider = providerSelect ? providerSelect.value : PROVIDER_OPENAI;
+    const urlParams = new URLSearchParams(window.location.search);
+    const provider = urlParams.get('enableGemini') === 'true' 
+      ? PROVIDER_GEMINI 
+      : (providerSelect ? providerSelect.value : PROVIDER_OPENAI);
 
     if (provider === PROVIDER_GEMINI) {
         // Call Gemini function via Appwrite

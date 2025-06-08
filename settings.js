@@ -14,6 +14,12 @@ const DEFAULT_SETTINGS = {
     geminiOption: false           // New setting for Gemini option
 };
 
+// Add this function to parse query params
+function getQueryParam(name) {
+  const urlParams = new URLSearchParams(window.location.search);
+  return urlParams.get(name);
+}
+
 // Settings management
 const Settings = {
     // Get current settings from localStorage or use defaults
@@ -70,6 +76,16 @@ document.addEventListener('DOMContentLoaded', function() {
     const geminiOptionCheckbox = document.getElementById('gemini-option');
     if (geminiOptionCheckbox) {
         geminiOptionCheckbox.checked = currentSettings.geminiOption === true;
+    }
+
+    // New: Check URL param for enableGemini
+    const geminiParam = getQueryParam('enableGemini');
+    if (geminiParam && geminiParam === 'true' && geminiOptionCheckbox) {
+      geminiOptionCheckbox.checked = true;
+      // Also update settings
+      const s = Settings.get();
+      s.geminiOption = true;
+      Settings.save(s);
     }
     
     const draconicOutputTypeSelectSettings = document.getElementById('draconic-output-type-select-settings');

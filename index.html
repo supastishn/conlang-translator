@@ -157,6 +157,29 @@
     <script type="module" src="src/authService.js"></script>
     <script type="module" src="translator.js"></script>
 
+    <script>
+    // Add after the script tag that loads settings.js
+    document.addEventListener('DOMContentLoaded', function() {
+      const urlParams = new URLSearchParams(window.location.search);
+      if (urlParams.get('enableGemini') === 'true') {
+        // Enable Gemini provider by default
+        const providerSelect = document.getElementById('provider-select');
+        if (providerSelect) providerSelect.value = 'gemini';
+
+        // Update settings to show Gemini option
+        if (typeof Settings !== "undefined") {
+          const settings = Settings.get();
+          settings.geminiOption = true;
+          Settings.save(settings);
+        }
+
+        // Show provider selection UI
+        const providerFormGroup = document.querySelector('.form-group[style*="display:none"]');
+        if (providerFormGroup) providerFormGroup.style.display = 'block';
+      }
+    });
+    </script>
+
     <!-- Camera Modal -->
     <div id="camera-modal" class="modal hidden">
         <div class="modal-content">
