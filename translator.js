@@ -150,9 +150,10 @@ const protectedAPICall = async (payload) => {
  * Requires Appwrite JS SDK loaded and initialized.
  */
 async function callGeminiFunction({sourceText, sourceLang, targetLang, imageDataUrl}) {
-    // You must have Appwrite JS SDK loaded and configured globally
-    // with window.Client and window.Functions available.
-    // You may want to move this config elsewhere.
+    // Add null check before creating Client
+    if (typeof window.Client === 'undefined') {
+        throw new Error('Appwrite SDK not loaded. Please refresh the page.');
+    }
     const client = new window.Client()
         .setEndpoint('https://YOUR_APPWRITE_ENDPOINT/v1') // <-- Replace with your endpoint
         .setProject('YOUR_PROJECT_ID'); // <-- Replace with your project ID
@@ -170,7 +171,7 @@ async function callGeminiFunction({sourceText, sourceLang, targetLang, imageData
         const execution = await functions.createExecution(
             'gemini', // Your function ID
             JSON.stringify(payload),
-            false // sync execution
+            true // async execution
         );
 
         const response = JSON.parse(execution.response);
@@ -579,8 +580,8 @@ document.addEventListener('DOMContentLoaded', function() {
     const authContainer = document.querySelector('.auth-container');
     
     // Update provider UI whenever auth state changes
-    if (authService.onAuthStateChanged) {
-        authService.onAuthStateChanged(() => {
+    if (window.authService && window.authService.onAuthStateChanged) {
+        window.authService.onAuthStateChanged(() => {
             updateAuthUI();
             updateProviderUI();
         });
@@ -606,9 +607,10 @@ document.addEventListener('DOMContentLoaded', function() {
         if (!providerSelect) return;
         const settings = Settings.get();
         let showGemini = false;
-        if (settings.geminiOption && typeof authService !== "undefined" && authService.getCurrentUser) {
+        if (settings.geminiOption && window.authService && 
+            typeof window.authService.getCurrentUser === 'function') {
             try {
-                const user = await authService.getCurrentUser();
+                const user = await window.authService.getCurrentUser();
                 showGemini = !!user;
             } catch (e) {
                 showGemini = false;
@@ -622,8 +624,8 @@ document.addEventListener('DOMContentLoaded', function() {
     if (providerSelect) {
         updateProviderUI();
         // Optionally, listen for login/logout events to update UI
-        if (typeof authService !== "undefined" && authService.onAuthStateChanged) {
-            authService.onAuthStateChanged(updateProviderUI);
+        if (window.authService && window.authService.onAuthStateChanged) {
+            window.authService.onAuthStateChanged(updateProviderUI);
         }
     }
 
