@@ -58,3 +58,16 @@ export const updateAuthUI = async () => {
     // Add account page nav item only if logged in
     accountLinks.forEach(link => link.style.display = user ? 'block' : 'none');
 };
+
+// Auth state change listener
+document.addEventListener('DOMContentLoaded', async () => {
+    const authContainers = document.querySelectorAll('.auth-container');
+    if (authContainers.length > 0) {
+        await updateAuthUI();
+    }
+});
+
+// Expose to global scope for legacy pages
+window.handleAuthStateChange = async () => {
+    await updateAuthUI();
+};
