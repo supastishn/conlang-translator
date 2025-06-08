@@ -321,7 +321,7 @@ huz-,pp,"for, for the purpose of",,,
 - (mag., mun.) gold
 - (a.) gold as a material; affluence, wealth","(e., mag., mun., a.)",,
 hyn,part,sir/ma'am; particle of deference shown to dragons ,,"- the default particle for polite speech; used direcly before reference to a Dragon by name
-- also used as a a greeting when followed by the adressed Dragon's name",
+- can also be used as a greeting when followed by the adressed Dragon's name",
 i-,part,prefix to turn nouns into adjectives,ī- (Elative),"- somewhat productive, but can sound rather clunky, especially if another adjective exists that could work just as well",
 i'ū (2),adj,"auditory; audible, heard",ī'ū,,
 ifalēlâ (1),adj,"knotted, twisted; mangled, deformed",īfalēlâ,,
@@ -655,7 +655,7 @@ o,aux,"to intentionally, to purposefully (intentional aspect)","od, ō, ōd",,
 ōkx,v,to convince; to connive,"ōkxed, ōkxekx, ōkxekxed","- sense ""to connive"" takes preposition q̇u-",
 oltaħ,v,"to take, to snatch","oltaħád, o'ōltaħ, o'ōltaħád",,
 ōn,part,optional noun suffix on animate roots to specify non-binary/gender neutral,,,
-oq,v,to fly true,"ogyd, ōq, ōgyd","- colloquially used to mean ""to do well, to be alright""",
+oq,v,"to fly true; to function, to be functional, to work","ogyd, ōq, ōgyd","- colloquially used to mean ""to do well, to be alright""",
 ōq (3),n,true flight; well-being,(a.),,
 ōqħáŋ,v,"to send, to send off; to expel; (reflexive) to emigrate","ōqħáŋad, ōqħâŋ, ōqħâŋad",,
 ōqħáŋ (3),n,expulsion,(a.),,
@@ -775,7 +775,7 @@ q̇ħónlli (1),n,"- (mun.) finger, digit, claw
 - (a.) number, numeral; count","(mun., a.)",,
 q̇ħónllirk,v,"to count, enumerate; to count up, tabulate","q̇ħónllirkad, q̇ħônllirk, q̇ħônllirkad","- sense ""count up, tabulate"" takes preposition ō-",
 qħû,v,to wield or use a blade; to brandish,"qħúħád, quχħû, quχħúħád","- sense ""to take off"" is optionally reflexive",
-q̇o,n,surprise,(a.),,
+q̇o,n,"surprise, shock",(a.),,
 q̇o'ōk (3),n,"- (mag.) magical exhaustion
 - (mun.) load, mass, ton
 - (a.) encumbrance; weight, mass",(inanimates),,
@@ -1358,3 +1358,49 @@ yχħof (3),adj,"green, verdant, lush; marshy, swampy",iχħof,,
 χuχūq (4),n,"power, force, strength, vigor; insistence, determination",(a.),,
 χyx,v,"to split, to divide","χyxad, χexy, χexad",,
 χyxad (1),adj,"split, divided, forked",χexad,,
+ōχħó (4),n,"- (i.) porcupine; cactus
+- (mag.) thagomizer
+- (mun.) spike, prong
+- (a.) lash, tailstrike","(i., mag., mun., a.)",,
+oχħó (4),n,"- (e.) a common Draconic name
+- (animates) fighter, soldier
+- (mag.) playfighting, especially among dragons
+- (mun.) bruise
+- (a.) battle, physical struggle; physical violence",(all),,
+honi (1),n,"- (i., mag.) edible plant; fruit or vegetable as part of a plant
+- (mun.) fruit or vegetable as food
+- (a.) vegetarianism, herbivorism","(i., mag., mun., a.)",,
+honax (3),n,"herbivore, vegetarian",(animates),,
+lirq̇ (3),n,"- (i.) fruit as part of a plant, especially if sweet
+- (mag.) magical fruit
+- (mun.) sweet, dessert; fruit as food; sugar
+- (a.) sweetness; temptation","(i., mag., mun., a.)",,
+īrq̇ (3),adj,"sweet, sugary; tempting",ilīrq̇,,
+thæf (1),n,"- (mon., i.) shadow monster, shadowy creature
+- (mag.) wing, especially of a dragon
+- (mun.) wing; limb
+- (a.) side, flank; edge, ridge; extent, degree","(mon., i., mag., mun., a.)",,
+lyrāf (1),adj,"winged; stable, steady, steadfast",lurχāf,,
+lyrō (1),adj,"spoiled, pampered; superfluous, unnecessary",lurχō,,
+lyrā (4),adj,"spirited, enivigorated, lively, vibrant",lurχā,,
+lyrkith (3),adj,"excited; ecstatic, overjoyed",lurqith,,
+lirχħá (4),adj,"light-hearted, fun, casual; whimsical, silly",līrχħá,,
+χōhy,v,"to reflect, to bounce back, to mirror","χōhed, χōhaky, χōhaked",,
+cyfox (2),n,"- (r., mon., i.) coward, wuss (pejorative) 
+- (mag.) nutrient
+- (mag., mun.) food, meal
+- (a.) sustenance, nutrition; potency; essence, quality","(r., mon., i., mag., mun., a.)",,
+fōxeh (3),n,"- (r., mon., i.) prey, particularly as food
+- (mag.) sacrificial item, offering
+- (mag., mun.) meat, flesh; corpse, carcass
+- (a.) embarassment; failure, rejection","(r., mon., i., mag., mun., a.)","- sense ""corpse, carcass"" can never refer to the corpse of an Exalted being",
+χōka (2),n,"- (r., mon., i.) crystalline creature
+- (mag., mun.) mirror; reflective surface
+- (a.) reflection, reflectivity","(r., mon., i., mag., mun., a.)",,
+hoka (2),adj,"similar, alike, same, synonymous; (elative) identical",hōka,,
+q̇oka (2),adj,"dissimilar, unalike, different; (elative) opposite",q̇ōka,,
+hokel,adv,"similarly, likewise; (elative) identically, verbatim",hōke,,
+q̇okel,adv,"dissimilarly, differently; (elative) contrarily, oppositely",q̇ōke,,
+χō'ok,v,"(transitive) to change, alter, adjust","χō'okad, χeχō'ok, χeχō'okad",,
+kehōk,v,"(intransitive) to change, alter, differ; to be different, unique","kehōkad, kēhōk, kēhōkad",,
+keχōχ (4),n,"change, variation; variable",(a.),,
