@@ -163,5 +163,14 @@
     </div>
 
     <script src="settings.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            if (window.authService && window.authService.updateAuthUI) {
+                window.authService.updateAuthUI();
+            } else {
+                console.error('authService not available in settings');
+            }
+        });
+    </script>
 </body>
 </html>
