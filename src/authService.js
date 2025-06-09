@@ -61,21 +61,39 @@ document.addEventListener('DOMContentLoaded', function() {
                     nav.removeChild(existingAuthContainer);
                 }
 
-                // Create new auth container as a nav item (li)
-                const authContainer = document.createElement('li');
-                authContainer.className = 'auth-container';
-                authContainer.innerHTML = user
-                    ? `<a href="account.html" class="auth-btn">Account</a>`
-                    : `<a href="login.html" class="auth-btn login-btn">Login</a>
-                       <a href="register.html" class="auth-btn">Register</a>`;
-                nav.appendChild(authContainer);
+                // Create new auth container as a list item
+                const authLi = document.createElement('li');
+                authLi.className = 'auth-container';
+
+                if (user) {
+                    const accountLink = document.createElement('a');
+                    accountLink.href = "account.html";
+                    accountLink.textContent = "Account";
+                    accountLink.className = "auth-link";
+                    authLi.appendChild(accountLink);
+                } else {
+                    const loginLink = document.createElement('a');
+                    loginLink.href = "login.html";
+                    loginLink.textContent = "Login";
+                    loginLink.className = "auth-link login-link";
+                    authLi.appendChild(loginLink);
+
+                    const separator = document.createTextNode(" | ");
+                    authLi.appendChild(separator);
+
+                    const registerLink = document.createElement('a');
+                    registerLink.href = "register.html";
+                    registerLink.textContent = "Register";
+                    registerLink.className = "auth-link";
+                    authLi.appendChild(registerLink);
+                }
+
+                nav.appendChild(authLi);
             });
 
             // Show/hide account nav item
             accountLinks.forEach(link => {
-                const action = user ? 'block' : 'none';
-                console.debug(`Setting account nav item visibility: ${action}`);
-                link.style.display = user ? 'block' : 'none';
+                link.style.display = user ? 'list-item' : 'none';
             });
         };
 
