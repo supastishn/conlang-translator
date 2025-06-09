@@ -163,13 +163,12 @@
     </div>
 
     <script src="settings.js"></script>
+    <!-- Load authService after Appwrite SDK, then call updateAuthUI -->
+    <script src="src/authService.js"></script>
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            if (window.authService && window.authService.updateAuthUI) {
-                window.authService.updateAuthUI();
-            } else {
-                console.error('authService not available in settings');
-            }
+            // Initialize auth first
+            window.authService.updateAuthUI();
         });
     </script>
 </body>
