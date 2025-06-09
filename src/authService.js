@@ -51,47 +51,45 @@ document.addEventListener('DOMContentLoaded', function() {
             const user = await getCurrentUser();
             console.debug(`Auth state changed. User logged in: ${user ? 'Yes' : 'No'}`);
             
-            const accountLinks = document.querySelectorAll('#account-nav-item');
             const navContainers = document.querySelectorAll('nav ul');
+            const loginElements = document.querySelectorAll('#login-nav-item');
+            const registerElements = document.querySelectorAll('#register-nav-item');
 
             navContainers.forEach(nav => {
-                // Remove any existing auth container
-                const existingAuthContainer = nav.querySelector('.auth-container');
-                if (existingAuthContainer) {
-                    nav.removeChild(existingAuthContainer);
-                }
+                // Remove any existing auth links
+                const existingLogin = nav.querySelector('#login-nav-item');
+                if (existingLogin) nav.removeChild(existingLogin);
+                
+                const existingRegister = nav.querySelector('#register-nav-item');
+                if (existingRegister) nav.removeChild(existingRegister);
 
-                // Create new auth container as a list item
-                const authLi = document.createElement('li');
-                authLi.className = 'auth-container';
-
-                if (user) {
-                    const accountLink = document.createElement('a');
-                    accountLink.href = "account.html";
-                    accountLink.textContent = "Account";
-                    accountLink.className = "auth-link";
-                    authLi.appendChild(accountLink);
-                } else {
+                if (!user) {
+                    // Create login link as direct list item
+                    const loginLi = document.createElement('li');
+                    loginLi.id = 'login-nav-item';
+                    
                     const loginLink = document.createElement('a');
                     loginLink.href = "login.html";
                     loginLink.textContent = "Login";
                     loginLink.className = "auth-link login-link";
-                    authLi.appendChild(loginLink);
+                    loginLi.appendChild(loginLink);
+                    nav.appendChild(loginLi);
 
-                    const separator = document.createTextNode(" | ");
-                    authLi.appendChild(separator);
-
+                    // Create register link as direct list item
+                    const registerLi = document.createElement('li');
+                    registerLi.id = 'register-nav-item';
+                    
                     const registerLink = document.createElement('a');
                     registerLink.href = "register.html";
                     registerLink.textContent = "Register";
                     registerLink.className = "auth-link";
-                    authLi.appendChild(registerLink);
+                    registerLi.appendChild(registerLink);
+                    nav.appendChild(registerLi);
                 }
-
-                nav.appendChild(authLi);
             });
 
             // Show/hide account nav item
+            const accountLinks = document.querySelectorAll('#account-nav-item');
             accountLinks.forEach(link => {
                 link.style.display = user ? 'list-item' : 'none';
             });

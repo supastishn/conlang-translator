@@ -901,29 +901,8 @@ footer {
   font-weight: 700;
 }
 
-/* Add this to the bottom of the file */
-.auth-container {
-    display: flex;
-    gap: 0.5rem;
-    align-items: center;
-    padding: 0.5rem;
-    position: static !important;
-    margin-left: auto;
-}
-
-nav ul li {
-    display: inline-block;
-}
-
-@media (max-width: 768px) {
-    .auth-container {
-        flex-direction: column;
-        gap: 0.25rem;
-    }
-}
-
-/* Auth link styles */
-.auth-link {
+/* Remove .auth-container styles */
+.nav ul .auth-link {
     text-decoration: none;
     color: var(--primary-color);
     padding: 0.8rem 1.5rem;
@@ -932,13 +911,17 @@ nav ul li {
     display: inline-block;
 }
 
-.auth-link:hover {
+.nav ul .auth-link:hover {
     background-color: var(--primary-light);
     color: var(--text-light);
 }
 
-.login-link {
+.nav ul .auth-link.login-link {
     color: var(--primary-color);
+}
+
+nav ul li {
+    display: inline-block;
 }
 /* Add this to the bottom of styles.css */
 .account-info {
