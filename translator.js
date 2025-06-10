@@ -4,6 +4,26 @@
 
 /* global Client, Functions */
 
+/********************************/
+/* NEW SDK INITIALIZATION CHECK */
+/********************************/
+// Verify Appwrite SDK is loaded
+let sdkLoadedResolve;
+const sdkLoadedPromise = new Promise(resolve => {
+  sdkLoadedResolve = resolve;
+});
+
+if (typeof Appwrite === 'undefined') {
+  const sdkCheck = setInterval(() => {
+    if (typeof Appwrite !== 'undefined') {
+      clearInterval(sdkCheck);
+      sdkLoadedResolve();
+    }
+  }, 100);
+} else {
+  sdkLoadedResolve();
+}
+
 // Language constants
 const LANG_ENGLISH = 'english';
 const LANG_DRACONIC = 'draconic';
@@ -150,8 +170,15 @@ const protectedAPICall = async (payload) => {
  * Requires Appwrite JS SDK loaded and initialized.
  */
 async function callGeminiFunction({sourceText, sourceLang, targetLang, imageDataUrl}) {
+    // WAIT FOR SDK TO BE FULLY LOADED
+    try {
+        await sdkLoadedPromise;
+    } catch (e) {
+        throw new Error('Failed to load Appwrite SDK: ' + e.message);
+    }
+    
     if (typeof window.Appwrite === 'undefined') {
-        throw new Error('Appwrite SDK not loaded. Please refresh the page.');
+        throw new Error('Appwrite SDK not loaded after initialization');
     }
     const client = new window.Appwrite.Client()
         .setEndpoint('https://fra.cloud.appwrite.io/v1') // Updated endpoint
