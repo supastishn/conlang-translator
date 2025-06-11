@@ -6,7 +6,7 @@
             "name": "gemini",
             "runtime": "node-22",
             "specification": "s-0.5vcpu-512mb",
-            "execute": ["user"],  // Allow only authenticated users
+            "execute": ["user"],
             "events": [],
             "scopes": [
                 "execution.read",
@@ -18,10 +18,7 @@
             "logging": true,
             "entrypoint": "src/main.js",
             "commands": "npm install",
-            "path": "functions/gemini",
-            "environmentVariables": {
-                "API_KEY": "your-encrypted-api-key"
-            }
+            "path": "functions/gemini"
         }
     ]
 }
