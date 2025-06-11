@@ -608,7 +608,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // Update provider UI whenever auth state changes
     if (window.authService && window.authService.onAuthStateChanged) {
         window.authService.onAuthStateChanged(() => {
-            updateAuthUI();
+            window.initializeAuth && window.initializeAuth();
             updateProviderUI();
         });
     }

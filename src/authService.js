@@ -113,7 +113,11 @@ document.addEventListener('DOMContentLoaded', function() {
         };
 
         // Initial UI update
-        updateAuthUI();
+        window.initializeAuth = async () => {
+            await updateAuthUI();
+        };
+        
+        initializeAuth();
     } else {
         console.error("Appwrite SDK not loaded");
     }
