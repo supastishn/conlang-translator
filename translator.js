@@ -197,7 +197,7 @@ async function callGeminiFunction({sourceText, sourceLang, targetLang, imageData
         const execution = await functions.createExecution(
             'gemini', // Your function ID
             JSON.stringify(payload),
-            true // async execution
+            false // synchronous execution
         );
 
         const response = JSON.parse(execution.response);
