@@ -51,12 +51,12 @@ export default async ({ req, res, log, error }) => {
     .setKey(req.headers['x-appwrite-key'] ?? '');
   const users = new Users(client);
 
-  // Handle /ping
+  // Handle '/ping' request
   if (req.path === "/ping") {
     return res.text("Pong");
   }
 
-  // Handle translation
+  // Handle translation request
   if (req.method === 'POST' && req.path === '/translate') {
     try {
       const { sourceText, sourceLang, targetLang, imageDataUrl } = req.body;
