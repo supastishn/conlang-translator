@@ -166,8 +166,13 @@
     <script src="src/authService.js"></script>
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            // Initialize auth first
-            window.authService.updateAuthUI();
+            // Wait for authService to be available
+            const waitForAuth = setInterval(() => {
+                if (window.authService && typeof window.authService.updateAuthUI === 'function') {
+                    clearInterval(waitForAuth);
+                    window.authService.updateAuthUI();
+                }
+            }, 100);
         });
     </script>
 </body>
