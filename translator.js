@@ -662,7 +662,7 @@ console.log(`Document state: ${document.readyState}`);
 const translateBtn = document.getElementById('translate-btn');
 if (!translateBtn) {
     console.error("Translate button not found on this page");
-    return;
+    // Illegal return statement removed
 } else {
     console.log("Translate button found, attaching click handler");
 }
