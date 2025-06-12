@@ -183,7 +183,7 @@ async function callGeminiFunction({sourceText, sourceLang, targetLang, imageData
 async function translateText(sourceText, sourceLang, targetLang, imageDataUrl = null, updateCallback = null) {
     const settings = Settings.get();
     const includeExplanation = settings.includeExplanation === true;
-
+	console.log("test")
     // Provider selection, with URL param override for Gemini
     const providerRadios = document.getElementsByName('provider-radio');
     let provider = PROVIDER_OPENAI;
