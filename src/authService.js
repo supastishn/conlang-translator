@@ -49,7 +49,7 @@ document.addEventListener('DOMContentLoaded', function() {
         // New function to update UI based on auth state
         const updateAuthUI = async () => {
             const user = await getCurrentUser();
-            console.debug(`Auth state changed. User logged in: ${user ? 'Yes' : 'No'}`);
+            console.log(`Auth state changed. User logged in: ${user ? 'Yes' : 'No'}`);
             
             const navContainers = document.querySelectorAll('nav ul');
             const loginElements = document.querySelectorAll('#login-nav-item');

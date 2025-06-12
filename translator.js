@@ -181,8 +181,8 @@ async function callGeminiFunction({sourceText, sourceLang, targetLang, imageData
 }
 
 async function translateText(sourceText, sourceLang, targetLang, imageDataUrl = null, updateCallback = null) {
-    console.debug("[translateText] START");
-    console.debug(`Input: '${sourceText}' | Image data: ${imageDataUrl ? "present" : "absent"}`);
+    console.log("[translateText] START");
+    console.log(`Input: '${sourceText}' | Image data: ${imageDataUrl ? "present" : "absent"}`);
 
     const settings = Settings.get();
     const includeExplanation = settings.includeExplanation === true;
@@ -198,10 +198,10 @@ async function translateText(sourceText, sourceLang, targetLang, imageDataUrl = 
         }
     }
 
-    console.debug(`Provider: ${provider}, Streaming: ${settings.streamingEnabled}, Include explanation: ${settings.includeExplanation}`);
+    console.log(`Provider: ${provider}, Streaming: ${settings.streamingEnabled}, Include explanation: ${settings.includeExplanation}`);
 
     if (provider === PROVIDER_GEMINI) {
-        console.debug("Using Gemini provider via Appwrite");
+        console.log("Using Gemini provider via Appwrite");
         // Call Gemini function via Appwrite
         return await callGeminiFunction({
             sourceText,
@@ -210,7 +210,7 @@ async function translateText(sourceText, sourceLang, targetLang, imageDataUrl = 
             imageDataUrl
         });
     } else {
-        console.debug("Using direct API provider:", settings.baseUrl);
+        console.log("Using direct API provider:", settings.baseUrl);
     }
 
     // Prepare system prompt content
@@ -241,8 +241,8 @@ async function translateText(sourceText, sourceLang, targetLang, imageDataUrl = 
         resourcesForPrompt += `\n\nILLUVETERIAN RESOURCES:\n${illuveterianText}`;
     }
 
-    console.debug("System prompt core:", systemPromptCore);
-    console.debug("Additional resources length:", resourcesForPrompt.length);
+    console.log("System prompt core:", systemPromptCore);
+    console.log("Additional resources length:", resourcesForPrompt.length);
 
     let finalSystemPrompt = systemPromptCore + resourcesForPrompt;
 
@@ -335,11 +335,11 @@ async function translateText(sourceText, sourceLang, targetLang, imageDataUrl = 
         temperature: settings.temperature
     };
 
-    console.debug("Endpoint:", endpoint);
+    console.log("Endpoint:", endpoint);
     console.debug("Request payload:", JSON.stringify(payload, null, 2));
 
     if (settings.streamingEnabled && updateCallback) {
-        console.debug("Using streaming mode");
+        console.log("Using streaming mode");
         payload.stream = true;
         const response = await fetch(endpoint, {
             method: 'POST',
@@ -388,7 +388,7 @@ async function translateText(sourceText, sourceLang, targetLang, imageDataUrl = 
         console.debug("[translateText] END");
         return rawXml;
     } else {
-        console.debug("Using non-streaming mode");
+        console.log("Using non-streaming mode");
         // Non-streaming request
         const response = await fetch(endpoint, {
             method: 'POST',
@@ -401,7 +401,7 @@ async function translateText(sourceText, sourceLang, targetLang, imageDataUrl = 
             throw new Error(data.error?.message || 'Translation failed');
         }
 
-        console.debug("[translateText] END");
+        console.log("[translateText] END");
         return data.choices[0].message.content;
     }
 }
@@ -1037,13 +1037,13 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // Set up the translate button click handler
     translateBtn.addEventListener('click', async function() {
-        console.debug("Translate button clicked");
+        console.log("Translate button clicked");
 
         const sourceText = sourceInputEl.value.trim();
         const sourceLang = sourceLangSelect.value;
         const targetLang = targetLangSelect.value;
 
-        console.debug(`Source lang: ${sourceLang}, Target lang: ${targetLang}`);
+        console.log(`Source lang: ${sourceLang}, Target lang: ${targetLang}`);
         
         if (!sourceText && !currentImageDataUrl) {
             alert('Please enter some text or upload an image to translate/analyze.');
@@ -1052,7 +1052,7 @@ document.addEventListener('DOMContentLoaded', function() {
         
         // Check if API key is set
         if (!Settings.hasApiKey()) {
-            console.debug("Translate cancelled: API key not configured");
+            console.log("Translate cancelled: API key not configured");
             document.getElementById('api-warning').classList.remove('hidden');
             return;
         }
@@ -1094,7 +1094,7 @@ document.addEventListener('DOMContentLoaded', function() {
         }
 
         try {
-            console.debug("Starting translation process");
+            console.log("Starting translation process");
             const textToLog = sourceText || (currentImageDataUrl ? "[Image Input]" : "[No Text Input]");
 
             let rawXml = "";
@@ -1103,7 +1103,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 targetOutputEl.classList.add('streaming');
                 // Accumulate the stream into rawXml
                 let lastPartial = "";
-                console.debug("Calling translateText...");
+                console.log("Calling translateText...");
                 rawXml = await translateText(sourceText, sourceLang, targetLang, currentImageDataUrl, function(partialTranslation) {
                     lastPartial = partialTranslation;
                     targetOutputEl.value = partialTranslation;
@@ -1113,7 +1113,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 targetOutputEl.classList.remove('streaming');
             } else {
                 // Use regular translation
-                console.debug("Calling translateText...");
+                console.log("Calling translateText...");
                 rawXml = await translateText(sourceText, sourceLang, targetLang, currentImageDataUrl);
                 targetOutputEl.value = rawXml;
             }
@@ -1146,7 +1146,7 @@ document.addEventListener('DOMContentLoaded', function() {
             // Reset button state
             translateBtn.disabled = false;
             translateBtn.textContent = 'Translate';
-            console.debug("Translation process completed");
+            console.log("Translation process completed");
         }
     });
 });
