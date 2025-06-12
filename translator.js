@@ -987,9 +987,15 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // Set up the translate button click handler
     translateBtn.addEventListener('click', async function() {
+        console.log("Translate button clicked"); // ADD THIS LINE
+
         const sourceText = sourceInputEl.value.trim();
         const sourceLang = sourceLangSelect.value;
         const targetLang = targetLangSelect.value;
+
+        console.log("Source text:", sourceText); // ADD THIS
+        console.log("Source lang:", sourceLang); // ADD THIS
+        console.log("Target lang:", targetLang); // ADD THIS
         
         if (!sourceText && !currentImageDataUrl) {
             alert('Please enter some text or upload an image to translate/analyze.');
@@ -1047,6 +1053,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 targetOutputEl.classList.add('streaming');
                 // Accumulate the stream into rawXml
                 let lastPartial = "";
+                console.log("Calling translateText..."); // ADD THIS
                 rawXml = await translateText(sourceText, sourceLang, targetLang, currentImageDataUrl, function(partialTranslation) {
                     lastPartial = partialTranslation;
                     targetOutputEl.value = partialTranslation;
@@ -1056,6 +1063,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 targetOutputEl.classList.remove('streaming');
             } else {
                 // Use regular translation
+                console.log("Calling translateText..."); // ADD THIS
                 rawXml = await translateText(sourceText, sourceLang, targetLang, currentImageDataUrl);
                 targetOutputEl.value = rawXml;
             }
@@ -1079,15 +1087,16 @@ document.addEventListener('DOMContentLoaded', function() {
             updateHistoryDisplay();
             
         } catch (error) {
+            console.error('Translation error:', error); // ENHANCE THIS
             targetOutputEl.value = 'Error: ' + error.message;
             targetOutputEl.classList.remove('streaming');
             if (explanationContainer) explanationContainer.classList.add('hidden');
             if (explanationOutputEl) explanationOutputEl.value = '';
-            console.error('Translation error:', error);
         } finally {
             // Reset button state
             translateBtn.disabled = false;
             translateBtn.textContent = 'Translate';
+            console.log("Translation process completed"); // ADD THIS
         }
     });
 });
