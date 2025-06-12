@@ -213,11 +213,15 @@ async function translateText(sourceText, sourceLang, targetLang, imageDataUrl = 
     const includeExplanation = settings.includeExplanation === true;    // <<< NEW
 
     // Provider selection, with URL param override for Gemini
-    const providerSelect = document.getElementById('provider-select');
-    const urlParams = new URLSearchParams(window.location.search);
-    const provider = urlParams.get('enableGemini') === 'true' 
-      ? PROVIDER_GEMINI 
-      : (providerSelect ? providerSelect.value : PROVIDER_OPENAI);
+    const providerRadios = document.getElementsByName('provider-radio');
+    let provider = PROVIDER_OPENAI;
+
+    for (const radio of providerRadios) {
+        if (radio.checked) {
+            provider = radio.value;
+            break;
+        }
+    }
 
     if (provider === PROVIDER_GEMINI) {
         // Call Gemini function via Appwrite
@@ -626,28 +630,40 @@ document.addEventListener('DOMContentLoaded', function() {
     const explanationContainer = document.getElementById('explanation-container');
     const explanationOutputEl = document.getElementById('explanation-output');
 
-    // Provider select
-    const providerSelect = document.getElementById('provider-select');
-    // Show/hide provider select based on Gemini option and auth
+    // Provider radio group
+    const providerRadioGroup = document.querySelector('.provider-radio-group');
+    // Show/hide provider radio group based on Gemini option and auth
     async function updateProviderUI() {
-        if (!providerSelect) return;
+        const providerRadioGroup = document.querySelector('.provider-radio-group');
+        if (!providerRadioGroup) return;
+        
         const settings = Settings.get();
-        let showGemini = false;
+        let showProviderSelection = false;
+        
         if (settings.geminiOption && window.authService && 
             typeof window.authService.getCurrentUser === 'function') {
             try {
                 const user = await window.authService.getCurrentUser();
-                showGemini = !!user;
+                showProviderSelection = !!user;
             } catch (e) {
-                showGemini = false;
+                showProviderSelection = false;
             }
         }
-        providerSelect.parentElement.style.display = showGemini ? 'block' : 'none';
-        if (!showGemini) {
-            providerSelect.value = PROVIDER_OPENAI;
+        
+        providerRadioGroup.style.display = showProviderSelection ? 'block' : 'none';
+        
+        if (showProviderSelection) {
+            // Check URL for enableGemini param
+            const geminiParam = new URLSearchParams(window.location.search).get('enableGemini');
+            
+            if (geminiParam === 'true') {
+                document.getElementById('gemini-radio').checked = true;
+            } else {
+                document.getElementById('openai-radio').checked = true;
+            }
         }
     }
-    if (providerSelect) {
+    if (providerRadioGroup) {
         updateProviderUI();
         // Optionally, listen for login/logout events to update UI
         if (window.authService && window.authService.onAuthStateChanged) {

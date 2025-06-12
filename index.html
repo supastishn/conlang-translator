@@ -62,12 +62,18 @@
                 </div>
             </div>
             <!-- Provider selection, hidden by default, shown for logged-in users if Gemini enabled -->
-            <div class="form-group" style="display:none;">
-                <label for="provider-select">Translation Provider:</label>
-                <select id="provider-select">
-                    <option value="openai">OpenAI (default)</option>
-                    <option value="gemini">Gemini via Appwrite</option>
-                </select>
+            <div class="form-group provider-radio-group" style="display:none;">
+                <label>Translation Provider:</label>
+                <div class="radio-options">
+                    <label>
+                        <input type="radio" name="provider-radio" value="openai" id="openai-radio" checked>
+                        OpenAI
+                    </label>
+                    <label>
+                        <input type="radio" name="provider-radio" value="gemini" id="gemini-radio">
+                        Gemini function
+                    </label>
+                </div>
             </div>
             
             <div id="draconic-output-type-container" class="form-group hidden"> <!-- Initially hidden, shown if target is Draconic -->
