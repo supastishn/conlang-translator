@@ -651,502 +651,513 @@ function updateHistoryDisplay() {
     });
 }
 
-document.addEventListener('DOMContentLoaded', function() {
-    // Only run on the translator page
-    const translateBtn = document.getElementById('translate-btn');
-    if (!translateBtn) return;
+/******* REMOVE THIS DOMContentLoaded WRAPPER *******/
+/*****************************************************/
 
-    // --- AUTH UI LOGIC ---
-    const authContainer = document.querySelector('.auth-container');
-    
-    // Update provider UI whenever auth state changes
-    if (window.authService && window.authService.onAuthStateChanged) {
-        window.authService.onAuthStateChanged(() => {
-            window.initializeAuth && window.initializeAuth();
-            updateProviderUI();
-        });
-    }
-    // Initial call
-    updateAuthUI();
+// Add top-level debug logs for verification
+console.log(`Translator module loaded at ${new Date().toISOString()}`);
+console.log(`Document state: ${document.readyState}`);
 
-    const sourceLangSelect = document.getElementById('source-lang-select');
-    const targetLangSelect = document.getElementById('target-lang-select');
-    const sourceLanguageLabelEl = document.getElementById('source-language-label');
-    const targetLanguageLabelEl = document.getElementById('target-language-label');
-    const sourceInputEl = document.getElementById('source-input');
-    const targetOutputEl = document.getElementById('target-output');
-    const dwlInputWarningEl = document.getElementById('dwl-input-warning');
-    // NEW: Explanation elements
-    const explanationContainer = document.getElementById('explanation-container');
-    const explanationOutputEl = document.getElementById('explanation-output');
+// Only run on the translator page
+const translateBtn = document.getElementById('translate-btn');
+if (!translateBtn) {
+    console.error("Translate button not found on this page");
+    return;
+} else {
+    console.log("Translate button found, attaching click handler");
+}
 
-    // Provider radio group
-    const providerRadioGroup = document.querySelector('.provider-radio-group');
-    // Show/hide provider radio group based on Gemini option and auth
-    async function updateProviderUI() {
-        const providerRadioGroup = document.querySelector('.provider-radio-group');
-        if (!providerRadioGroup) return;
-        
-        const settings = Settings.get();
-        let showProviderSelection = false;
-        
-        if (settings.geminiOption && window.authService && 
-            typeof window.authService.getCurrentUser === 'function') {
-            try {
-                const user = await window.authService.getCurrentUser();
-                showProviderSelection = !!user;
-            } catch (e) {
-                showProviderSelection = false;
-            }
-        }
-        
-        providerRadioGroup.style.display = showProviderSelection ? 'block' : 'none';
-        
-        if (showProviderSelection) {
-            // Check URL for enableGemini param
-            const geminiParam = new URLSearchParams(window.location.search).get('enableGemini');
-            
-            if (geminiParam === 'true') {
-                document.getElementById('gemini-radio').checked = true;
-            } else {
-                document.getElementById('openai-radio').checked = true;
-            }
-        }
-    }
-    if (providerRadioGroup) {
+// --- AUTH UI LOGIC ---
+const authContainer = document.querySelector('.auth-container');
+
+// Update provider UI whenever auth state changes
+if (window.authService && window.authService.onAuthStateChanged) {
+    window.authService.onAuthStateChanged(() => {
+        window.initializeAuth && window.initializeAuth();
         updateProviderUI();
-        // Optionally, listen for login/logout events to update UI
-        if (window.authService && window.authService.onAuthStateChanged) {
-            window.authService.onAuthStateChanged(updateProviderUI);
-        }
-    }
+    });
+}
+// Initial call
+updateAuthUI();
 
-    // Image upload elements
-    const imageUploadInput = document.getElementById('image-upload-input');
-    const imagePreviewContainer = document.getElementById('image-preview-container');
-    const imagePreview = document.getElementById('image-preview');
-    const clearImageBtn = document.getElementById('clear-image-btn');
-    let currentImageDataUrl = null;
+const sourceLangSelect = document.getElementById('source-lang-select');
+const targetLangSelect = document.getElementById('target-lang-select');
+const sourceLanguageLabelEl = document.getElementById('source-language-label');
+const targetLanguageLabelEl = document.getElementById('target-language-label');
+const sourceInputEl = document.getElementById('source-input');
+const targetOutputEl = document.getElementById('target-output');
+const dwlInputWarningEl = document.getElementById('dwl-input-warning');
+// NEW: Explanation elements
+const explanationContainer = document.getElementById('explanation-container');
+const explanationOutputEl = document.getElementById('explanation-output');
 
-    // NEW: Include Explanation main page toggle
-    const includeExplanationMainCheckbox = document.getElementById('include-explanation-main');
-    if (includeExplanationMainCheckbox) {
-      // initialize from Settings
-      includeExplanationMainCheckbox.checked = Settings.get().includeExplanation === true;
-
-      // helper to show/hide the explanation container
-      function updateExplanationVisibility() {
-        if (!explanationContainer) return;
-        if (includeExplanationMainCheckbox.checked) {
-          explanationContainer.classList.remove('hidden');
-        } else {
-          explanationContainer.classList.add('hidden');
-        }
-      }
-
-      // set initial visibility
-      updateExplanationVisibility();
-
-      // save on toggle & update visibility immediately
-      includeExplanationMainCheckbox.addEventListener('change', () => {
-        const s = Settings.get();
-        s.includeExplanation = includeExplanationMainCheckbox.checked;
-        Settings.save(s);
-        updateExplanationVisibility();
-      });
-    }
-
-    // Camera elements
-    const useCameraBtn = document.getElementById('use-camera-btn');
-    const cameraModal = document.getElementById('camera-modal');
-    const cameraVideoFeed = document.getElementById('camera-video-feed');
-    const cameraCanvas = document.getElementById('camera-canvas');
-    const captureImageBtn = document.getElementById('capture-image-btn');
-    const closeCameraBtn = document.getElementById('close-camera-btn');
-    let currentStream = null;
+// Provider radio group
+const providerRadioGroup = document.querySelector('.provider-radio-group');
+// Show/hide provider radio group based on Gemini option and auth
+async function updateProviderUI() {
+    const providerRadioGroup = document.querySelector('.provider-radio-group');
+    if (!providerRadioGroup) return;
     
-    const draconicOutputTypeContainer = document.getElementById('draconic-output-type-container');
-    const draconicOutputTypeSelectIndex = document.getElementById('draconic-output-type-select-index');
-    const dwlToEnglishTypeContainer = document.getElementById('dwl-to-english-type-container');
-    const dwlToEnglishTypeSelectIndex = document.getElementById('dwl-to-english-type-select-index');
+    const settings = Settings.get();
+    let showProviderSelection = false;
+    
+    if (settings.geminiOption && window.authService && 
+        typeof window.authService.getCurrentUser === 'function') {
+        try {
+            const user = await window.authService.getCurrentUser();
+            showProviderSelection = !!user;
+        } catch (e) {
+            showProviderSelection = false;
+        }
+    }
+    
+    providerRadioGroup.style.display = showProviderSelection ? 'block' : 'none';
+    
+    if (showProviderSelection) {
+        // Check URL for enableGemini param
+        const geminiParam = new URLSearchParams(window.location.search).get('enableGemini');
+        
+        if (geminiParam === 'true') {
+            document.getElementById('gemini-radio').checked = true;
+        } else {
+            document.getElementById('openai-radio').checked = true;
+        }
+    }
+}
+if (providerRadioGroup) {
+    updateProviderUI();
+    // Optionally, listen for login/logout events to update UI
+    if (window.authService && window.authService.onAuthStateChanged) {
+        window.authService.onAuthStateChanged(updateProviderUI);
+    }
+}
 
-    // Function to update UI elements based on current language selections
-    function updateUIForLanguageSelection() {
-        const sourceLang = sourceLangSelect.value;
-        const targetLang = targetLangSelect.value;
+// Image upload elements
+const imageUploadInput = document.getElementById('image-upload-input');
+const imagePreviewContainer = document.getElementById('image-preview-container');
+const imagePreview = document.getElementById('image-preview');
+const clearImageBtn = document.getElementById('clear-image-btn');
+let currentImageDataUrl = null;
+
+// NEW: Include Explanation main page toggle
+const includeExplanationMainCheckbox = document.getElementById('include-explanation-main');
+if (includeExplanationMainCheckbox) {
+  // initialize from Settings
+  includeExplanationMainCheckbox.checked = Settings.get().includeExplanation === true;
+
+  // helper to show/hide the explanation container
+  function updateExplanationVisibility() {
+    if (!explanationContainer) return;
+    if (includeExplanationMainCheckbox.checked) {
+      explanationContainer.classList.remove('hidden');
+    } else {
+      explanationContainer.classList.add('hidden');
+    }
+  }
+
+  // set initial visibility
+  updateExplanationVisibility();
+
+  // save on toggle & update visibility immediately
+  includeExplanationMainCheckbox.addEventListener('change', () => {
+    const s = Settings.get();
+    s.includeExplanation = includeExplanationMainCheckbox.checked;
+    Settings.save(s);
+    updateExplanationVisibility();
+  });
+}
+
+// Camera elements
+const useCameraBtn = document.getElementById('use-camera-btn');
+const cameraModal = document.getElementById('camera-modal');
+const cameraVideoFeed = document.getElementById('camera-video-feed');
+const cameraCanvas = document.getElementById('camera-canvas');
+const captureImageBtn = document.getElementById('capture-image-btn');
+const closeCameraBtn = document.getElementById('close-camera-btn');
+let currentStream = null;
+
+const draconicOutputTypeContainer = document.getElementById('draconic-output-type-container');
+const draconicOutputTypeSelectIndex = document.getElementById('draconic-output-type-select-index');
+const dwlToEnglishTypeContainer = document.getElementById('dwl-to-english-type-container');
+const dwlToEnglishTypeSelectIndex = document.getElementById('dwl-to-english-type-select-index');
+
+// Function to update UI elements based on current language selections
+function updateUIForLanguageSelection() {
+    const sourceLang = sourceLangSelect.value;
+    const targetLang = targetLangSelect.value;
+    const currentSettings = Settings.get();
+
+    sourceLanguageLabelEl.textContent = LANG_LABELS[sourceLang];
+    targetLanguageLabelEl.textContent = LANG_LABELS[targetLang];
+    
+    if (sourceLang === LANG_DETECT) {
+        sourceInputEl.placeholder = `Enter text in any real language (English, Arabic)...`;
+    } else {
+        sourceInputEl.placeholder = `Enter ${LANG_LABELS[sourceLang]} text (or describe image task)...`;
+    }
+    targetOutputEl.placeholder = `${LANG_LABELS[targetLang]} translation will appear here...`;
+
+    // Show/hide Draconic output type selector
+    if (targetLang === LANG_DRACONIC) {
+        draconicOutputTypeContainer.classList.remove('hidden');
+        if (draconicOutputTypeSelectIndex) {
+            draconicOutputTypeSelectIndex.value = currentSettings.draconicOutputType || 'normal';
+        }
+    } else {
+        draconicOutputTypeContainer.classList.add('hidden');
+    }
+
+    // Show/hide DWL input warning
+    if (dwlInputWarningEl) {
+        if (sourceLang === LANG_DWL) {
+            dwlInputWarningEl.classList.remove('hidden');
+        } else {
+            dwlInputWarningEl.classList.add('hidden');
+        }
+    }
+
+    // Show/hide DWL to English type selector
+    if (dwlToEnglishTypeContainer && dwlToEnglishTypeSelectIndex) {
+        if (sourceLang === LANG_DWL && targetLang === LANG_ENGLISH) {
+            dwlToEnglishTypeContainer.classList.remove('hidden');
+            dwlToEnglishTypeSelectIndex.value = currentSettings.dwlToEnglishType || 'natural';
+        } else {
+            dwlToEnglishTypeContainer.classList.add('hidden');
+        }
+    }
+}
+
+let previousSourceLang = sourceLangSelect.value;
+let previousTargetLang = targetLangSelect.value;
+
+// Function to enable/disable options in dropdowns based on current selections
+function updateLanguageDropdownInteractivity() {
+    const currentSourceVal = sourceLangSelect.value;
+    const currentTargetVal = targetLangSelect.value;
+
+    // Enable all options first
+    Array.from(sourceLangSelect.options).forEach(opt => opt.disabled = false);
+    Array.from(targetLangSelect.options).forEach(opt => opt.disabled = false);
+
+    // No disabling logic needed here anymore for conflicting options,
+    // as selecting a conflicting option should trigger a swap via the change handlers.
+}
+
+function handleSourceLangChange() {
+    const newSourceValue = sourceLangSelect.value;
+    let currentTargetValue = targetLangSelect.value; // Target's value before any swap
+
+    if (newSourceValue === currentTargetValue && newSourceValue !== LANG_DETECT) {
+        // Attempt to set target to what source *was* (previousSourceLang)
+        let swapped = false;
+        if (previousSourceLang && previousSourceLang !== LANG_DETECT && previousSourceLang !== newSourceValue) {
+            // Check if previousSourceLang is a valid and available option for targetLangSelect
+            const targetOptionForSwap = Array.from(targetLangSelect.options).find(opt => opt.value === previousSourceLang);
+            if (targetOptionForSwap) { // previousSourceLang is a listed target language
+                targetLangSelect.value = previousSourceLang;
+                swapped = true;
+            }
+        }
+
+        if (!swapped) {
+            // Fallback: if previousSourceLang was not suitable (e.g., 'detect', same as newSourceValue, or not a target option)
+            // Pick the first available, different language for the target.
+            const newTargetOption = Array.from(targetLangSelect.options).find(opt => opt.value !== newSourceValue);
+            if (newTargetOption) {
+                targetLangSelect.value = newTargetOption.value;
+            }
+        }
+    }
+    // previousSourceLang is updated by the focus listener for the next interaction.
+    updateLanguageDropdownInteractivity();
+    updateUIForLanguageSelection(); // Update labels, placeholders etc.
+}
+
+function handleTargetLangChange() {
+    const newTargetValue = targetLangSelect.value;
+    let currentSourceValue = sourceLangSelect.value; // Source's value before any swap
+
+    if (newTargetValue === currentSourceValue && currentSourceValue !== LANG_DETECT) {
+        // Attempt to set source to what target *was* (previousTargetLang)
+        // previousTargetLang cannot be LANG_DETECT.
+        let swapped = false;
+        if (previousTargetLang && previousTargetLang !== newTargetValue) {
+             // Check if previousTargetLang is a valid and available option for sourceLangSelect
+            const sourceOptionForSwap = Array.from(sourceLangSelect.options).find(opt => opt.value === previousTargetLang);
+            if (sourceOptionForSwap) { // previousTargetLang is a listed source language
+                sourceLangSelect.value = previousTargetLang;
+                swapped = true;
+            }
+        }
+        
+        if (!swapped) {
+            // Fallback: if previousTargetLang was not suitable (e.g. same as newTargetValue)
+            // Pick the first available, different language for the source.
+            const newSourceOption = Array.from(sourceLangSelect.options).find(opt => opt.value !== newTargetValue);
+            if (newSourceOption) {
+                sourceLangSelect.value = newSourceOption.value;
+            }
+        }
+    }
+    // previousTargetLang is updated by the focus listener for the next interaction.
+    updateLanguageDropdownInteractivity();
+    updateUIForLanguageSelection(); // Update labels, placeholders etc.
+}
+
+// Initial UI setup
+sourceLangSelect.value = LANG_ENGLISH; // Default source
+targetLangSelect.value = LANG_DRACONIC; // Default target
+
+// Initialize previous values after setting defaults
+previousSourceLang = sourceLangSelect.value;
+previousTargetLang = targetLangSelect.value;
+
+updateLanguageDropdownInteractivity(); // Set initial disabled states
+updateUIForLanguageSelection(); // Set initial labels, placeholders
+
+// Event listeners for language dropdowns
+sourceLangSelect.addEventListener('focus', function() { previousSourceLang = this.value; });
+targetLangSelect.addEventListener('focus', function() { previousTargetLang = this.value; });
+
+sourceLangSelect.addEventListener('change', handleSourceLangChange);
+targetLangSelect.addEventListener('change', handleTargetLangChange);
+
+// Event listener for Draconic output type select on index.html
+if (draconicOutputTypeSelectIndex) {
+    draconicOutputTypeSelectIndex.addEventListener('change', function() {
+        const newOutputType = this.value;
         const currentSettings = Settings.get();
+        currentSettings.draconicOutputType = newOutputType;
+        Settings.save(currentSettings);
+        // No need to call updateUIForLanguageSelection here as it doesn't affect other UI elements directly
+    });
+}
 
-        sourceLanguageLabelEl.textContent = LANG_LABELS[sourceLang];
-        targetLanguageLabelEl.textContent = LANG_LABELS[targetLang];
-        
-        if (sourceLang === LANG_DETECT) {
-            sourceInputEl.placeholder = `Enter text in any real language (English, Arabic)...`;
-        } else {
-            sourceInputEl.placeholder = `Enter ${LANG_LABELS[sourceLang]} text (or describe image task)...`;
-        }
-        targetOutputEl.placeholder = `${LANG_LABELS[targetLang]} translation will appear here...`;
+// Event listener for DWL to English type select on index.html
+if (dwlToEnglishTypeSelectIndex) {
+    dwlToEnglishTypeSelectIndex.addEventListener('change', function() {
+        const newDwlToEnglishType = this.value;
+        const currentSettings = Settings.get();
+        currentSettings.dwlToEnglishType = newDwlToEnglishType;
+        Settings.save(currentSettings);
+        // No need to call updateUIForLanguageSelection here as it doesn't affect other UI elements directly
+    });
+}
 
-        // Show/hide Draconic output type selector
-        if (targetLang === LANG_DRACONIC) {
-            draconicOutputTypeContainer.classList.remove('hidden');
-            if (draconicOutputTypeSelectIndex) {
-                draconicOutputTypeSelectIndex.value = currentSettings.draconicOutputType || 'normal';
-            }
-        } else {
-            draconicOutputTypeContainer.classList.add('hidden');
-        }
+// Update history display on page load
+updateHistoryDisplay();
 
-        // Show/hide DWL input warning
-        if (dwlInputWarningEl) {
-            if (sourceLang === LANG_DWL) {
-                dwlInputWarningEl.classList.remove('hidden');
-            } else {
-                dwlInputWarningEl.classList.add('hidden');
-            }
-        }
-
-        // Show/hide DWL to English type selector
-        if (dwlToEnglishTypeContainer && dwlToEnglishTypeSelectIndex) {
-            if (sourceLang === LANG_DWL && targetLang === LANG_ENGLISH) {
-                dwlToEnglishTypeContainer.classList.remove('hidden');
-                dwlToEnglishTypeSelectIndex.value = currentSettings.dwlToEnglishType || 'natural';
-            } else {
-                dwlToEnglishTypeContainer.classList.add('hidden');
-            }
-        }
+// --- Camera Logic ---
+async function openCamera() {
+    if (!cameraModal || !cameraVideoFeed) return;
+    cameraModal.classList.remove('hidden');
+    try {
+        currentStream = await navigator.mediaDevices.getUserMedia({ video: { facingMode: "environment" }, audio: false });
+        cameraVideoFeed.srcObject = currentStream;
+        // Ensure video plays, especially on mobile
+        cameraVideoFeed.play().catch(err => console.error("Error playing video:", err));
+    } catch (err) {
+        console.error("Error accessing camera:", err);
+        alert("Could not access the camera. Please ensure permissions are granted and no other app is using it. Error: " + err.message);
+        closeCamera(); // Close modal if camera access fails
     }
+}
+
+function closeCamera() {
+    if (currentStream) {
+        currentStream.getTracks().forEach(track => track.stop());
+    }
+    currentStream = null;
+    if (cameraVideoFeed) cameraVideoFeed.srcObject = null;
+    if (cameraModal) cameraModal.classList.add('hidden');
+}
+
+function captureImageFromCamera() {
+    if (!cameraVideoFeed || !cameraCanvas || !imagePreview || !imagePreviewContainer) return;
+
+    // Set canvas dimensions to video dimensions
+    const videoWidth = cameraVideoFeed.videoWidth;
+    const videoHeight = cameraVideoFeed.videoHeight;
+    cameraCanvas.width = videoWidth;
+    cameraCanvas.height = videoHeight;
+
+    const context = cameraCanvas.getContext('2d');
+    context.drawImage(cameraVideoFeed, 0, 0, videoWidth, videoHeight);
     
-    let previousSourceLang = sourceLangSelect.value;
-    let previousTargetLang = targetLangSelect.value;
-
-    // Function to enable/disable options in dropdowns based on current selections
-    function updateLanguageDropdownInteractivity() {
-        const currentSourceVal = sourceLangSelect.value;
-        const currentTargetVal = targetLangSelect.value;
-
-        // Enable all options first
-        Array.from(sourceLangSelect.options).forEach(opt => opt.disabled = false);
-        Array.from(targetLangSelect.options).forEach(opt => opt.disabled = false);
-
-        // No disabling logic needed here anymore for conflicting options,
-        // as selecting a conflicting option should trigger a swap via the change handlers.
-    }
-
-    function handleSourceLangChange() {
-        const newSourceValue = sourceLangSelect.value;
-        let currentTargetValue = targetLangSelect.value; // Target's value before any swap
-
-        if (newSourceValue === currentTargetValue && newSourceValue !== LANG_DETECT) {
-            // Attempt to set target to what source *was* (previousSourceLang)
-            let swapped = false;
-            if (previousSourceLang && previousSourceLang !== LANG_DETECT && previousSourceLang !== newSourceValue) {
-                // Check if previousSourceLang is a valid and available option for targetLangSelect
-                const targetOptionForSwap = Array.from(targetLangSelect.options).find(opt => opt.value === previousSourceLang);
-                if (targetOptionForSwap) { // previousSourceLang is a listed target language
-                    targetLangSelect.value = previousSourceLang;
-                    swapped = true;
-                }
-            }
-
-            if (!swapped) {
-                // Fallback: if previousSourceLang was not suitable (e.g., 'detect', same as newSourceValue, or not a target option)
-                // Pick the first available, different language for the target.
-                const newTargetOption = Array.from(targetLangSelect.options).find(opt => opt.value !== newSourceValue);
-                if (newTargetOption) {
-                    targetLangSelect.value = newTargetOption.value;
-                }
-            }
-        }
-        // previousSourceLang is updated by the focus listener for the next interaction.
-        updateLanguageDropdownInteractivity();
-        updateUIForLanguageSelection(); // Update labels, placeholders etc.
-    }
-
-    function handleTargetLangChange() {
-        const newTargetValue = targetLangSelect.value;
-        let currentSourceValue = sourceLangSelect.value; // Source's value before any swap
-
-        if (newTargetValue === currentSourceValue && currentSourceValue !== LANG_DETECT) {
-            // Attempt to set source to what target *was* (previousTargetLang)
-            // previousTargetLang cannot be LANG_DETECT.
-            let swapped = false;
-            if (previousTargetLang && previousTargetLang !== newTargetValue) {
-                 // Check if previousTargetLang is a valid and available option for sourceLangSelect
-                const sourceOptionForSwap = Array.from(sourceLangSelect.options).find(opt => opt.value === previousTargetLang);
-                if (sourceOptionForSwap) { // previousTargetLang is a listed source language
-                    sourceLangSelect.value = previousTargetLang;
-                    swapped = true;
-                }
-            }
-            
-            if (!swapped) {
-                // Fallback: if previousTargetLang was not suitable (e.g. same as newTargetValue)
-                // Pick the first available, different language for the source.
-                const newSourceOption = Array.from(sourceLangSelect.options).find(opt => opt.value !== newTargetValue);
-                if (newSourceOption) {
-                    sourceLangSelect.value = newSourceOption.value;
-                }
-            }
-        }
-        // previousTargetLang is updated by the focus listener for the next interaction.
-        updateLanguageDropdownInteractivity();
-        updateUIForLanguageSelection(); // Update labels, placeholders etc.
-    }
-
-    // Initial UI setup
-    sourceLangSelect.value = LANG_ENGLISH; // Default source
-    targetLangSelect.value = LANG_DRACONIC; // Default target
+    currentImageDataUrl = cameraCanvas.toDataURL('image/webp'); // Use webp for good compression/quality
+    imagePreview.src = currentImageDataUrl;
+    imagePreviewContainer.classList.remove('hidden');
+    sourceInputEl.placeholder = "Describe what to do with the captured image, or add text related to it...";
     
-    // Initialize previous values after setting defaults
-    previousSourceLang = sourceLangSelect.value;
-    previousTargetLang = targetLangSelect.value;
+    closeCamera();
+}
 
-    updateLanguageDropdownInteractivity(); // Set initial disabled states
-    updateUIForLanguageSelection(); // Set initial labels, placeholders
+if (useCameraBtn) {
+    useCameraBtn.addEventListener('click', openCamera);
+}
+if (captureImageBtn) {
+    captureImageBtn.addEventListener('click', captureImageFromCamera);
+}
+if (closeCameraBtn) {
+    closeCameraBtn.addEventListener('click', closeCamera);
+}
 
-    // Event listeners for language dropdowns
-    sourceLangSelect.addEventListener('focus', function() { previousSourceLang = this.value; });
-    targetLangSelect.addEventListener('focus', function() { previousTargetLang = this.value; });
-
-    sourceLangSelect.addEventListener('change', handleSourceLangChange);
-    targetLangSelect.addEventListener('change', handleTargetLangChange);
-    
-    // Event listener for Draconic output type select on index.html
-    if (draconicOutputTypeSelectIndex) {
-        draconicOutputTypeSelectIndex.addEventListener('change', function() {
-            const newOutputType = this.value;
-            const currentSettings = Settings.get();
-            currentSettings.draconicOutputType = newOutputType;
-            Settings.save(currentSettings);
-            // No need to call updateUIForLanguageSelection here as it doesn't affect other UI elements directly
-        });
-    }
-
-    // Event listener for DWL to English type select on index.html
-    if (dwlToEnglishTypeSelectIndex) {
-        dwlToEnglishTypeSelectIndex.addEventListener('change', function() {
-            const newDwlToEnglishType = this.value;
-            const currentSettings = Settings.get();
-            currentSettings.dwlToEnglishType = newDwlToEnglishType;
-            Settings.save(currentSettings);
-            // No need to call updateUIForLanguageSelection here as it doesn't affect other UI elements directly
-        });
-    }
-    
-    // Update history display on page load
-    updateHistoryDisplay();
-
-    // --- Camera Logic ---
-    async function openCamera() {
-        if (!cameraModal || !cameraVideoFeed) return;
-        cameraModal.classList.remove('hidden');
-        try {
-            currentStream = await navigator.mediaDevices.getUserMedia({ video: { facingMode: "environment" }, audio: false });
-            cameraVideoFeed.srcObject = currentStream;
-            // Ensure video plays, especially on mobile
-            cameraVideoFeed.play().catch(err => console.error("Error playing video:", err));
-        } catch (err) {
-            console.error("Error accessing camera:", err);
-            alert("Could not access the camera. Please ensure permissions are granted and no other app is using it. Error: " + err.message);
-            closeCamera(); // Close modal if camera access fails
-        }
-    }
-
-    function closeCamera() {
-        if (currentStream) {
-            currentStream.getTracks().forEach(track => track.stop());
-        }
-        currentStream = null;
-        if (cameraVideoFeed) cameraVideoFeed.srcObject = null;
-        if (cameraModal) cameraModal.classList.add('hidden');
-    }
-
-    function captureImageFromCamera() {
-        if (!cameraVideoFeed || !cameraCanvas || !imagePreview || !imagePreviewContainer) return;
-
-        // Set canvas dimensions to video dimensions
-        const videoWidth = cameraVideoFeed.videoWidth;
-        const videoHeight = cameraVideoFeed.videoHeight;
-        cameraCanvas.width = videoWidth;
-        cameraCanvas.height = videoHeight;
-
-        const context = cameraCanvas.getContext('2d');
-        context.drawImage(cameraVideoFeed, 0, 0, videoWidth, videoHeight);
-        
-        currentImageDataUrl = cameraCanvas.toDataURL('image/webp'); // Use webp for good compression/quality
-        imagePreview.src = currentImageDataUrl;
-        imagePreviewContainer.classList.remove('hidden');
-        sourceInputEl.placeholder = "Describe what to do with the captured image, or add text related to it...";
-        
-        closeCamera();
-    }
-
-    if (useCameraBtn) {
-        useCameraBtn.addEventListener('click', openCamera);
-    }
-    if (captureImageBtn) {
-        captureImageBtn.addEventListener('click', captureImageFromCamera);
-    }
-    if (closeCameraBtn) {
-        closeCameraBtn.addEventListener('click', closeCamera);
-    }
-
-    // --- Image File Upload Logic ---
-    if (imageUploadInput) {
-        imageUploadInput.addEventListener('change', function(event) {
-            const file = event.target.files[0];
-            if (file) {
-                // Basic validation for image type (client-side)
-                const validTypes = ['image/png', 'image/jpeg', 'image/gif', 'image/webp'];
-                if (!validTypes.includes(file.type)) {
-                    alert('Invalid file type. Please select a PNG, JPEG, GIF, or WEBP image.');
-                    imageUploadInput.value = ''; // Reset file input
-                    return;
-                }
-
-                // Basic validation for image size (client-side, e.g., 20MB limit like OpenAI)
-                const maxSizeMB = 20;
-                if (file.size > maxSizeMB * 1024 * 1024) {
-                    alert(`File is too large. Maximum size is ${maxSizeMB}MB.`);
-                    imageUploadInput.value = ''; // Reset file input
-                    return;
-                }
-
-                const reader = new FileReader();
-                reader.onload = function(e) {
-                    currentImageDataUrl = e.target.result;
-                    imagePreview.src = currentImageDataUrl;
-                    imagePreviewContainer.classList.remove('hidden');
-                    sourceInputEl.placeholder = "Describe what to do with the image, or add text related to it...";
-                }
-                reader.readAsDataURL(file);
-            }
-        });
-    }
-
-    if (clearImageBtn) {
-        clearImageBtn.addEventListener('click', function() {
-            currentImageDataUrl = null;
-            imagePreview.src = '#';
-            imagePreviewContainer.classList.add('hidden');
-            imageUploadInput.value = ''; // Reset the file input
-            // Restore original placeholder based on language selection
-            updateUIForLanguageSelection(); 
-        });
-    }
-    
-    // Set up the translate button click handler
-    translateBtn.addEventListener('click', async function() {
-        console.log("Translate button clicked");
-
-        const sourceText = sourceInputEl.value.trim();
-        const sourceLang = sourceLangSelect.value;
-        const targetLang = targetLangSelect.value;
-
-        console.log(`Source lang: ${sourceLang}, Target lang: ${targetLang}`);
-        
-        if (!sourceText && !currentImageDataUrl) {
-            alert('Please enter some text or upload an image to translate/analyze.');
-            return;
-        }
-        
-        // Check if API key is set
-        if (!Settings.hasApiKey()) {
-            console.log("Translate cancelled: API key not configured");
-            document.getElementById('api-warning').classList.remove('hidden');
-            return;
-        }
-        
-        // Show loading state
-        translateBtn.disabled = true;
-        translateBtn.textContent = 'Translating...';
-        targetOutputEl.value = 'Translating...';
-
-        // NEW: Explanation loading state
-        if (explanationContainer) explanationContainer.classList.add('hidden');
-        if (explanationOutputEl) explanationOutputEl.value = '';
-
-        // Get settings to check if streaming is enabled
-        const settings = Settings.get();
-        
-        // This check should ideally not be hit if handleLanguageChange works correctly,
-        // but it's a good safeguard. LANG_DETECT as source is fine with any target.
-        if (sourceLang === targetLang && sourceLang !== LANG_DETECT) {
-            alert('Source and target languages cannot be the same. Please select different languages.');
-            translateBtn.disabled = false;
-            translateBtn.textContent = 'Translate';
-            targetOutputEl.value = ''; // Clear the "Translating..." message
-            // Re-validate dropdowns to fix any inconsistent state if possible
-            updateLanguageDropdownInteractivity();
-            updateUIForLanguageSelection();
-            return;
-        }
-
-        // Helper to parse XML
-        function parseXmlString(xml) {
-          // wrap in a dummy root so DOMParser ignores “extra content”
-          const wrapped = `<root>${xml}</root>`;
-          const doc = new DOMParser().parseFromString(wrapped, "application/xml");
-          return {
-            translation: doc.querySelector("translation")?.textContent.trim() || "",
-            explanation: doc.querySelector("explanation")?.textContent.trim() || ""
-          };
-        }
-
-        try {
-            console.log("Starting translation process");
-            const textToLog = sourceText || (currentImageDataUrl ? "[Image Input]" : "[No Text Input]");
-
-            let rawXml = "";
-            if (settings.streamingEnabled !== false) {
-                // Use streaming translation with callback to update UI
-                targetOutputEl.classList.add('streaming');
-                // Accumulate the stream into rawXml
-                let lastPartial = "";
-                console.log("Calling translateText...");
-                rawXml = await translateText(sourceText, sourceLang, targetLang, currentImageDataUrl, function(partialTranslation) {
-                    lastPartial = partialTranslation;
-                    targetOutputEl.value = partialTranslation;
-                });
-                // Make sure we have the final translation
-                targetOutputEl.value = rawXml;
-                targetOutputEl.classList.remove('streaming');
-            } else {
-                // Use regular translation
-                console.log("Calling translateText...");
-                rawXml = await translateText(sourceText, sourceLang, targetLang, currentImageDataUrl);
-                targetOutputEl.value = rawXml;
+// --- Image File Upload Logic ---
+if (imageUploadInput) {
+    imageUploadInput.addEventListener('change', function(event) {
+        const file = event.target.files[0];
+        if (file) {
+            // Basic validation for image type (client-side)
+            const validTypes = ['image/png', 'image/jpeg', 'image/gif', 'image/webp'];
+            if (!validTypes.includes(file.type)) {
+                alert('Invalid file type. Please select a PNG, JPEG, GIF, or WEBP image.');
+                imageUploadInput.value = ''; // Reset file input
+                return;
             }
 
-            // Parse XML and update translation/explanation boxes
-            const { translation, explanation } = parseXmlString(rawXml);
-
-            // always show the translation:
-            targetOutputEl.value = translation;
-
-            // show or hide the explanation box based on setting:
-            if (settings.includeExplanation) {
-                if (explanationContainer) explanationContainer.classList.remove('hidden');
-                if (explanationOutputEl) explanationOutputEl.value = explanation;
-            } else {
-                if (explanationContainer) explanationContainer.classList.add('hidden');
+            // Basic validation for image size (client-side, e.g., 20MB limit like OpenAI)
+            const maxSizeMB = 20;
+            if (file.size > maxSizeMB * 1024 * 1024) {
+                alert(`File is too large. Maximum size is ${maxSizeMB}MB.`);
+                imageUploadInput.value = ''; // Reset file input
+                return;
             }
-            
-            // Add to history
-            TranslationHistory.add(textToLog, targetOutputEl.value, sourceLang, targetLang);
-            updateHistoryDisplay();
-            
-        } catch (error) {
-            console.error("Translation error:", error);
-            targetOutputEl.value = 'Error: ' + error.message;
-            targetOutputEl.classList.remove('streaming');
-            if (explanationContainer) explanationContainer.classList.add('hidden');
-            if (explanationOutputEl) explanationOutputEl.value = '';
-        } finally {
-            // Reset button state
-            translateBtn.disabled = false;
-            translateBtn.textContent = 'Translate';
-            console.log("Translation process completed");
+
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                currentImageDataUrl = e.target.result;
+                imagePreview.src = currentImageDataUrl;
+                imagePreviewContainer.classList.remove('hidden');
+                sourceInputEl.placeholder = "Describe what to do with the image, or add text related to it...";
+            }
+            reader.readAsDataURL(file);
         }
     });
+}
+
+if (clearImageBtn) {
+    clearImageBtn.addEventListener('click', function() {
+        currentImageDataUrl = null;
+        imagePreview.src = '#';
+        imagePreviewContainer.classList.add('hidden');
+        imageUploadInput.value = ''; // Reset the file input
+        // Restore original placeholder based on language selection
+        updateUIForLanguageSelection(); 
+    });
+}
+
+// Set up the translate button click handler
+translateBtn.addEventListener('click', async function() {
+    console.log("Translate button clicked");
+
+    const sourceText = sourceInputEl.value.trim();
+    const sourceLang = sourceLangSelect.value;
+    const targetLang = targetLangSelect.value;
+
+    console.log(`Source lang: ${sourceLang}, Target lang: ${targetLang}`);
+    
+    if (!sourceText && !currentImageDataUrl) {
+        alert('Please enter some text or upload an image to translate/analyze.');
+        return;
+    }
+    
+    // Check if API key is set
+    if (!Settings.hasApiKey()) {
+        console.log("Translate cancelled: API key not configured");
+        document.getElementById('api-warning').classList.remove('hidden');
+        return;
+    }
+    
+    // Show loading state
+    translateBtn.disabled = true;
+    translateBtn.textContent = 'Translating...';
+    targetOutputEl.value = 'Translating...';
+
+    // NEW: Explanation loading state
+    if (explanationContainer) explanationContainer.classList.add('hidden');
+    if (explanationOutputEl) explanationOutputEl.value = '';
+
+    // Get settings to check if streaming is enabled
+    const settings = Settings.get();
+    
+    // This check should ideally not be hit if handleLanguageChange works correctly,
+    // but it's a good safeguard. LANG_DETECT as source is fine with any target.
+    if (sourceLang === targetLang && sourceLang !== LANG_DETECT) {
+        alert('Source and target languages cannot be the same. Please select different languages.');
+        translateBtn.disabled = false;
+        translateBtn.textContent = 'Translate';
+        targetOutputEl.value = ''; // Clear the "Translating..." message
+        // Re-validate dropdowns to fix any inconsistent state if possible
+        updateLanguageDropdownInteractivity();
+        updateUIForLanguageSelection();
+        return;
+    }
+
+    // Helper to parse XML
+    function parseXmlString(xml) {
+      // wrap in a dummy root so DOMParser ignores “extra content”
+      const wrapped = `<root>${xml}</root>`;
+      const doc = new DOMParser().parseFromString(wrapped, "application/xml");
+      return {
+        translation: doc.querySelector("translation")?.textContent.trim() || "",
+        explanation: doc.querySelector("explanation")?.textContent.trim() || ""
+      };
+    }
+
+    try {
+        console.log("Starting translation process");
+        const textToLog = sourceText || (currentImageDataUrl ? "[Image Input]" : "[No Text Input]");
+
+        let rawXml = "";
+        if (settings.streamingEnabled !== false) {
+            // Use streaming translation with callback to update UI
+            targetOutputEl.classList.add('streaming');
+            // Accumulate the stream into rawXml
+            let lastPartial = "";
+            console.log("Calling translateText...");
+            rawXml = await translateText(sourceText, sourceLang, targetLang, currentImageDataUrl, function(partialTranslation) {
+                lastPartial = partialTranslation;
+                targetOutputEl.value = partialTranslation;
+            });
+            // Make sure we have the final translation
+            targetOutputEl.value = rawXml;
+            targetOutputEl.classList.remove('streaming');
+        } else {
+            // Use regular translation
+            console.log("Calling translateText...");
+            rawXml = await translateText(sourceText, sourceLang, targetLang, currentImageDataUrl);
+            targetOutputEl.value = rawXml;
+        }
+
+        // Parse XML and update translation/explanation boxes
+        const { translation, explanation } = parseXmlString(rawXml);
+
+        // always show the translation:
+        targetOutputEl.value = translation;
+
+        // show or hide the explanation box based on setting:
+        if (settings.includeExplanation) {
+            if (explanationContainer) explanationContainer.classList.remove('hidden');
+            if (explanationOutputEl) explanationOutputEl.value = explanation;
+        } else {
+            if (explanationContainer) explanationContainer.classList.add('hidden');
+        }
+        
+        // Add to history
+        TranslationHistory.add(textToLog, targetOutputEl.value, sourceLang, targetLang);
+        updateHistoryDisplay();
+        
+    } catch (error) {
+        console.error("Translation error:", error);
+        targetOutputEl.value = 'Error: ' + error.message;
+        targetOutputEl.classList.remove('streaming');
+        if (explanationContainer) explanationContainer.classList.add('hidden');
+        if (explanationOutputEl) explanationOutputEl.value = '';
+    } finally {
+        // Reset button state
+        translateBtn.disabled = false;
+        translateBtn.textContent = 'Translate';
+        console.log("Translation process completed");
+    }
 });
+/*****************************************************/
