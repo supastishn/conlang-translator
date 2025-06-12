@@ -63,6 +63,7 @@ export default async ({ req, res, log, error }) => {
       const { model = 'gemini-1.5-flash', temperature = 0.0 } = req.body.settings || {};
 
       if (!process.env.GEMINI_API_KEY) {
+        error('GEMINI_API_KEY not configured for server-side translation');
         return res.json({ error: 'GEMINI_API_KEY not configured' }, 500);
       }
 

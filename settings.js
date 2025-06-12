@@ -207,6 +207,7 @@ document.addEventListener('DOMContentLoaded', function() {
         const baseUrl = document.getElementById('base-url').value.trim() || DEFAULT_SETTINGS.baseUrl;
         
         if (!apiKey) {
+            console.log("Connection test cancelled: API key required");
             connectionStatus.textContent = 'API key is required!';
             connectionStatus.className = 'error';
             return;

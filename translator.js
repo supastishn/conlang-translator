@@ -987,15 +987,15 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // Set up the translate button click handler
     translateBtn.addEventListener('click', async function() {
-        console.log("Translate button clicked"); // ADD THIS LINE
+        console.log("Translate button clicked");
 
         const sourceText = sourceInputEl.value.trim();
         const sourceLang = sourceLangSelect.value;
         const targetLang = targetLangSelect.value;
 
-        console.log("Source text:", sourceText); // ADD THIS
-        console.log("Source lang:", sourceLang); // ADD THIS
-        console.log("Target lang:", targetLang); // ADD THIS
+        console.log("Source text:", sourceText);
+        console.log("Source lang:", sourceLang);
+        console.log("Target lang:", targetLang);
         
         if (!sourceText && !currentImageDataUrl) {
             alert('Please enter some text or upload an image to translate/analyze.');
@@ -1004,6 +1004,7 @@ document.addEventListener('DOMContentLoaded', function() {
         
         // Check if API key is set
         if (!Settings.hasApiKey()) {
+            console.log("Translate cancelled: API key not configured");
             document.getElementById('api-warning').classList.remove('hidden');
             return;
         }
