@@ -209,7 +209,10 @@ async function callGeminiFunction({sourceText, sourceLang, targetLang, imageData
 
 // OpenAI API integration (now using protectedAPICall or Gemini)
 async function translateText(sourceText, sourceLang, targetLang, imageDataUrl = null, updateCallback = null) {
-    const settings = Settings.get();
+    
+console.log("hi")
+
+	const settings = Settings.get();
     const includeExplanation = settings.includeExplanation === true;    // <<< NEW
 
     // Provider selection, with URL param override for Gemini
