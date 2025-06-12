@@ -137,33 +137,6 @@ async function loadIlluveterianResources() {
 }
 
 
-/**
- * Protected API call for authenticated users.
- * Uses Appwrite session for authentication.
- */
-const protectedAPICall = async (payload) => {
-    const user = await window.authService.getCurrentUser();
-    if (!user) {
-        throw new Error('User not authenticated');
-    }
-    // You may need to get a session token or JWT depending on your backend setup.
-    // For demonstration, we'll assume a session secret or JWT is available as user.$id or user.secret.
-    // Adjust as needed for your Appwrite backend.
-    const sessionToken = user.secret || user.$id || '';
-    const response = await fetch('/api/translate', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-            'Authorization': `Bearer ${sessionToken}`
-        },
-        body: JSON.stringify(payload)
-    });
-    if (!response.ok) {
-        const error = await response.json();
-        throw new Error(error.error?.message || 'Translation request failed');
-    }
-    return response.json();
-};
 
 /**
  * Call Gemini function via Appwrite Functions SDK.
@@ -207,13 +180,9 @@ async function callGeminiFunction({sourceText, sourceLang, targetLang, imageData
     }
 }
 
-// OpenAI API integration (now using protectedAPICall or Gemini)
 async function translateText(sourceText, sourceLang, targetLang, imageDataUrl = null, updateCallback = null) {
-    
-console.log("hi")
-
-	const settings = Settings.get();
-    const includeExplanation = settings.includeExplanation === true;    // <<< NEW
+    const settings = Settings.get();
+    const includeExplanation = settings.includeExplanation === true;
 
     // Provider selection, with URL param override for Gemini
     const providerRadios = document.getElementsByName('provider-radio');
@@ -235,8 +204,6 @@ console.log("hi")
             imageDataUrl
         });
     }
-
-    // ... (all prompt/resource logic remains unchanged) ...
 
     // Prepare system prompt content
     let systemPromptCore = settings.systemPrompt;
@@ -338,24 +305,86 @@ console.log("hi")
       userMessageContent += xmlInstr;
     }
 
-    // Use protected API call for translation
-    try {
-        const response = await protectedAPICall({
-            sourceText,
-            sourceLang,
-            targetLang,
-            imageDataUrl,
-            settings: {
-                model: settings.model,
-                temperature: settings.temperature
+    // Direct OpenAI-compatible API call (streaming and non-streaming)
+    const endpoint = `${settings.baseUrl}/chat/completions`;
+    const headers = {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${settings.apiKey}`
+    };
+
+    const payload = {
+        model: settings.model,
+        messages: [
+            { role: "system", content: finalSystemPrompt },
+            { 
+                role: "user", 
+                content: userMessageContent 
             }
+        ],
+        temperature: settings.temperature
+    };
+
+    if (settings.streamingEnabled && updateCallback) {
+        payload.stream = true;
+        const response = await fetch(endpoint, {
+            method: 'POST',
+            headers,
+            body: JSON.stringify(payload)
         });
 
-        // If streaming is needed, you may need to adapt this to your backend's streaming support.
-        // For now, just return the translation.
-        return response.translation || '';
-    } catch (error) {
-        throw error;
+        if (!response.ok || !response.body) {
+            let errMsg = '';
+            try {
+                const errData = await response.json();
+                errMsg = errData.error?.message || 'Streaming translation failed';
+            } catch (e) {
+                errMsg = 'Streaming translation failed';
+            }
+            throw new Error(errMsg);
+        }
+
+        const reader = response.body.getReader();
+        const decoder = new TextDecoder();
+        let rawXml = '';
+
+        while (true) {
+            const { value, done } = await reader.read();
+            if (done) break;
+
+            const chunk = decoder.decode(value);
+            const lines = chunk.split('\n');
+
+            for (const line of lines) {
+                if (line.startsWith('data: ')) {
+                    const data = line.substring(6);
+                    if (data.trim() === '[DONE]') break;
+
+                    try {
+                        const parsed = JSON.parse(data);
+                        const content = parsed.choices[0]?.delta?.content || '';
+                        rawXml += content;
+                        updateCallback(rawXml);
+                    } catch (e) {
+                        // Skip invalid JSON chunks
+                    }
+                }
+            }
+        }
+        return rawXml;
+    } else {
+        // Non-streaming request
+        const response = await fetch(endpoint, {
+            method: 'POST',
+            headers,
+            body: JSON.stringify(payload)
+        });
+
+        const data = await response.json();
+        if (!response.ok) {
+            throw new Error(data.error?.message || 'Translation failed');
+        }
+
+        return data.choices[0].message.content;
     }
 }
 
