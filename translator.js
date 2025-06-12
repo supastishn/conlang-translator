@@ -678,7 +678,7 @@ if (window.authService && window.authService.onAuthStateChanged) {
     });
 }
 // Initial call
-updateAuthUI();
+updateProviderUI();
 
 const sourceLangSelect = document.getElementById('source-lang-select');
 const targetLangSelect = document.getElementById('target-lang-select');
