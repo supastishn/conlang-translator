@@ -2,13 +2,28 @@
 // translator.js - Handles translation functionality
 */
 
+// Add at top of file
+function sanitizeXML(input) {
+  try {
+    const parser = new DOMParser();
+    const doc = parser.parseFromString(input, "text/xml");
+    return new XMLSerializer().serializeToString(doc);
+  } catch (e) {
+    // fallback: return input as-is if sanitization fails
+    return input;
+  }
+}
+
 /* global Client, Functions */
 
+/*
 // SDK loading with timeout
+*/
 let sdkCheck;
 const sdkTimeout = setTimeout(() => {
   if (sdkCheck) clearInterval(sdkCheck);
-  console.error("Appwrite SDK failed to load within 5 seconds");
+  console.error("Appwrite SDK failed to load");
+  sdkLoadedResolve(); // Ensure promise resolves
 }, 5000);
 
 let sdkLoadedResolve;
@@ -148,15 +163,15 @@ async function loadIlluveterianResources() {
  * Requires Appwrite JS SDK loaded and initialized.
  */
 async function callGeminiFunction({sourceText, sourceLang, targetLang, imageDataUrl}) {
-    // WAIT FOR SDK TO BE FULLY LOADED
     try {
         await sdkLoadedPromise;
     } catch (e) {
         throw new Error('Failed to load Appwrite SDK: ' + e.message);
     }
-    
+
+    // Add error boundary
     if (typeof window.Appwrite === 'undefined') {
-        throw new Error('Appwrite SDK not loaded after initialization');
+        throw new Error('Appwrite not loaded');
     }
     const client = new window.Appwrite.Client()
         .setEndpoint('https://fra.cloud.appwrite.io/v1') // Updated endpoint
@@ -166,13 +181,14 @@ async function callGeminiFunction({sourceText, sourceLang, targetLang, imageData
 
     try {
         const settings = Settings.get();
+        // Fix settings destructuring
         const payload = {
             sourceText,
             sourceLang,
             targetLang,
             imageDataUrl,
             settings: {
-                model: settings.model,
+                model: settings.model || 'gemini-1.5-flash',
                 temperature: settings.temperature
             }
         };
@@ -731,15 +747,10 @@ async function updateProviderUI() {
     
     providerRadioGroup.style.display = showProviderSelection ? 'block' : 'none';
     
-    if (showProviderSelection) {
-        // Check URL for enableGemini param
-        const geminiParam = new URLSearchParams(window.location.search).get('enableGemini');
-        
-        if (geminiParam === 'true') {
-            document.getElementById('gemini-radio').checked = true;
-        } else {
-            document.getElementById('openai-radio').checked = true;
-        }
+    // Add URL parameter handling
+    const urlParams = new URLSearchParams(window.location.search);
+    if (urlParams.get('enableGemini') === 'true') {
+        document.getElementById('gemini-radio').checked = true;
     }
 }
 if (providerRadioGroup) {
@@ -1112,13 +1123,7 @@ translateBtn.addEventListener('click', async function() {
     }
 
     // Helper to parse XML
-    function sanitizeXML(input) {
-      return input
-        .replace(/&/g, '&amp;')
-        .replace(/</g, '&lt;')
-        .replace(/>/g, '&gt;');
-    }
-
+    // Add error boundary to parseXmlString
     function parseXmlString(xml) {
       try {
         const sanitized = sanitizeXML(xml);
@@ -1129,7 +1134,7 @@ translateBtn.addEventListener('click', async function() {
           explanation: doc.querySelector("explanation")?.textContent.trim() || ""
         };
       } catch (e) {
-        console.error("XML parsing error:", e);
+        console.error("XML sanitization error:", e);
         return { translation: xml, explanation: "" };
       }
     }

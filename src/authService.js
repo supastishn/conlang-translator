@@ -13,31 +13,61 @@ document.addEventListener('DOMContentLoaded', function() {
 
         const account = new window.Appwrite.Account(client);
 
+        // Modify login handler
         const login = async (email, password) => {
-            return await account.createEmailPasswordSession(email, password);
+            try {
+                return await account.createEmailPasswordSession(email, password);
+            } catch (error) {
+                console.error(error);
+                throw new Error('Authentication failed. Check credentials and try again.');
+            }
         };
 
+        // Similar error handling for register/update functions
         const register = async (email, password) => {
-            // Create account
-            await account.create('unique()', email, password);
-            // Automatically log in the new user
-            return await account.createEmailPasswordSession(email, password);
+            try {
+                await account.create('unique()', email, password);
+                return await account.createEmailPasswordSession(email, password);
+            } catch (error) {
+                console.error(error);
+                throw new Error('Registration failed. Please check your input and try again.');
+            }
         };
 
         const logout = async () => {
-            return await account.deleteSession('current');
+            try {
+                return await account.deleteSession('current');
+            } catch (error) {
+                console.error(error);
+                throw new Error('Logout failed. Please try again.');
+            }
         };
 
         const updateEmail = async (newEmail, password) => {
-            return await account.updateEmail(newEmail, password);
+            try {
+                return await account.updateEmail(newEmail, password);
+            } catch (error) {
+                console.error(error);
+                throw new Error('Failed to update email. Please check your password and try again.');
+            }
         };
 
         const updatePassword = async (oldPassword, newPassword) => {
-            return await account.updatePassword(newPassword, oldPassword);
+            try {
+                return await account.updatePassword(newPassword, oldPassword);
+            } catch (error) {
+                console.error(error);
+                throw new Error('Failed to update password. Please check your credentials and try again.');
+            }
         };
 
         const deleteAccount = async () => {
-            return await account.delete();
+            try {
+                return await account.delete();
+            } catch (error) {
+                console.error(error);
+                throw new Error('Failed to delete account. Please try again.');
+            }
         };
 
         const getCurrentUser = async () => {

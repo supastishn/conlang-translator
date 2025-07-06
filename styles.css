@@ -127,9 +127,10 @@ header h1 {
     background-color: var(--primary-dark);
 }
 
-#image-preview-container {
-    position: relative;
-    max-width: 100%; /* Ensure it doesn't overflow */
+#image-preview-container { 
+  position: relative;
+  display: inline-block;
+  max-width: 100%; /* Ensure it doesn't overflow */
 }
 
 #image-preview {
@@ -141,28 +142,28 @@ header h1 {
 }
 
 #clear-image-btn {
-    position: absolute;
-    top: -8px; /* Adjusted for better visual placement without background */
-    right: -8px; /* Adjusted for better visual placement without background */
-    background-color: transparent;
-    color: var(--error-color); /* Make the 'X' red */
-    border: none;
-    border-radius: 0; /* Remove rounded corners */
-    width: 32px; /* Slightly larger click target */
-    height: 32px; /* Slightly larger click target */
-    padding: 0; /* Ensure no extra padding */
-    font-size: 1.6rem; /* Make the 'X' larger */
-    font-weight: bold;
-    line-height: 32px; /* Center the 'X' vertically */
-    text-align: center;
-    cursor: pointer;
-    box-shadow: none; /* Remove shadow */
-    transition: color var(--transition-speed) ease, transform var(--transition-speed) ease;
+  position: absolute;
+  top: -12px;
+  right: -12px;
+  background-color: transparent;
+  color: var(--error-color); /* Make the 'X' red */
+  border: none;
+  border-radius: 0; /* Remove rounded corners */
+  width: 32px; /* Slightly larger click target */
+  height: 32px; /* Slightly larger click target */
+  padding: 0; /* Ensure no extra padding */
+  font-size: 1.6rem; /* Make the 'X' larger */
+  font-weight: bold;
+  line-height: 32px; /* Center the 'X' vertically */
+  text-align: center;
+  cursor: pointer;
+  box-shadow: none; /* Remove shadow */
+  transition: color var(--transition-speed) ease, transform var(--transition-speed) ease;
 }
 
 #clear-image-btn:hover {
-    color: #a00; /* Darker red for the 'X' on hover */
-    transform: scale(1.2); /* Make it pop a bit more */
+  color: #a00; /* Darker red for the 'X' on hover */
+  transform: scale(1.2); /* Make it pop a bit more */
 }
 
 /* Camera Modal Styles */
@@ -540,31 +541,43 @@ button:disabled {
 }
 
 .history-use-btn {
-    background-color: var(--secondary-color);
-    padding: 0.5rem 1rem;
-    font-size: 0.8rem;
-    border-radius: var(--rounded-md);
-    transition: all var(--transition-speed) ease;
-    box-shadow: 0 2px 8px rgba(245, 158, 11, 0.3);
+  background-color: var(--secondary-color);
+  font-weight: 500;
+  padding: 8px 16px;
+  border-radius: var(--rounded-md);
+  font-size: 0.8rem;
+  transition: all var(--transition-speed) ease;
+  box-shadow: 0 2px 8px rgba(245, 158, 11, 0.3);
 }
 
 .history-use-btn:hover {
-    background-color: #d97706;
-    transform: translateY(-2px);
+  background-color: #d97706;
+  transform: translateY(-2px);
 }
 
 .history-delete-btn {
-    background-color: var(--error-color);
-    padding: 0.5rem 1rem;
-    font-size: 0.8rem;
-    border-radius: var(--rounded-md);
-    transition: all var(--transition-speed) ease;
-    box-shadow: 0 2px 8px rgba(239, 68, 68, 0.3);
+  background-color: var(--error-color);
+  font-weight: 500;
+  padding: 8px 16px;
+  border-radius: var(--rounded-md);
+  font-size: 0.8rem;
+  transition: all var(--transition-speed) ease;
+  box-shadow: 0 2px 8px rgba(239, 68, 68, 0.3);
 }
 
 .history-delete-btn:hover {
-    background-color: #dc2626;
-    transform: translateY(-2px);
+  background-color: #dc2626;
+  transform: translateY(-2px);
+}
+
+/* Make all action buttons consistent */
+.button-like, 
+.button-like-label,
+.history-use-btn, 
+.history-delete-btn {
+  font-weight: 500;
+  padding: 8px 16px;
+  border-radius: var(--rounded-md);
 }
 
 /* History controls */

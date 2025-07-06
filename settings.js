@@ -6,7 +6,7 @@ const DEFAULT_SETTINGS = {
     baseUrl: 'https://api.openai.com/v1', // Now includes /v1
     model: 'gpt-4o',
     temperature: 0.0,
-    systemPrompt: 'You are an expert multilingual translator. Translate the text as requested, using the provided linguistic resources. Provide only the translated text without explanations.',
+    systemPrompt: 'You are an expert multilingual translator. Translate the text as requested, using the provided linguistic resources. Follow all output formatting instructions precisely.',
     streamingEnabled: true,
     draconicOutputType: 'normal', // 'normal' or 'simplified'
     dwlToEnglishType: 'natural', // 'natural' or 'raw' for DWL -> English
