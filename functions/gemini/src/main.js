@@ -60,7 +60,7 @@ export default async ({ req, res, log, error }) => {
   if (req.method === 'POST' && req.path === '/translate') {
     try {
       const { sourceText, sourceLang, targetLang, imageDataUrl } = req.body;
-      const { model = 'gemini-1.5-flash', temperature = 0.0 } = req.body.settings || {};
+      const { model = 'gemini-2.5-flash', temperature = 0.0 } = req.body.settings || {};
 
       if (!process.env.GEMINI_API_KEY) {
         error('GEMINI_API_KEY not configured for server-side translation');
