@@ -4,23 +4,28 @@
 
 /* global Client, Functions */
 
-/********************************/
-/* NEW SDK INITIALIZATION CHECK */
-/********************************/
-// Verify Appwrite SDK is loaded
+// SDK loading with timeout
+let sdkCheck;
+const sdkTimeout = setTimeout(() => {
+  if (sdkCheck) clearInterval(sdkCheck);
+  console.error("Appwrite SDK failed to load within 5 seconds");
+}, 5000);
+
 let sdkLoadedResolve;
 const sdkLoadedPromise = new Promise(resolve => {
   sdkLoadedResolve = resolve;
 });
 
 if (typeof Appwrite === 'undefined') {
-  const sdkCheck = setInterval(() => {
+  sdkCheck = setInterval(() => {
     if (typeof Appwrite !== 'undefined') {
       clearInterval(sdkCheck);
+      clearTimeout(sdkTimeout);
       sdkLoadedResolve();
     }
   }, 100);
 } else {
+  clearTimeout(sdkTimeout);
   sdkLoadedResolve();
 }
 
@@ -160,11 +165,16 @@ async function callGeminiFunction({sourceText, sourceLang, targetLang, imageData
     const functions = new window.Appwrite.Functions(client);
 
     try {
+        const settings = Settings.get();
         const payload = {
             sourceText,
             sourceLang,
             targetLang,
-            imageDataUrl
+            imageDataUrl,
+            settings: {
+                model: settings.model,
+                temperature: settings.temperature
+            }
         };
 
         const execution = await functions.createExecution(
@@ -180,9 +190,17 @@ async function callGeminiFunction({sourceText, sourceLang, targetLang, imageData
     }
 }
 
+function isValidImageFormat(dataUrl) {
+  return /^data:image\/(jpeg|png|gif|webp);base64,/.test(dataUrl);
+}
+
 async function translateText(sourceText, sourceLang, targetLang, imageDataUrl = null, updateCallback = null) {
     console.log("[translateText] START");
     console.log(`Input: '${sourceText}' | Image data: ${imageDataUrl ? "present" : "absent"}`);
+
+    if (imageDataUrl && !isValidImageFormat(imageDataUrl)) {
+      throw new Error('Unsupported image format. Please use JPEG, PNG, GIF, or WEBP.');
+    }
 
     const settings = Settings.get();
     const includeExplanation = settings.includeExplanation === true;
@@ -1094,14 +1112,26 @@ translateBtn.addEventListener('click', async function() {
     }
 
     // Helper to parse XML
+    function sanitizeXML(input) {
+      return input
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;');
+    }
+
     function parseXmlString(xml) {
-      // wrap in a dummy root so DOMParser ignores “extra content”
-      const wrapped = `<root>${xml}</root>`;
-      const doc = new DOMParser().parseFromString(wrapped, "application/xml");
-      return {
-        translation: doc.querySelector("translation")?.textContent.trim() || "",
-        explanation: doc.querySelector("explanation")?.textContent.trim() || ""
-      };
+      try {
+        const sanitized = sanitizeXML(xml);
+        const wrapped = `<root>${sanitized}</root>`;
+        const doc = new DOMParser().parseFromString(wrapped, "application/xml");
+        return {
+          translation: doc.querySelector("translation")?.textContent.trim() || "",
+          explanation: doc.querySelector("explanation")?.textContent.trim() || ""
+        };
+      } catch (e) {
+        console.error("XML parsing error:", e);
+        return { translation: xml, explanation: "" };
+      }
     }
 
     try {

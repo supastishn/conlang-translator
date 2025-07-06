@@ -1,3 +1,6 @@
+const APPRWRITE_ENDPOINT = 'https://fra.cloud.appwrite.io/v1';
+const APPRWRITE_PROJECT = 'draconic-translator';
+
 /*
 // Remove import statement
 // Initialize Appwrite using window object
@@ -5,8 +8,8 @@
 document.addEventListener('DOMContentLoaded', function() {
     if (typeof window.Appwrite !== 'undefined') {
         const client = new window.Appwrite.Client()
-            .setEndpoint('https://fra.cloud.appwrite.io/v1') // Updated endpoint
-            .setProject('draconic-translator'); // Updated project ID
+            .setEndpoint(APPRWRITE_ENDPOINT)
+            .setProject(APPRWRITE_PROJECT);
 
         const account = new window.Appwrite.Account(client);
 

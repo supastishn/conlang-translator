@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://cdn.jsdelivr.net; style-src 'self' https://fonts.googleapis.com; img-src 'self' data:; font-src 'self' https://fonts.gstatic.com; connect-src 'self'">
     <title>Draconic Translator</title>
     <link rel="stylesheet" href="styles.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -167,24 +168,11 @@
     <script type="module" src="translator.js"></script>
 
     <script>
-    // Add after the script tag that loads settings.js
     document.addEventListener('DOMContentLoaded', function() {
       const urlParams = new URLSearchParams(window.location.search);
       if (urlParams.get('enableGemini') === 'true') {
-        // Enable Gemini provider by default
-        const providerSelect = document.getElementById('provider-select');
-        if (providerSelect) providerSelect.value = 'gemini';
-
-        // Update settings to show Gemini option
-        if (typeof Settings !== "undefined") {
-          const settings = Settings.get();
-          settings.geminiOption = true;
-          Settings.save(settings);
-        }
-
-        // Show provider selection UI
-        const providerFormGroup = document.querySelector('.form-group[style*="display:none"]');
-        if (providerFormGroup) providerFormGroup.style.display = 'block';
+        const geminiRadio = document.getElementById('gemini-radio');
+        if (geminiRadio) geminiRadio.checked = true;
       }
     });
     </script>
