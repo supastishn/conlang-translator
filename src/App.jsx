@@ -1,30 +1,29 @@
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import Layout from './Layout';
-import Translator from './pages/Translator';
-import Settings from './pages/Settings';
-import Auth from './pages/Auth';
-import Guides from './pages/Guides';
-import Account from './pages/Account';
-import { SettingsProvider } from './context/SettingsContext';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import Layout from './components/Layout';
+import TranslatorPage from './pages/TranslatorPage';
+import SettingsPage from './pages/SettingsPage';
+import AuthPage from './pages/AuthPage';
+import AccountPage from './pages/AccountPage';
+import GuidesPage from './pages/GuidesPage';
 import { AuthProvider } from './context/AuthContext';
+import { SettingsProvider } from './context/SettingsContext';
 
-function App() {
+export default function App() {
   return (
     <AuthProvider>
       <SettingsProvider>
-        <Router>
-          <Layout>
-            <Routes>
-              <Route path="/" element={<Translator />} />
-              <Route path="/settings" element={<Settings />} />
-              <Route path="/login" element={<Auth initialForm="login" />} />
-              <Route path="/register" element={<Auth initialForm="register" />} />
-              <Route path="/account" element={<Account />} />
-              <Route path="/openrouter-guide" element={<Guides initialGuide="openrouter" />} />
-              <Route path="/google-aistudio-gemini-guide" element={<Guides initialGuide="gemini" />} />
-            </Routes>
-          </Layout>
-        </Router>
+        <BrowserRouter>
+          <Routes>
+            <Route element={<Layout />}>
+              <Route path="/" element={<TranslatorPage />} />
+              <Route path="/settings" element={<SettingsPage />} />
+              <Route path="/account" element={<AccountPage />} />
+              <Route path="/login" element={<AuthPage type="login" />} />
+              <Route path="/register" element={<AuthPage type="register" />} />
+              <Route path="/guide/:guideType" element={<GuidesPage />} />
+            </Route>
+          </Routes>
+        </BrowserRouter>
       </SettingsProvider>
     </AuthProvider>
   );
