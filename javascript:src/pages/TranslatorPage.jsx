@@ -154,44 +154,41 @@ export default function TranslatorPage() {
 
   return (
     <div className="container">
-      <div id="api-warning" className={`warning ${settings.apiKey ? 'hidden' : ''}`}>
-        ⚠️ Client-side API keys deprecated for security. Use Gemini provider only.
+      {/* Header */}
+      <header>
+        <h1>English to Draconic Translator</h1>
+      </header>
+
+      {/* API Warning */}
+      <div id="api-warning" className={`warning ${!settings.apiKey ? '' : 'hidden'}`}>
+        ⚠️ Client-side API keys deprecated. Use Gemini provider.
       </div>
 
-      {dwlWarning && (
-        <div id="dwl-input-warning" className="warning">
-          Diacritical Waluigi Language is hard for AI to translate. Results may vary significantly.
-        </div>
-      )}
-
+      {/* Language Selection */}
       <div className="language-selection-container">
         <div className="form-group">
-          <label for="source-lang-select">Source Language:</label>
+          <label>Source Language:</label>
           <select 
-            id="source-lang-select"
             value={sourceLang}
-            onChange={(e) => setSourceLang(e.target.value)}
+            onChange={e => setSourceLang(e.target.value)}
           >
-            <option value="detect">Detect Language</option>
-            <option value="english">English</option>
-            <option value="draconic">Draconic</option>
-            <option value="dwl">Diacritical Waluigi Language</option>
-            <option value="obwakimo">Obwa Kimo</option>
-            <option value="illuveterian">Illuveterian</option>
+            {Object.keys(LANG_LABELS).map(lang => (
+              <option key={lang} value={lang}>{LANG_LABELS[lang]}</option>
+            ))}
           </select>
         </div>
+        
         <div className="form-group">
-          <label for="target-lang-select">Target Language:</label>
+          <label>Target Language:</label>
           <select 
-            id="target-lang-select"
             value={targetLang}
-            onChange={(e) => setTargetLang(e.target.value)}
+            onChange={e => setTargetLang(e.target.value)}
           >
-            <option value="draconic">Draconic</option>
-            <option value="english">English</option>
-            <option value="dwl">Diacritical Waluigi Language</option>
-            <option value="obwakimo">Obwa Kimo</option>
-            <option value="illuveterian">Illuveterian</option>
+            {Object.entries(LANG_LABELS)
+              .filter(([key]) => key !== 'detect')
+              .map(([lang, label]) => (
+                <option key={lang} value={lang}>{label}</option>
+            ))}
           </select>
         </div>
       </div>
