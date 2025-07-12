@@ -1,10 +1,22 @@
-import { useState, useEffect, useRef, useContext } from 'react';
+import { useContext, useState, useEffect, useRef } from 'react';
 import { AuthContext } from '../context/AuthContext';
 import { SettingsContext } from '../context/SettingsContext';
 
-const TranslatorPage = () => {
+const LANG_LABELS = {
+  english: 'English',
+  draconic: 'Draconic',
+  dwl: 'Diacritical Waluigi Language',
+  obwakimo: 'Obwa Kimo',
+  illuveterian: 'Illuveterian',
+  detect: 'Detect Language'
+};
+
+export default function TranslatorPage() {
+  // Contexts
   const { user } = useContext(AuthContext);
   const { settings } = useContext(SettingsContext);
+  
+  // State
   const [sourceLang, setSourceLang] = useState('english');
   const [targetLang, setTargetLang] = useState('draconic');
   const [sourceText, setSourceText] = useState('');
@@ -12,12 +24,9 @@ const TranslatorPage = () => {
   const [explanationText, setExplanationText] = useState('');
   const [imageData, setImageData] = useState(null);
   const [history, setHistory] = useState([]);
-  const [dwlWarning, setDwlWarning] = useState(false);
   const [provider, setProvider] = useState('openai');
   const [cameraOpen, setCameraOpen] = useState(false);
-  const imageUploadRef = useRef(null);
-  const videoRef = useRef(null);
-  const canvasRef = useRef(null);
+  const [loading, setLoading] = useState(false);
   
   // Load translation history
   useEffect(() => {
