@@ -17,6 +17,11 @@ export default function AccountPage() {
   const [error, setError] = useState('');
   const [message, setMessage] = useState('');
 
+  // Loading states for update/delete actions
+  const [updatingEmail, setUpdatingEmail] = useState(false);
+  const [updatingPassword, setUpdatingPassword] = useState(false);
+  const [deletingAccount, setDeletingAccount] = useState(false);
+
   useEffect(() => {
     if (!loading && !user) {
       navigate('/login');
@@ -27,21 +32,16 @@ export default function AccountPage() {
     e.preventDefault();
     setError('');
     setMessage('');
+    setUpdatingEmail(true);
     try {
       await updateEmail(newEmail, passwordForEmail);
+      alert('Email updated successfully! Please log in with your new email.');
+      await logout();
+      navigate('/login');
     } catch (err) {
       setError('Failed to update email: ' + err.message);
-      return;
-    }
-
-    alert('Email updated successfully! Please log in with your new email.');
-
-    try {
-      await logout();
-    } catch (err) {
-      console.error("Logout failed:", err);
     } finally {
-      navigate('/login');
+      setUpdatingEmail(false);
     }
   };
 
@@ -49,8 +49,10 @@ export default function AccountPage() {
     e.preventDefault();
     setError('');
     setMessage('');
+    setUpdatingPassword(true);
     if (newPassword !== confirmPassword) {
       setError('New passwords do not match');
+      setUpdatingPassword(false);
       return;
     }
     try {
@@ -60,6 +62,8 @@ export default function AccountPage() {
       navigate('/login');
     } catch (err) {
       setError('Failed to update password: ' + err.message);
+    } finally {
+      setUpdatingPassword(false);
     }
   };
 
@@ -67,8 +71,10 @@ export default function AccountPage() {
     e.preventDefault();
     setError('');
     setMessage('');
+    setDeletingAccount(true);
     if (confirmDeletion !== 'DELETE MY ACCOUNT') {
       setError('Please type exactly "DELETE MY ACCOUNT" to confirm');
+      setDeletingAccount(false);
       return;
     }
     if (window.confirm('Are you absolutely sure? This will permanently delete your account and all data.')) {
@@ -78,7 +84,11 @@ export default function AccountPage() {
         navigate('/');
       } catch (err) {
         setError('Failed to delete account: ' + err.message);
+      } finally {
+        setDeletingAccount(false);
       }
+    } else {
+      setDeletingAccount(false);
     }
   };
 
@@ -109,7 +119,9 @@ export default function AccountPage() {
                       <label htmlFor="password-for-email">Current Password:</label>
                       <input type="password" id="password-for-email" value={passwordForEmail} onChange={e => setPasswordForEmail(e.target.value)} required />
                   </div>
-                  <button type="submit" className="auth-btn">Update Email</button>
+                  <button type="submit" className="auth-btn" disabled={updatingEmail}>
+                    {updatingEmail ? (<><span className="spinner"></span> Updating...</>) : 'Update Email'}
+                  </button>
               </form>
           </div>
           
@@ -128,7 +140,9 @@ export default function AccountPage() {
                       <label htmlFor="confirm-password">Confirm New Password:</label>
                       <input type="password" id="confirm-password" value={confirmPassword} onChange={e => setConfirmPassword(e.target.value)} required />
                   </div>
-                  <button type="submit" className="auth-btn">Update Password</button>
+                  <button type="submit" className="auth-btn" disabled={updatingPassword}>
+                    {updatingPassword ? (<><span className="spinner"></span> Updating...</>) : 'Update Password'}
+                  </button>
               </form>
           </div>
           
@@ -142,7 +156,9 @@ export default function AccountPage() {
                       <label htmlFor="confirm-deletion">Type "DELETE MY ACCOUNT" to confirm:</label>
                       <input type="text" id="confirm-deletion" placeholder="DELETE MY ACCOUNT" value={confirmDeletion} onChange={e => setConfirmDeletion(e.target.value)} required />
                   </div>
-                  <button type="submit" className="auth-btn error-btn">Permanently Delete Account</button>
+                  <button type="submit" className="auth-btn error-btn" disabled={deletingAccount}>
+                    {deletingAccount ? (<><span className="spinner"></span> Deleting...</>) : 'Permanently Delete Account'}
+                  </button>
               </form>
           </div>
       </div>

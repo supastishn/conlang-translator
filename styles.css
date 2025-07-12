@@ -269,6 +269,8 @@ main {
     align-items: center;
     box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
     animation: slide-in 0.3s ease-out;
+    position: relative;
+    padding-left: 3.5rem;
 }
 
 @keyframes slide-in {
@@ -283,9 +285,13 @@ main {
 }
 
 .warning::before, .success::before, .error::before, .info::before {
+    position: absolute;
+    left: 1.25rem;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 1.5rem;
     margin-right: 0.75rem;
     font-weight: bold;
-    font-size: 1.2rem;
 }
 
 .warning {
@@ -303,6 +309,11 @@ main {
 .error {
     background-color: var(--error-color);
     color: white;
+    padding: 1rem 1.5rem 1rem 3.5rem;
+    border-radius: var(--rounded-md);
+    margin-bottom: 1.5rem;
+    font-weight: 500;
+    animation: slide-in 0.3s ease-out;
 }
 .error::before { content: "❌"; }
 
@@ -989,4 +1000,22 @@ nav ul li {
 
 .error-btn:hover {
     background-color: #dc2626 !important;
+}
+
+/* Add spinner animation */
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.spinner {
+  display: inline-block;
+  width: 1rem;
+  height: 1rem;
+  border: 2px solid rgba(255,255,255,0.3);
+  border-radius: 50%;
+  border-top-color: white;
+  animation: spin 1s ease-in-out infinite;
+  margin-right: 0.5rem;
+  vertical-align: middle;
 }

@@ -164,10 +164,15 @@ export default function TranslatorPage() {
       }
     };
 
-    const closeCamera = () => {
+    // Camera stream memory leak fix
+    const stopCameraStream = () => {
       if (videoRef.current && videoRef.current.srcObject) {
         videoRef.current.srcObject.getTracks().forEach(track => track.stop());
       }
+    };
+
+    const closeCamera = () => {
+      stopCameraStream();
       setIsCameraOpen(false);
     };
 
@@ -183,6 +188,13 @@ export default function TranslatorPage() {
         closeCamera();
       }
     };
+
+    // Cleanup camera stream on unmount
+    useEffect(() => {
+      return () => {
+        stopCameraStream();
+      };
+    }, []);
 
     return (
         <>
