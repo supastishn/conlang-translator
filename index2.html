@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://cdn.jsdelivr.net; style-src 'self' https://fonts.googleapis.com; img-src 'self' data:; font-src 'self' https://fonts.gstatic.com; connect-src 'self'">
+    <title>Draconic Translator</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <script>
+        if (window.location.hostname === "localhost" || window.location.hostname === "127.0.0.1") {
+            document.write('<script src="https://cdn.jsdelivr.net/npm/eruda"><\/script>');
+            document.write('<script>eruda.init();<\/script>');
+        }
+    </script>
+</head>
+<body>
+    <div class="container">
+        <header style="flex-direction: row; justify-content: space-between; align-items: center;">
+            <h1>English to Draconic Translator</h1>
+            <nav>
+                <ul>
+                    <li><a href="index.html" class="active">Translator</a></li>
+                    <li><a href="settings.html">Settings</a></li>
+                    <li id="account-nav-item" style="display: none;"><a href="account.html">Account</a></li>
+                    <!-- The auth links will be appended here automatically -->
+                </ul>
+            </nav>
+        </header>
+
+        <main>
+            <div id="api-warning" class="warning hidden">
+                <p>OpenAI API key not set. Please configure in <a href="settings.html">Settings</a> first.</p>
+            </div>
+
+            <div id="dwl-input-warning" class="warning hidden">
+                <p>Diacritical Waluigi Language is hard for AI to translate. Results may vary significantly.</p>
+            </div>
+
+            <div class="language-selection-container" style="display: flex; justify-content: space-between; margin-bottom: 1.5rem; gap: 1rem;">
+                <div class="form-group" style="flex: 1; margin-bottom: 0;">
+                    <label for="source-lang-select">Source Language:</label>
+                    <select id="source-lang-select">
+                        <option value="detect">Detect Language</option>
+                        <option value="english">English</option>
+                        <option value="draconic">Draconic</option>
+                        <option value="dwl">Diacritical Waluigi Language</option>
+                        <option value="obwakimo">Obwa Kimo</option>
+                        <option value="illuveterian">Illuveterian</option>
+                    </select>
+                </div>
+                <div class="form-group" style="flex: 1; margin-bottom: 0;">
+                    <label for="target-lang-select">Target Language:</label>
+                    <select id="target-lang-select">
+                        <option value="draconic">Draconic</option>
+                        <option value="english">English</option>
+                        <option value="dwl">Diacritical Waluigi Language</option>
+                        <option value="obwakimo">Obwa Kimo</option>
+                        <option value="illuveterian">Illuveterian</option>
+                    </select>
+                </div>
+            </div>
+            <!-- Provider selection, hidden by default, shown for logged-in users if Gemini enabled -->
+            <div class="form-group provider-radio-group" style="display:none;">
+                <label>Translation Provider:</label>
+                <div class="radio-options">
+                    <label>
+                        <input type="radio" name="provider-radio" value="openai" id="openai-radio" checked>
+                        OpenAI
+                    </label>
+                    <label>
+                        <input type="radio" name="provider-radio" value="gemini" id="gemini-radio">
+                        Gemini function
+                    </label>
+                </div>
+            </div>
+            
+            <div id="draconic-output-type-container" class="form-group hidden"> <!-- Initially hidden, shown if target is Draconic -->
+                <label for="draconic-output-type-select-index">Draconic Output Type (if target is Draconic):</label>
+                <select id="draconic-output-type-select-index">
+                    <option value="normal">Normal Draconic Output</option>
+                    <option value="simplified">Simplified Romanization</option>
+                </select>
+                <small>Select the desired output format for Draconic. "Simplified Romanization" aims for a more phonetic output when Draconic is the target language.</small>
+            </div>
+
+            <div id="dwl-to-english-type-container" class="form-group hidden"> <!-- Initially hidden, shown if source is DWL and target is English -->
+                <label for="dwl-to-english-type-select-index">DWL to English Translation Type:</label>
+                <select id="dwl-to-english-type-select-index">
+                    <option value="natural">Natural English (Fluent, Corrected)</option>
+                    <option value="raw">Raw English (Literal, Potentially Unnatural)</option>
+                </select>
+                <small>Controls how Diacritical Waluigi Language is translated to English. "Natural" aims for fluency, "Raw" for literalness.</small>
+            </div>
+
+            <!-- MOVED: Include Explanation toggle -->
+            <div class="form-group" style="margin-bottom:1rem;">
+              <label for="include-explanation-main">Include Explanation:</label>
+              <div class="toggle-container">
+                <label class="switch">
+                  <input type="checkbox" id="include-explanation-main">
+                  <span class="slider round"></span>
+                </label>
+                <span class="toggle-label">Show explanation under translation</span>
+              </div>
+              <small>Default pulled from your Settings page.</small>
+            </div>
+
+            <div class="translation-container">
+                <div class="translation-box">
+                    <h2 id="source-language-label">English</h2>
+                    <div class="source-input-controls">
+                        <textarea id="source-input" placeholder="Enter text here, or describe what to do with the image..."></textarea>
+                        <div class="image-upload-container">
+                            <div class="image-source-buttons">
+                                <label for="image-upload-input" class="button-like-label">Upload Image</label>
+                                <input type="file" id="image-upload-input" accept="image/png, image/jpeg, image/gif, image/webp">
+                                <button type="button" id="use-camera-btn" class="button-like-label">Use Camera</button>
+                            </div>
+                            <div id="image-preview-container" class="hidden">
+                                <img id="image-preview" src="#" alt="Image preview"/>
+                                <button id="clear-image-btn" title="Clear selected image">&times;</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="translation-controls">
+                    <button id="translate-btn">Translate</button>
+                </div>
+                <div class="translation-box">
+                    <h2 id="target-language-label">Draconic</h2>
+                    <textarea id="target-output" placeholder="Draconic translation will appear here..." readonly></textarea>
+                </div>
+            </div>
+
+            <!-- NEW: Full-width Explanation box below both Translation boxes -->
+            <div id="explanation-container" class="translation-box hidden" style="margin-bottom:2rem;">
+              <h2>Explanation</h2>
+              <textarea id="explanation-output"
+                        placeholder="Explanation will appear here..."
+                        readonly></textarea>
+            </div>
+
+            <div class="translation-history">
+                <h3>Translation History (can be deleted)</h3>
+                <div id="history-container">
+                    <!-- Translation history will be added here dynamically -->
+                </div>
+            </div>
+        </main>
+
+
+        <div class="translation-history">
+            <p>Draconic Translator - Using OpenAI API for constructed language translation</p>
+            <div class="footer-links">
+                <a href="https://github.com/supastishn/conlang-translator" target="_blank">See the source code</a> | 
+                <a href="https://supastishn.github.io" target="_blank">See more fun stuff</a>
+            </div>
+        </footer>
+    </div>
+
+    <!-- Load Appwrite SDK first -->
+    <script src="https://cdn.jsdelivr.net/npm/appwrite@18.1.1"></script>
+    <script src="src/authService.js"></script>
+    <script src="settings.js"></script>
+    <script type="module" src="translator.js"></script>
+
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const urlParams = new URLSearchParams(window.location.search);
+      if (urlParams.get('enableGemini') === 'true') {
+        const geminiRadio = document.getElementById('gemini-radio');
+        if (geminiRadio) geminiRadio.checked = true;
+      }
+    });
+    </script>
+
+    <!-- Camera Modal -->
+    <div id="camera-modal" class="modal hidden">
+        <div class="modal-content">
+            <video id="camera-video-feed" autoplay playsinline></video>
+            <canvas id="camera-canvas" class="hidden"></canvas> <!-- Hidden canvas for capturing frame -->
+            <div class="modal-actions">
+                <button id="capture-image-btn" class="button-like-label">Capture</button>
+                <button id="close-camera-btn" class="button-like-label secondary">Close Camera</button>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
