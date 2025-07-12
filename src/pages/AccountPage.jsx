@@ -29,11 +29,19 @@ export default function AccountPage() {
     setMessage('');
     try {
       await updateEmail(newEmail, passwordForEmail);
-      alert('Email updated successfully! Please log in with your new email.');
-      await logout();
-      navigate('/login');
-    } catch (err) => {
+    } catch (err) {
       setError('Failed to update email: ' + err.message);
+      return;
+    }
+
+    alert('Email updated successfully! Please log in with your new email.');
+
+    try {
+      await logout();
+    } catch (err) {
+      console.error("Logout failed:", err);
+    } finally {
+      navigate('/login');
     }
   };
 
