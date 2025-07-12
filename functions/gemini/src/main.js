@@ -2,14 +2,21 @@ import { Client, Users } from 'node-appwrite';
 import fs from 'fs/promises';
 import path from 'path';
 
-// Helper function to load materials
+/**
+ * Helper function to load materials from the Appwrite function's app directory.
+ * Uses APPWRITE_FUNCTION_RUNTIME_LIBRARY_PATH for correct path resolution.
+ */
 const loadMaterial = async (filePath) => {
   try {
-    const absolutePath = path.resolve(__dirname, '../materials', filePath);
-    return await fs.readFile(absolutePath, 'utf-8');
+    const appPath = path.join(
+      process.env.APPWRITE_FUNCTION_RUNTIME_LIBRARY_PATH,
+      'materials',
+      filePath
+    );
+    return await fs.readFile(appPath, 'utf-8');
   } catch (error) {
     console.error(`Error loading ${filePath}:`, error);
-    return `[Resource ${filePath} not available]`;
+    return `[Resource unavailable]`;
   }
 };
 
