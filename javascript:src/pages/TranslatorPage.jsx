@@ -96,19 +96,9 @@ export default function TranslatorPage() {
     const translation = `Translated: ${sourceText}`;
 
     setTargetText(translation);
-    
-    // Add to history
-    const newHistory = [{
-      id: Date.now(),
-      timestamp: new Date().toISOString(),
-      sourceText,
-      translatedText: translation,
-      sourceLang,
-      targetLang
-    }, ...history.slice(0, 9)];
-    
-    setHistory(newHistory);
-    localStorage.setItem('draconicTranslationHistory', JSON.stringify(newHistory));
+
+    // Add to history using the reusable function
+    TranslationHistory.add(sourceText, translation, sourceLang, targetLang);
   };
 
   const updateHistoryDisplay = () => {
