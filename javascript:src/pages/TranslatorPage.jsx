@@ -23,16 +23,12 @@ export default function TranslatorPage() {
   const [targetText, setTargetText] = useState('');
   const [explanationText, setExplanationText] = useState('');
   const [imageData, setImageData] = useState(null);
-  const [history, setHistory] = useState([]);
   const [provider, setProvider] = useState('openai');
   const [cameraOpen, setCameraOpen] = useState(false);
   const [loading, setLoading] = useState(false);
-  
-  // Load translation history
-  useEffect(() => {
-    const savedHistory = JSON.parse(localStorage.getItem('draconicTranslationHistory') || '[]');
-    setHistory(savedHistory);
-  }, []);
+
+  // Get translation history
+  const history = TranslationHistory.get();
 
   // Handle DWL warning
   useEffect(() => {
