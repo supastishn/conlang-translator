@@ -102,15 +102,14 @@ export default function SettingsPage() {
         <h2>OpenAI API Configuration</h2>
         <form id="api-settings-form" onSubmit={handleSave}>
             <div className="form-group">
-              <div className="warning">
-                ⚠️ Client-side API keys deprecated for security. Use Gemini provider only.
-              </div>
-            </div>
-            
-            <div className="form-group">
               <label htmlFor="apiKey">API Key:</label>
               <input type="password" id="apiKey" placeholder="Enter your API key" value={formState.apiKey} onChange={handleChange} />
-              <small>Your API key is stored only on your device</small>
+              <div style={{marginTop: '4px'}}>
+                <div className="warning">
+                  ⚠️ Client-side API keys deprecated for security. Use Gemini provider only.
+                </div>
+                <small>Your API key is stored only on your device</small>
+              </div>
             </div>
             <div className="form-group">
                 <label htmlFor="baseUrl">Base URL:</label>
