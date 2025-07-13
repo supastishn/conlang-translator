@@ -106,7 +106,7 @@ export default function SettingsPage() {
               <input type="password" id="apiKey" placeholder="Enter your API key" value={formState.apiKey} onChange={handleChange} />
               <div style={{marginTop: '4px'}}>
                 <div className="warning">
-                  ⚠️ Client-side API keys deprecated for security. Use Gemini provider only.
+                  Client-side API keys deprecated for security. Use Gemini provider only.
                 </div>
                 <small>Your API key is stored only on your device</small>
               </div>
