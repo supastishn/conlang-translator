@@ -43,7 +43,7 @@ export default function TranslatorPage() {
     const [targetText, setTargetText] = useState('');
     const [explanation, setExplanation] = useState('');
     const [imageDataUrl, setImageDataUrl] = useState(null);
-    const [provider, setProvider] = useState('openai');
+    const [provider, setProvider] = useState(settings.providerType || 'gemini');
     const [isTranslating, setIsTranslating] = useState(false);
     const [error, setError] = useState('');
 
@@ -220,19 +220,37 @@ export default function TranslatorPage() {
                 </div>
             </div>
 
-            {user && settings.geminiOption &&
-                <div className="form-group provider-radio-group">
-                    <label>Translation Provider:</label>
-                    <div className="radio-options">
-                        <label>
-                            <input type="radio" name="provider-radio" value="openai" checked={provider === 'openai'} onChange={e => setProvider(e.target.value)} /> OpenAI
-                        </label>
-                        <label>
-                            <input type="radio" name="provider-radio" value="gemini" checked={provider === 'gemini'} onChange={e => setProvider(e.target.value)} /> Gemini
-                        </label>
-                    </div>
+            {user && (
+              <div className="form-group provider-radio-group">
+                <label>Translation Method:</label>
+                <div className="radio-options">
+                  <label>
+                    <input 
+                      type="radio" 
+                      name="provider-radio" 
+                      value="gemini" 
+                      checked={provider === 'gemini'} 
+                      onChange={e => setProvider(e.target.value)}
+                    /> Gemini Function
+                  </label>
+                  <label>
+                    <input 
+                      type="radio" 
+                      name="provider-radio" 
+                      value="openai" 
+                      checked={provider === 'openai'} 
+                      onChange={e => setProvider(e.target.value)}
+                    /> Client API Key
+                  </label>
                 </div>
-            }
+              </div>
+            )}
+
+            {provider === 'openai' && (!settings.apiKey || !settings.apiKey.trim()) && (
+              <div className="warning">
+                OpenAI API key not set. Please configure in <Link to="/settings">Settings</Link>.
+              </div>
+            )}
 
             <div className="translation-container">
                 <div className="translation-box">

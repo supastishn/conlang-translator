@@ -1,7 +1,7 @@
 import { createContext, useContext, useState, useEffect } from 'react';
 
-// Default settings matching original settings.js
 export const DEFAULT_SETTINGS = {
+  providerType: 'gemini', // 'gemini' or 'openai'
   apiKey: '',
   baseUrl: 'https://api.openai.com/v1',
   model: 'gpt-4o',

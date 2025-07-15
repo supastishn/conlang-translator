@@ -7,6 +7,7 @@ export default function SettingsPage() {
   const [formState, setFormState] = useState(settings);
   const [status, setStatus] = useState({ message: '', type: '' });
   const [customModelName, setCustomModelName] = useState('');
+  const [providerType, setProviderType] = useState(settings.providerType || 'gemini');
 
   useEffect(() => {
     setFormState(settings);
@@ -40,7 +41,7 @@ export default function SettingsPage() {
         baseUrlValue = baseUrlValue.slice(0, -1);
     }
 
-    saveSettings({ ...formState, model: modelToSave, baseUrl: baseUrlValue });
+    saveSettings({ ...formState, providerType, model: modelToSave, baseUrl: baseUrlValue });
     setStatus({ message: 'Settings saved successfully!', type: 'success' });
     setTimeout(() => setStatus({ message: '', type: '' }), 3000);
   };
@@ -102,21 +103,55 @@ export default function SettingsPage() {
         <h2>OpenAI API Configuration</h2>
         <form id="api-settings-form" onSubmit={handleSave}>
             <div className="form-group">
-              <label htmlFor="apiKey">API Key:</label>
-              <input type="password" id="apiKey" placeholder="Enter your API key" value={formState.apiKey} onChange={handleChange} />
-              <div style={{marginTop: '4px'}}>
-                <small>Your API key is stored only on your device</small>
+              <label>Translation Method:</label>
+              <div className="radio-options">
+                <label>
+                  <input 
+                    type="radio" 
+                    name="provider-type" 
+                    value="gemini" 
+                    checked={providerType === 'gemini'} 
+                    onChange={() => setProviderType('gemini')} 
+                  /> Gemini Function (no API key needed)
+                </label>
+                <label>
+                  <input 
+                    type="radio" 
+                    name="provider-type" 
+                    value="openai"
+                    checked={providerType === 'openai'} 
+                    onChange={() => setProviderType('openai')} 
+                  /> Client API Key
+                </label>
               </div>
             </div>
-            <div className="form-group">
-                <label htmlFor="baseUrl">Base URL:</label>
-                <input type="text" id="baseUrl" placeholder="https://api.openai.com/v1" value={formState.baseUrl} onChange={handleChange} />
-                <small>
-                    Default (OpenAI, paid): <code>https://api.openai.com/v1</code>.<br />
-                    For OpenRouter (free, ~50 RPD): <code>https://openrouter.ai/api/v1</code>. See the <Link to="/guide/openrouter">OpenRouter guide</Link>.<br />
-                    For Google AI Studio Gemini (free, ~500 RPD): <code>https://generativelanguage.googleapis.com/v1beta/openai/</code>. See the <Link to="/guide/google-aistudio-gemini">Google AI Studio guide</Link>.
-                </small>
-            </div>
+            {providerType === 'openai' && (
+              <>
+                <div className="form-group">
+                  <label htmlFor="apiKey">API Key:</label>
+                  <input type="password" id="apiKey" placeholder="Enter your API key" value={formState.apiKey} onChange={handleChange} />
+                  <div style={{marginTop: '4px'}}>
+                    <small>Your API key is stored only on your device</small>
+                  </div>
+                </div>
+                <div className="form-group">
+                  <label htmlFor="baseUrl">Base URL:</label>
+                  <input type="text" id="baseUrl" placeholder="https://api.openai.com/v1" value={formState.baseUrl} onChange={handleChange} />
+                  <small>
+                      Default (OpenAI, paid): <code>https://api.openai.com/v1</code>.<br />
+                      For OpenRouter (free, ~50 RPD): <code>https://openrouter.ai/api/v1</code>. See the <Link to="/guide/openrouter">OpenRouter guide</Link>.<br />
+                      For Google AI Studio Gemini (free, ~500 RPD): <code>https://generativelanguage.googleapis.com/v1beta/openai/</code>. See the <Link to="/guide/google-aistudio-gemini">Google AI Studio guide</Link>.
+                  </small>
+                </div>
+              </>
+            )}
+            {providerType === 'gemini' && (
+              <div className="form-group">
+                <div className="info">
+                  Using Gemini Function - no API key needed. Translations are processed server-side.
+                </div>
+              </div>
+            )}
             
             <div className="form-group">
                 <label htmlFor="model">Select Model:</label>

@@ -105,7 +105,9 @@ export async function translateText({ sourceText, sourceLang, targetLang, imageD
       throw new Error('Unsupported image format. Please use JPEG, PNG, GIF, or WEBP.');
     }
 
-    if (provider === 'gemini') {
+    const shouldUseGeminiFunction = provider === 'gemini';
+
+    if (shouldUseGeminiFunction) {
         return await callGeminiFunction({ sourceText, sourceLang, targetLang, imageDataUrl, settings });
     }
 
