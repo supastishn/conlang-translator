@@ -143,6 +143,20 @@ export default function SettingsPage() {
                       For Google AI Studio Gemini (free, ~500 RPD): <code>https://generativelanguage.googleapis.com/v1beta/openai/</code>. See the <Link to="/guide/google-aistudio-gemini">Google AI Studio guide</Link>.
                   </small>
                 </div>
+                <div className="form-group">
+                  <label htmlFor="model">Select Model:</label>
+                  <select id="model" value={formState.model} onChange={handleChange}>
+                      <option value="gpt-4o">GPT-4o</option>
+                      <option value="gpt-4">GPT-4</option>
+                      <option value="gpt-3.5-turbo">GPT-3.5 Turbo</option>
+                      <option value="custom">Use Custom Model Name ↓</option>
+                  </select>
+                </div>
+                <div className="form-group" id="custom-model-container" style={{display: (isCustomModel ? 'block' : 'none')}}>
+                  <label htmlFor="custom-model">Custom Model Name:</label>
+                  <input type="text" id="custom-model" placeholder="Enter exact model name (e.g., gpt-4-1106-preview)" value={customModelName} onChange={e => setCustomModelName(e.target.value)} />
+                  <small>Enter the exact model identifier as provided by your API provider.</small>
+                </div>
               </>
             )}
             {providerType === 'gemini' && (
@@ -153,25 +167,11 @@ export default function SettingsPage() {
               </div>
             )}
             
-            <div className="form-group">
-                <label htmlFor="model">Select Model:</label>
-                <select id="model" value={formState.model} onChange={handleChange}>
-                    <option value="gpt-4o">GPT-4o</option>
-                    <option value="gpt-4">GPT-4</option>
-                    <option value="gpt-3.5-turbo">GPT-3.5 Turbo</option>
-                    <option value="custom">Use Custom Model Name ↓</option>
-                </select>
-            </div>
-            
-            <div className="form-group" id="custom-model-container" style={{display: (isCustomModel ? 'block' : 'none')}}>
-                <label htmlFor="custom-model">Custom Model Name:</label>
-                <input type="text" id="custom-model" placeholder="Enter exact model name (e.g., gpt-4-1106-preview)" value={customModelName} onChange={e => setCustomModelName(e.target.value)} />
-                <small>Enter the exact model identifier as provided by your API provider.</small>
-            </div>
-            
             <div className="form-actions">
                 <button type="submit" id="save-settings">Save Settings</button>
-                <button type="button" id="test-connection" onClick={handleTestConnection}>Test Connection</button>
+                {providerType === 'openai' && (
+                  <button type="button" id="test-connection" onClick={handleTestConnection}>Test Connection</button>
+                )}
             </div>
         </form>
         
@@ -213,17 +213,6 @@ export default function SettingsPage() {
                 <textarea id="systemPrompt" rows="6" value={formState.systemPrompt} onChange={handleChange}></textarea>
             </div>
 
-            <div className="form-group">
-                <label htmlFor="geminiOption">Enable Gemini Function:</label>
-                <div className="toggle-container">
-                    <label className="switch">
-                        <input type="checkbox" id="geminiOption" checked={formState.geminiOption} onChange={handleChange} />
-                        <span className="slider round"></span>
-                    </label>
-                    <span className="toggle-label">Show Gemini option for authenticated users</span>
-                </div>
-                <small>When enabled, logged-in users will see a Gemini provider option</small>
-            </div>
 
             <div className="form-group">
                 <label htmlFor="draconicOutputType">Default Draconic Output Type (for English → Draconic):</label>
