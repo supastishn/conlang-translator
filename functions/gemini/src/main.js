@@ -51,19 +51,16 @@ const getSystemPrompt = async (sourceLang, targetLang) => {
 };
 
 export default async ({ req, res, log, error }) => {
-  // Initialize Appwrite client with hardcoded values
   const client = new Client()
     .setEndpoint('https://fra.cloud.appwrite.io/v1')  // Hardcoded endpoint
     .setProject('draconic-translator')  // Hardcoded project ID
     .setKey(req.headers['x-appwrite-key'] ?? '');
   const users = new Users(client);
 
-  // Handle '/ping' request
   if (req.path === "/ping") {
     return res.text("Pong");
   }
 
-  // Handle translation request
   if (req.method === 'POST' && req.path === '/translate') {
     try {
       const { sourceText, sourceLang, targetLang, imageDataUrl } = req.body;
@@ -90,7 +87,6 @@ export default async ({ req, res, log, error }) => {
         };
       }
 
-      // Call Gemini OpenAI-compatible endpoint
       const response = await fetch(
         'https://generativelanguage.googleapis.com/v1beta/openai/chat/completions',
         {
@@ -121,7 +117,6 @@ export default async ({ req, res, log, error }) => {
     }
   }
 
-  // Default Appwrite demo responses
   try {
     const response = await users.list();
     log(`Total users: ${response.total}`);
