@@ -7,7 +7,6 @@ export default function Layout() {
   const handleLogout = async () => {
     try {
       await logout();
-      // Navigate to home or login page after logout if needed
     } catch (error) {
       alert('Logout failed: ' + error.message);
     }

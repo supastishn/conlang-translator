@@ -28,8 +28,6 @@ async function loadResource(path) {
 }
 
 async function scanDirectoryForCSVs(directoryPath) {
-    // In a pure client-side setup without server directory listing, we must rely on a known list of files.
-    // We'll use the index.json if available, otherwise a hardcoded list from the old project.
     try {
         const indexResponse = await fetch(`${getBaseUrl()}/materials/csvs/index.json`);
         if (indexResponse.ok) {
@@ -37,10 +35,8 @@ async function scanDirectoryForCSVs(directoryPath) {
             return fileList.filter(filename => filename.toLowerCase().endsWith('.csv'));
         }
     } catch (e) {
-        // Fallback to hardcoded list if index.json is not found
     }
     
-    // Fallback list based on old project structure
     return [
         'WIP - Draconic Dictionary - Common Phrases.csv',
         'WIP - Draconic Dictionary - Dictionary.csv',
@@ -111,7 +107,6 @@ export async function translateText({ sourceText, sourceLang, targetLang, imageD
         return await callGeminiFunction({ sourceText, sourceLang, targetLang, imageDataUrl, settings });
     }
 
-    // OpenAI-compatible provider logic
     let systemPromptCore = settings.systemPrompt;
     let resourcesForPrompt = "";
 

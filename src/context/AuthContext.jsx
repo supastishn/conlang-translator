@@ -17,7 +17,6 @@ export function AuthProvider({ children }) {
     try {
       return await account.get();
     } catch (error) {
-      // Appwrite throws an error if not logged in
       return null;
     }
   };
@@ -57,7 +56,6 @@ export function AuthProvider({ children }) {
   const updateEmail = async (newEmail, password) => {
     try {
       await account.updateEmail(newEmail, password);
-      // Refresh user data
       const user = await getCurrentUser();
       setUser(user);
     } catch (error) {
