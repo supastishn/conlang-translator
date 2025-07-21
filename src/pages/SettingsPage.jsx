@@ -104,25 +104,22 @@ export default function SettingsPage() {
         <form id="api-settings-form" onSubmit={handleSave}>
             <div className="form-group">
               <label>Translation Method:</label>
-              <div className="radio-options">
-                <label>
-                  <input 
-                    type="radio" 
-                    name="provider-type" 
-                    value="gemini" 
-                    checked={providerType === 'gemini'} 
-                    onChange={() => setProviderType('gemini')} 
-                  /> Gemini Function (no API key needed)
-                </label>
-                <label>
-                  <input 
-                    type="radio" 
-                    name="provider-type" 
-                    value="openai"
-                    checked={providerType === 'openai'} 
-                    onChange={() => setProviderType('openai')} 
-                  /> Client API Key
-                </label>
+              <div className="toggle-buttons">
+                <button
+                  type="button"
+                  className={`method-button ${providerType === 'gemini' ? 'active' : ''}`}
+                  onClick={() => setProviderType('gemini')}
+                >
+                  Gemini Function
+                  <div className="button-description">(no API key needed)</div>
+                </button>
+                <button
+                  type="button"
+                  className={`method-button ${providerType === 'openai' ? 'active' : ''}`}
+                  onClick={() => setProviderType('openai')}
+                >
+                  Client API Key
+                </button>
               </div>
             </div>
             {providerType === 'openai' && (
