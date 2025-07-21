@@ -220,37 +220,6 @@ export default function TranslatorPage() {
                 </div>
             </div>
 
-            {user && (
-              <div className="form-group provider-radio-group">
-                <label>Translation Method:</label>
-                <div className="radio-options">
-                  <label>
-                    <input 
-                      type="radio" 
-                      name="provider-radio" 
-                      value="gemini" 
-                      checked={provider === 'gemini'} 
-                      onChange={e => setProvider(e.target.value)}
-                    /> Gemini Function
-                  </label>
-                  <label>
-                    <input 
-                      type="radio" 
-                      name="provider-radio" 
-                      value="openai" 
-                      checked={provider === 'openai'} 
-                      onChange={e => setProvider(e.target.value)}
-                    /> Client API Key
-                  </label>
-                </div>
-              </div>
-            )}
-
-            {provider === 'openai' && (!settings.apiKey || !settings.apiKey.trim()) && (
-              <div className="warning">
-                OpenAI API key not set. Please configure in <Link to="/settings">Settings</Link>.
-              </div>
-            )}
 
             <div className="translation-container">
                 <div className="translation-box">
