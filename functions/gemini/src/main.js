@@ -28,10 +28,7 @@ export default async ({ req, res, log, error }) => {
       // --- NEW: Initialize OpenAI client ---
       const openai = new OpenAI({
         apiKey,
-        baseURL: 'https://generativelanguage.googleapis.com/v1beta/openai/',
-        defaultHeaders: {
-          'x-goog-api-client': 'appwrite_cloud_function'
-        }
+        baseURL: 'https://generativelanguage.googleapis.com/v1beta/openai/'
       });
 
       // --- NEW: Build messages structure ---
