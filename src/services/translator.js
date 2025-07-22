@@ -58,40 +58,49 @@ async function loadDraconicDictionary() {
 }
 
 async function callGeminiFunction({ sourceText, sourceLang, targetLang, imageDataUrl, settings }) {
-    const client = new Client()
-        .setEndpoint('https://fra.cloud.appwrite.io/v1')
-        .setProject('draconic-translator');
-    const functions = new Functions(client);
+  const client = new Client()
+    .setEndpoint('https://fra.cloud.appwrite.io/v1')
+    .setProject('draconic-translator');
+  const functions = new Functions(client);
 
-    try {
-        const payload = {
-            sourceText,
-            sourceLang,
-            targetLang,
-            imageDataUrl,
-            settings: {
-                model: settings.model || 'gemini-1.5-flash',
-                temperature: settings.temperature
-            }
-        };
+  try {
+    const payload = {
+      sourceText,
+      sourceLang,
+      targetLang,
+      imageDataUrl,
+      settings: {
+        model: settings.model || 'gemini-1.5-flash',
+        temperature: settings.temperature
+      }
+    };
 
-        const execution = await functions.createExecution(
-            'gemini',
-            JSON.stringify(payload),
-            false,
-            '/',
-            'POST'
-        );
+    const execution = await functions.createExecution(
+      'gemini',
+      JSON.stringify(payload),
+      false,
+      '/',
+      'POST'
+    );
 
-        if (execution.status === 'failed') {
-          throw new Error(execution.stderr || 'Gemini function execution failed');
-        }
-
-        // Return only the translation string (plain text)
-        return execution.response;
-    } catch (error) {
-        throw new Error('Gemini function call failed: ' + error.message);
+    if (execution.status === 'failed') {
+      throw new Error(execution.stderr || 'Gemini function execution failed');
     }
+
+    // ADDED: Parse JSON response from OpenAI-compatible endpoint
+    if (execution.response) {
+      try {
+        const jsonResponse = JSON.parse(execution.response);
+        return jsonResponse.choices?.[0]?.message?.content || '';
+      } catch (e) {
+        return execution.response;
+      }
+    }
+    
+    return execution.response;
+  } catch (error) {
+    throw new Error('Gemini function call failed: ' + error.message);
+  }
 }
 
 function isValidImageFormat(dataUrl) {
