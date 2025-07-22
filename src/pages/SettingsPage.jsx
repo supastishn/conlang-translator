@@ -219,6 +219,22 @@ export default function SettingsPage() {
                 </select>
                 <small>Controls the default output format when translating from English to Draconic. "Simplified Romanization" will append "(output simplified romanization)" to the system prompt for potentially simpler phonetic output.</small>
             </div>
+            <div className="form-group">
+              <label htmlFor="debugMode">Developer Debug Mode:</label>
+              <div className="toggle-container">
+                <label className="switch">
+                  <input
+                    type="checkbox"
+                    id="debugMode"
+                    checked={formState.debugMode}
+                    onChange={handleChange}
+                  />
+                  <span className="slider round"></span>
+                </label>
+                <span className="toggle-label">Enable Eruda debug console (requires refresh)</span>
+              </div>
+              <small>Shows developer tools for debugging. Page refresh needed after toggling.</small>
+            </div>
 
             <div className="form-group">
                 <label htmlFor="dwlToEnglishType">Default DWL to English Translation Type:</label>

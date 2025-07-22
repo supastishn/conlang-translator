@@ -11,7 +11,8 @@ export const DEFAULT_SETTINGS = {
   draconicOutputType: 'normal',
   dwlToEnglishType: 'natural',
   includeExplanation: false,
-  geminiOption: false
+  geminiOption: false,
+  debugMode: false
 };
 
 const SettingsContext = createContext();
