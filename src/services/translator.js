@@ -87,16 +87,7 @@ async function callGeminiFunction({ sourceText, sourceLang, targetLang, imageDat
       throw new Error(execution.stderr || 'Gemini function execution failed');
     }
 
-    // ADDED: Parse JSON response from OpenAI-compatible endpoint
-    if (execution.response) {
-      try {
-        const jsonResponse = JSON.parse(execution.response);
-        return jsonResponse.choices?.[0]?.message?.content || '';
-      } catch (e) {
-        return execution.response;
-      }
-    }
-    
+    // Return raw response without checking if it's "ok"
     return execution.response;
   } catch (error) {
     throw new Error('Gemini function call failed: ' + error.message);
