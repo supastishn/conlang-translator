@@ -75,21 +75,20 @@ async function callGeminiFunction({ sourceText, sourceLang, targetLang, imageDat
             }
         };
 
-        // Use correct createExecution signature: functionId, body, async, path, method
         const execution = await functions.createExecution(
             'gemini',
             JSON.stringify(payload),
-            false,   // synchronous
-            '/',     // path (root)
-            'POST'   // method
+            false,
+            '/',
+            'POST'
         );
 
         if (execution.status === 'failed') {
           throw new Error(execution.stderr || 'Gemini function execution failed');
         }
 
-        const response = JSON.parse(execution.response);
-        return response.translation;
+        // Return only the translation string (plain text)
+        return execution.response;
     } catch (error) {
         throw new Error('Gemini function call failed: ' + error.message);
     }
@@ -107,9 +106,12 @@ export async function translateText({ sourceText, sourceLang, targetLang, imageD
     const shouldUseGeminiFunction = provider === 'gemini';
 
     if (shouldUseGeminiFunction) {
-        return await callGeminiFunction({ sourceText, sourceLang, targetLang, imageDataUrl, settings });
+        // Gemini provider: send to server function, return plain text response
+        const result = await callGeminiFunction({ sourceText, sourceLang, targetLang, imageDataUrl, settings });
+        return result;
     }
 
+    // OpenAI/other provider logic remains unchanged
     let systemPromptCore = settings.systemPrompt;
     let resourcesForPrompt = "";
 

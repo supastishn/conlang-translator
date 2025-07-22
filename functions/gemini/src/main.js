@@ -1,133 +1,75 @@
-import { Client, Users } from 'node-appwrite';
-import fs from 'fs/promises';
-import path from 'path';
-
-/**
- * Helper function to load materials from the Appwrite function's app directory.
- * Uses APPWRITE_FUNCTION_RUNTIME_LIBRARY_PATH for correct path resolution.
- */
-const loadMaterial = async (filePath) => {
-  try {
-    const appPath = path.join(
-      process.env.APPWRITE_FUNCTION_RUNTIME_LIBRARY_PATH,
-      'materials',
-      filePath
-    );
-    return await fs.readFile(appPath, 'utf-8');
-  } catch (error) {
-    console.error(`Error loading ${filePath}:`, error);
-    return `[Resource unavailable]`;
-  }
-};
-
-const getSystemPrompt = async (sourceLang, targetLang) => {
-  const basePrompt = "You are an expert multilingual translator. Translate the text as requested, using the provided linguistic resources. Provide only the translated text without explanations.";
-
-  const resources = [];
-  
-  const needsDraconic = sourceLang === 'draconic' || targetLang === 'draconic';
-  if (needsDraconic) {
-    resources.push(
-      `DRACONIC DICTIONARY:\n${await loadMaterial('csvs/WIP - Draconic Dictionary - Dictionary.csv')}`,
-      `DRACONIC GRAMMAR:\n${await loadMaterial('grammar.txt')}`
-    );
-  }
-  
-  if (sourceLang === 'dwl' || targetLang === 'dwl') {
-    resources.push(`DWL RESOURCES:\n${await loadMaterial('dwl.txt')}`);
-  }
-  
-  if (sourceLang.includes('obwakimo') || targetLang.includes('obwakimo')) {
-    resources.push(`OBWA KIMO:\n${await loadMaterial('conlangs/obwakimo.txt')}`);
-  }
-  
-  if (sourceLang.includes('illuveterian') || targetLang.includes('illuveterian')) {
-    resources.push(`ILLUVETERIAN:\n${await loadMaterial('conlangs/illuveterian.txt')}`);
-  }
-
-  return resources.length 
-    ? `${basePrompt}\n\nLINGUISTIC RESOURCES:\n${resources.join('\n\n')}`
-    : basePrompt;
-};
+import { Client } from 'node-appwrite';
 
 export default async ({ req, res, log, error }) => {
   const client = new Client()
-    .setEndpoint('https://fra.cloud.appwrite.io/v1')  // Hardcoded endpoint
-    .setProject('draconic-translator')  // Hardcoded project ID
+    .setEndpoint('https://fra.cloud.appwrite.io/v1')
+    .setProject('draconic-translator')
     .setKey(req.headers['x-appwrite-key'] ?? '');
-  const users = new Users(client);
 
-  if (req.path === "/ping") {
-    return res.text("Pong");
-  }
-
-  if (req.method === 'POST' && req.path === '/translate') {
+  if (req.method === 'POST' && req.path === '/') {
     try {
-      const { sourceText, sourceLang, targetLang, imageDataUrl } = req.body;
-      const { model = 'gemini-2.5-flash', temperature = 0.0 } = req.body.settings || {};
+      const payload = typeof req.bodyRaw === 'string' ? JSON.parse(req.bodyRaw) : req.body;
+      const apiKey = process.env.GEMINI_API_KEY;
 
-      if (!process.env.GEMINI_API_KEY) {
-        error('GEMINI_API_KEY not configured for server-side translation');
+      if (!apiKey) {
         return res.json({ error: 'GEMINI_API_KEY not configured' }, 500);
       }
 
-      const systemPrompt = await getSystemPrompt(sourceLang, targetLang);
-      const messages = [
-        { role: 'system', content: systemPrompt },
-        { role: 'user', content: sourceText }
-      ];
+      const content = [];
+      content.push({
+        text: `Translate this from ${payload.sourceLang} to ${payload.targetLang}:\n\n${payload.sourceText}`
+      });
 
-      if (imageDataUrl) {
-        messages[1] = { 
-          ...messages[1],
-          content: [
-            { type: "text", text: sourceText || "Translate this image content" },
-            { type: "image_url", image_url: { url: imageDataUrl } }
-          ]
-        };
+      if (payload.imageDataUrl) {
+        const [header, base64Data] = payload.imageDataUrl.split(';base64,');
+        const mimeType = header.replace('data:', '');
+
+        content.push({
+          inlineData: {
+            mimeType,
+            data: base64Data
+          }
+        });
       }
 
-      const response = await fetch(
-        'https://generativelanguage.googleapis.com/v1beta/openai/chat/completions',
+      const geminiResponse = await fetch(
+        `https://generativelanguage.googleapis.com/v1beta/models/${payload.settings.model}:generateContent?key=${apiKey}`,
         {
           method: 'POST',
           headers: {
-            'Content-Type': 'application/json',
-            'Authorization': `Bearer ${process.env.GEMINI_API_KEY}`
+            'Content-Type': 'application/json'
           },
           body: JSON.stringify({
-            model,
-            temperature,
-            messages
+            contents: [{
+              role: "user",
+              parts: content
+            }],
+            generationConfig: {
+              temperature: payload.settings.temperature
+            }
           })
         }
       );
 
-      const data = await response.json();
-      if (!response.ok) {
-        return res.json({ error: data.error || 'Translation failed' }, 500);
+      const geminiData = await geminiResponse.json();
+      if (!geminiResponse.ok) {
+        return res.json({
+          error: geminiData.error?.message || 'Gemini API error'
+        }, 500);
       }
 
-      return res.json({
-        translation: data.choices[0]?.message?.content || ''
-      });
+      const textParts = geminiData.candidates?.[0]?.content?.parts
+        .filter(part => part.text)
+        .map(part => part.text);
+
+      const translation = textParts?.join('\n') || 'No translation returned';
+
+      return res.text(translation);
     } catch (err) {
       error(err.message);
       return res.json({ error: 'Internal server error' }, 500);
     }
   }
 
-  try {
-    const response = await users.list();
-    log(`Total users: ${response.total}`);
-  } catch(err) {
-    error("Could not list users: " + err.message);
-  }
-
-  return res.json({
-    motto: "Build like a team of hundreds_",
-    learn: "https://appwrite.io/docs",
-    connect: "https://appwrite.io/discord",
-    getInspired: "https://builtwith.appwrite.io",
-  });
+  return res.json({ error: 'Route not found' }, 404);
 };
