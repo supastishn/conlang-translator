@@ -1,4 +1,5 @@
 import { Client } from 'node-appwrite';
+import OpenAI from 'openai';
 
 export default async ({ req, res, log, error }) => {
   const client = new Client()
@@ -24,65 +25,52 @@ export default async ({ req, res, log, error }) => {
         return res.json({ error: 'GEMINI_API_KEY not configured' }, 500);
       }
 
-      // --- NEW: Log API URL and request setup ---
-      const url = `https://generativelanguage.googleapis.com/v1beta/openai/chat/completions?key=${apiKey}`;
-      log(`Calling Gemini API at: ${url.replace(apiKey, '***')}`);
-      
-      const openaiPayload = {
-        model: payload.settings.model,
-        messages: [{ role: 'user', content: payload.sourceText }],
-        temperature: payload.settings.temperature
+      // --- NEW: Initialize OpenAI client ---
+      const openai = new OpenAI({
+        apiKey,
+        baseURL: 'https://generativelanguage.googleapis.com/v1beta/openai/',
+        defaultHeaders: {
+          'x-goog-api-client': 'appwrite_cloud_function'
+        }
+      });
+
+      // --- NEW: Build messages structure ---
+      const messages = [];
+      let userMessage = {
+        role: 'user',
+        content: [
+          { type: 'text', text: payload.sourceText }
+        ]
       };
 
       if (payload.imageDataUrl) {
-        // --- NEW: Log image processing ---
-        log('Processing image attachment (type: ' + 
-            payload.imageDataUrl.substring(5, payload.imageDataUrl.indexOf(';')) + ')');
-        openaiPayload.messages[0].content = [
-          { type: 'text', text: payload.sourceText },
-          { 
-            type: 'image_url',
-            image_url: { url: payload.imageDataUrl, detail: 'auto' }
+        userMessage.content.push({
+          type: 'image_url',
+          image_url: {
+            url: payload.imageDataUrl,
+            detail: 'auto'
           }
-        ];
-      } else {
-        log('Processing text-only request');
+        });
       }
 
-      // --- NEW: Log final payload structure ---
-      log('Sending to Gemini:', JSON.stringify({
-        ...openaiPayload,
-        messages: openaiPayload.messages.map(m => 
-          m.content && Array.isArray(m.content) 
-            ? {...m, content: m.content.map(c => c.type === 'image_url' ? {...c, image_url: '...truncated for logs...'} : c)}
-            : m
-        )
-      }, null, 2));
+      messages.push(userMessage);
 
-      // --- NEW: Add timing to API calls ---
+      // --- NEW: Create Gemini request with OpenAI SDK ---
+      log('Sending to Gemini with OpenAI SDK');
       const startTime = Date.now();
-      const geminiResponse = await fetch(url, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(openaiPayload)
+      
+      const data = await openai.chat.completions.create({
+        model: payload.settings.model,
+        messages: messages,
+        temperature: payload.settings.temperature
       });
+
       const duration = Date.now() - startTime;
       
-      // --- NEW: Log response metadata ---
-      log(`Gemini API response (${duration}ms): ${geminiResponse.status} ${geminiResponse.statusText}`);
-      
-      if (!geminiResponse.ok) {
-        const errData = await geminiResponse.json();
-        error(`Gemini API error: ${JSON.stringify(errData)}`);
-        return res.json({
-          error: errData.error?.message || 'Gemini API error'
-        }, 500);
-      }
-
-      const data = await geminiResponse.json();
-      // --- NEW: Log successful response ---
-      log('Successfully received response from Gemini');
+      // --- Log successful response ---
+      log(`Gemini response received in ${duration}ms`);
       return res.json(data);
+      
     } catch (err) {
       // --- ENHANCED: Detailed error logging ---
       error(`Unhandled exception: ${err.message}`);

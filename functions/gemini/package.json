@@ -8,7 +8,8 @@
     "format": "prettier --write ."
   },
   "dependencies": {
-    "node-appwrite": "^14.1.0"
+    "node-appwrite": "^14.1.0",
+    "openai": "^4.54.3"
   },
   "devDependencies": {
     "prettier": "^3.2.5"
