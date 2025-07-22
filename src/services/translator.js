@@ -75,10 +75,13 @@ async function callGeminiFunction({ sourceText, sourceLang, targetLang, imageDat
             }
         };
 
+        // Use correct createExecution signature: functionId, body, async, path, method
         const execution = await functions.createExecution(
             'gemini',
             JSON.stringify(payload),
-            false // synchronous
+            false,   // synchronous
+            '/',     // path (root)
+            'POST'   // method
         );
 
         if (execution.status === 'failed') {
