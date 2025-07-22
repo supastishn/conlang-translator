@@ -15,56 +15,39 @@ export default async ({ req, res, log, error }) => {
         return res.json({ error: 'GEMINI_API_KEY not configured' }, 500);
       }
 
-      const content = [];
-      content.push({
-        text: `Translate this from ${payload.sourceLang} to ${payload.targetLang}:\n\n${payload.sourceText}`
-      });
+      // Use Gemini OpenAI-compatible endpoint
+      const url = `https://generativelanguage.googleapis.com/v1beta/openai/chat/completions?key=${apiKey}`;
+      const openaiPayload = {
+        model: payload.settings.model,
+        messages: [{ role: 'user', content: payload.sourceText }],
+        temperature: payload.settings.temperature
+      };
 
       if (payload.imageDataUrl) {
-        const [header, base64Data] = payload.imageDataUrl.split(';base64,');
-        const mimeType = header.replace('data:', '');
-
-        content.push({
-          inlineData: {
-            mimeType,
-            data: base64Data
+        openaiPayload.messages[0].content = [
+          { type: 'text', text: payload.sourceText },
+          { 
+            type: 'image_url',
+            image_url: { url: payload.imageDataUrl, detail: 'auto' }
           }
-        });
+        ];
       }
 
-      const geminiResponse = await fetch(
-        `https://generativelanguage.googleapis.com/v1beta/models/${payload.settings.model}:generateContent?key=${apiKey}`,
-        {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json'
-          },
-          body: JSON.stringify({
-            contents: [{
-              role: "user",
-              parts: content
-            }],
-            generationConfig: {
-              temperature: payload.settings.temperature
-            }
-          })
-        }
-      );
+      const geminiResponse = await fetch(url, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(openaiPayload)
+      });
 
-      const geminiData = await geminiResponse.json();
       if (!geminiResponse.ok) {
+        const errData = await geminiResponse.json();
         return res.json({
-          error: geminiData.error?.message || 'Gemini API error'
+          error: errData.error?.message || 'Gemini API error'
         }, 500);
       }
 
-      const textParts = geminiData.candidates?.[0]?.content?.parts
-        .filter(part => part.text)
-        .map(part => part.text);
-
-      const translation = textParts?.join('\n') || 'No translation returned';
-
-      return res.text(translation);
+      const data = await geminiResponse.json();
+      return res.json(data);
     } catch (err) {
       error(err.message);
       return res.json({ error: 'Internal server error' }, 500);
