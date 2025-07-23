@@ -12,22 +12,17 @@ export default function Layout({ viteSvg, reactSvg }) {
     }
   };
 
-  const COMMON_ITEMS = [
+  const navItems = [
+    ...(user ? [
+      { path: '/account', label: 'Account' },
+      { action: handleLogout, label: 'Logout' }
+    ] : [
+      { path: '/login', label: 'Login', className: 'auth-link login-link' },
+      { path: '/register', label: 'Register', className: 'auth-link' }
+    ]),
     { path: '/', label: 'Translator' },
     { path: '/settings', label: 'Settings' }
   ];
-  const USER_ITEMS = [
-    { path: '/account', label: 'Account' },
-    { action: handleLogout, label: 'Logout' }
-  ];
-  const GUEST_ITEMS = [
-    { path: '/login', label: 'Login', className: 'auth-link login-link' },
-    { path: '/register', label: 'Register', className: 'auth-link' }
-  ];
-  const NAV_ITEMS = [
-    ...(user ? USER_ITEMS : GUEST_ITEMS),
-    ...COMMON_ITEMS
-  ].flat();
 
   return (
     <div className="container">
@@ -40,7 +35,7 @@ export default function Layout({ viteSvg, reactSvg }) {
         </h1>
         <nav>
           <ul>
-            {NAV_ITEMS.map((item, index) =>
+            {navItems.map((item, index) =>
               item.path ? (
                 <li key={index}>
                   <NavLink

@@ -13,6 +13,19 @@ const LANG_LABELS = {
   detect: 'Detect Language'
 };
 
+function LanguageSelect({ id, value, onChange, options, label }) {
+  return (
+    <div className="form-group" style={{ flex: 1, marginBottom: 0 }}>
+      <label htmlFor={id}>{label}</label>
+      <select id={id} value={value} onChange={onChange}>
+        {Object.entries(options).map(([key, label]) => 
+          <option key={key} value={key}>{label}</option>
+        )}
+      </select>
+    </div>
+  );
+}
+
 const xmlParser = new DOMParser();
 
 function parseXmlString(xml) {
@@ -33,6 +46,20 @@ function parseXmlString(xml) {
 function StatusMessage({ type, children }) {
   return children && <div className={`${type} animated-in`}>{children}</div>;
 }
+
+const statuses = [
+  { 
+    type: 'warning', 
+    condition: (isMissingApiKey) => isMissingApiKey,
+    content: 'OpenAI API key not set. Please configure in Settings.'
+  },
+  { type: 'error', condition: (error) => !!error, content: (error) => error },
+  { 
+    type: 'info', 
+    condition: (hasTranslationContent, isTranslating) => !hasTranslationContent && !isTranslating,
+    content: 'Enter text or upload an image to translate'
+  }
+];
 
 export default function TranslatorPage() {
   const { user } = useAuth();
@@ -204,31 +231,40 @@ export default function TranslatorPage() {
 
   return (
     <>
-      <StatusMessage type="warning">
-        {isMissingApiKey && (
-          <span>
-            OpenAI API key not set. Please configure in <Link to="/settings">Settings</Link>.
-          </span>
-        )}
-      </StatusMessage>
-      <StatusMessage type="error">{error}</StatusMessage>
-      <StatusMessage type="info">
-        {!hasTranslationContent && !isTranslating ? 'Enter text or upload an image to translate' : null}
-      </StatusMessage>
+      {statuses.map(({type, condition, content}, index) => {
+        if (type === 'warning' && isMissingApiKey) {
+          return (
+            <StatusMessage key={index} type={type}>
+              <span>
+                OpenAI API key not set. Please configure in <Link to="/settings">Settings</Link>.
+              </span>
+            </StatusMessage>
+          );
+        }
+        if (type === 'error' && error) {
+          return <StatusMessage key={index} type={type}>{error}</StatusMessage>;
+        }
+        if (type === 'info' && !hasTranslationContent && !isTranslating) {
+          return <StatusMessage key={index} type={type}>Enter text or upload an image to translate</StatusMessage>;
+        }
+        return null;
+      })}
 
       <div className="language-selection-container" style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '1.5rem', gap: '1rem' }}>
-        <div className="form-group" style={{ flex: 1, marginBottom: 0 }}>
-          <label htmlFor="source-lang-select">Source Language:</label>
-          <select id="source-lang-select" value={sourceLang} onChange={e => setSourceLang(e.target.value)}>
-            {Object.entries(LANG_LABELS).map(([key, label]) => <option key={key} value={key}>{label}</option>)}
-          </select>
-        </div>
-        <div className="form-group" style={{ flex: 1, marginBottom: 0 }}>
-          <label htmlFor="target-lang-select">Target Language:</label>
-          <select id="target-lang-select" value={targetLang} onChange={e => setTargetLang(e.target.value)}>
-            {Object.entries(LANG_LABELS).filter(([k]) => k !== 'detect').map(([key, label]) => <option key={key} value={key}>{label}</option>)}
-          </select>
-        </div>
+        <LanguageSelect 
+          id="source-lang-select"
+          value={sourceLang}
+          onChange={e => setSourceLang(e.target.value)}
+          options={LANG_LABELS}
+          label="Source Language:"
+        />
+        <LanguageSelect 
+          id="target-lang-select"
+          value={targetLang}
+          onChange={e => setTargetLang(e.target.value)}
+          options={Object.fromEntries(Object.entries(LANG_LABELS).filter(([k]) => k !== 'detect'))}
+          label="Target Language:"
+        />
       </div>
 
 

@@ -63,39 +63,43 @@ async function callGeminiFunction({ sourceText, sourceLang, targetLang, imageDat
     .setProject('draconic-translator');
   const functions = new Functions(client);
 
-  try {
-    const payload = {
-      sourceText,
-      sourceLang,
-      targetLang,
-      imageDataUrl,
-      settings: {
-        model: settings.model || 'gemini-1.5-flash',
-        temperature: settings.temperature
-      }
-    };
-
-    const execution = await functions.createExecution(
-      'gemini',
-      JSON.stringify(payload),
-      false,
-      '/',
-      'POST'
-    );
-
-    if (execution.status === 'failed') {
-      throw new Error(execution.stderr || 'Gemini function execution failed');
+  const payload = {
+    sourceText,
+    sourceLang,
+    targetLang,
+    imageDataUrl,
+    settings: {
+      model: settings.model || 'gemini-1.5-flash',
+      temperature: settings.temperature
     }
+  };
 
-    // Return raw response without checking if it's "ok"
-    return execution.response;
-  } catch (error) {
-    throw new Error('Gemini function call failed: ' + error.message);
-  }
+  return functions.createExecution(
+    'gemini',
+    JSON.stringify(payload),
+    false,
+    '/',
+    'POST'
+  )
+    .then(execution => execution.response)
+    .catch(error => { 
+      throw new Error(`Gemini call failed: ${error.message}`) 
+    });
 }
 
 function isValidImageFormat(dataUrl) {
   return /^data:image\/(jpeg|png|gif|webp);base64,/.test(dataUrl);
+}
+
+function parseXmlString(xml) {
+  const xmlParser = new DOMParser();
+  const doc = xmlParser.parseFromString(`<root>${xml}</root>`, "application/xml");
+  const hasError = doc.querySelector('parsererror');
+  
+  return {
+    translation: hasError ? xml : doc.querySelector("translation")?.textContent?.trim() || xml,
+    explanation: hasError ? "" : doc.querySelector("explanation")?.textContent?.trim() || ""
+  };
 }
 
 export async function translateText(options) {

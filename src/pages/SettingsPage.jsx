@@ -6,15 +6,10 @@ export default function SettingsPage() {
   const { settings, saveSettings } = useSettings();
   const [formState, setFormState] = useState(settings);
   const [status, setStatus] = useState({ message: '', type: '' });
-  const [customModelName, setCustomModelName] = useState('');
   const [providerType, setProviderType] = useState(settings.providerType || 'gemini');
 
   useEffect(() => {
     setFormState(settings);
-    const isCustom = settings.model && !['gpt-4o', 'gpt-4', 'gpt-3.5-turbo'].includes(settings.model);
-    if (isCustom) {
-      setCustomModelName(settings.model);
-    }
   }, [settings]);
 
   const handleChange = (e) => {
@@ -27,10 +22,10 @@ export default function SettingsPage() {
   
   const handleSave = (e) => {
     e.preventDefault();
-    const model = formState.model === 'custom'
-      ? customModelName.trim()
+    const finalModelName = formState.model === 'custom'
+      ? formState.customModelName?.trim()
       : formState.model;
-    if (formState.model === 'custom' && !model) {
+    if (formState.model === 'custom' && !finalModelName) {
       setStatus({ message: 'Please enter a custom model name!', type: 'error' });
       return;
     }
@@ -40,7 +35,7 @@ export default function SettingsPage() {
         baseUrlValue = baseUrlValue.slice(0, -1);
     }
 
-    saveSettings({ ...formState, providerType, model, baseUrl: baseUrlValue });
+    saveSettings({ ...formState, providerType, model: finalModelName, baseUrl: baseUrlValue });
     setStatus({ message: 'Settings saved successfully!', type: 'success' });
     setTimeout(() => setStatus({ message: '', type: '' }), 3000);
   };
