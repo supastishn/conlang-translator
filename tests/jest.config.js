@@ -4,5 +4,8 @@ module.exports = {
   moduleNameMapper: {
     '\\.(css|scss)$': 'identity-obj-proxy',
     '\\.(svg)$': '<rootDir>/tests/__mocks__/fileMock.js'
+  },
+  transform: {
+    '^.+\\.(js|jsx)$': 'babel-jest'
   }
 };

@@ -1,10 +1,13 @@
+import React from 'react';
 import { render, screen, fireEvent, waitFor } from '@testing-library/react';
 import AuthPage from '../src/pages/AuthPage';
 
 jest.mock('../src/context/AuthContext', () => ({
-  useAuth: () => ({
+  useAuth: jest.fn().mockReturnValue({
     login: jest.fn(),
-    register: jest.fn()
+    register: jest.fn(),
+    logout: jest.fn(),
+    user: null
   })
 }));
 
@@ -25,9 +28,12 @@ describe('AuthPage', () => {
   });
 
   test('submits login form', async () => {
-    const { useAuth } = require('../src/context/AuthContext');
     const mockLogin = jest.fn();
-    useAuth.mockReturnValue({ login: mockLogin });
+    const { useAuth } = require('../src/context/AuthContext');
+    useAuth.mockReturnValue({
+      login: mockLogin,
+      user: null
+    });
 
     render(<AuthPage type="login" />);
     fireEvent.change(screen.getByLabelText('Email:'), {
