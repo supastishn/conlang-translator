@@ -18,211 +18,220 @@ const xmlParser = new DOMParser();
 function parseXml(xml) {
   const doc = xmlParser.parseFromString(`<root>${xml}</root>`, "application/xml");
   const parseError = doc.querySelector("parsererror");
-  
+
   if (parseError) {
     return { translation: xml, explanation: "" };
   }
-  
+
   return {
     translation: doc.querySelector("translation")?.textContent?.trim() || "",
     explanation: doc.querySelector("explanation")?.textContent?.trim() || ""
   };
 }
 
+const StatusMessage = ({ type, message }) =>
+  message ? <div className={`status ${type}`}>{message}</div> : null;
+
 export default function TranslatorPage() {
-    const { user } = useAuth();
-    const { settings } = useSettings();
-  
-    const [sourceLang, setSourceLang] = useState('english');
-    const [targetLang, setTargetLang] = useState('draconic');
-    const [sourceText, setSourceText] = useState('');
-    const [targetText, setTargetText] = useState('');
-    const [explanation, setExplanation] = useState('');
-    const [imageDataUrl, setImageDataUrl] = useState(null);
-    const [provider, setProvider] = useState(settings.providerType || 'gemini');
-    const [isTranslating, setIsTranslating] = useState(false);
-    const [error, setError] = useState('');
+  const { user } = useAuth();
+  const { settings } = useSettings();
 
-    const hasTranslationContent = sourceText.trim() || imageDataUrl;
-    const isMissingApiKey = provider === 'openai' && !settings.apiKey?.trim();
+  const [sourceLang, setSourceLang] = useState('english');
+  const [targetLang, setTargetLang] = useState('draconic');
+  const [sourceText, setSourceText] = useState('');
+  const [targetText, setTargetText] = useState('');
+  const [explanation, setExplanation] = useState('');
+  const [imageDataUrl, setImageDataUrl] = useState(null);
+  const [provider, setProvider] = useState(settings.providerType || 'gemini');
+  const [isTranslating, setIsTranslating] = useState(false);
+  const [error, setError] = useState('');
 
-    const [isCameraOpen, setIsCameraOpen] = useState(false);
-    const videoRef = useRef(null);
-    const canvasRef = useRef(null);
-    const imageUploadRef = useRef(null);
-    
-    const [history, setHistory] = useState([]);
-    
-    useEffect(() => {
-        try {
-            const storedHistory = localStorage.getItem('draconicTranslationHistory');
-            if (storedHistory) setHistory(JSON.parse(storedHistory));
-        } catch (e) {
-            setHistory([]);
-        }
-    }, []);
+  const hasTranslationContent = sourceText.trim() || imageDataUrl;
+  const isMissingApiKey = provider === 'openai' && !settings.apiKey?.trim();
 
-    const addToHistory = (item) => {
-        const newHistory = [item, ...history].slice(0, 10);
-        setHistory(newHistory);
-        localStorage.setItem('draconicTranslationHistory', JSON.stringify(newHistory));
-    };
-    
-    const deleteHistoryItem = (id) => {
-        const newHistory = history.filter(item => item.id !== id);
-        setHistory(newHistory);
-        localStorage.setItem('draconicTranslationHistory', JSON.stringify(newHistory));
+  const [isCameraOpen, setIsCameraOpen] = useState(false);
+  const videoRef = useRef(null);
+  const canvasRef = useRef(null);
+  const imageUploadRef = useRef(null);
+
+  const [history, setHistory] = useState([]);
+
+  useEffect(() => {
+    try {
+      const storedHistory = localStorage.getItem('draconicTranslationHistory');
+      if (storedHistory) setHistory(JSON.parse(storedHistory));
+    } catch (e) {
+      setHistory([]);
     }
-    
-    const clearHistory = () => {
-        if (window.confirm("Are you sure you want to clear all translation history?")) {
-            setHistory([]);
-            localStorage.removeItem('draconicTranslationHistory');
-        }
+  }, []);
+
+  const addToHistory = (item) => {
+    const newHistory = [item, ...history].slice(0, 10);
+    setHistory(newHistory);
+    localStorage.setItem('draconicTranslationHistory', JSON.stringify(newHistory));
+  };
+
+  const deleteHistoryItem = (id) => {
+    const newHistory = history.filter(item => item.id !== id);
+    setHistory(newHistory);
+    localStorage.setItem('draconicTranslationHistory', JSON.stringify(newHistory));
+  }
+
+  const clearHistory = () => {
+    if (window.confirm("Are you sure you want to clear all translation history?")) {
+      setHistory([]);
+      localStorage.removeItem('draconicTranslationHistory');
     }
-    
-    const useHistoryItem = (item) => {
-        setSourceLang(item.sourceLang);
-        setTargetLang(item.targetLang);
-        setSourceText(item.sourceText);
-        setTargetText(item.translatedText);
-        setExplanation('');
-        setImageDataUrl(null);
+  }
+
+  const useHistoryItem = (item) => {
+    setSourceLang(item.sourceLang);
+    setTargetLang(item.targetLang);
+    setSourceText(item.sourceText);
+    setTargetText(item.translatedText);
+    setExplanation('');
+    setImageDataUrl(null);
+  }
+
+  const handleTranslate = async () => {
+    if (!sourceText.trim() && !imageDataUrl) {
+      setError('Please enter text or upload an image.');
+      return;
+    }
+    if (provider === 'openai' && (!settings.apiKey || !settings.apiKey.trim())) {
+      setError('OpenAI API key is not set in Settings.');
+      return;
     }
 
-    const handleTranslate = async () => {
-        if (!sourceText.trim() && !imageDataUrl) {
-            setError('Please enter text or upload an image.');
-            return;
+    setIsTranslating(true);
+    setError('');
+    setTargetText('');
+    setExplanation('');
+
+    try {
+      const result = await translateText({
+        sourceText, sourceLang, targetLang, imageDataUrl, provider, settings,
+        updateCallback: (partial) => {
+          const { translation } = parseXmlString(partial);
+          setTargetText(translation);
         }
-        if (provider === 'openai' && (!settings.apiKey || !settings.apiKey.trim())) {
-            setError('OpenAI API key is not set in Settings.');
-            return;
-        }
+      });
+      const { translation, explanation: finalExplanation } = parseXmlString(result);
+      setTargetText(translation);
+      setExplanation(finalExplanation);
+      addToHistory({ id: Date.now(), timestamp: new Date().toISOString(), sourceText, translatedText: translation, sourceLang, targetLang });
+    } catch (err) {
+      setError('Translation failed: ' + err.message);
+    } finally {
+      setIsTranslating(false);
+    }
+  };
 
-        setIsTranslating(true);
-        setError('');
-        setTargetText('');
-        setExplanation('');
+  const handleImageUpload = (e) => {
+    const file = e.target.files[0];
+    if (!file) return;
+    const validTypes = ['image/png', 'image/jpeg', 'image/gif', 'image/webp'];
+    if (!validTypes.includes(file.type)) {
+      setError('Invalid file type. Please select a PNG, JPEG, GIF, or WEBP image.');
+      return;
+    }
+    if (file.size > 20 * 1024 * 1024) { // 20MB limit
+      setError('File is too large. Maximum size is 20MB.');
+      return;
+    }
+    const reader = new FileReader();
+    reader.onload = (event) => {
+      setImageDataUrl(event.target.result);
+      setError('');
+    };
+    reader.readAsDataURL(file);
+  };
 
-        try {
-            const result = await translateText({
-                sourceText, sourceLang, targetLang, imageDataUrl, provider, settings,
-                updateCallback: (partial) => {
-                    const { translation } = parseXmlString(partial);
-                    setTargetText(translation);
-                }
-            });
-            const { translation, explanation: finalExplanation } = parseXmlString(result);
-            setTargetText(translation);
-            setExplanation(finalExplanation);
-            addToHistory({ id: Date.now(), timestamp: new Date().toISOString(), sourceText, translatedText: translation, sourceLang, targetLang });
-        } catch (err) {
-            setError('Translation failed: ' + err.message);
-        } finally {
-            setIsTranslating(false);
-        }
-    };
-    
-    const handleImageUpload = (e) => {
-      const file = e.target.files[0];
-      if (!file) return;
-      const validTypes = ['image/png', 'image/jpeg', 'image/gif', 'image/webp'];
-      if (!validTypes.includes(file.type)) {
-        setError('Invalid file type. Please select a PNG, JPEG, GIF, or WEBP image.');
-        return;
-      }
-      if (file.size > 20 * 1024 * 1024) { // 20MB limit
-        setError('File is too large. Maximum size is 20MB.');
-        return;
-      }
-      const reader = new FileReader();
-      reader.onload = (event) => {
-        setImageDataUrl(event.target.result);
-        setError('');
-      };
-      reader.readAsDataURL(file);
-    };
+  const clearImage = () => {
+    setImageDataUrl(null);
+    if (imageUploadRef.current) {
+      imageUploadRef.current.value = '';
+    }
+  };
 
-    const clearImage = () => {
-      setImageDataUrl(null);
-      if (imageUploadRef.current) {
-        imageUploadRef.current.value = '';
+  const openCamera = async () => {
+    try {
+      const stream = await navigator.mediaDevices.getUserMedia({ video: { facingMode: "environment" } });
+      if (videoRef.current) {
+        videoRef.current.srcObject = stream;
+        setIsCameraOpen(true);
       }
-    };
-    
-    const openCamera = async () => {
-      try {
-        const stream = await navigator.mediaDevices.getUserMedia({ video: { facingMode: "environment" } });
-        if (videoRef.current) {
-          videoRef.current.srcObject = stream;
-          setIsCameraOpen(true);
-        }
-      } catch (err) {
-        setError(`Camera error: ${err.message}`);
-      }
-    };
+    } catch (err) {
+      setError(`Camera error: ${err.message}`);
+    }
+  };
 
-    // Camera stream memory leak fix
-    const stopCameraStream = () => {
-      if (videoRef.current && videoRef.current.srcObject) {
-        videoRef.current.srcObject.getTracks().forEach(track => track.stop());
-      }
-    };
+  // Camera stream memory leak fix
+  const stopCameraStream = () => {
+    if (videoRef.current && videoRef.current.srcObject) {
+      videoRef.current.srcObject.getTracks().forEach(track => track.stop());
+    }
+  };
 
-    const closeCamera = () => {
+  const closeCamera = () => {
+    stopCameraStream();
+    setIsCameraOpen(false);
+  };
+
+  const captureImage = () => {
+    if (canvasRef.current && videoRef.current) {
+      const canvas = canvasRef.current;
+      const video = videoRef.current;
+      canvas.width = video.videoWidth;
+      canvas.height = video.videoHeight;
+      const ctx = canvas.getContext('2d');
+      ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
+      setImageDataUrl(canvas.toDataURL('image/webp'));
+      closeCamera();
+    }
+  };
+
+  // Cleanup camera stream on unmount
+  useEffect(() => {
+    return () => {
       stopCameraStream();
-      setIsCameraOpen(false);
     };
+  }, []);
 
-    const captureImage = () => {
-      if (canvasRef.current && videoRef.current) {
-        const canvas = canvasRef.current;
-        const video = videoRef.current;
-        canvas.width = video.videoWidth;
-        canvas.height = video.videoHeight;
-        const ctx = canvas.getContext('2d');
-        ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
-        setImageDataUrl(canvas.toDataURL('image/webp'));
-        closeCamera();
-      }
-    };
-
-    // Cleanup camera stream on unmount
-    useEffect(() => {
-      return () => {
-        stopCameraStream();
-      };
-    }, []);
-
-    return (
-        <>
-            {isMissingApiKey && (
-              <div className="warning">
+  return (
+    <>
+      <StatusMessage
+        type="warning"
+        message={
+          isMissingApiKey
+            ? (
+              <span>
                 OpenAI API key not set. Please configure in <Link to="/settings">Settings</Link>.
-              </div>
-            )}
+              </span>
+            )
+            : null
+        }
+      />
+      <StatusMessage type="error" message={error} />
+      <StatusMessage
+        type="info"
+        message={!hasTranslationContent && !isTranslating ? 'Enter text or upload an image to translate' : null}
+      />
 
-            {error && <div className="error">{error}</div>}
-
-            {!hasTranslationContent && !isTranslating && (
-              <div className="empty-state">Enter text or upload an image to translate</div>
-            )}
-
-            <div className="language-selection-container" style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '1.5rem', gap: '1rem' }}>
-                <div className="form-group" style={{ flex: 1, marginBottom: 0 }}>
-                    <label htmlFor="source-lang-select">Source Language:</label>
-                    <select id="source-lang-select" value={sourceLang} onChange={e => setSourceLang(e.target.value)}>
-                        {Object.entries(LANG_LABELS).map(([key, label]) => <option key={key} value={key}>{label}</option>)}
-                    </select>
-                </div>
-                <div className="form-group" style={{ flex: 1, marginBottom: 0 }}>
-                    <label htmlFor="target-lang-select">Target Language:</label>
-                    <select id="target-lang-select" value={targetLang} onChange={e => setTargetLang(e.target.value)}>
-                        {Object.entries(LANG_LABELS).filter(([k]) => k !== 'detect').map(([key, label]) => <option key={key} value={key}>{label}</option>)}
-                    </select>
-                </div>
-            </div>
+      <div className="language-selection-container" style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '1.5rem', gap: '1rem' }}>
+        <div className="form-group" style={{ flex: 1, marginBottom: 0 }}>
+          <label htmlFor="source-lang-select">Source Language:</label>
+          <select id="source-lang-select" value={sourceLang} onChange={e => setSourceLang(e.target.value)}>
+            {Object.entries(LANG_LABELS).map(([key, label]) => <option key={key} value={key}>{label}</option>)}
+          </select>
+        </div>
+        <div className="form-group" style={{ flex: 1, marginBottom: 0 }}>
+          <label htmlFor="target-lang-select">Target Language:</label>
+          <select id="target-lang-select" value={targetLang} onChange={e => setTargetLang(e.target.value)}>
+            {Object.entries(LANG_LABELS).filter(([k]) => k !== 'detect').map(([key, label]) => <option key={key} value={key}>{label}</option>)}
+          </select>
+        </div>
+      </div>
 
 
             <div className="translation-container">

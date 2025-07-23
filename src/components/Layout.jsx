@@ -12,37 +12,54 @@ export default function Layout() {
     }
   };
 
+  const NAV_ITEMS = [
+    { path: '/', label: 'Translator' },
+    { path: '/settings', label: 'Settings' },
+    ...(user
+      ? [
+          { path: '/account', label: 'Account' },
+          { action: handleLogout, label: 'Logout' }
+        ]
+      : [
+          { path: '/login', label: 'Login', className: 'auth-link login-link' },
+          { path: '/register', label: 'Register', className: 'auth-link' }
+        ])
+  ];
+
   return (
     <div className="container">
       <header style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' }}>
-        <h1><NavLink to="/" style={{textDecoration: 'none', color: 'inherit'}}>Draconic Translator</NavLink></h1>
+        <h1>
+          <NavLink to="/" style={{ textDecoration: 'none', color: 'inherit' }}>
+            Draconic Translator
+          </NavLink>
+        </h1>
         <nav>
           <ul>
-            <li><NavLink to="/" className={({ isActive }) => (isActive ? 'active' : '')}>Translator</NavLink></li>
-            <li><NavLink to="/settings" className={({ isActive }) => (isActive ? 'active' : '')}>Settings</NavLink></li>
-            {user ? (
-              <>
-                <li id="account-nav-item" style={{ display: 'list-item' }}>
-                  <NavLink to="/account" className={({ isActive }) => (isActive ? 'active' : '')}>Account</NavLink>
+            {NAV_ITEMS.map((item, index) =>
+              item.path ? (
+                <li key={index}>
+                  <NavLink
+                    to={item.path}
+                    className={({ isActive }) =>
+                      `${item.className || ''}${isActive ? ' active' : ''}`
+                    }
+                  >
+                    {item.label}
+                  </NavLink>
                 </li>
-                <li>
-                  <a href="#" onClick={handleLogout} className="auth-link">Logout</a>
+              ) : (
+                <li key={index}>
+                  <a href="#" onClick={item.action} className="auth-link">
+                    {item.label}
+                  </a>
                 </li>
-              </>
-            ) : (
-              <>
-                <li id="login-nav-item">
-                  <NavLink to="/login" className={({ isActive }) => 'auth-link login-link' + (isActive ? ' active' : '')}>Login</NavLink>
-                </li>
-                <li id="register-nav-item">
-                  <NavLink to="/register" className={({ isActive }) => 'auth-link' + (isActive ? ' active' : '')}>Register</NavLink>
-                </li>
-              </>
+              )
             )}
           </ul>
         </nav>
       </header>
-      
+
       <main>
         <Outlet />
       </main>
@@ -50,8 +67,17 @@ export default function Layout() {
       <footer>
         <p>Draconic Translator - Using OpenAI API for constructed language translation</p>
         <div className="footer-links">
-            <a href="https://github.com/supastishn/conlang-translator" target="_blank" rel="noreferrer">See the source code</a> | 
-            <a href="https://supastishn.github.io" target="_blank" rel="noreferrer">See more fun stuff</a>
+          <a
+            href="https://github.com/supastishn/conlang-translator"
+            target="_blank"
+            rel="noreferrer"
+          >
+            See the source code
+          </a>{' '}
+          |{' '}
+          <a href="https://supastishn.github.io" target="_blank" rel="noreferrer">
+            See more fun stuff
+          </a>
         </div>
       </footer>
     </div>
