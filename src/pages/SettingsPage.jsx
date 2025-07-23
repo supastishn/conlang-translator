@@ -21,7 +21,7 @@ export default function SettingsPage() {
     const { id, value, type, checked } = e.target;
     setFormState(prev => ({
       ...prev,
-      [id]: type === 'checkbox' ? checked : (id === 'temperature' ? parseFloat(value) : value)
+      [id]: type === 'checkbox' ? checked : value
     }));
   };
   
@@ -95,6 +95,7 @@ export default function SettingsPage() {
   };
 
   const isCustomModel = formState.model === 'custom';
+  const model = isCustomModel ? customModelName.trim() : formState.model;
 
   return (
     <div className="settings-container">

@@ -18,7 +18,7 @@ const xmlParser = new DOMParser();
 function parseXmlString(xml) {
   try {
     const doc = xmlParser.parseFromString(`<root>${xml}</root>`, "application/xml");
-    if (doc.documentElement.querySelector('parsererror')) {
+    if (doc.querySelector('parsererror')) {
       return { translation: xml, explanation: "" };
     }
     return {
@@ -30,8 +30,8 @@ function parseXmlString(xml) {
   }
 }
 
-const StatusMessage = ({ type, message }) =>
-  message ? <div className={`status ${type}`}>{message}</div> : null;
+const StatusMessage = ({ type, message }) => 
+  message && <div className={`status ${type}`}>{message}</div>;
 
 export default function TranslatorPage() {
   const { user } = useAuth();
@@ -195,7 +195,9 @@ export default function TranslatorPage() {
   // Cleanup camera stream on unmount
   useEffect(() => {
     return () => {
-      stopCameraStream();
+      if (videoRef.current?.srcObject) {
+        videoRef.current.srcObject.getTracks().forEach(track => track.stop());
+      }
     };
   }, []);
 

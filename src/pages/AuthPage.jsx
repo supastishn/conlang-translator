@@ -39,7 +39,7 @@ export default function AuthPage({ type }) {
     <div className="settings-container">
       <h2>{isRegister ? 'Create a New Account' : 'Login to Your Account'}</h2>
       {error && <div className="error" style={{marginBottom: '1rem'}}>{error}</div>}
-      <form id={isRegister ? 'register-form' : 'login-form'} className="auth-form" onSubmit={handleSubmit}>
+      <form className="auth-form" onSubmit={handleSubmit}>
         <div className="form-group">
           <label htmlFor={`${isRegister ? 'register' : 'login'}-email`}>Email:</label>
           <input
@@ -77,11 +77,10 @@ export default function AuthPage({ type }) {
 
         <button type="submit" className="auth-btn">{isRegister ? 'Register' : 'Login'}</button>
         <p>
-          {isRegister ? (
-            <>Already have an account? <Link to="/login">Login here</Link></>
-          ) : (
-            <>Don't have an account? <Link to="/register">Register here</Link></>
-          )}
+          {isRegister 
+            ? <>Already have an account? <Link to="/login">Login here</Link></>
+            : <>Don't have an account? <Link to="/register">Register here</Link></>
+          }
         </p>
       </form>
     </div>

@@ -13,13 +13,7 @@ export function AuthProvider({ children }) {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
 
-  const getCurrentUser = async () => {
-    try {
-      return await account.get();
-    } catch {
-      return null;
-    }
-  };
+  const getCurrentUser = () => account.get().catch(() => null);
 
   const login = async (email, password) => {
     try {
@@ -86,15 +80,12 @@ export function AuthProvider({ children }) {
   useEffect(() => {
     const init = async () => {
       try {
-        const currentUser = await getCurrentUser();
-        setUser(currentUser);
+        setUser(await getCurrentUser());
       } catch (error) {
         console.error("Auth initialization error:", error);
-      } finally {
-        setLoading(false);
       }
+      setLoading(false);
     };
-
     init();
   }, []);
 

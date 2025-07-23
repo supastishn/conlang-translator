@@ -134,18 +134,15 @@ async function callOpenAiFunction({ sourceText, sourceLang, targetLang, imageDat
     let userMessageContent;
     let userPromptText = sourceText || "Describe the image.";
 
-    const dwlToEnglishInstruction = settings.dwlToEnglishType === 'raw'
-        ? "Translate into raw English, preserving original phrasing and diacritic implications even if unnatural."
-        : "Translate into natural, grammatically correct English, interpreting diacritics for fluent output.";
-
-    if (sourceLang === LANG_LABELS.detect) {
-        userPromptText = `First, identify if the input text is English, Draconic, Diacritical Waluigi Language, Obwa Kimo, or Illuveterian. Then, translate the identified text into ${LANG_LABELS[targetLang]}.`;
-        if (targetLang === 'english') {
-            userPromptText += ` If the identified source is Diacritical Waluigi Language, ${dwlToEnglishInstruction}`;
-        }
-        userPromptText += ` Input text:\n\n"${sourceText}"`;
+    if (sourceLang === 'detect') {
+      userPromptText = `Identify the language and translate to ${LANG_LABELS[targetLang]}`;
+      if (targetLang === 'english') {
+        userPromptText += settings.dwlToEnglishType === 'raw'
+          ? " (preserve original phrasing)"
+          : " (use natural English)";
+      }
     } else {
-        userPromptText = `Translate the following ${LANG_LABELS[sourceLang]} text to ${LANG_LABELS[targetLang]}:\n\n"${sourceText}"`;
+      userPromptText = `Translate from ${LANG_LABELS[sourceLang]} to ${LANG_LABELS[targetLang]}`;
     }
 
     if (imageDataUrl) {
