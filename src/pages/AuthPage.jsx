@@ -10,19 +10,19 @@ export default function AuthPage({ type }) {
   const { login, register } = useAuth();
   const navigate = useNavigate();
 
-  const isRegister = type === 'register';
+  const authType = type === 'register' ? 'register' : 'login';
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     setError('');
 
-    if (isRegister && password !== confirmPassword) {
+    if (authType === 'register' && password !== confirmPassword) {
       setError('Passwords do not match');
       return;
     }
 
     try {
-      if (isRegister) {
+      if (authType === 'register') {
         await register(email, password);
         alert('Registration successful!');
       } else {
@@ -37,14 +37,14 @@ export default function AuthPage({ type }) {
 
   return (
     <div className="settings-container">
-      <h2>{isRegister ? 'Create a New Account' : 'Login to Your Account'}</h2>
+      <h2>{authType === 'register' ? 'Create a New Account' : 'Login to Your Account'}</h2>
       {error && <div className="error" style={{marginBottom: '1rem'}}>{error}</div>}
       <form className="auth-form" onSubmit={handleSubmit}>
         <div className="form-group">
-          <label htmlFor={`${isRegister ? 'register' : 'login'}-email`}>Email:</label>
+          <label htmlFor={`${authType}-email`}>Email:</label>
           <input
             type="email"
-            id={`${isRegister ? 'register' : 'login'}-email`}
+            id={`${authType}-email`}
             value={email}
             onChange={e => setEmail(e.target.value)}
             required
@@ -52,17 +52,17 @@ export default function AuthPage({ type }) {
         </div>
 
         <div className="form-group">
-          <label htmlFor={`${isRegister ? 'register' : 'login'}-password`}>Password:</label>
+          <label htmlFor={`${authType}-password`}>Password:</label>
           <input
             type="password"
-            id={`${isRegister ? 'register' : 'login'}-password`}
+            id={`${authType}-password`}
             value={password}
             onChange={e => setPassword(e.target.value)}
             required
           />
         </div>
 
-        {isRegister && (
+        {authType === 'register' && (
           <div className="form-group">
             <label htmlFor="register-confirm">Confirm Password:</label>
             <input
@@ -75,9 +75,9 @@ export default function AuthPage({ type }) {
           </div>
         )}
 
-        <button type="submit" className="auth-btn">{isRegister ? 'Register' : 'Login'}</button>
+        <button type="submit" className="auth-btn">{authType === 'register' ? 'Register' : 'Login'}</button>
         <p>
-          {isRegister 
+          {authType === 'register'
             ? <>Already have an account? <Link to="/login">Login here</Link></>
             : <>Don't have an account? <Link to="/register">Register here</Link></>
           }

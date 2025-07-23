@@ -1,7 +1,7 @@
 import { Outlet, NavLink } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 
-export default function Layout() {
+export default function Layout({ viteSvg, reactSvg }) {
   const { user, logout } = useAuth();
 
   const handleLogout = async () => {
@@ -34,6 +34,7 @@ export default function Layout() {
       <header style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' }}>
         <h1>
           <NavLink to="/" style={{ textDecoration: 'none', color: 'inherit' }}>
+            <object type="image/svg+xml" data={reactSvg} aria-label="React" style={{ height: '2em', verticalAlign: 'middle', marginRight: '0.5em' }} />
             Draconic Translator
           </NavLink>
         </h1>

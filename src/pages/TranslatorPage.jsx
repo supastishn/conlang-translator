@@ -30,8 +30,9 @@ function parseXmlString(xml) {
   }
 }
 
-const StatusMessage = ({ type, message }) => 
-  message && <div className={`status ${type}`}>{message}</div>;
+function StatusMessage({ type, children }) {
+  return children ? <div className={type}>{children}</div> : null;
+}
 
 export default function TranslatorPage() {
   const { user } = useAuth();
@@ -203,23 +204,17 @@ export default function TranslatorPage() {
 
   return (
     <>
-      <StatusMessage
-        type="warning"
-        message={
-          isMissingApiKey
-            ? (
-              <span>
-                OpenAI API key not set. Please configure in <Link to="/settings">Settings</Link>.
-              </span>
-            )
-            : null
-        }
-      />
-      <StatusMessage type="error" message={error} />
-      <StatusMessage
-        type="info"
-        message={!hasTranslationContent && !isTranslating ? 'Enter text or upload an image to translate' : null}
-      />
+      <StatusMessage type="warning">
+        {isMissingApiKey && (
+          <span>
+            OpenAI API key not set. Please configure in <Link to="/settings">Settings</Link>.
+          </span>
+        )}
+      </StatusMessage>
+      <StatusMessage type="error">{error}</StatusMessage>
+      <StatusMessage type="info">
+        {!hasTranslationContent && !isTranslating ? 'Enter text or upload an image to translate' : null}
+      </StatusMessage>
 
       <div className="language-selection-container" style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '1.5rem', gap: '1rem' }}>
         <div className="form-group" style={{ flex: 1, marginBottom: 0 }}>

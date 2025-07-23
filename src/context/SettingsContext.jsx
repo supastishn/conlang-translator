@@ -25,7 +25,7 @@ export function SettingsProvider({ children }) {
     if (savedSettings) {
       setSettings(JSON.parse(savedSettings));
     }
-  }, []);
+  }, []); // Empty dependency array ensures one-time execution
 
   const saveSettings = (newSettings) => {
     const settingsToSave = { ...settings, ...newSettings };

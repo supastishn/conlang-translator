@@ -131,7 +131,6 @@ async function callOpenAiFunction({ sourceText, sourceLang, targetLang, imageDat
     }
 
     let finalSystemPrompt = systemPromptCore + resourcesForPrompt;
-    let userMessageContent;
     let userPromptText = sourceText || "Describe the image.";
 
     if (sourceLang === 'detect') {
@@ -145,22 +144,21 @@ async function callOpenAiFunction({ sourceText, sourceLang, targetLang, imageDat
       userPromptText = `Translate from ${LANG_LABELS[sourceLang]} to ${LANG_LABELS[targetLang]}`;
     }
 
-    if (imageDataUrl) {
-        userMessageContent = [{ type: "text", text: userPromptText }];
-        userMessageContent.push({ type: "image_url", image_url: { url: imageDataUrl, detail: "auto" } });
-    } else {
-        userMessageContent = userPromptText;
-    }
-
     const xmlInstr = settings.includeExplanation
       ? "\n\nWrap your response in XML exactly as:\n<translation>…</translation>\n<explanation>…</explanation>\nDo not include any other text."
       : "\n\nWrap your response in XML exactly as:\n<translation>…</translation>\nDo not include any other text.";
-    
-    if (Array.isArray(userMessageContent)) {
-        userMessageContent[0].text += xmlInstr;
-    } else {
-        userMessageContent += xmlInstr;
+
+    function getMessageContent(userPromptText, imageDataUrl, xmlInstr) {
+      if (imageDataUrl) {
+        return [
+          { type: "text", text: userPromptText + xmlInstr },
+          { type: "image_url", image_url: { url: imageDataUrl, detail: "auto" } }
+        ];
+      }
+      return userPromptText + xmlInstr;
     }
+
+    let userMessageContent = getMessageContent(userPromptText, imageDataUrl, xmlInstr);
     
     const endpoint = `${settings.baseUrl}/chat/completions`;
     const headers = {

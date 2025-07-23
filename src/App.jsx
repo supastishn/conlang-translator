@@ -7,6 +7,8 @@ import AuthPage from './pages/AuthPage';
 import GuidePage from './pages/GuidePage';
 import { AuthProvider } from './context/AuthContext';
 import { SettingsProvider } from './context/SettingsContext';
+import viteSvg from '/vite.svg';
+import reactSvg from '/src/assets/react.svg';
 
 export default function App() {
   return (
@@ -14,7 +16,7 @@ export default function App() {
       <SettingsProvider>
         <BrowserRouter>
           <Routes>
-            <Route element={<Layout />}>
+            <Route element={<Layout viteSvg={viteSvg} reactSvg={reactSvg} />}>
               <Route path="/" element={<TranslatorPage />} />
               <Route path="/settings" element={<SettingsPage />} />
               <Route path="/account" element={<AccountPage />} />
