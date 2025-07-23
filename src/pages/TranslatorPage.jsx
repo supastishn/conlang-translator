@@ -15,22 +15,18 @@ const LANG_LABELS = {
 
 const xmlParser = new DOMParser();
 
-function parseXmlString(xml) {
-    try {
-        const doc = xmlParser.parseFromString(`<root>${xml}</root>`, "application/xml");
-        const parseError = doc.querySelector("parsererror");
-        if (parseError) {
-          console.error("XML parsing error:", parseError.textContent);
-          return { translation: xml, explanation: "" };
-        }
-        return {
-          translation: doc.querySelector("translation")?.textContent.trim() || "",
-          explanation: doc.querySelector("explanation")?.textContent.trim() || ""
-        };
-    } catch (e) {
-        console.error("XML parsing exception:", e);
-        return { translation: xml, explanation: "Could not parse explanation." };
-    }
+function parseXml(xml) {
+  const doc = xmlParser.parseFromString(`<root>${xml}</root>`, "application/xml");
+  const parseError = doc.querySelector("parsererror");
+  
+  if (parseError) {
+    return { translation: xml, explanation: "" };
+  }
+  
+  return {
+    translation: doc.querySelector("translation")?.textContent?.trim() || "",
+    explanation: doc.querySelector("explanation")?.textContent?.trim() || ""
+  };
 }
 
 export default function TranslatorPage() {
@@ -46,6 +42,9 @@ export default function TranslatorPage() {
     const [provider, setProvider] = useState(settings.providerType || 'gemini');
     const [isTranslating, setIsTranslating] = useState(false);
     const [error, setError] = useState('');
+
+    const hasTranslationContent = sourceText.trim() || imageDataUrl;
+    const isMissingApiKey = provider === 'openai' && !settings.apiKey?.trim();
 
     const [isCameraOpen, setIsCameraOpen] = useState(false);
     const videoRef = useRef(null);
@@ -198,12 +197,17 @@ export default function TranslatorPage() {
 
     return (
         <>
+            {isMissingApiKey && (
+              <div className="warning">
+                OpenAI API key not set. Please configure in <Link to="/settings">Settings</Link>.
+              </div>
+            )}
+
             {error && <div className="error">{error}</div>}
-            {provider === 'openai' && (!settings.apiKey || !settings.apiKey.trim()) &&
-                <div className="warning">
-                    OpenAI API key not set. Please configure in <Link to="/settings">Settings</Link>.
-                </div>
-            }
+
+            {!hasTranslationContent && !isTranslating && (
+              <div className="empty-state">Enter text or upload an image to translate</div>
+            )}
 
             <div className="language-selection-container" style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '1.5rem', gap: '1rem' }}>
                 <div className="form-group" style={{ flex: 1, marginBottom: 0 }}>

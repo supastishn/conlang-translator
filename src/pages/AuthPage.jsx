@@ -41,13 +41,25 @@ export default function AuthPage({ type }) {
       {error && <div className="error" style={{marginBottom: '1rem'}}>{error}</div>}
       <form id={isRegister ? 'register-form' : 'login-form'} className="auth-form" onSubmit={handleSubmit}>
         <div className="form-group">
-          <label htmlFor={isRegister ? 'register-email' : 'login-email'}>Email:</label>
-          <input type="email" id={isRegister ? 'register-email' : 'login-email'} value={email} onChange={(e) => setEmail(e.target.value)} required />
+          <label htmlFor={`${isRegister ? 'register' : 'login'}-email`}>Email:</label>
+          <input 
+            type="email" 
+            id={`${isRegister ? 'register' : 'login'}-email`} 
+            value={email} 
+            onChange={(e) => setEmail(e.target.value)} 
+            required 
+          />
         </div>
         
         <div className="form-group">
-          <label htmlFor={isRegister ? 'register-password' : 'login-password'}>Password:</label>
-          <input type="password" id={isRegister ? 'register-password' : 'login-password'} value={password} onChange={(e) => setPassword(e.target.value)} required />
+          <label htmlFor={`${isRegister ? 'register' : 'login'}-password`}>Password:</label>
+          <input 
+            type="password" 
+            id={`${isRegister ? 'register' : 'login'}-password`} 
+            value={password} 
+            onChange={(e) => setPassword(e.target.value)} 
+            required 
+          />
         </div>
         
         {isRegister && (

@@ -16,7 +16,7 @@ export function AuthProvider({ children }) {
   const getCurrentUser = async () => {
     try {
       return await account.get();
-    } catch (error) {
+    } catch {
       return null;
     }
   };
