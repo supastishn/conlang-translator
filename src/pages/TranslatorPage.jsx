@@ -15,18 +15,19 @@ const LANG_LABELS = {
 
 const xmlParser = new DOMParser();
 
-function parseXml(xml) {
-  const doc = xmlParser.parseFromString(`<root>${xml}</root>`, "application/xml");
-  const parseError = doc.querySelector("parsererror");
-
-  if (parseError) {
+function parseXmlString(xml) {
+  try {
+    const doc = xmlParser.parseFromString(`<root>${xml}</root>`, "application/xml");
+    if (doc.documentElement.querySelector('parsererror')) {
+      return { translation: xml, explanation: "" };
+    }
+    return {
+      translation: doc.querySelector("translation")?.textContent?.trim() || "",
+      explanation: doc.querySelector("explanation")?.textContent?.trim() || ""
+    };
+  } catch {
     return { translation: xml, explanation: "" };
   }
-
-  return {
-    translation: doc.querySelector("translation")?.textContent?.trim() || "",
-    explanation: doc.querySelector("explanation")?.textContent?.trim() || ""
-  };
 }
 
 const StatusMessage = ({ type, message }) =>

@@ -98,20 +98,19 @@ function isValidImageFormat(dataUrl) {
   return /^data:image\/(jpeg|png|gif|webp);base64,/.test(dataUrl);
 }
 
-export async function translateText({ sourceText, sourceLang, targetLang, imageDataUrl, provider, settings, updateCallback }) {
-    if (imageDataUrl && !isValidImageFormat(imageDataUrl)) {
-      throw new Error('Unsupported image format. Please use JPEG, PNG, GIF, or WEBP.');
-    }
+export async function translateText(options) {
+  const { provider, ...config } = options;
 
-    const shouldUseGeminiFunction = provider === 'gemini';
+  if (config.imageDataUrl && !isValidImageFormat(config.imageDataUrl)) {
+    throw new Error('Unsupported image format. Please use JPEG, PNG, GIF, or WEBP.');
+  }
 
-    if (shouldUseGeminiFunction) {
-        // Gemini provider: send to server function, return plain text response
-        const result = await callGeminiFunction({ sourceText, sourceLang, targetLang, imageDataUrl, settings });
-        return result;
-    }
+  return provider === 'gemini'
+    ? callGeminiFunction(config)
+    : callOpenAiFunction(config);
+}
 
-    // OpenAI/other provider logic remains unchanged
+async function callOpenAiFunction({ sourceText, sourceLang, targetLang, imageDataUrl, settings, updateCallback }) {
     let systemPromptCore = settings.systemPrompt;
     let resourcesForPrompt = "";
 

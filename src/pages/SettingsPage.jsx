@@ -27,21 +27,20 @@ export default function SettingsPage() {
   
   const handleSave = (e) => {
     e.preventDefault();
-    let modelToSave = formState.model;
-    if (formState.model === 'custom') {
-      if (!customModelName.trim()) {
-        setStatus({ message: 'Please enter a custom model name!', type: 'error' });
-        return;
-      }
-      modelToSave = customModelName.trim();
+    const model = formState.model === 'custom'
+      ? customModelName.trim()
+      : formState.model;
+    if (formState.model === 'custom' && !model) {
+      setStatus({ message: 'Please enter a custom model name!', type: 'error' });
+      return;
     }
-    
+
     let baseUrlValue = formState.baseUrl.trim() || DEFAULT_SETTINGS.baseUrl;
     if (baseUrlValue.endsWith('/')) {
         baseUrlValue = baseUrlValue.slice(0, -1);
     }
 
-    saveSettings({ ...formState, providerType, model: modelToSave, baseUrl: baseUrlValue });
+    saveSettings({ ...formState, providerType, model, baseUrl: baseUrlValue });
     setStatus({ message: 'Settings saved successfully!', type: 'success' });
     setTimeout(() => setStatus({ message: '', type: '' }), 3000);
   };
@@ -63,13 +62,12 @@ export default function SettingsPage() {
       return;
     }
     
-    let modelValue = formState.model;
-    if (modelValue === 'custom') {
-        modelValue = customModelName.trim();
-        if (!modelValue) {
-            setStatus({ message: 'Please enter a custom model name!', type: 'error' });
-            return;
-        }
+    const model = formState.model === 'custom'
+      ? customModelName.trim()
+      : formState.model;
+    if (formState.model === 'custom' && !model) {
+      setStatus({ message: 'Please enter a custom model name!', type: 'error' });
+      return;
     }
 
     if (baseUrl.endsWith('/')) {
@@ -81,7 +79,7 @@ export default function SettingsPage() {
         method: 'POST',
         headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${apiKey}` },
         body: JSON.stringify({
-          model: modelValue,
+          model,
           messages: [{ role: 'system', content: 'You are a test assistant.' }, { role: 'user', content: 'Respond with OK if you can read this.' }]
         })
       });
