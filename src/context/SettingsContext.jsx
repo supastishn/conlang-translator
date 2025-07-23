@@ -21,11 +21,9 @@ export function SettingsProvider({ children }) {
   const [settings, setSettings] = useState(DEFAULT_SETTINGS);
 
   useEffect(() => {
-    const savedSettings = localStorage.getItem('draconicTranslatorSettings');
-    if (savedSettings) {
-      setSettings(JSON.parse(savedSettings));
-    }
-  }, []); // Empty dependency array ensures one-time execution
+    const settings = localStorage.getItem('draconicTranslatorSettings');
+    settings && setSettings(JSON.parse(settings));
+  }, []);
 
   const saveSettings = (newSettings) => {
     const settingsToSave = { ...settings, ...newSettings };

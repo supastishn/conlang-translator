@@ -27,24 +27,24 @@ async function loadResource(path) {
     }
 }
 
-async function scanDirectoryForCSVs(directoryPath) {
-    try {
-        const indexResponse = await fetch(`${getBaseUrl()}/materials/csvs/index.json`);
-        if (indexResponse.ok) {
-            const fileList = await indexResponse.json();
-            return fileList.filter(filename => filename.toLowerCase().endsWith('.csv'));
-        }
-    } catch (e) {
-    }
-    
-    return [
-        'WIP - Draconic Dictionary - Common Phrases.csv',
-        'WIP - Draconic Dictionary - Dictionary.csv',
-        'WIP - Draconic Dictionary - Noun Forms.csv',
-        'WIP - Draconic Dictionary - Phonology.csv',
-        'WIP - Draconic Dictionary - Pronouns & Determiners.csv',
-        'WIP - Draconic Dictionary - Verb Conjugation.csv'
-    ];
+const scanner = async (path) => {
+  try {
+    const res = await fetch(`${getBaseUrl()}/materials/csvs/index.json`);
+    return res.ok ? (await res.json()).filter(f => f.endsWith('.csv')) : null;
+  } catch {
+    return null;
+  }
+};
+
+async function scanDirectoryForCSVs() {
+  return (await scanner()) || [
+    'WIP - Draconic Dictionary - Common Phrases.csv',
+    'WIP - Draconic Dictionary - Dictionary.csv',
+    'WIP - Draconic Dictionary - Noun Forms.csv',
+    'WIP - Draconic Dictionary - Phonology.csv',
+    'WIP - Draconic Dictionary - Pronouns & Determiners.csv',
+    'WIP - Draconic Dictionary - Verb Conjugation.csv'
+  ];
 }
 
 async function loadDraconicDictionary() {

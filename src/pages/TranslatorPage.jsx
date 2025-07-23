@@ -31,7 +31,7 @@ function parseXmlString(xml) {
 }
 
 function StatusMessage({ type, children }) {
-  return children ? <div className={type}>{children}</div> : null;
+  return children && <div className={`${type} animated-in`}>{children}</div>;
 }
 
 export default function TranslatorPage() {

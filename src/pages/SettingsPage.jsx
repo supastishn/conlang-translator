@@ -95,7 +95,9 @@ export default function SettingsPage() {
   };
 
   const isCustomModel = formState.model === 'custom';
-  const model = isCustomModel ? customModelName.trim() : formState.model;
+  const modelName = formState.model === 'custom' 
+    ? customModelName.trim() 
+    : formState.model;
 
   return (
     <div className="settings-container">

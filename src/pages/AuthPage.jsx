@@ -41,7 +41,7 @@ export default function AuthPage({ type }) {
       {error && <div className="error" style={{marginBottom: '1rem'}}>{error}</div>}
       <form className="auth-form" onSubmit={handleSubmit}>
         <div className="form-group">
-          <label htmlFor={`${authType}-email`}>Email:</label>
+          <label htmlFor={`${authType}-email`}>{`Email:`}</label>
           <input
             type="email"
             id={`${authType}-email`}
@@ -52,7 +52,7 @@ export default function AuthPage({ type }) {
         </div>
 
         <div className="form-group">
-          <label htmlFor={`${authType}-password`}>Password:</label>
+          <label htmlFor={`${authType}-password`}>{`Password:`}</label>
           <input
             type="password"
             id={`${authType}-password`}
