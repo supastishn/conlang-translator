@@ -3,6 +3,7 @@ import { useSettings, DEFAULT_SETTINGS } from '../context/SettingsContext';
 import { Link } from 'react-router-dom';
 
 export default function SettingsPage() {
+  const [customModelName, setCustomModelName] = useState('');
   const { settings, saveSettings } = useSettings();
   const [formState, setFormState] = useState(settings);
   const [status, setStatus] = useState({ message: '', type: '' });
@@ -107,7 +108,7 @@ export default function SettingsPage() {
                   onClick={() => setProviderType('gemini')}
                 >
                   Gemini Function
-                  <div className="button-description">(no API key needed)</div>
+                  <div className="button-description">(Appwrite function)</div>
                 </button>
                 <button
                   type="button"
@@ -115,6 +116,14 @@ export default function SettingsPage() {
                   onClick={() => setProviderType('openai')}
                 >
                   Client API Key
+                </button>
+                <button
+                  type="button"
+                  className={`method-button ${providerType === 'hackclub' ? 'active' : ''}`}
+                  onClick={() => setProviderType('hackclub')}
+                >
+                  Hack Club AI
+                  <div className="button-description">(no login or API key)</div>
                 </button>
               </div>
             </div>
@@ -155,7 +164,14 @@ export default function SettingsPage() {
             {providerType === 'gemini' && (
               <div className="form-group">
                 <div className="info">
-                  Using Gemini Function - no API key needed. Translations are processed server-side.
+                  Using Gemini Function - requires being logged in. Translations are processed server-side.
+                </div>
+              </div>
+            )}
+            {providerType === 'hackclub' && (
+              <div className="form-group">
+                <div className="info">
+                  Using Hack Club AI - free public service, no login needed. Images not supported.
                 </div>
               </div>
             )}

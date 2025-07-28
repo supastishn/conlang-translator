@@ -102,6 +102,39 @@ function parseXmlString(xml) {
   };
 }
 
+async function callHackClubFunction({ sourceText, settings }) {
+  try {
+    const endpoint = 'https://ai.hackclub.com/chat/completions';
+    const headers = {
+      'Content-Type': 'application/json'
+    };
+
+    const payload = {
+      model: settings.model || 'gpt-3.5-turbo',
+      messages: [
+        { role: 'system', content: 'You are an expert multilingual translator.' },
+        { role: 'user', content: sourceText }
+      ],
+      temperature: settings.temperature
+    };
+
+    const response = await fetch(endpoint, {
+      method: 'POST',
+      headers,
+      body: JSON.stringify(payload)
+    });
+
+    if (!response.ok) {
+      throw new Error(`Hack Club AI error: ${response.status} ${response.statusText}`);
+    }
+
+    const jsonResponse = await response.json();
+    return jsonResponse.choices[0].message.content;
+  } catch (err) {
+    throw new Error(`Hack Club AI request failed: ${err.message}`);
+  }
+}
+
 export async function translateText(options) {
   const { provider, ...config } = options;
 
@@ -109,9 +142,13 @@ export async function translateText(options) {
     throw new Error('Unsupported image format. Please use JPEG, PNG, GIF, or WEBP.');
   }
 
-  return provider === 'gemini'
-    ? callGeminiFunction(config)
-    : callOpenAiFunction(config);
+  if (provider === 'gemini') {
+    return callGeminiFunction(config);
+  }
+  if (provider === 'hackclub') {
+    return callHackClubFunction(config);
+  }
+  return callOpenAiFunction(config);
 }
 
 async function callOpenAiFunction({ sourceText, sourceLang, targetLang, imageDataUrl, settings, updateCallback }) {

@@ -9,21 +9,22 @@ export default async ({ req, res, log, error }) => {
 
   // --- NEW: Log incoming request ---
   log(`Received ${req.method} request to ${req.path}`);
-  log('Request headers:', JSON.stringify(req.headers, null, 2));
+
+  // Only allow logged-in users
+  try {
+    const authHeader = req.headers['x-appwrite-user-id'] ? true : false;
+    if (!authHeader) {
+      return res.json({ error: 'Access restricted to logged-in users only.' }, 401);
+    }
+  } catch (e) {
+    return res.json({ error: 'Authentication required' }, 401);
+  }
 
   if (req.method === 'POST' && req.path === '/') {
     try {
-      // --- NEW: Log parsing process ---
       log('Parsing request payload...');
       const payload = typeof req.bodyRaw === 'string' ? JSON.parse(req.bodyRaw) : req.body;
-      log(`Received valid payload for model: ${payload.settings?.model}`);
-
-      const apiKey = process.env.GEMINI_API_KEY;
-
-      if (!apiKey) {
-        error('GEMINI_API_KEY environment variable is not set!');
-        return res.json({ error: 'GEMINI_API_KEY not configured' }, 500);
-      }
+      log(`Received request for provider: ${payload.provider}`);
 
       // --- NEW: Initialize OpenAI client ---
       const openai = new OpenAI({
