@@ -102,8 +102,47 @@ function parseXmlString(xml) {
   };
 }
 
-async function callHackClubFunction({ sourceText, settings }) {
+async function callHackClubFunction({ sourceText, sourceLang, targetLang, imageDataUrl, settings }) {
   try {
+    // Resources loading (same as OpenAI provider)
+    let systemPromptCore = settings.systemPrompt;
+    let resourcesForPrompt = "";
+
+    const needsDraconic = (sourceLang === 'draconic' || targetLang === 'draconic');
+    if (needsDraconic) {
+        const dictionaryPrompt = await loadDraconicDictionary();
+        const grammarPrompt = await loadResource('/materials/grammar.txt');
+        resourcesForPrompt += `\n\nDRACONIC RESOURCES:\nDictionary:\n${dictionaryPrompt}\nGrammar:\n${grammarPrompt}`;
+    }
+    if (sourceLang === 'dwl' || targetLang === 'dwl') {
+        resourcesForPrompt += `\n\nDIACRITICAL WALUIGI LANGUAGE RESOURCES:\n${await loadResource('/materials/dwl.txt')}`;
+    }
+    if (sourceLang === 'obwakimo' || targetLang === 'obwakimo') {
+        resourcesForPrompt += `\n\nOBWA KIMO RESOURCES:\n${await loadResource('/materials/conlangs/obwakimo.txt')}`;
+    }
+    if (sourceLang === 'illuveterian' || targetLang === 'illuveterian') {
+        resourcesForPrompt += `\n\nILLUVETERIAN RESOURCES:\n${await loadResource('/materials/conlangs/illuveterian.txt')}`;
+    }
+
+    let finalSystemPrompt = systemPromptCore + resourcesForPrompt;
+    
+    // Build XML instruction
+    const xmlInstr = settings.includeExplanation
+      ? "\n\nWrap your response in XML exactly as:\n<translation>…</translation>\n<explanation>…</explanation>\nDo not include any other text."
+      : "\n\nWrap your response in XML exactly as:\n<translation>…</translation>\nDo not include any other text.";
+
+    // Create messages array
+    const messages = [
+      { role: 'system', content: finalSystemPrompt },
+      { 
+        role: 'user', 
+        content: (sourceLang === 'detect') 
+          ? `Identify the language and translate this to ${LANG_LABELS[targetLang]}:\n\n${sourceText}${xmlInstr}`
+          : `Translate from ${LANG_LABELS[sourceLang]} to ${LANG_LABELS[targetLang]}:\n\n${sourceText}${xmlInstr}`
+      }
+    ];
+
+    // Make request to Hack Club AI
     const endpoint = 'https://ai.hackclub.com/chat/completions';
     const headers = {
       'Content-Type': 'application/json'
@@ -111,10 +150,7 @@ async function callHackClubFunction({ sourceText, settings }) {
 
     const payload = {
       model: settings.model || 'gpt-3.5-turbo',
-      messages: [
-        { role: 'system', content: 'You are an expert multilingual translator.' },
-        { role: 'user', content: sourceText }
-      ],
+      messages: messages,
       temperature: settings.temperature
     };
 
