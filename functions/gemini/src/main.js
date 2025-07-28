@@ -27,6 +27,14 @@ export default async ({ req, res, log, error }) => {
       log(`Received request for provider: ${payload.provider}`);
 
       // --- NEW: Initialize OpenAI client ---
+      // --- NEW: Get the API key from environment ---
+      const apiKey = process.env.GEMINI_API_KEY;
+      if (!apiKey) {
+        error('GEMINI_API_KEY environment variable is not set!');
+        return res.json({ error: 'GEMINI_API_KEY not configured' }, 500);
+      }
+
+      // --- Initialize OpenAI client ---
       const openai = new OpenAI({
         apiKey,
         baseURL: 'https://generativelanguage.googleapis.com/v1beta/openai/'
