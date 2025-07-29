@@ -9,7 +9,7 @@
   },
   "dependencies": {
     "node-appwrite": "^14.1.0",
-    "openai": "^4.54.3"
+    "@google/generative-ai": "^1.0.0"
   },
   "devDependencies": {
     "prettier": "^3.2.5"
