@@ -1,5 +1,5 @@
 import { Client } from 'node-appwrite';
-import { GoogleGenerativeAI } from "@google/generative-ai";
+import OpenAI from 'openai';
 
 export default async ({ req, res, log, error }) => {
   const client = new Client()
@@ -25,59 +25,51 @@ export default async ({ req, res, log, error }) => {
       log('Parsing request payload...');
       const payload = typeof req.bodyRaw === 'string' ? JSON.parse(req.bodyRaw) : req.body;
       log(`Received request for provider: ${payload.provider}`);
-
-      // Initialize GoogleGenerativeAI
+      
+      // Initialize OpenAI client with Gemini endpoint
       const apiKey = process.env.GEMINI_API_KEY;
       if (!apiKey) {
         error('GEMINI_API_KEY environment variable is not set!');
         return res.json({ error: 'GEMINI_API_KEY not configured' }, 500);
       }
 
-      const genAI = new GoogleGenerativeAI(apiKey);
-      const model = genAI.getGenerativeModel({ 
-        model: payload.settings.model || 'gemini-1.5-flash',
-        generationConfig: { temperature: payload.settings.temperature }
+      const openai = new OpenAI({
+        apiKey: apiKey,
+        baseURL: 'https://generativelanguage.googleapis.com/v1beta/openai/',
       });
 
-      // Build prompt parts
-      const parts = [];
+      // Prepare messages
+      const messages = [];
       if (payload.sourceText) {
-        parts.push({ text: payload.sourceText });
-      }
-      if (payload.imageDataUrl) {
-        // Extract base64 and MIME type from data URL
-        const matches = payload.imageDataUrl.match(/^data:(.+?);base64,(.*)$/);
-        if (!matches || matches.length !== 3) {
-          throw new Error('Invalid image data URL format');
-        }
-        const mimeType = matches[1];
-        const base64Data = matches[2];
-        parts.push({
-          inlineData: {
-            mimeType,
-            data: base64Data
-          }
+        messages.push({
+          role: 'user',
+          content: payload.sourceText
         });
       }
 
-      log('Sending to Google Gemini');
+      log('Sending to Google Gemini using OpenAI SDK');
       const startTime = Date.now();
-      const result = await model.generateContent({
-        contents: [{ role: 'user', parts }]
+      
+      // Create chat completion with Gemini
+      const completion = await openai.chat.completions.create({
+        model: payload.settings.model || 'gemini-1.5-flash',
+        temperature: payload.settings.temperature,
+        messages
       });
-      const responseText = result.response.text();
+
       const duration = Date.now() - startTime;
+      const responseText = completion.choices[0].message?.content || '';
       log(`Gemini response received in ${duration}ms: ${responseText.substring(0, 75)}...`);
 
-      // Return response in OpenAI-like format for compatibility
-      return res.json({ 
-        choices: [ 
-          { 
-            message: { 
-              content: responseText 
-            } 
-          } 
-        ] 
+      // Return response in OpenAI-like format
+      return res.json({
+        choices: [
+          {
+            message: {
+              content: responseText
+            }
+          }
+        ]
       });
 
     } catch (err) {
