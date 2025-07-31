@@ -13,7 +13,7 @@
                 "execution.write"
             ],
             "schedule": "",
-            "timeout": 15,
+            "timeout": 240,
             "enabled": true,
             "logging": true,
             "entrypoint": "src/main.js",
