@@ -52,7 +52,7 @@ export default async ({ req, res, log, error }) => {
       
       // Create chat completion with Gemini
       const completion = await openai.chat.completions.create({
-        model: payload.settings.model || 'gemini-1.5-flash',
+        model: 'gemini-1.5-flash',
         temperature: payload.settings.temperature,
         messages
       });

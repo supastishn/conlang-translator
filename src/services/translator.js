@@ -69,7 +69,6 @@ async function callGeminiFunction({ sourceText, sourceLang, targetLang, imageDat
     targetLang,
     imageDataUrl,
     settings: {
-      model: settings.model || 'gemini-1.5-flash',
       temperature: settings.temperature
     }
   };
