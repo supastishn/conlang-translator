@@ -1,10 +1,12 @@
 import { useState, useEffect } from 'react';
 import { useSettings, DEFAULT_SETTINGS } from '../context/SettingsContext';
+import { useAuth } from '../context/AuthContext';
 import { Link } from 'react-router-dom';
 
 export default function SettingsPage() {
   const [customModelName, setCustomModelName] = useState('');
   const { settings, saveSettings } = useSettings();
+  const { user } = useAuth();
   const [formState, setFormState] = useState(settings);
   const [status, setStatus] = useState({ message: '', type: '' });
   const [providerType, setProviderType] = useState(settings.providerType || 'gemini');
@@ -106,9 +108,11 @@ export default function SettingsPage() {
                   type="button"
                   className={`method-button ${providerType === 'gemini' ? 'active' : ''}`}
                   onClick={() => setProviderType('gemini')}
+                  disabled={!user}
+                  title={!user ? 'You must be logged in to use the Gemini function' : ''}
                 >
                   Gemini Function
-                  <div className="button-description">(Appwrite function)</div>
+                  <div className="button-description">{user ? '(Appwrite function)' : '(requires login)'}</div>
                 </button>
                 <button
                   type="button"

@@ -131,6 +131,10 @@ export default function TranslatorPage() {
       setError('OpenAI API key is not set in Settings.');
       return;
     }
+    if (provider === 'gemini' && !user) {
+      setError('You must be logged in to use the Gemini function. Please log in or change the translation method in Settings.');
+      return;
+    }
 
     setIsTranslating(true);
     setError('');

@@ -6,7 +6,7 @@
             "name": "gemini",
             "runtime": "node-22",
             "specification": "s-0.5vcpu-512mb",
-            "execute": ["users"],
+            "execute": ["any"],
             "events": [],
             "scopes": [
                 "execution.read",
