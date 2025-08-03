@@ -1,4 +1,5 @@
-import { Client, Functions } from 'appwrite';
+import { Functions } from 'appwrite';
+import { client } from '../context/AuthContext';
 
 const LANG_LABELS = {
     english: 'English',
@@ -58,9 +59,6 @@ async function loadDraconicDictionary() {
 }
 
 async function callGeminiFunction({ sourceText, sourceLang, targetLang, imageDataUrl, settings }) {
-  const client = new Client()
-    .setEndpoint('https://fra.cloud.appwrite.io/v1')
-    .setProject('draconic-translator');
   const functions = new Functions(client);
 
   const payload = {

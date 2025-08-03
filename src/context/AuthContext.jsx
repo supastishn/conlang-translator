@@ -11,7 +11,7 @@ const getOrigin = () => {
   return 'https://fra.cloud.appwrite.io';
 };
 
-const client = new Client()
+export const client = new Client()
   .setEndpoint(getOrigin() + '/v1')
   .setProject('draconic-translator');
 
