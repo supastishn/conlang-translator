@@ -3,8 +3,16 @@ import { Client, Account } from 'appwrite';
 
 const AuthContext = createContext();
 
+// Helper to access window safely
+const getOrigin = () => {
+  if (typeof window !== 'undefined' && window.location) {
+    return window.location.origin;
+  }
+  return 'https://fra.cloud.appwrite.io';
+};
+
 const client = new Client()
-  .setEndpoint('https://fra.cloud.appwrite.io/v1')
+  .setEndpoint(getOrigin() + '/v1')
   .setProject('draconic-translator');
 
 const account = new Account(client);
