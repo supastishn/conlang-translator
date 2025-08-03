@@ -146,8 +146,15 @@ export default async ({ req, res, log, error }) => {
       });
 
       const duration = Date.now() - startTime;
-      const responseText = completion.choices[0].message?.content || '';
+      let responseText = completion.choices[0].message?.content || '';
       log(`Gemini response received in ${duration}ms: ${responseText.substring(0, 75)}...`);
+
+      // Strip markdown code block fences if present, e.g., ```xml\n...```
+      const markdownRegex = /^```(?:\w+\n)?([\s\S]+?)\n?```$/;
+      const match = responseText.match(markdownRegex);
+      if (match) {
+        responseText = match[1];
+      }
 
       // Return response in OpenAI-like format
       return res.json({

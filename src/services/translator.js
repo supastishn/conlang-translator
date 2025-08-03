@@ -71,17 +71,28 @@ async function callGeminiFunction({ sourceText, sourceLang, targetLang, imageDat
     }
   };
 
-  return functions.createExecution(
-    'gemini',
-    JSON.stringify(payload),
-    false,
-    '/',
-    'POST'
-  )
-    .then(execution => execution.response)
-    .catch(error => { 
-      throw new Error(`Gemini call failed: ${error.message}`) 
-    });
+  try {
+    const execution = await functions.createExecution(
+      'gemini',
+      JSON.stringify(payload),
+      false,
+      '/',
+      'POST'
+    );
+
+    if (execution.status === 'failed') {
+      throw new Error(execution.stderr || 'Gemini function execution failed');
+    }
+
+    const responseData = JSON.parse(execution.responseBody);
+    if (responseData.error) {
+      throw new Error(responseData.error);
+    }
+
+    return responseData.choices[0].message.content;
+  } catch (error) {
+    throw new Error(`Gemini call failed: ${error.message}`);
+  }
 }
 
 function isValidImageFormat(dataUrl) {
