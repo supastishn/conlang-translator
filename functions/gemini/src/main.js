@@ -1,5 +1,8 @@
 import { Client } from 'node-appwrite';
 import OpenAI from 'openai';
+import fs from 'fs/promises';
+import path from 'path';
+import { fileURLToPath } from 'url';
 
 const LANG_LABELS = {
     english: 'English',
@@ -10,49 +13,35 @@ const LANG_LABELS = {
     detect: 'Detect Language'
 };
 
-function getBaseUrl() {
-    return 'https://supastishn.github.io/conlang-translator';
-}
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
-async function loadResource(path) {
+async function loadResource(resourcePath) {
     try {
-        const response = await fetch(`${getBaseUrl()}${path}`);
-        if (!response.ok) {
-            console.warn(`Could not load ${path}: ${response.status} ${response.statusText}`);
-            return `[Resource file (${path}) not found or could not be loaded]`;
-        }
-        return await response.text();
+        const fullPath = path.join(__dirname, '..', 'materials', resourcePath);
+        return await fs.readFile(fullPath, 'utf-8');
     } catch (error) {
-        console.error(`Error loading resource ${path}:`, error);
-        return `[Resource ${path} could not be loaded due to an error]`;
+        console.error(`Error loading resource ${resourcePath}:`, error);
+        return `[Resource ${resourcePath} could not be loaded due to an error]`;
     }
 }
 
-const scanner = async (path) => {
+async function scanDirectoryForCSVs(dirPath) {
   try {
-    const res = await fetch(`${getBaseUrl()}/materials/csvs/index.json`);
-    return res.ok ? (await res.json()).filter(f => f.endsWith('.csv')) : null;
-  } catch {
-    return null;
+    const fullPath = path.join(__dirname, '..', 'materials', dirPath);
+    const files = await fs.readdir(fullPath);
+    return files.filter(f => f.endsWith('.csv'));
+  } catch (error) {
+    console.error(`Error scanning directory ${dirPath}:`, error);
+    return [];
   }
-};
-
-async function scanDirectoryForCSVs() {
-  return (await scanner()) || [
-    'WIP - Draconic Dictionary - Common Phrases.csv',
-    'WIP - Draconic Dictionary - Dictionary.csv',
-    'WIP - Draconic Dictionary - Noun Forms.csv',
-    'WIP - Draconic Dictionary - Phonology.csv',
-    'WIP - Draconic Dictionary - Pronouns & Determiners.csv',
-    'WIP - Draconic Dictionary - Verb Conjugation.csv'
-  ];
 }
 
 async function loadDraconicDictionary() {
-    const csvFiles = await scanDirectoryForCSVs('/materials/csvs');
+    const csvFiles = await scanDirectoryForCSVs('csvs');
     let allDictionaryData = '';
     for (const file of csvFiles) {
-        const csvText = await loadResource(`/materials/csvs/${file}`);
+        const csvText = await loadResource(`csvs/${file}`);
         allDictionaryData += `\n### ${file} ###\n${csvText}\n`;
     }
     return allDictionaryData;
@@ -104,17 +93,17 @@ export default async ({ req, res, log, error }) => {
       const needsDraconic = (sourceLang === 'draconic' || targetLang === 'draconic');
       if (needsDraconic) {
           const dictionaryPrompt = await loadDraconicDictionary();
-          const grammarPrompt = await loadResource('/materials/grammar.txt');
+          const grammarPrompt = await loadResource('grammar.txt');
           resourcesForPrompt += `\n\nDRACONIC RESOURCES:\nDictionary:\n${dictionaryPrompt}\nGrammar:\n${grammarPrompt}`;
       }
       if (sourceLang === 'dwl' || targetLang === 'dwl') {
-          resourcesForPrompt += `\n\nDIACRITICAL WALUIGI LANGUAGE RESOURCES:\n${await loadResource('/materials/dwl.txt')}`;
+          resourcesForPrompt += `\n\nDIACRITICAL WALUIGI LANGUAGE RESOURCES:\n${await loadResource('dwl.txt')}`;
       }
       if (sourceLang === 'obwakimo' || targetLang === 'obwakimo') {
-          resourcesForPrompt += `\n\nOBWA KIMO RESOURCES:\n${await loadResource('/materials/conlangs/obwakimo.txt')}`;
+          resourcesForPrompt += `\n\nOBWA KIMO RESOURCES:\n${await loadResource('conlangs/obwakimo.txt')}`;
       }
       if (sourceLang === 'illuveterian' || targetLang === 'illuveterian') {
-          resourcesForPrompt += `\n\nILLUVETERIAN RESOURCES:\n${await loadResource('/materials/conlangs/illuveterian.txt')}`;
+          resourcesForPrompt += `\n\nILLUVETERIAN RESOURCES:\n${await loadResource('conlangs/illuveterian.txt')}`;
       }
 
       let finalSystemPrompt = systemPromptCore + resourcesForPrompt;
