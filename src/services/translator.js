@@ -84,7 +84,14 @@ async function callGeminiFunction({ sourceText, sourceLang, targetLang, imageDat
       throw new Error(execution.stderr || 'Gemini function execution failed');
     }
 
-    const responseData = JSON.parse(execution.responseBody);
+    let responseData;
+    try {
+      responseData = JSON.parse(execution.responseBody);
+    } catch (e) {
+      // If JSON parsing fails, return the raw response body as requested.
+      return execution.responseBody;
+    }
+
     if (responseData.error) {
       throw new Error(responseData.error);
     }
