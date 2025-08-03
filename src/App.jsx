@@ -1,4 +1,4 @@
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { HashRouter, Routes, Route } from 'react-router-dom';
 import Layout from './components/Layout';
 import TranslatorPage from './pages/TranslatorPage';
 import SettingsPage from './pages/SettingsPage';
@@ -14,7 +14,7 @@ export default function App() {
   return (
     <AuthProvider>
       <SettingsProvider>
-        <BrowserRouter>
+        <HashRouter>
           <Routes>
             <Route element={<Layout viteSvg={viteSvg} reactSvg={reactSvg} />}>
               <Route path="/" element={<TranslatorPage />} />
@@ -25,7 +25,7 @@ export default function App() {
               <Route path="/guide/:guideType" element={<GuidePage />} />
             </Route>
           </Routes>
-        </BrowserRouter>
+        </HashRouter>
       </SettingsProvider>
     </AuthProvider>
   );
