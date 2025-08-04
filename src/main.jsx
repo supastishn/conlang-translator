@@ -3,15 +3,8 @@ import eruda from 'eruda';
 import App from './App.jsx';
 import '../styles.css';
 
-const storedSettings = JSON.parse(
-  localStorage.getItem('draconicTranslatorSettings') || '{}'
-);
-
-if (import.meta.env.DEV || storedSettings.debugMode) {
-  eruda.init();
-  console.log('Eruda debug console initialized');
-} else {
-  console.log('Eruda disabled in production');
-}
+// Always initialize Eruda for debugging access in all environments.
+eruda.init();
+console.log('Eruda debug console initialized');
 
 createRoot(document.getElementById('root')).render(<App />);
